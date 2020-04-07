@@ -12,10 +12,10 @@ $stmt = DB::run("SELECT * FROM product_category");
 $response = [];
 while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY))
 {
-    $category = array(
-                "id" => $tableRow['id'],
-                "name" => $tableRow['name'],
-                );
+    $category = [
+        "id" => $tableRow['id'],
+        "name" => $tableRow['name'],
+    ];
     array_push($response, $category);
 }
 
