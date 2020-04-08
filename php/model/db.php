@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'webshop');
 define('DB_USER', 'root');
-define('DB_PASS', '058418Ms');
+define('DB_PASS', '');
 define('DB_CHAR', 'utf8');
 
 class DB
