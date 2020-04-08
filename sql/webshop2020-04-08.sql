@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2020 at 10:00 PM
+-- Generation Time: Apr 08, 2020 at 10:05 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -57,7 +57,8 @@ CREATE TABLE `image_of_product` (
 --
 
 INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
-(1, '5301791.jpg');
+(1, '5301791_0.jpg'),
+(1, '5301791_3.jpg');
 
 -- --------------------------------------------------------
 
@@ -81,12 +82,33 @@ CREATE TABLE `ordered_product` (
 CREATE TABLE `order_of_products` (
   `id` int(11) NOT NULL,
   `date_ordered_at` datetime NOT NULL,
+  `status` int(11) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `email` text NOT NULL,
   `phone` text NOT NULL,
   `deliveryadress` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`id`, `name`) VALUES
+(1, 'Ny'),
+(2, 'Behandlas'),
+(3, 'Slutförd');
 
 -- --------------------------------------------------------
 
@@ -175,6 +197,13 @@ ALTER TABLE `ordered_product`
 -- Indexes for table `order_of_products`
 --
 ALTER TABLE `order_of_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -208,6 +237,12 @@ ALTER TABLE `order_of_products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
@@ -236,6 +271,12 @@ ALTER TABLE `ordered_product`
   ADD CONSTRAINT `currencykey` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `orderkey` FOREIGN KEY (`order_id`) REFERENCES `order_of_products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `productkey` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_of_products`
+--
+ALTER TABLE `order_of_products`
+  ADD CONSTRAINT `ordstatusfkey` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `price_of_product`
