@@ -25,11 +25,12 @@ while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY))
         "numberInStock" => $tableRow['number_in_stock'],
     ];
 
-    $selectProductImages = DB::run("
+    $imgSql = "
         SELECT file_name 
         FROM product, image_of_product
-        WHERE product.id = image_of_product.product_id
-    ");
+        WHERE product.id = image_of_product.product_id AND product.id = ?
+    ";
+    $selectProductImages = DB::run($imgSql, [$tableRow['id']]);
 
     $imageGallery = [];
     while ($imgRow = $selectProductImages->fetch(PDO::FETCH_LAZY)) { array_push($imageGallery, $imgRow['file_name']); } 
