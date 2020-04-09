@@ -1,0 +1,39 @@
+.hamburger__bar-wrapper {
+    position: fixed;
+    top: 20px;
+    align-self: center;
+    display: flex;
+    height: 2.5em;
+    place-content: center space-evenly;
+    flex-direction: column;
+    width: 3.4em;
+    cursor: pointer;
+    z-index: 99999;
+    @media (min-width: 700px) {
+      display: none;
+    }
+    span {
+        margin-bottom: 5px;
+        border-radius: 5px;
+        display: flex;
+        height: 8px;
+        background: rgb(52, 52, 54);
+        opacity: 1;
+        transition: transform 0.25s ease-in-out;
+      }
+  }
+
+.main__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+&__left {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+&__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
