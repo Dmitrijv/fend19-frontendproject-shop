@@ -1,5 +1,7 @@
 .main__header {
-  margin: 1.5em;
+  -webkit-box-shadow: 0px 31px 23px -17px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 31px 23px -17px rgba(0, 0, 0, 0.3);
+  margin: 1.5em 0 1.5em 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,6 +62,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 1.5em;
 }
 
 .hamburger__bar-wrapper {

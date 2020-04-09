@@ -1,5 +1,6 @@
 .main__header {
-  margin: 1.5em;
+  box-shadow: 0px 31px 23px -17px rgba(0, 0, 0, 0.3);
+  margin: 1.5em 0 1.5em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,6 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1.5em;
 }
 .hamburger__bar-wrapper {
   position: fixed;
