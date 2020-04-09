@@ -19,9 +19,9 @@
 </div>
 <div class="main__header__right">
 <div class="logo">LOGOTYPE</div>
-<div class="main__header__login">LOGIN</div>
-<div class="main__header__cart">CART</div>
-<div class="main__header__search">SEARCH</div>
+<button class="main__header__btn login-btn">Logga in</button>
+<button class="main__header__btn cart-btn">Varukorg</button>
+<div class="main__header__search"><input type="text"></div>
 </div>
 <div class="div"></div>
 </header>
