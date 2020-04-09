@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2020 at 10:05 AM
+-- Generation Time: Apr 09, 2020 at 11:18 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -38,8 +38,7 @@ CREATE TABLE `currency` (
 --
 
 INSERT INTO `currency` (`id`, `shorthand`) VALUES
-('SEK', 'kr'),
-('USD', '$');
+('SEK', 'kr');
 
 -- --------------------------------------------------------
 
@@ -57,8 +56,13 @@ CREATE TABLE `image_of_product` (
 --
 
 INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
-(1, '5301791_0.jpg'),
-(1, '5301791_3.jpg');
+(2, '2-cover.jpg'),
+(3, '3-cover.jpg'),
+(4, '4-cover.jpg'),
+(6, '6-cover.jpg'),
+(7, '7-cover.jpg'),
+(8, '8-cover.jpg'),
+(5, '5-cover.jpg');
 
 -- --------------------------------------------------------
 
@@ -127,7 +131,13 @@ CREATE TABLE `price_of_product` (
 --
 
 INSERT INTO `price_of_product` (`product_id`, `currency_id`, `amount`) VALUES
-(1, 'SEK', 3590);
+(2, 'SEK', 700),
+(3, 'SEK', 1200),
+(4, 'SEK', 800),
+(5, 'SEK', 750),
+(6, 'SEK', 800),
+(7, 'SEK', 550),
+(8, 'SEK', 3400);
 
 -- --------------------------------------------------------
 
@@ -148,7 +158,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(1, 'AMD Ryzen 7 3700X 3.6 GHz 36MB', 'Med snabbare hastigheter, mer minne och bandbredd än den tidigare generationen sätter den tredje generationens Ryzen-processorer från AMD standarden för hög prestanda.', 2, 999);
+(2, 'Tavla - Spike', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis beatae distinctio porro magnam recusandae ex dicta expedita necessitatibus, quia omnis', 4, 12),
+(3, 'Elefant Tavla - Pastell Förälskelse', 'Deserunt, illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quis, sequi laudantium ut labore ducimus dolores? Explicabo voluptate maiores culpa alias, similique at numquam ipsa id sapiente harum?', 5, 2),
+(4, 'Abstrakt Oljemålning - Sailor', 'Modern abstrakt oljemålning. Tavlan är målad härliga gråa toner med detaljer i bruna och konjak nyanser. \r\n\r\n    Levereras: Uppspänd, redo för upphängning', 6, 31),
+(5, 'Abstrakt Oljemålning - Dimensional Shift', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova nyanser av rosa.', 6, 7),
+(6, 'Abstrakt Oljemålning - Tales of the Past', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova och tidlösa nyanser. ', 6, 35),
+(7, 'Abstrakt Oljemålning - Sentinels of the Soul', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova och tidlösa nyanser.', 6, 1),
+(8, 'Oljemåling - Horse', 'En galopperande vit häst i en turkos bakgrund. Enligt många är den vita hästen bland de vackraste djuren. ', 5, 3);
 
 -- --------------------------------------------------------
 
@@ -166,8 +182,12 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `name`) VALUES
-(1, 'Miscellaneous'),
-(2, 'CPU');
+(1, 'Diverse'),
+(2, 'Porträtt'),
+(3, 'Tavelvägg'),
+(4, 'Naturmotiv'),
+(5, 'Djur Tavlor'),
+(6, 'Abstrakt');
 
 --
 -- Indexes for dumped tables
@@ -210,6 +230,7 @@ ALTER TABLE `order_status`
 -- Indexes for table `price_of_product`
 --
 ALTER TABLE `price_of_product`
+  ADD PRIMARY KEY (`product_id`),
   ADD KEY `product` (`product_id`),
   ADD KEY `currency` (`currency_id`);
 
@@ -246,13 +267,13 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -283,7 +304,7 @@ ALTER TABLE `order_of_products`
 --
 ALTER TABLE `price_of_product`
   ADD CONSTRAINT `currency_key` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_key` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_key` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`
