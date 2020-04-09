@@ -104,8 +104,8 @@ svg:hover {
 .admin-main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40vh auto;
-      grid-template-columns: 40vh auto;
+  -ms-grid-columns: 30vh auto;
+      grid-template-columns: 30vh auto;
   grid-auto-rows: minmax(50px, auto);
 }
 
@@ -244,7 +244,7 @@ svg:hover {
 
 .admin-main__content__category-table tr > th,
 .admin-main__content__category-table tr > td {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   padding: 1rem;
 }
@@ -252,7 +252,7 @@ svg:hover {
 @media screen and (min-width: 768px) {
   .admin-main__content__category-table tr > th,
   .admin-main__content__category-table tr > td {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -313,8 +313,13 @@ svg:hover {
 
 @media screen and (min-width: 768px) {
   .admin-main .add-category .errmsg {
+    margin: -2rem auto 0 14rem;
+  }
+}
+
+@media screen and (min-width: 974px) {
+  .admin-main .add-category .errmsg {
     margin: 2rem auto 0 5rem;
-    border: 1px solid #f73e3e;
   }
 }
 
@@ -334,7 +339,7 @@ svg:hover {
 
 @media screen and (min-width: 768px) {
   .admin-main .add-category .category-input {
-    margin: 2rem 0 5rem 14rem;
+    margin: 2rem 0 3rem 14rem;
   }
 }
 
@@ -365,7 +370,12 @@ svg:hover {
 
 .admin-main__content--search {
   margin-top: 1rem;
-  margin-left: 4rem;
+  margin-left: 3rem;
+}
+
+.admin-main__content--search i {
+  margin-right: 1vw;
+  font-size: large;
 }
 
 .admin-main__content--search .search-area {
@@ -374,7 +384,7 @@ svg:hover {
   width: 25rem;
   border-radius: 7px;
   border: 1px solid grey;
-  margin: 1rem 2rem 0 -26px;
+  margin: 1rem 2rem 0 0;
 }
 
 .admin-main__content__products-table {
@@ -399,7 +409,7 @@ svg:hover {
 @media screen and (min-width: 768px) {
   .admin-main__content__products-table tr > th,
   .admin-main__content__products-table tr > td {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 }
 

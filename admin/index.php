@@ -1,3 +1,4 @@
+<?php include_once('../php/model/cms.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,8 +42,9 @@
 
         <!-- content area begins -->
         <div class="admin-main__content">
+        <?php CMS::createAdminPanelCategoryPage(); ?>
             <!-- model sample here -->
-            <table class="admin-main__content__category-table">
+            <!-- <table class="admin-main__content__category-table">
                 <tr>
                     <th>CATEGORY'S NAME</th>
                     <th><i class="fas fa-ellipsis-h"></i></th>
@@ -95,7 +97,7 @@
                     <td>Category 1</td>
                     <td><a href=""><i class="fas fa-pen"></i></a><a href=""><i class="fas fa-trash"></i></a></td>
                 </tr>
-            </table>
+            </table> -->
 
             <form class="add-category" action="">
                 <input class="category-input" type="text" placeholder="Input new category here...">
