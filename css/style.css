@@ -103,6 +103,36 @@
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 
+.sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #343436;
+  color: #fefff0;
+  left: -100%;
+  position: fixed;
+  height: 100vh;
+  z-index: 5555;
+  width: 100%;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
+}
+
+@media (min-width: 700px) {
+  .sidebar {
+    left: 0;
+    max-width: 350px;
+  }
+}
+
+.sidebar.active {
+  left: 0;
+}
+
 body {
   margin: 0;
 }

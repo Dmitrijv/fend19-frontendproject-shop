@@ -9,6 +9,8 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<div class="sidebar">
+</div>
 <span class="hamburger__bar-wrapper">
 <span class="hamburger__bar"></span>
 <span class="hamburger__bar"></span>
