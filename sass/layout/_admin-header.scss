@@ -1,0 +1,77 @@
+.admin-header {
+  height: 10vh;
+
+  @media screen and (min-width: 768px) {
+    height: 20vh;
+  }
+
+  background-color: mediumpurple;
+  display: flex;
+
+  &__title {
+    align-self: center;
+    margin-left: 6vw;
+    i{
+      margin-right: 1rem;
+    }
+  }
+}
+
+.admin-main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(50px, auto); //100-10
+
+  @media screen and (min-width: 768px) {
+    grid-auto-rows: minmax(50px, 80vh); //100-20
+  }
+
+  &__sidebar {
+    background-color: grey;
+    //mobile first
+    grid-column: 1/-1;
+    grid-row: 1;
+    display: flex;
+
+    &--ul {
+      align-items: center;
+      display: flex;
+      margin: auto;
+
+      li {
+        margin-right: 10vw;
+        i{
+          margin-right: 5px;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        flex-direction: column;
+        li {
+          margin: unset;
+        }
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      grid-column: 1;
+      grid-row: 1/-1;
+    }
+  }
+
+  &__content {
+    
+
+    //mobile first
+    @media screen and (min-width: 768px) {
+      grid-column: 2/-1;
+      grid-row: 1/-1;
+      background-color: red;
+    }
+  }
+
+}

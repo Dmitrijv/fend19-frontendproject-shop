@@ -1,0 +1,156 @@
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+.admin-header {
+  height: 10vh;
+  background-color: mediumpurple;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-header {
+    height: 20vh;
+  }
+}
+
+.admin-header__title {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-left: 6vw;
+}
+
+.admin-header__title i {
+  margin-right: 1rem;
+}
+
+.admin-main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[5];
+      grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main {
+    grid-auto-rows: minmax(50px, 80vh);
+  }
+}
+
+.admin-main__sidebar {
+  background-color: grey;
+  grid-column: 1/-1;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.admin-main__sidebar--ul {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+}
+
+.admin-main__sidebar--ul li {
+  margin-right: 10vw;
+}
+
+.admin-main__sidebar--ul li i {
+  margin-right: 5px;
+}
+
+.admin-main__sidebar--ul li:last-child {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__sidebar--ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .admin-main__sidebar--ul li {
+    margin: unset;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__sidebar {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    grid-row: 1/-1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__content {
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+    background-color: red;
+  }
+}
+/*# sourceMappingURL=adminpanel.css.map */
