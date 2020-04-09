@@ -1,0 +1,61 @@
+.admin-main__content {
+
+  &--search {
+    margin-top: 1rem;
+    margin-left: 4rem;
+
+    .search-area {
+      padding: 1.5rem;
+      height: 4rem;
+      width: 25rem;
+      border-radius: 7px;
+      border: 1px solid grey;
+      margin: 1rem 2rem 0 -26px;
+    }
+
+  }
+
+  &__products-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 2rem;
+    }
+
+    tr>th,
+    tr>td {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 1rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    tr>th:first-child,
+    tr>td:first-child {
+      width: 20%;
+    }
+
+    tr>th:last-child,
+    tr>td:last-child {
+      width: 15%;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr>td:last-child>a:first-child {
+      margin-right: 2rem;
+      color: #224022;
+    }
+
+    tr>td:last-child>a:last-child {
+      color: rgb(138, 16, 16);
+    }
+  }
+}

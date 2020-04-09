@@ -25,6 +25,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 }
 
 html {
+  height: 100%;
   font-size: 62.5%;
 }
 
@@ -65,6 +66,15 @@ a:hover {
   cursor: pointer;
 }
 
+body {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+svg:hover {
+  cursor: pointer;
+}
+
 .admin-header {
   height: 10vh;
   background-color: #C84545;
@@ -94,14 +104,16 @@ a:hover {
 .admin-main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[6];
-      grid-template-columns: repeat(6, 1fr);
+  -ms-grid-columns: 40vh auto;
+      grid-template-columns: 40vh auto;
   grid-auto-rows: minmax(50px, auto);
 }
 
 @media screen and (min-width: 768px) {
   .admin-main {
-    grid-auto-rows: minmax(50px, 80vh);
+    grid-auto-rows: minmax(50px, auto);
+    -ms-grid-rows: 20vh 120vh;
+        grid-template-rows: 20vh 120vh;
   }
 }
 
@@ -129,7 +141,19 @@ a:hover {
 }
 
 .admin-main__sidebar--ul a {
-  margin-right: 10vw;
+  margin-right: 5px;
+}
+
+@media screen and (min-width: 350px) {
+  .admin-main__sidebar--ul a {
+    margin-right: 2vw;
+  }
+}
+
+@media screen and (min-width: 412px) {
+  .admin-main__sidebar--ul a {
+    margin-right: 10vw;
+  }
 }
 
 .admin-main__sidebar--ul a i {
@@ -146,6 +170,7 @@ a:hover {
 
 @media screen and (min-width: 768px) {
   .admin-main__sidebar--ul {
+    grid-row: 1/-1;
     margin-top: 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -246,7 +271,7 @@ a:hover {
 }
 
 .admin-main__content__category-table tr > td:last-child > a:first-child {
-  margin-right: 1rem;
+  margin-right: 2rem;
   color: #224022;
 }
 
@@ -254,21 +279,159 @@ a:hover {
   color: #8a1010;
 }
 
+.admin-main .add-category {
+  text-align: center;
+}
+
+@media screen and (min-width: 350px) {
+  .admin-main .add-category {
+    text-align: unset;
+  }
+}
+
+.admin-main .add-category .errmsg {
+  padding: 1.5rem;
+  height: 4rem;
+  width: 25rem;
+  border: 1px solid #f73e3e;
+  border-radius: 7px;
+  color: red;
+  margin: 1rem 0 0 -26px;
+}
+
+@media screen and (min-width: 350px) {
+  .admin-main .add-category .errmsg {
+    margin: -3rem 0 5rem 15%;
+  }
+}
+
+@media screen and (min-width: 612px) {
+  .admin-main .add-category .errmsg {
+    margin-left: 5%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main .add-category .errmsg {
+    margin: 2rem auto 0 5rem;
+    border: 1px solid #f73e3e;
+  }
+}
+
+.admin-main .add-category .category-input {
+  padding: 1.5rem;
+  height: 4rem;
+  width: 25rem;
+  border: 1px solid gray;
+  border-radius: 7px;
+}
+
+@media screen and (min-width: 350px) {
+  .admin-main .add-category .category-input {
+    margin: 2rem 0 3rem 15%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .admin-main .add-category .category-input {
-    height: 4rem;
-    width: 22rem;
-    border: 1px solid gray;
-    border-radius: 7px;
-    margin: 2rem 0 5rem 5rem;
+    margin: 2rem 0 5rem 14rem;
   }
-  .admin-main .add-category .category-submit {
-    border: none;
-    background-color: unset;
+}
+
+.admin-main .add-category .category-submit {
+  border: none;
+  background-color: unset;
+}
+
+.admin-main .add-category .category-submit .svg-icon {
+  width: 26px;
+  border: none;
+}
+
+.ellipsis {
+  height: 5rem;
+  width: 140px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin: 7px 5px 0 5px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000;
+}
+
+.admin-main__content--search {
+  margin-top: 1rem;
+  margin-left: 4rem;
+}
+
+.admin-main__content--search .search-area {
+  padding: 1.5rem;
+  height: 4rem;
+  width: 25rem;
+  border-radius: 7px;
+  border: 1px solid grey;
+  margin: 1rem 2rem 0 -26px;
+}
+
+.admin-main__content__products-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__content__products-table {
+    margin-top: 2rem;
   }
-  .admin-main .add-category .category-submit .svg-icon {
-    width: 26px;
-    border: none;
+}
+
+.admin-main__content__products-table tr > th,
+.admin-main__content__products-table tr > td {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__content__products-table tr > th,
+  .admin-main__content__products-table tr > td {
+    font-size: 1.8rem;
   }
+}
+
+.admin-main__content__products-table tr > th:first-child,
+.admin-main__content__products-table tr > td:first-child {
+  width: 20%;
+}
+
+.admin-main__content__products-table tr > th:last-child,
+.admin-main__content__products-table tr > td:last-child {
+  width: 15%;
+}
+
+.admin-main__content__products-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin-main__content__products-table tr > td:last-child > a:first-child {
+  margin-right: 2rem;
+  color: #224022;
+}
+
+.admin-main__content__products-table tr > td:last-child > a:last-child {
+  color: #8a1010;
+}
+
+.errmsg {
+  padding: 1.5rem;
+  height: 4rem;
+  width: 25rem;
+  border: 1px solid #f73e3e;
+  border-radius: 7px;
+  color: red;
 }
 /*# sourceMappingURL=adminpanel.css.map */
