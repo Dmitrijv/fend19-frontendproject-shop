@@ -71,6 +71,10 @@
           align-items: center;
 }
 
+body {
+  margin: 20px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
