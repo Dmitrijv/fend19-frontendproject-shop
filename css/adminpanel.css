@@ -54,9 +54,20 @@ ul li {
   list-style: none;
 }
 
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+a:hover {
+  color: unset;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .admin-header {
   height: 10vh;
-  background-color: mediumpurple;
+  background-color: #C84545;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,7 +83,8 @@ ul li {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin-left: 6vw;
+  margin-left: 3rem;
+  font-size: 3rem;
 }
 
 .admin-header__title i {
@@ -82,9 +94,8 @@ ul li {
 .admin-main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[5];
-      grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: minmax(50px, auto);
 }
 
@@ -95,7 +106,10 @@ ul li {
 }
 
 .admin-main__sidebar {
-  background-color: grey;
+  background-color: #C4C4C4;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   grid-column: 1/-1;
   -ms-grid-row: 1;
   grid-row: 1;
@@ -114,27 +128,58 @@ ul li {
   margin: auto;
 }
 
-.admin-main__sidebar--ul li {
+.admin-main__sidebar--ul a {
   margin-right: 10vw;
 }
 
-.admin-main__sidebar--ul li i {
+.admin-main__sidebar--ul a i {
   margin-right: 5px;
 }
 
-.admin-main__sidebar--ul li:last-child {
+.admin-main__sidebar--ul a li {
+  font-size: 1.5rem;
+}
+
+.admin-main__sidebar--ul a:last-child {
   margin-right: 0;
 }
 
 @media screen and (min-width: 768px) {
   .admin-main__sidebar--ul {
+    margin-top: 0;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 100%;
   }
-  .admin-main__sidebar--ul li {
+  .admin-main__sidebar--ul a {
+    height: 10vh;
+    width: 100%;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     margin: unset;
+  }
+  .admin-main__sidebar--ul a li {
+    place-self: center;
+    padding-left: 3rem;
+    font-size: 1.7rem;
+  }
+  .admin-main__sidebar--ul a:hover {
+    background-color: #5C5B5B;
+  }
+  .admin-main__sidebar--ul a:hover::before {
+    content: "";
+    border-left: 5px solid yellowgreen;
+  }
+  .admin-main__sidebar--ul .active {
+    background-color: #5C5B5B;
+  }
+  .admin-main__sidebar--ul .active::before {
+    content: "";
+    border-left: 5px solid green;
   }
 }
 
@@ -146,11 +191,84 @@ ul li {
   }
 }
 
+.admin-main__content {
+  grid-column: 1/-1;
+  height: 80vh;
+}
+
 @media screen and (min-width: 768px) {
   .admin-main__content {
     grid-column: 2/-1;
     grid-row: 1/-1;
-    background-color: red;
+    background-color: unset;
+    height: 80vh;
+  }
+}
+
+.admin-main__content__category-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__content__category-table {
+    margin-top: 2rem;
+  }
+}
+
+.admin-main__content__category-table tr > th,
+.admin-main__content__category-table tr > td {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__content__category-table tr > th,
+  .admin-main__content__category-table tr > td {
+    font-size: 2rem;
+  }
+}
+
+.admin-main__content__category-table tr > th:first-child,
+.admin-main__content__category-table tr > td:first-child {
+  width: 50%;
+}
+
+.admin-main__content__category-table tr > th:last-child,
+.admin-main__content__category-table tr > td:last-child {
+  width: 30%;
+}
+
+.admin-main__content__category-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin-main__content__category-table tr > td:last-child > a:first-child {
+  margin-right: 1rem;
+  color: #224022;
+}
+
+.admin-main__content__category-table tr > td:last-child > a:last-child {
+  color: #8a1010;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main .add-category .category-input {
+    height: 4rem;
+    width: 22rem;
+    border: 1px solid gray;
+    border-radius: 7px;
+    margin: 2rem 0 5rem 5rem;
+  }
+  .admin-main .add-category .category-submit {
+    border: none;
+    background-color: unset;
+  }
+  .admin-main .add-category .category-submit .svg-icon {
+    width: 26px;
+    border: none;
   }
 }
 /*# sourceMappingURL=adminpanel.css.map */
