@@ -1,12 +1,5 @@
 .main__header {
   margin: 1.5em;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-}
-
-.main__header__left {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,28 +7,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.main__header__right {
+.main__header__logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main__header__btn {
   margin: 8px;
-  background-color: #F60D4D;
-  padding: 8px 30px 8px 30px;
+  background-color: #f60d4d;
   border: none;
   border-radius: 3px;
   color: white;
@@ -50,6 +38,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main__header__search button {
@@ -58,20 +49,22 @@
   border-bottom-left-radius: 0;
 }
 
-input {
-  border-radius: 3px;
-  border: none;
-  background-color: #f60d4d20;
-  padding: 8px 30px 8px 30px;
-}
-
-button {
-  cursor: pointer;
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .hamburger__bar-wrapper {
-  -ms-flex-item-align: center;
-      align-self: center;
+  position: fixed;
+  margin-left: 1.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,10 +117,10 @@ input {
   border-radius: 3px;
   border: none;
   background-color: #f60d4d20;
-  padding: 8px 30px 8px 30px;
 }
 
 button {
   cursor: pointer;
+  padding: 10px 30px 10px 30px;
 }
 /*# sourceMappingURL=style.css.map */

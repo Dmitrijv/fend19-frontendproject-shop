@@ -9,19 +9,18 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<header class="main__header">
-<div class="main__header__left">
 <span class="hamburger__bar-wrapper">
 <span class="hamburger__bar"></span>
 <span class="hamburger__bar"></span>
 <span class="hamburger__bar"></span>
 </span>
-</div>
-<div class="main__header__right">
-<div class="logo">LOGOTYPE</div>
+<header class="main__header">
+<div class="main__header__logo">LOGOTYPE</div>
+<nav class="nav">
 <button class="main__header__btn login-btn"><a href="">Logga in</a></button>
 <button class="main__header__btn cart-btn"><a href="">Varukorg</a></button>
-<div class="main__header__search"><input type="text"><button class="main__header__btn search-btn">Sök</button></div>
+<div class="main__header__search">
+    <input type="text"><button class="main__header__btn search-btn">Sök</button>
 </div>
-<div class="div"></div>
+</nav>
 </header>
