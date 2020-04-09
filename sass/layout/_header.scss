@@ -1,6 +1,19 @@
+.main__header {
+    margin: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+&__left {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+&__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
 .hamburger__bar-wrapper {
-    position: fixed;
-    top: 20px;
     align-self: center;
     display: flex;
     height: 2.0em;
@@ -22,18 +35,3 @@
         transition: transform 0.25s ease-in-out;
       }
   }
-
-.main__header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-&__left {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-&__right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-}
