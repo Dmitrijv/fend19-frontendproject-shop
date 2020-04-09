@@ -35,7 +35,7 @@
                     <li><i class="fas fa-folder-open"></i>CATEGORY</li>
                 </a>
                 <a href="products.php" class="active">
-                    <li><i class="fas fa-images"></i>PRODUCTS</li>
+                    <li class="nav-char-active"><i class="fas fa-images"></i>PRODUCTS</li>
                 </a>
                 <a href="orders.php">
                     <li><i class="fas fa-file"></i>ORDERS</li>
@@ -48,8 +48,9 @@
         <div class="admin-main__content">
             <!-- search bar begins -->
             <div class="admin-main__content--search">
+                <p class="error-up">error just happens</p>
                 <i class="fas fa-search"></i><input class="search-area" type="text">
-                <input type="text" class="errmsg">
+                <!-- <input type="text" class="errmsg"> -->
             </div>
             <!-- search bar ends -->
             <!-- model sample here -->

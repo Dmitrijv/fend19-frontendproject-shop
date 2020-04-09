@@ -28,7 +28,7 @@
                     <li><i class="fas fa-home"></i>HOME</li>
                 </a>
                 <a href="#" class="active">
-                    <li><i class="fas fa-folder-open"></i>CATEGORY</li>
+                    <li class="nav-char-active"><i class="fas fa-folder-open"></i>CATEGORY</li>
                 </a>
                 <a href="products.php">
                     <li><i class="fas fa-images"></i>PRODUCTS</li>

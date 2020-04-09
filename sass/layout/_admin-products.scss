@@ -1,20 +1,31 @@
 .admin-main__content {
 
   &--search {
-    margin-top: 1rem;
     margin-left: 3rem;
 
-    i{
+    .error-up {
+      margin-left: 3rem;
+      color: red;
+      font-size: 1.2rem;
+      // visibility: hidden;
+    }
+
+    i {
       margin-right: 1vw;
       font-size: large;
     }
+
     .search-area {
       padding: 1.5rem;
       height: 4rem;
       width: 25rem;
       border-radius: 7px;
       border: 1px solid grey;
-      margin: 1rem 2rem 0 0;
+      margin: .5rem 2rem 1.2rem 0;
+
+      &:focus {
+        border: 1px solid rgb(53, 201, 247);
+      }
     }
 
   }
@@ -24,9 +35,8 @@
     border-collapse: collapse;
     width: 100%;
 
-    @media screen and (min-width: 479px) {
-      
-    }
+    @media screen and (min-width: 479px) {}
+
     @media screen and (min-width: 768px) {
       margin-top: 2rem;
     }

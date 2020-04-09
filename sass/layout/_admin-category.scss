@@ -211,6 +211,9 @@
       width: 25rem;
       border: 1px solid gray;
       border-radius: 7px;
+      &:focus {
+        border: 1px solid rgb(53, 201, 247);
+      }
 
       @media screen and (min-width:350px) {
         margin: 2rem 0 3rem 15%;

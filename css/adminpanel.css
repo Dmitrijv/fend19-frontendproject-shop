@@ -77,6 +77,11 @@ svg:hover,
   cursor: pointer;
 }
 
+.nav-char-active {
+  color: brown;
+  font-weight: bold;
+}
+
 .admin-header {
   height: 10vh;
   background-color: #C84545;
@@ -333,6 +338,10 @@ svg:hover,
   border-radius: 7px;
 }
 
+.admin-main .add-category .category-input:focus {
+  border: 1px solid #35c9f7;
+}
+
 @media screen and (min-width: 350px) {
   .admin-main .add-category .category-input {
     margin: 2rem 0 3rem 15%;
@@ -371,8 +380,13 @@ svg:hover,
 }
 
 .admin-main__content--search {
-  margin-top: 1rem;
   margin-left: 3rem;
+}
+
+.admin-main__content--search .error-up {
+  margin-left: 3rem;
+  color: red;
+  font-size: 1.2rem;
 }
 
 .admin-main__content--search i {
@@ -386,7 +400,11 @@ svg:hover,
   width: 25rem;
   border-radius: 7px;
   border: 1px solid grey;
-  margin: 1rem 2rem 0 0;
+  margin: .5rem 2rem 1.2rem 0;
+}
+
+.admin-main__content--search .search-area:focus {
+  border: 1px solid #35c9f7;
 }
 
 .admin-main__content__products-table {
