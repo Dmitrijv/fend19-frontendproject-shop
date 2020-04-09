@@ -95,7 +95,7 @@
   display: -ms-flexbox;
   display: flex;
   height: 8px;
-  background: #343436;
+  background: #f60d4d;
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
@@ -103,15 +103,59 @@
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 
+.hamburger__bar-wrapper.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  place-content: center center;
+  z-index: 999999;
+  opacity: 0.9;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+@media (min-width: 700px) {
+  .hamburger__bar-wrapper.active {
+    display: none;
+  }
+}
+
+.hamburger__bar-wrapper.active span {
+  position: relative;
+  background: #f60d4d;
+}
+
+.hamburger__bar-wrapper.active span:nth-child(1) {
+  top: 11px;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
+.hamburger__bar-wrapper.active span:nth-child(2) {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  top: 1px;
+}
+
+.hamburger__bar-wrapper.active span:nth-child(3) {
+  background: rgba(0, 0, 0, 0);
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #343436;
+  background: #fdfdff;
   color: #fefff0;
   left: -100%;
   position: fixed;
@@ -120,6 +164,23 @@
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
+}
+
+.sidebar__menu {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar__menu a {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar__menu__item {
+  border-radius: 3px;
+  padding: 8px 30px 8px 30px;
+  -webkit-box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 700px) {
