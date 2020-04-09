@@ -71,7 +71,9 @@ body {
   min-height: 100%;
 }
 
-svg:hover {
+svg:hover,
+.edit-btn:hover,
+.del-btn:hover {
   cursor: pointer;
 }
 
@@ -244,7 +246,7 @@ svg:hover {
 
 .admin-main__content__category-table tr > th,
 .admin-main__content__category-table tr > td {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   padding: 1rem;
 }
@@ -434,6 +436,32 @@ svg:hover {
 
 .admin-main__content__products-table tr > td:last-child > a:last-child {
   color: #8a1010;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  border: 1px solid black;
+}
+
+.edit-btn:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.del-btn {
+  border: 1px solid #d43f3a;
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.del-btn:hover {
+  background-color: #c9302c;
+  border-color: #ac2925;
 }
 
 .errmsg {

@@ -46,11 +46,13 @@ a:hover {
   cursor: pointer;
 }
 
-body{
+body {
   min-width: 320px;
   min-height: 100%;
 }
 
-svg:hover{
+svg:hover,
+.edit-btn:hover,
+.del-btn:hover {
   cursor: pointer;
 }

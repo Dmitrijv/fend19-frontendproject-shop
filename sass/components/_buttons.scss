@@ -1,1 +1,26 @@
 //FOR SUBMIT BUTTON'S STYLE
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  border: 1px solid black;
+
+  &:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+}
+
+.del-btn {
+  border: 1px solid #d43f3a;
+  color: #fff;
+  background-color: #d9534f;
+
+  &:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+  }
+}
