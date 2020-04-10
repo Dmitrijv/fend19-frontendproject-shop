@@ -364,21 +364,6 @@ svg:hover,
   border: none;
 }
 
-.ellipsis {
-  height: 5rem;
-  width: 140px;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-  margin: 7px 5px 0 5px;
-  text-align: center;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #000;
-}
-
 .admin-main__content--search {
   margin-left: 3rem;
 }
@@ -401,6 +386,7 @@ svg:hover,
   border-radius: 7px;
   border: 1px solid grey;
   margin: .5rem 2rem 1.2rem 0;
+  outline: none;
 }
 
 .admin-main__content--search .search-area:focus {
@@ -454,6 +440,25 @@ svg:hover,
 
 .admin-main__content__products-table tr > td:last-child > a:last-child {
   color: #8a1010;
+}
+
+.ellipsis {
+  position: relative;
+  width: 23%;
+}
+
+.ellipsis:before {
+  content: '&nbsp;';
+  visibility: hidden;
+}
+
+.ellipsis .description-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn {

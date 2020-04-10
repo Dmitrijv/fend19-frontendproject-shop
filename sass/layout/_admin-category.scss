@@ -240,18 +240,3 @@
   }
 }
 
-// This class avoids creating multiple lines
-.ellipsis {
-  height: 5rem;
-  width: 140px;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-  margin: 7px 5px 0 5px;
-  text-align: center;
-  text-decoration: none;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #000;
-}

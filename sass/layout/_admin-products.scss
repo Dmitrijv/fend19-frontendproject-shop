@@ -22,6 +22,7 @@
       border-radius: 7px;
       border: 1px solid grey;
       margin: .5rem 2rem 1.2rem 0;
+      outline: none;
 
       &:focus {
         border: 1px solid rgb(53, 201, 247);
@@ -75,4 +76,22 @@
       color: rgb(138, 16, 16);
     }
   }
+}
+
+// This class avoids creating multiple lines
+.ellipsis {
+  position: relative;
+  width: 23%;
+}
+.ellipsis:before {
+  content: '&nbsp;';
+  visibility: hidden;
+}
+.ellipsis .description-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

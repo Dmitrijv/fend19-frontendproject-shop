@@ -1,5 +1,5 @@
 <!-- FEATURES ATTENTION! -->
-<!-- created class:ellipsis (kept in admin-category.scss)
+<!-- created class:ellipsis (kept in admin-products.scss)
         wrapped description with span, and put same text in span
      effect: description will become ellipsis, 
              and whole text will show up when user hover it -->
@@ -56,7 +56,7 @@
             <!-- model sample here -->
             <table class="admin-main__content__products-table">
                 <tr>
-                    <th>CATEGORY'S NAME</th>
+                    <th>TITLE</th>
                     <th>CATEGORY</th>
                     <th>IMAGE</th>
                     <th>DESCRIPTION</th>
@@ -68,7 +68,7 @@
                     <td>Category 1</td>
                     <td>Lorem ipsum</td>
                     <td><img src="" alt="some iamges"></td>
-                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></td>
+                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?"><span class="description-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></span></td>
                     <td>899 kr</td>
                     <td>25</td>
                     <td>
@@ -80,7 +80,7 @@
                     <td>Category 1</td>
                     <td>Lorem ipsum</td>
                     <td><img src="" alt="some iamges"></td>
-                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></td>
+                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?"><span class="description-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></span></td>
                     <td>899 kr</td>
                     <td>25</td>
                     <td>
@@ -88,6 +88,7 @@
                         <a href=""><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
+                
             </table>
         </div>
         <!-- content area ends -->
