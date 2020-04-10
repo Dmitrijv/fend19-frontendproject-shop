@@ -1,4 +1,7 @@
-// FORM RELATED, INCLUDING INPUT STYLE AND ERROR AREA STYLE
+textarea:focus,
+input:focus {
+  outline: none;
+}
 
 .errmsg {
   padding: 1.5rem;

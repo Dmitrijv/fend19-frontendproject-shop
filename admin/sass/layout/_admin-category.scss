@@ -32,36 +32,14 @@
     }
   }
 
-  .category-input {
-    padding: 1.5rem;
-    height: 4rem;
-    width: 25rem;
-    border: 1px solid gray;
-    border-radius: 7px;
-    &:focus {
-      border: 1px solid rgb(53, 201, 247);
-    }
-
-    @media screen and (min-width: 350px) {
-      margin: 2rem 0 3rem 15%;
-    }
-
-    @media screen and (min-width: 612px) {
-      // There could be some adjustment to be done.
-    }
-
-    @media screen and (min-width: 768px) {
-      margin: 2rem 0 3rem 14rem;
-    }
+  label {
+    font-size: 16px;
   }
 
-  .category-submit {
-    border: none;
-    background-color: unset;
-
-    .svg-icon {
-      width: 26px;
-      border: none;
-    }
+  .category-input {
+    padding: 1rem;
+    height: 3.5rem;
+    width: 25rem;
+    border: 1px solid gray;
   }
 }
