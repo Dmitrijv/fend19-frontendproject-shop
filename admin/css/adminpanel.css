@@ -67,6 +67,23 @@ svg:hover,
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
+  height: 3.5rem;
+}
+
+.btn.btn-left {
+  border-radius: 5px 0 0 5px;
+}
+
+.btn.btn-right {
+  border-radius: 0 5px 5px 0;
+}
+
+.btn.btn-mid {
+  border-radius: 0px;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 .edit-btn {
@@ -133,6 +150,25 @@ input:focus {
   color: red;
 }
 
+input.category-input {
+  padding: 1rem;
+  height: 3.5rem;
+  width: 25rem;
+  border: 1px solid gray;
+}
+
+input.category-input.input-left {
+  border-radius: 5px 0 0 5px;
+}
+
+input.category-input.input-right {
+  border-radius: 0 5px 5px 0;
+}
+
+input.category-input.input-mid {
+  border-radius: 0px;
+}
+
 .add-category {
   text-align: center;
 }
@@ -181,11 +217,43 @@ input:focus {
   font-size: 16px;
 }
 
-.add-category .category-input {
+table.category-table {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  table.category-table {
+    margin-top: 1rem;
+  }
+}
+
+table.category-table tr > th,
+table.category-table tr > td {
+  font-size: 1.4rem;
+  text-align: center;
   padding: 1rem;
-  height: 3.5rem;
-  width: 25rem;
-  border: 1px solid gray;
+}
+
+@media screen and (min-width: 768px) {
+  table.category-table tr > th,
+  table.category-table tr > td {
+    font-size: 1.4rem;
+  }
+}
+
+table.category-table tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+table.category-table tbody > tr > td,
+table.category-table tbody > tr > th,
+table.category-table tfoot > tr > td,
+table.category-table tfoot > tr > th,
+table.category-table thead > tr > td,
+table.category-table thead > tr > th {
+  border: 1px solid #ddd;
 }
 
 .admin-main__content--search {
@@ -424,7 +492,6 @@ input:focus {
 
 .admin-main__content {
   grid-column: 1/-1;
-  height: 80vh;
   padding: 12px;
 }
 
@@ -435,54 +502,5 @@ input:focus {
     background-color: unset;
     height: 80vh;
   }
-}
-
-.admin-main__content__category-table {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  .admin-main__content__category-table {
-    margin-top: 2rem;
-  }
-}
-
-.admin-main__content__category-table tr > th,
-.admin-main__content__category-table tr > td {
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 1rem;
-}
-
-@media screen and (min-width: 768px) {
-  .admin-main__content__category-table tr > th,
-  .admin-main__content__category-table tr > td {
-    font-size: 1.4rem;
-  }
-}
-
-.admin-main__content__category-table tr > th:first-child,
-.admin-main__content__category-table tr > td:first-child {
-  width: 50%;
-}
-
-.admin-main__content__category-table tr > th:last-child,
-.admin-main__content__category-table tr > td:last-child {
-  width: 30%;
-}
-
-.admin-main__content__category-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.admin-main__content__category-table tr > td:last-child > a:first-child {
-  margin-right: 2rem;
-  color: #224022;
-}
-
-.admin-main__content__category-table tr > td:last-child > a:last-child {
-  color: #8a1010;
 }
 /*# sourceMappingURL=adminpanel.css.map */

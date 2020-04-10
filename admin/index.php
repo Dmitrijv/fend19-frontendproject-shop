@@ -11,14 +11,13 @@
 </head>
 
 <body>
-    <!-- header begins -->
+
     <header class="admin-header">
         <h1 class="admin-header__title"><i class="fas fa-cogs"></i>Admin panel</h1>
     </header>
-    <!-- header ends -->
 
-    <!-- main area begins, including sidebar and content area -->
     <main class="admin-main">
+
         <!-- sidebar begins -->
         <div class="admin-main__sidebar">
             <ul class="admin-main__sidebar--ul">
@@ -42,9 +41,8 @@
         <div class="admin-main__content">
 
             <form class="add-category" action="">
-                <label for="submit">Create a new category: </label>
-                <input class="category-input" type="text" placeholder="Input new category here...">
-                <input class="btn create-btn" type="button" value="Create">
+                <input class="category-input input-left" type="text" placeholder="Create a new category">
+                <input class="btn btn-right create-btn" type="button" value="Create">
                 <!-- <input type="text" name="" class="errmsg" value="Error Message to be shown"> -->
             </form>
 
@@ -54,7 +52,8 @@
         </div>
         <!-- content area ends -->
     </main>
-    <!-- main area ends -->
+
+
 </body>
 
 </html>

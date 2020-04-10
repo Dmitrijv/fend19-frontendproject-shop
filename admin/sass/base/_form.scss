@@ -11,3 +11,22 @@ input:focus {
   border-radius: 7px;
   color: red;
 }
+
+input.category-input {
+  padding: 1rem;
+  height: 3.5rem;
+  width: 25rem;
+  border: 1px solid gray;
+
+  &.input-left {
+    border-radius: 5px 0 0 5px;
+  }
+
+  &.input-right {
+    border-radius: 0 5px 5px 0;
+  }
+
+  &.input-mid {
+    border-radius: 0px;
+  }
+}

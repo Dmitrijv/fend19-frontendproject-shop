@@ -6,6 +6,7 @@
 @import "base/form";
 
 @import "layout/admin-category";
+@import "layout/admin-category-table";
 @import "layout/admin-products";
 
 .admin-header {
@@ -126,58 +127,13 @@
 
   &__content {
     grid-column: 1/-1;
-    height: 80vh;
     padding: 12px;
-    //mobile first
+
     @media screen and (min-width: 768px) {
       grid-column: 2/-1;
       grid-row: 1/-1;
       background-color: unset;
       height: 80vh;
-    }
-
-    &__category-table {
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-
-      @media screen and (min-width: 768px) {
-        margin-top: 2rem;
-      }
-
-      tr > th,
-      tr > td {
-        font-size: 1.4rem;
-        text-align: center;
-        padding: 1rem;
-
-        @media screen and (min-width: 768px) {
-          font-size: 1.4rem;
-        }
-      }
-
-      tr > th:first-child,
-      tr > td:first-child {
-        width: 50%;
-      }
-
-      tr > th:last-child,
-      tr > td:last-child {
-        width: 30%;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-
-      tr > td:last-child > a:first-child {
-        margin-right: 2rem;
-        color: #224022;
-      }
-
-      tr > td:last-child > a:last-child {
-        color: rgb(138, 16, 16);
-      }
     }
   }
 }
