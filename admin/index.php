@@ -40,19 +40,20 @@
         <!-- content area begins -->
         <div class="admin-main__content">
 
-            <form class="add-category" action="">
-                <input class="category-input input-left" type="text" placeholder="Create a new category">
-                <input class="btn btn-right create-btn" type="button" value="Create">
+            <form class="add-category" onsubmit='adminLib.createNewCategory(event);'>
+                <input name="newCategoryNameField" class="category-input input-left" type="text" placeholder="Create a new category">
+                <input class="btn btn-right create-btn" type="submit" value="Create">
                 <!-- <input type="text" name="" class="errmsg" value="Error Message to be shown"> -->
             </form>
 
             <!-- <table class="admin-main__content__category-table"> -->
-            <?php include_once 'php/view/categoryTable.php'; ?>
+            <?php include_once 'php/view/categoryTable.php';?>
 
         </div>
         <!-- content area ends -->
     </main>
 
+    <script src="js/adminLib.js"></script>
 
 </body>
 
