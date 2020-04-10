@@ -1,0 +1,67 @@
+// @media screen and (min-width:768px) {
+.add-category {
+  text-align: center;
+
+  @media screen and (min-width: 350px) {
+    text-align: unset;
+  }
+
+  .errmsg {
+    padding: 1.5rem;
+    height: 4rem;
+    width: 25rem;
+    border: 1px solid rgb(247, 62, 62);
+    border-radius: 7px;
+    color: red;
+    margin: 1rem 0 0 -26px;
+
+    @media screen and (min-width: 350px) {
+      margin: -3rem 0 5rem 15%;
+    }
+
+    @media screen and (min-width: 612px) {
+      margin-left: 5%;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin: -2rem auto 0 14rem;
+    }
+
+    @media screen and (min-width: 974px) {
+      margin: 2rem auto 0 5rem;
+    }
+  }
+
+  .category-input {
+    padding: 1.5rem;
+    height: 4rem;
+    width: 25rem;
+    border: 1px solid gray;
+    border-radius: 7px;
+    &:focus {
+      border: 1px solid rgb(53, 201, 247);
+    }
+
+    @media screen and (min-width: 350px) {
+      margin: 2rem 0 3rem 15%;
+    }
+
+    @media screen and (min-width: 612px) {
+      // There could be some adjustment to be done.
+    }
+
+    @media screen and (min-width: 768px) {
+      margin: 2rem 0 3rem 14rem;
+    }
+  }
+
+  .category-submit {
+    border: none;
+    background-color: unset;
+
+    .svg-icon {
+      width: 26px;
+      border: none;
+    }
+  }
+}

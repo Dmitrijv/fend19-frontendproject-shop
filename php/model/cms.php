@@ -20,8 +20,8 @@ class CMS
         $html = '
             <table class="admin-main__content__category-table">
             <tr>
-                <th>CATEGORY\'S NAME</th>
-                <th><i class="fas fa-ellipsis-h"></i></th>
+                <th>Category name</th>
+                <th></th>
             </tr>
             ';
         // append table rows

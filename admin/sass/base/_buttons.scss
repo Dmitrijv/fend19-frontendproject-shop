@@ -6,11 +6,13 @@
 
 .edit-btn {
   border: 1px solid black;
+  background-color: white;
+  border-color: #adadad;
 
   &:hover {
     color: #333;
     background-color: #e6e6e6;
-    border-color: #adadad;
+    border-color: gray;
   }
 }
 

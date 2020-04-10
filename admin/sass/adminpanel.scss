@@ -1,17 +1,28 @@
+@import "abstract/mixins";
+@import "abstract/variables";
+
+@import "base/base";
+@import "base/buttons";
+@import "base/form";
+
+@import "layout/admin-category";
+@import "layout/admin-products";
+
 .admin-header {
-  height: 10vh;
+  height: 12vh;
 
   @media screen and (min-width: 768px) {
-    height: 20vh;
+    height: 10vh;
   }
 
-  background-color:#C84545;
+  background-color: #333333;
+  color: white;
   display: flex;
 
   &__title {
     align-self: center;
     margin-left: 3rem;
-    font-size: 3rem;
+    font-size: 4rem;
 
     i {
       margin-right: 1rem;
@@ -30,7 +41,7 @@
   }
 
   &__sidebar {
-    background-color: #C4C4C4;
+    background-color: #c4c4c4;
     position: sticky;
     top: 0;
 
@@ -75,7 +86,7 @@
         width: 100%;
 
         a {
-          height: 10vh;
+          height: 50px;
           width: 100%;
           text-align: center;
           display: flex;
@@ -88,11 +99,10 @@
           }
 
           &:hover {
-            background-color: #5C5B5B;
-
+            background-color: #5c5b5b;
+            color: white;
             &::before {
               content: "";
-              border-left: 5px solid yellowgreen;
             }
           }
         }
@@ -100,10 +110,10 @@
         .active {
           &::before {
             content: "";
-            border-left: 5px solid green;
+            border-left: 5px solid yellowgreen;
           }
 
-          background-color:#5C5B5B;
+          background-color: #5c5b5b;
         }
       }
     }
@@ -117,7 +127,7 @@
   &__content {
     grid-column: 1/-1;
     height: 80vh;
-
+    padding: 12px;
     //mobile first
     @media screen and (min-width: 768px) {
       grid-column: 2/-1;
@@ -135,8 +145,8 @@
         margin-top: 2rem;
       }
 
-      tr>th,
-      tr>td {
+      tr > th,
+      tr > td {
         font-size: 1.4rem;
         text-align: center;
         padding: 1rem;
@@ -146,13 +156,13 @@
         }
       }
 
-      tr>th:first-child,
-      tr>td:first-child {
+      tr > th:first-child,
+      tr > td:first-child {
         width: 50%;
       }
 
-      tr>th:last-child,
-      tr>td:last-child {
+      tr > th:last-child,
+      tr > td:last-child {
         width: 30%;
       }
 
@@ -160,83 +170,14 @@
         background-color: #f2f2f2;
       }
 
-      tr>td:last-child>a:first-child {
+      tr > td:last-child > a:first-child {
         margin-right: 2rem;
         color: #224022;
       }
 
-      tr>td:last-child>a:last-child {
+      tr > td:last-child > a:last-child {
         color: rgb(138, 16, 16);
       }
     }
   }
-
-  // @media screen and (min-width:768px) {
-  .add-category {
-    text-align: center;
-
-    @media screen and (min-width:350px) {
-      text-align: unset;
-    }
-
-    .errmsg {
-      padding: 1.5rem;
-      height: 4rem;
-      width: 25rem;
-      border: 1px solid rgb(247, 62, 62);
-      border-radius: 7px;
-      color: red;
-      margin: 1rem 0 0 -26px;
-
-      @media screen and (min-width:350px) {
-        margin: -3rem 0 5rem 15%;
-      }
-
-      @media screen and (min-width: 612px) {
-        margin-left: 5%;
-      }
-
-      @media screen and (min-width:768px) {
-        margin: -2rem auto 0 14rem;
-      }
-
-      @media screen and (min-width: 974px) {
-        margin: 2rem auto 0 5rem;
-      }
-    }
-
-    .category-input {
-      padding: 1.5rem;
-      height: 4rem;
-      width: 25rem;
-      border: 1px solid gray;
-      border-radius: 7px;
-      &:focus {
-        border: 1px solid rgb(53, 201, 247);
-      }
-
-      @media screen and (min-width:350px) {
-        margin: 2rem 0 3rem 15%;
-      }
-
-      @media screen and (min-width: 612px) {
-        // There could be some adjustment to be done.
-      }
-
-      @media screen and (min-width:768px) {
-        margin: 2rem 0 3rem 14rem;
-      }
-    }
-
-    .category-submit {
-      border: none;
-      background-color: unset;
-
-      .svg-icon {
-        width: 26px;
-        border: none;
-      }
-    }
-  }
 }
-
