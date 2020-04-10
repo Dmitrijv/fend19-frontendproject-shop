@@ -29,16 +29,16 @@
         <div class="admin-main__sidebar">
             <ul class="admin-main__sidebar--ul">
                 <a href="../index.php">
-                    <li><i class="fas fa-home"></i>HOME</li>
+                    <li><i class="fas fa-home"></i>Store</li>
                 </a>
                 <a href="index.php">
-                    <li><i class="fas fa-folder-open"></i>CATEGORY</li>
+                    <li><i class="fas fa-folder-open"></i>Categories</li>
                 </a>
                 <a href="products.php" class="active">
-                    <li class="nav-char-active"><i class="fas fa-images"></i>PRODUCTS</li>
+                    <li class="nav-char-active"><i class="fas fa-images"></i>Products</li>
                 </a>
                 <a href="orders.php">
-                    <li><i class="fas fa-file"></i>ORDERS</li>
+                    <li><i class="fas fa-file"></i>Orders</li>
                 </a>
             </ul>
         </div>
