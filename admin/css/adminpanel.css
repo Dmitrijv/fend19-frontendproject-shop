@@ -209,7 +209,7 @@ svg:hover,
 }
 
 .admin-main__content__products-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -222,7 +222,7 @@ svg:hover,
 
 .admin-main__content__products-table tr > th,
 .admin-main__content__products-table tr > td {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   padding: 1rem;
 }
@@ -230,7 +230,7 @@ svg:hover,
 @media screen and (min-width: 768px) {
   .admin-main__content__products-table tr > th,
   .admin-main__content__products-table tr > td {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -389,11 +389,11 @@ svg:hover,
     padding-left: 3rem;
     font-size: 1.7rem;
   }
-  .admin-main__sidebar--ul a:hover {
-    background-color: #5c5b5b;
+  .admin-main__sidebar--ul a:hover:not(.active) {
+    background-color: #818181;
     color: white;
   }
-  .admin-main__sidebar--ul a:hover::before {
+  .admin-main__sidebar--ul a:hover:not(.active)::before {
     content: "";
   }
   .admin-main__sidebar--ul .active {
@@ -429,7 +429,7 @@ svg:hover,
 }
 
 .admin-main__content__category-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -450,7 +450,7 @@ svg:hover,
 @media screen and (min-width: 768px) {
   .admin-main__content__category-table tr > th,
   .admin-main__content__category-table tr > td {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 }
 
