@@ -8,6 +8,12 @@ adminLib = (function() {
       const input = event.target.elements.newCategoryNameField;
       const categoryName = input.value;
 
+      if (!categoryName || categoryName.length < 3) {
+        console.log("FORM input failed local validation");
+        event.preventDefault();
+        return;
+      }
+
       const xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
