@@ -419,11 +419,6 @@ svg:hover,
   }
 }
 
-.admin-main__content__products-table tr > th:first-child,
-.admin-main__content__products-table tr > td:first-child {
-  width: 20%;
-}
-
 .admin-main__content__products-table tr > th:last-child,
 .admin-main__content__products-table tr > td:last-child {
   width: 15%;
