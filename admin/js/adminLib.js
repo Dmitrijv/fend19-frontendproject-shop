@@ -8,6 +8,7 @@ adminLib = (function() {
       const input = event.target.elements.newCategoryNameField;
       const categoryName = input.value;
 
+      // validate input locally before submitting to server
       if (!categoryName || categoryName.length < 3) {
         console.log("FORM input failed local validation");
         event.preventDefault();
