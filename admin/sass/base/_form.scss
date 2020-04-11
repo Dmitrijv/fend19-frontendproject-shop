@@ -8,7 +8,7 @@ input:focus {
   height: 4rem;
   width: 25rem;
   border: 1px solid rgb(247, 62, 62);
-  border-radius: 7px;
+  border-radius: .7rem;
   color: red;
 }
 
@@ -19,11 +19,11 @@ input.category-input {
   border: 1px solid gray;
 
   &.input-left {
-    border-radius: 5px 0 0 5px;
+    border-radius: .5rem 0 0 .5rem;
   }
 
   &.input-right {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 .5rem .5rem 0;
   }
 
   &.input-mid {

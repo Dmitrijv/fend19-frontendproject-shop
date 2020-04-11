@@ -1,14 +1,14 @@
 .btn {
   padding: 0.6rem 1.2rem;
-  border-radius: 5px;
+  border-radius: .5rem;
   height: 3.5rem;
 
   &.btn-left {
-    border-radius: 5px 0 0 5px;
+    border-radius: .5rem 0 0 .5rem;
   }
 
   &.btn-right {
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 .5rem .5rem 0;
   }
 
   &.btn-mid {
@@ -34,7 +34,6 @@
 
 .create-btn {
   background-color: #28a745;
-
   background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
   background-repeat: repeat-x;
   background-position: -1px -1px;

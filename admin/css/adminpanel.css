@@ -49,7 +49,7 @@ a:hover {
 }
 
 body {
-  min-width: 320px;
+  min-width: 342px;
   min-height: 100%;
 }
 
@@ -61,16 +61,16 @@ svg:hover,
 
 .btn {
   padding: 0.6rem 1.2rem;
-  border-radius: 5px;
+  border-radius: .5rem;
   height: 3.5rem;
 }
 
 .btn.btn-left {
-  border-radius: 5px 0 0 5px;
+  border-radius: .5rem 0 0 .5rem;
 }
 
 .btn.btn-right {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 .5rem .5rem 0;
 }
 
 .btn.btn-mid {
@@ -141,7 +141,7 @@ input:focus {
   height: 4rem;
   width: 25rem;
   border: 1px solid #f73e3e;
-  border-radius: 7px;
+  border-radius: .7rem;
   color: red;
 }
 
@@ -153,11 +153,11 @@ input.category-input {
 }
 
 input.category-input.input-left {
-  border-radius: 5px 0 0 5px;
+  border-radius: .5rem 0 0 .5rem;
 }
 
 input.category-input.input-right {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 .5rem .5rem 0;
 }
 
 input.category-input.input-mid {
@@ -166,9 +166,10 @@ input.category-input.input-mid {
 
 .add-category {
   text-align: center;
+  margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 350px) {
+@media screen and (min-width: 342px) {
   .add-category {
     text-align: unset;
   }
@@ -179,9 +180,9 @@ input.category-input.input-mid {
   height: 4rem;
   width: 25rem;
   border: 1px solid #f73e3e;
-  border-radius: 7px;
+  border-radius: .7rem;
   color: red;
-  margin: 1rem 0 0 -26px;
+  margin: 1rem 0 2.6rem;
 }
 
 @media screen and (min-width: 350px) {
@@ -209,7 +210,7 @@ input.category-input.input-mid {
 }
 
 .add-category label {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 table.category-table {
@@ -252,18 +253,19 @@ table.category-table thead > tr > th {
 }
 
 .admin-main__content--search {
-  margin-left: 3rem;
+  margin-left: -1rem;
 }
 
 .admin-main__content--search .error-up {
-  margin-left: 3rem;
+  margin-left: 1.2rem;
   color: red;
   font-size: 1.2rem;
 }
 
-.admin-main__content--search i {
-  margin-right: 1vw;
-  font-size: large;
+.admin-main__content--search .search-icon {
+  -webkit-transform: translate(27rem, 0.8rem);
+          transform: translate(27rem, 0.8rem);
+  fill: grey;
 }
 
 .admin-main__content--search .search-area {
@@ -272,7 +274,7 @@ table.category-table thead > tr > th {
   width: 25rem;
   border-radius: 7px;
   border: 1px solid grey;
-  margin: .5rem 2rem 1.2rem 0;
+  margin: .5rem 2rem 1.2rem -1rem;
   outline: none;
 }
 
@@ -281,7 +283,7 @@ table.category-table thead > tr > th {
 }
 
 .admin-main__content__products-table {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -375,16 +377,16 @@ table.category-table thead > tr > th {
 .admin-main {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30vh auto;
-      grid-template-columns: 30vh auto;
-  grid-auto-rows: minmax(50px, auto);
+  -ms-grid-rows: 1fr 10fr;
+      grid-template-rows: 1fr 10fr;
+  -ms-grid-columns: 2fr 7fr;
+      grid-template-columns: 2fr 7fr;
+  height: 90vh;
 }
 
 @media screen and (min-width: 768px) {
   .admin-main {
-    grid-auto-rows: minmax(50px, auto);
-    -ms-grid-rows: 20vh 120vh;
-        grid-template-rows: 20vh 120vh;
+    height: 88vh;
   }
 }
 
@@ -412,7 +414,7 @@ table.category-table thead > tr > th {
 }
 
 .admin-main__sidebar--ul a {
-  margin-right: 5px;
+  margin-right: .5rem;
 }
 
 @media screen and (min-width: 350px) {
@@ -428,11 +430,32 @@ table.category-table thead > tr > th {
 }
 
 .admin-main__sidebar--ul a svg {
-  margin-right: 5px;
+  margin-right: .5rem;
 }
 
 .admin-main__sidebar--ul a li {
   font-size: 1.5rem;
+}
+
+.admin-main__sidebar--ul a li.small-active {
+  color: #0fa59e;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__sidebar--ul a li.small-active {
+    color: unset;
+  }
+}
+
+.admin-main__sidebar--ul a li.small-active .icon {
+  fill: #0fa59e;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-main__sidebar--ul a li.small-active .icon {
+    fill: unset;
+  }
 }
 
 .admin-main__sidebar--ul a:last-child {
@@ -450,7 +473,7 @@ table.category-table thead > tr > th {
     width: 100%;
   }
   .admin-main__sidebar--ul a {
-    height: 50px;
+    height: 5rem;
     width: 100%;
     text-align: center;
     display: -webkit-box;
@@ -477,7 +500,7 @@ table.category-table thead > tr > th {
   }
   .admin-main__sidebar--ul .active::before {
     content: "";
-    border-left: 5px solid yellowgreen;
+    border-left: .5rem solid yellowgreen;
   }
 }
 
@@ -491,7 +514,7 @@ table.category-table thead > tr > th {
 
 .admin-main__content {
   grid-column: 1/-1;
-  padding: 12px;
+  padding: 1.2rem;
 }
 
 @media screen and (min-width: 768px) {

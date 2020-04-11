@@ -1,18 +1,18 @@
 .admin-main__content {
 
   &--search {
-    margin-left: 3rem;
+    margin-left: -1rem;
 
     .error-up {
-      margin-left: 3rem;
+      margin-left: 1.2rem;
       color: red;
       font-size: 1.2rem;
       // visibility: hidden;
     }
 
-    i {
-      margin-right: 1vw;
-      font-size: large;
+    .search-icon {
+      transform: translate(27rem, 0.8rem);
+      fill: grey;
     }
 
     .search-area {
@@ -21,7 +21,7 @@
       width: 25rem;
       border-radius: 7px;
       border: 1px solid grey;
-      margin: .5rem 2rem 1.2rem 0;
+      margin: .5rem 2rem 1.2rem -1rem;
       outline: none;
 
       &:focus {
@@ -32,7 +32,7 @@
   }
 
   &__products-table {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 
