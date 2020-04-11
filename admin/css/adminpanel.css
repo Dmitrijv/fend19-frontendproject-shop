@@ -224,13 +224,6 @@ table.product-table {
   min-width: 320px;
 }
 
-@media screen and (min-width: 768px) {
-  table.category-table,
-  table.product-table {
-    margin-top: 1rem;
-  }
-}
-
 table.category-table td.mediumCell,
 table.product-table td.mediumCell {
   max-width: 400px;
