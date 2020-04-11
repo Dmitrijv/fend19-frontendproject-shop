@@ -47,7 +47,8 @@ a:hover {
 }
 
 body {
-  min-width: 320px;
+  min-width: 342px;
+  // 342px to maintain create input's integrity without breaking on index.php
   min-height: 100%;
 }
 
@@ -56,4 +57,3 @@ svg:hover,
 .del-btn:hover {
   cursor: pointer;
 }
-

@@ -34,12 +34,16 @@
 
 .admin-main {
   display: grid;
-  grid-template-columns: 30vh auto;
-  grid-auto-rows: minmax(50px, auto); //100-10
+  grid-template-rows: 1fr 10fr;
+  grid-template-columns: 2fr 7fr;
+  height: 90vh;
+  // grid-template-columns: 30vh auto;
+  // grid-auto-rows: minmax(50px, auto); //100-10
 
   @media screen and (min-width: 768px) {
-    grid-auto-rows: minmax(50px, auto); //100-20
-    grid-template-rows: 20vh 120vh;
+    height: 88vh;
+    // grid-auto-rows: minmax(50px, auto); //100-20
+    // grid-template-rows: 20vh 120vh;
   }
 
   &__sidebar {
@@ -58,7 +62,7 @@
       margin: auto;
 
       a {
-        margin-right: 5px;
+        margin-right: 0.5rem;
 
         @media screen and (min-width: 350px) {
           margin-right: 2vw;
@@ -69,11 +73,28 @@
         }
 
         svg {
-          margin-right: 5px;
+          margin-right: 0.5rem;
         }
 
         li {
           font-size: 1.5rem;
+
+          &.small-active {
+            color: #0fa59e;
+            font-weight: bold;
+
+            @media screen and (min-width: 768px) {
+              color: unset;
+            }
+
+            .icon {
+              fill: #0fa59e;
+
+              @media screen and (min-width: 768px) {
+                fill: unset;
+              }
+            }
+          }
         }
 
         &:last-child {
@@ -88,7 +109,7 @@
         width: 100%;
 
         a {
-          height: 50px;
+          height: 5rem;
           width: 100%;
           text-align: center;
           display: flex;
@@ -113,8 +134,9 @@
         .active {
           &::before {
             content: "";
-            border-left: 5px solid yellowgreen;
+            border-left: 0.5rem solid yellowgreen;
           }
+
           color: white;
           font-weight: bold;
           background-color: #5c5b5b;
@@ -130,7 +152,7 @@
 
   &__content {
     grid-column: 1/-1;
-    padding: 12px;
+    padding: 1.2rem;
 
     @media screen and (min-width: 768px) {
       grid-column: 2/-1;

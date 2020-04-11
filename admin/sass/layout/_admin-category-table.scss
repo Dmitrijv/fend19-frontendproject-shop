@@ -7,8 +7,8 @@ table.category-table {
     margin-top: 1rem;
   }
 
-  tr > th,
-  tr > td {
+  tr>th,
+  tr>td {
     font-size: 1.4rem;
     text-align: center;
     padding: 1rem;
@@ -22,12 +22,12 @@ table.category-table {
     background-color: #f9f9f9;
   }
 
-  tbody > tr > td,
-  tbody > tr > th,
-  tfoot > tr > td,
-  tfoot > tr > th,
-  thead > tr > td,
-  thead > tr > th {
+  tbody>tr>td,
+  tbody>tr>th,
+  tfoot>tr>td,
+  tfoot>tr>th,
+  thead>tr>td,
+  thead>tr>th {
     // border-top: 1px solid #ddd;
     border: 1px solid #ddd;
   }
