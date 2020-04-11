@@ -1,5 +1,4 @@
 .admin-main__content {
-
   &--search {
     margin-left: -1rem;
 
@@ -7,7 +6,6 @@
       margin-left: 1.2rem;
       color: red;
       font-size: 1.2rem;
-      // visibility: hidden;
     }
 
     .search-icon {
@@ -21,14 +19,13 @@
       width: 25rem;
       border-radius: 7px;
       border: 1px solid grey;
-      margin: .5rem 2rem 1.2rem -1rem;
+      margin: 0.5rem 2rem 1.2rem -1rem;
       outline: none;
 
       &:focus {
         border: 1px solid rgb(53, 201, 247);
       }
     }
-
   }
 
   &__products-table {
@@ -36,14 +33,15 @@
     border-collapse: collapse;
     width: 100%;
 
-    @media screen and (min-width: 479px) {}
+    @media screen and (min-width: 479px) {
+    }
 
     @media screen and (min-width: 768px) {
       margin-top: 2rem;
     }
 
-    tr>th,
-    tr>td {
+    tr > th,
+    tr > td {
       font-size: 1.4rem;
       text-align: center;
       padding: 1rem;
@@ -53,11 +51,8 @@
       }
     }
 
-    tr>th:first-child,
-    tr>td:first-child {}
-
-    tr>th:last-child,
-    tr>td:last-child {
+    tr > th:last-child,
+    tr > td:last-child {
       width: 15%;
     }
 
@@ -65,12 +60,12 @@
       background-color: #f2f2f2;
     }
 
-    tr>td:last-child>a:first-child {
+    tr > td:last-child > a:first-child {
       margin-right: 2rem;
       color: #224022;
     }
 
-    tr>td:last-child>a:last-child {
+    tr > td:last-child > a:last-child {
       color: rgb(138, 16, 16);
     }
   }
@@ -83,7 +78,7 @@
 }
 
 .ellipsis:before {
-  content: '&nbsp;';
+  content: "&nbsp;";
   visibility: hidden;
 }
 

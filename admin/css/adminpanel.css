@@ -61,16 +61,16 @@ svg:hover,
 
 .btn {
   padding: 0.6rem 1.2rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: 3.5rem;
 }
 
 .btn.btn-left {
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 .btn.btn-right {
-  border-radius: 0 .5rem .5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .btn.btn-mid {
@@ -89,7 +89,7 @@ svg:hover,
 
 .edit-btn:hover {
   color: #333;
-  background-color: #e6e6e6;
+  background-color: whitesmoke;
   border-color: gray;
 }
 
@@ -278,7 +278,7 @@ table.category-table thead > tr > th {
   width: 25rem;
   border-radius: 7px;
   border: 1px solid grey;
-  margin: .5rem 2rem 1.2rem -1rem;
+  margin: 0.5rem 2rem 1.2rem -1rem;
   outline: none;
 }
 
@@ -336,7 +336,7 @@ table.category-table thead > tr > th {
 }
 
 .ellipsis:before {
-  content: '&nbsp;';
+  content: "&nbsp;";
   visibility: hidden;
 }
 
@@ -395,16 +395,16 @@ table.category-table thead > tr > th {
 }
 
 .admin-main__sidebar {
-  background-color: #c4c4c4;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  grid-column: 1/-1;
-  -ms-grid-row: 1;
-  grid-row: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  grid-column: 1/-1;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #c4c4c4;
 }
 
 .admin-main__sidebar--ul {

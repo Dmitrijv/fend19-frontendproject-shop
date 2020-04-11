@@ -47,14 +47,14 @@
   }
 
   &__sidebar {
-    background-color: #c4c4c4;
+    display: flex;
+    grid-column: 1/-1;
+    grid-row: 1;
+
     position: sticky;
     top: 0;
 
-    //mobile first
-    grid-column: 1/-1;
-    grid-row: 1;
-    display: flex;
+    background-color: #c4c4c4;
 
     &--ul {
       align-items: center;
