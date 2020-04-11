@@ -59,11 +59,6 @@ svg:hover,
   cursor: pointer;
 }
 
-.nav-char-active {
-  color: white;
-  font-weight: bold;
-}
-
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
@@ -349,7 +344,7 @@ table.category-table thead > tr > th {
 }
 
 .admin-header {
-  height: 12vh;
+  height: 10vh;
   background-color: #333333;
   color: white;
   display: -webkit-box;
@@ -359,7 +354,7 @@ table.category-table thead > tr > th {
 
 @media screen and (min-width: 768px) {
   .admin-header {
-    height: 10vh;
+    height: 12vh;
   }
 }
 
@@ -371,8 +366,10 @@ table.category-table thead > tr > th {
   font-size: 4rem;
 }
 
-.admin-header__title i {
-  margin-right: 1rem;
+.admin-header__title--gear-icon {
+  -webkit-transform: translate(-5px, 7px);
+          transform: translate(-5px, 7px);
+  fill: white;
 }
 
 .admin-main {
@@ -430,7 +427,7 @@ table.category-table thead > tr > th {
   }
 }
 
-.admin-main__sidebar--ul a i {
+.admin-main__sidebar--ul a svg {
   margin-right: 5px;
 }
 
@@ -474,6 +471,8 @@ table.category-table thead > tr > th {
     content: "";
   }
   .admin-main__sidebar--ul .active {
+    color: white;
+    font-weight: bold;
     background-color: #5c5b5b;
   }
   .admin-main__sidebar--ul .active::before {
