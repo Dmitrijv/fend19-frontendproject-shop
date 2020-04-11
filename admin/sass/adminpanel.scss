@@ -26,7 +26,7 @@
     font-size: 4rem;
 
     &--gear-icon {
-      transform: translate(-5px, 7px);
+      transform: translate(-0.5rem, 0.7rem);
       fill: white;
     }
   }
@@ -80,19 +80,11 @@
           font-size: 1.5rem;
 
           &.small-active {
-            color: #0fa59e;
+            color: #003171;
             font-weight: bold;
 
             @media screen and (min-width: 768px) {
               color: unset;
-            }
-
-            .icon {
-              fill: #0fa59e;
-
-              @media screen and (min-width: 768px) {
-                fill: unset;
-              }
             }
           }
         }
@@ -119,6 +111,10 @@
             place-self: center;
             padding-left: 3rem;
             font-size: 1.7rem;
+
+            img.icon {
+              margin-right: 1rem;
+            }
           }
 
           &:hover:not(.active) {
@@ -134,7 +130,7 @@
         .active {
           &::before {
             content: "";
-            border-left: 0.5rem solid yellowgreen;
+            border-left: 0.5rem solid rgb(34, 139, 57);
           }
 
           color: white;

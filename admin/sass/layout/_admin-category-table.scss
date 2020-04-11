@@ -4,6 +4,7 @@ table.product-table {
   border-collapse: collapse;
   //   width: 100%;
   min-width: 320px;
+  //https://css-tricks.com/responsive-data-tables/ check this out
 
   @media screen and (min-width: 768px) {
     // margin-top: 1rem;

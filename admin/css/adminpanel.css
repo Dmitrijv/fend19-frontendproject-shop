@@ -221,7 +221,9 @@ table.category-table,
 table.product-table {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-collapse: collapse;
+  width: 100%;
   min-width: 320px;
+  max-width: 100%;
 }
 
 table.category-table td.mediumCell,
@@ -381,8 +383,8 @@ table.product-table tr > th {
 }
 
 .admin-header__title--gear-icon {
-  -webkit-transform: translate(-5px, 7px);
-          transform: translate(-5px, 7px);
+  -webkit-transform: translate(-0.5rem, 0.7rem);
+          transform: translate(-0.5rem, 0.7rem);
   fill: white;
 }
 
@@ -450,23 +452,13 @@ table.product-table tr > th {
 }
 
 .admin-main__sidebar--ul a li.small-active {
-  color: #0fa59e;
+  color: #003171;
   font-weight: bold;
 }
 
 @media screen and (min-width: 768px) {
   .admin-main__sidebar--ul a li.small-active {
     color: unset;
-  }
-}
-
-.admin-main__sidebar--ul a li.small-active .icon {
-  fill: #0fa59e;
-}
-
-@media screen and (min-width: 768px) {
-  .admin-main__sidebar--ul a li.small-active .icon {
-    fill: unset;
   }
 }
 
@@ -498,6 +490,9 @@ table.product-table tr > th {
     padding-left: 3rem;
     font-size: 1.7rem;
   }
+  .admin-main__sidebar--ul a li img.icon {
+    margin-right: 1rem;
+  }
   .admin-main__sidebar--ul a:hover:not(.active) {
     background-color: #818181;
     color: white;
@@ -512,7 +507,7 @@ table.product-table tr > th {
   }
   .admin-main__sidebar--ul .active::before {
     content: "";
-    border-left: 0.5rem solid yellowgreen;
+    border-left: 0.5rem solid #228b39;
   }
 }
 
