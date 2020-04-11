@@ -47,60 +47,9 @@
 
         <!-- content area begins -->
         <div class="admin-main__content">
-            <!-- search bar begins -->
-            <div class="admin-main__content--search">
-                <p class="error-up">error just happens</p>
-                <!-- This is a thin search-icon -->
-                <!-- <svg class="search-icon icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-                    <path d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z" /></svg> -->
-                <!-- This is a fat search-icon -->
-                <svg class="search-icon icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M23.111 20.058l-4.977-4.977c.965-1.52 1.523-3.322 1.523-5.251 0-5.42-4.409-9.83-9.829-9.83-5.42 0-9.828 4.41-9.828 9.83s4.408 9.83 9.829 9.83c1.834 0 3.552-.505 5.022-1.383l5.021 5.021c2.144 2.141 5.384-1.096 3.239-3.24zm-20.064-10.228c0-3.739 3.043-6.782 6.782-6.782s6.782 3.042 6.782 6.782-3.043 6.782-6.782 6.782-6.782-3.043-6.782-6.782zm2.01-1.764c1.984-4.599 8.664-4.066 9.922.749-2.534-2.974-6.993-3.294-9.922-.749z" /></svg>
-                <input class="search-area" type="text">
-                <!-- <input type="text" class="errmsg"> -->
-            </div>
-            <!-- search bar ends -->
-            <!-- model sample here -->
-            <table class="admin-main__content__products-table">
-                <tr>
-                    <th>TITLE</th>
-                    <th>CATEGORY</th>
-                    <th>IMAGE</th>
-                    <th>DESCRIPTION</th>
-                    <th>PRICE</th>
-                    <th>STOCK</th>
-                    <th>EDIT</th>
-                </tr>
-                <tr>
-                    <td>Category 1</td>
-                    <td>Lorem ipsum</td>
-                    <td><img src="" alt="some iamges"></td>
-                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?"><span class="description-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></span></td>
-                    <td>899 kr</td>
-                    <td>25</td>
-                    <td>
-                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z" /></svg></a>
-                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                <path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z" /></svg></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Category 1</td>
-                    <td>Lorem ipsum</td>
-                    <td><img src="" alt="some iamges"></td>
-                    <td class="ellipsis"><span title="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?"><span class="description-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum libero unde hic exercitationem tempora nobis debitis?</span></span></td>
-                    <td>899 kr</td>
-                    <td>25</td>
-                    <td>
-                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                <path d="M18.363 8.464l1.433 1.431-12.67 12.669-7.125 1.436 1.439-7.127 12.665-12.668 1.431 1.431-12.255 12.224-.726 3.584 3.584-.723 12.224-12.257zm-.056-8.464l-2.815 2.817 5.691 5.692 2.817-2.821-5.693-5.688zm-12.318 18.718l11.313-11.316-.705-.707-11.313 11.314.705.709z" /></svg></a>
-                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                <path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z" /></svg></a>
-                    </td>
-                </tr>
 
-            </table>
+            <?php include_once 'php/view/productTable.php';?>
+
         </div>
         <!-- content area ends -->
 

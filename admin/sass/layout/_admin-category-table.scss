@@ -1,14 +1,24 @@
-table.category-table {
+table.category-table,
+table.product-table {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  //   width: 100%;
+  min-width: 320px;
 
   @media screen and (min-width: 768px) {
     margin-top: 1rem;
   }
 
-  tr>th,
-  tr>td {
+  td.mediumCell {
+    max-width: 400px;
+  }
+
+  td.smallCell {
+    max-width: 150px;
+  }
+
+  tr > th,
+  tr > td {
     font-size: 1.4rem;
     text-align: center;
     padding: 1rem;
@@ -22,12 +32,8 @@ table.category-table {
     background-color: #f9f9f9;
   }
 
-  tbody>tr>td,
-  tbody>tr>th,
-  tfoot>tr>td,
-  tfoot>tr>th,
-  thead>tr>td,
-  thead>tr>th {
+  tr > td,
+  tr > th {
     // border-top: 1px solid #ddd;
     border: 1px solid #ddd;
   }
