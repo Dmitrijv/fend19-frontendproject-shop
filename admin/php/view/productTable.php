@@ -18,17 +18,19 @@ $selectProducts = DB::run("
 ");
 
 $html = '
-    <table class="db-table product-table">
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Gallery</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Action</th>
-    </tr>
+    <table role="table" class="db-table product-table">
+        <thead role="rowgroup">
+            <tr role="row">
+                <th role="columnheader">ID</th>
+                <th role="columnheader">Title</th>
+                <th role="columnheader">Gallery</th>
+                <th role="columnheader">Price</th>
+                <th role="columnheader">Stock</th>
+                <th role="columnheader">Category</th>
+                <th role="columnheader">Description</th>
+                <th role="columnheader">Action</th>
+            </tr>
+        </thead>
 ';
 
 while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
@@ -49,35 +51,39 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
     $selectProductImages = DB::run($selectImg, [$productId]);
 
     $imageGallery = [];
-    while ($imgRow = $selectProductImages->fetch(PDO::FETCH_LAZY)) {array_push($imageGallery, $imgRow['file_name']);}
+    while ($imgRow = $selectProductImages->fetch(PDO::FETCH_LAZY)) {
+        array_push($imageGallery, $imgRow['file_name']);
+    }
 
     $coverImage = (isset($imageGallery[0])) ? $imageGallery[0] : "placeholder.png";
     $gallerySize = sizeof($imageGallery);
 
     $html .= "
-        <tr data-post-id='{$product['id']}'>
-            <td>{$product['id']}</td>
-            <td >{$product['title']}</td>
-            <td>
-                <div class='productCoverDemo'>
-                    <img class='cover-demo' src='../img/product/{$coverImage}' alt='Cover Image'>
-                    <span class='gallerySize'>{$gallerySize}</span>
-                </div>
-            </td>
-            <td>{$product['price']} {$product['currency']}</td>
-            <td>{$product['number_in_stock']} st</td>
-            <td>{$product['category']}</td>
-            <td title='{$product['description']}' >{$productDescription}</td>
-            <td class='actionCell'>
-                <form style='display: inline-block;' action='' method='POST' >
-                    <input class='btn edit-btn' type='submit' data-productId='{$product['id']}' name='edit' value='Edit'>
-                    <input type='hidden' name='productId' value='{$product['id']}'>
-                </form>
-                <form style='display: inline-block;' onsubmit=''>
-                    <input class='btn del-btn' data-productId='{$product['id']}' type='submit' name='delete' value='Delete'>
-                </form>
-            </td>
-        </tr>
+        <tbody role='rowgroup'>
+            <tr role='row' data-post-id='{$product['id']}'>
+                <td role='cell'>{$product['id']}</td>
+                <td role='cell'>{$product['title']}</td>
+                <td role='cell'>
+                    <div class='productCoverDemo'>
+                        <img class='cover-demo' src='../img/product/{$coverImage}' alt='Cover Image'>
+                        <span class='gallerySize'>{$gallerySize}</span>
+                    </div>
+                </td>
+                <td role='cell'>{$product['price']} {$product['currency']}</td>
+                <td role='cell'>{$product['number_in_stock']} st</td>
+                <td role='cell'>{$product['category']}</td>
+                <td role='cell' title='{$product['description']}' >{$productDescription}</td>
+                <td role='cell' class='actionCell'>
+                    <form style='display: inline-block;' action='' method='POST' >
+                        <input class='btn edit-btn' type='submit' data-productId='{$product['id']}' name='edit' value='Edit'>
+                        <input type='hidden' name='productId' value='{$product['id']}'>
+                    </form>
+                    <form style='display: inline-block;' onsubmit=''>
+                        <input class='btn del-btn' data-productId='{$product['id']}' type='submit' name='delete' value='Delete'>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
     ";
 }
 
