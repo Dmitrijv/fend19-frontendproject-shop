@@ -198,7 +198,9 @@ table.db-table tr:hover {
   }
   /*
   Label the data
-  You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+  You could also use a data-* attribute and content for this. 
+  That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. 
+  Lea Verou has a clever way to handle with text-shadow.
   */
   td:nth-of-type(1):before {
     content: "ID";
@@ -298,12 +300,18 @@ header.admin-header div.header-container {
   padding: 10px;
 }
 
+@media screen and (min-width: 801px) {
+  header.admin-header div.header-container h1 {
+    font-size: 26px;
+  }
+}
+
 header.admin-header div.header-container img.header-icon {
   margin-right: 6px;
 }
 
 header.admin-header div.header-container h1 {
-  font-size: 26px;
+  font-size: 22px;
   color: white;
 }
 

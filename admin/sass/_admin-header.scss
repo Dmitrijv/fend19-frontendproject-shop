@@ -14,12 +14,18 @@ header.admin-header div.header-container {
   background-color: #3b455e;
   padding: 10px;
 
+  @media screen and (min-width: 801px) {
+    h1 {
+      font-size: 26px;
+    }
+  }
+
   img.header-icon {
     margin-right: 6px;
   }
 
   h1 {
-    font-size: 26px;
+    font-size: 22px;
     color: white;
   }
 }
