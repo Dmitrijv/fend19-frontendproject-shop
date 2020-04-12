@@ -10,10 +10,15 @@ table.db-table {
     min-width: 135px;
   }
 
-  tr>th,
+
   tr>td {
     text-align: center;
     padding: 8px;
+    border: 1px solid #ddd;
+  }
+
+  tr>th {
+    padding: 10px 5px;
     border: 1px solid #ddd;
   }
 
@@ -27,6 +32,11 @@ table.db-table {
 }
 
 .product-table {
+
+  tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4) {
+    min-width: 68px;
+  }
+
   @media only screen and (max-width: 860px) {
 
     /* Force table to not be like tables anymore */
@@ -37,6 +47,11 @@ table.db-table {
     td,
     tr {
       display: block;
+    }
+
+    tr>th,
+    tr>td {
+      padding-left: 27vw !important;
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
