@@ -9,46 +9,42 @@
 </head>
 
 <body>
-    <!-- header begins -->
+
     <header class="admin-header">
-        <h1 class="admin-header__title"><img class="admin-header__title--gear-icon" src="img/svg/gear.svg" alt="Gear Icon">Admin panel</h1>
+        <div class="header-container" >
+            <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
+            <h1>Admin panel - Categories</h1>
+        </div>
     </header>
 
     <main class="admin-main">
 
-        <!-- sidebar begins -->
-        <div class="admin-main__sidebar">
-            <ul class="admin-main__sidebar--ul">
-                <a href="../index.php">
-                    <li><img class="store-icon icon" src="img/svg/store.svg" alt="Store Icon">Store</li>
-                </a>
-                <a href="#" class="active">
-                    <li class="small-active"><img class="category-icon icon" src="img/svg/category.svg" alt="Category Icon">Categories</li>
-                </a>
-                <a href="products.php">
-                    <li><img class="product-icon icon" src="img/svg/product.svg" alt="Product Icon">Products</li>
-                </a>
-                <!-- <a href="orders.php">
-                    <li><img class="order-icon icon" src="img/svg/order.svg" alt="Order Icon">Orders</li>
-                </a> -->
-            </ul>
-        </div>
-        <!-- sidebar ends -->
+        <!-- SIDEBAR begins -->
+        <section class="admin-sidebar">
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="../index.php">To Store</a></li>
+                    <li><a class="active">Categories</a></li>
+                    <li><a href="products.php">Products</a></li>
+                    <li><a href="">Orders</a></li>
+                </ul>
+            </nav>
+        </section>
+        <!-- SIDEBAR ends -->
 
-        <!-- content area begins -->
-        <div class="admin-main__content">
+        <!-- CONTENT area begins -->
+        <section class="admin-content">
+            <div class="content-wrapper" >
+                <form class="add-category" onsubmit='adminLib.createNewCategory(event);'>
+                    <input name="newCategoryNameField" class="category-input input-left" type="text" placeholder="Create a new category">
+                    <input class="btn btn-right create-btn" type="submit" value="Create">
+                </form>
+                <!-- <table class="db-table"> -->
+                <?php include_once 'php/view/categoryTable.php';?>
+            </div>
+        </section>
+        <!-- CONTENT area ends -->
 
-            <form class="add-category" onsubmit='adminLib.createNewCategory(event);'>
-                <input name="newCategoryNameField" class="category-input input-left" type="text" placeholder="Create a new category">
-                <input class="btn btn-right create-btn" type="submit" value="Create">
-                <!-- <input type="text" name="" class="errmsg" value="Error Message to be shown"> -->
-            </form>
-
-            <!-- <table class="admin-main__content__category-table"> -->
-            <?php include_once 'php/view/categoryTable.php';?>
-
-        </div>
-        <!-- content area ends -->
     </main>
 
     <script src="js/adminLib.js"></script>

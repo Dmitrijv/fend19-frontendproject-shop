@@ -6,7 +6,7 @@ $stmt = DB::run("SELECT * FROM product_category ORDER BY id ASC");
 
 //create table head
 $html = '
-    <table class="category-table">
+    <table class="db-table">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -21,11 +21,11 @@ while ($category = $stmt->fetch(PDO::FETCH_LAZY)) {
             <td>{$category['id']}</td>
             <td>{$category['name']}</td>
             <td>
-                <form style='display: inline-block;' action='editCategory.php' method='POST' >
+                <form style='display: inline-block;' action='' method='POST' >
                     <input class='btn btn-left edit-btn' type='submit' data-categoryId='{$category['id']}' name='edit' value='Edit'>
                     <input type='hidden' name='categoryId' value='{$category['id']}'>
                 </form>
-                <form style='display: inline-block;' onsubmit='cmsLib.deleteCategory(event);'>
+                <form style='display: inline-block;' onsubmit='adminLib.deleteCategory(event);'>
                     <input class='btn btn-right del-btn' data-categoryId='{$category['id']}' type='submit' name='delete' value='Delete'>
                 </form>
             </td>

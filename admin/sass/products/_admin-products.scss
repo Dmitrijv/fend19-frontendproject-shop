@@ -1,0 +1,24 @@
+table.product-table {
+  div.productCoverDemo {
+    display: flex;
+    flex-direction: row;
+  }
+
+  span.gallerySize {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    padding: 0 3px;
+    border-left: 2px solid white;
+  }
+
+  img.cover-demo {
+    object-fit: cover;
+    object-position: center;
+    width: 60px;
+    height: 50px;
+    border: 1px solid lightgray;
+  }
+}

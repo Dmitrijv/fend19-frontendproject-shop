@@ -1,0 +1,25 @@
+header.admin-header {
+  background-color: #3b455e;
+}
+
+header.admin-header div.header-container {
+  display: flex;
+  align-items: center;
+
+  min-height: 50px;
+  max-width: $maxContentWidth;
+
+  margin: 0 auto 35px auto;
+
+  background-color: #3b455e;
+  padding: 10px;
+
+  img.header-icon {
+    margin-right: 6px;
+  }
+
+  h1 {
+    font-size: 26px;
+    color: white;
+  }
+}
