@@ -16,7 +16,7 @@
 <body>
 
     <header class="admin-header">
-        <div class="header-container" >
+        <div class="header-container">
             <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
             <h1>Admin panel - Products</h1>
         </div>
@@ -39,16 +39,15 @@
 
         <!-- CONTENT area begins -->
         <section class="admin-content">
-            <div class="content-wrapper" >
+            <div class="content-wrapper">
                 <!-- <table class="db-table"> -->
-                <?php include_once 'php/view/productTable.php';?>
-            </div>
+                <?php include_once 'php/view/productTable.php'; ?>
+
         </section>
         <!-- CONTENT area ends -->
 
     </main>
 
 </body>
-
 
 </html>
