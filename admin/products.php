@@ -28,7 +28,7 @@
         <section class="admin-sidebar">
             <nav class="admin-nav">
                 <ul>
-                    <li><a href="../index.php">To Store</a></li>
+                    <li><a href="../index.php">Store</a></li>
                     <li><a href="index.php">Categories</a></li>
                     <li><a class="active">Products</a></li>
                     <li><a href="">Orders</a></li>
@@ -41,7 +41,7 @@
         <section class="admin-content">
             <div class="content-wrapper">
                 <!-- <table class="db-table"> -->
-                <?php include_once 'php/view/productTable.php'; ?>
+                <?php include_once 'php/view/productTable.php';?>
 
         </section>
         <!-- CONTENT area ends -->
