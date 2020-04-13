@@ -168,6 +168,14 @@ table.db-table tr:hover {
   Lea Verou has a clever way to handle with text-shadow.
   */
   }
+  .product-table .ellipsis {
+    width: unset;
+  }
+  .product-table .ellipsis .description-text {
+    position: unset;
+    white-space: unset;
+    padding: 0 15px;
+  }
   .product-table table,
   .product-table thead,
   .product-table tbody,
@@ -489,5 +497,23 @@ table.product-table img.cover-demo {
   width: 60px;
   height: 50px;
   border: 1px solid lightgray;
+}
+
+.ellipsis {
+  position: relative;
+  width: 23%;
+}
+
+.ellipsis .description-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 6px;
 }
 /*# sourceMappingURL=adminpanel.css.map */
