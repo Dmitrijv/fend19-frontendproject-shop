@@ -37,13 +37,6 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
 
     $productId = $product['id'];
 
-    // // trim product description to make table tidy
-    // Sorry dude, I changed this. XD
-    // $productDescription = $product['description'];
-    // if (strlen($productDescription) > 50) {
-    //     $productDescription = substr($productDescription, 0, 45) . " ...";
-    // }
-
     $selectImg = "
             SELECT file_name
             FROM product, image_of_product
@@ -61,8 +54,8 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
 
     $html .= "
         <tbody role='rowgroup'>
-            <tr role='row' data-post-id='{$product['id']}'>
-                <td role='cell'>{$product['id']}</td>
+            <tr role='row' data-post-id='{$productId}'>
+                <td role='cell'>{$productId}</td>
                 <td role='cell'>{$product['title']}</td>
                 <td role='cell'>
                     <div class='productCoverDemo'>
@@ -76,11 +69,11 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
                 <td class='ellipsis' role='cell'><span class='show-all-description' title='{$product['description']}'><span class='description-text'>{$product['description']}</span></span></td>
                 <td role='cell' class='actionCell'>
                     <form style='display: inline-block;' action='' method='POST' >
-                        <input class='btn edit-btn' type='submit' data-productId='{$product['id']}' name='edit' value='Edit'>
-                        <input type='hidden' name='productId' value='{$product['id']}'>
+                        <input class='btn edit-btn' type='submit' data-productId='{$productId}' name='edit' value='Edit'>
+                        <input type='hidden' name='productId' value='{$productId}'>
                     </form>
                     <form style='display: inline-block;' onsubmit=''>
-                        <input class='btn del-btn' data-productId='{$product['id']}' type='submit' name='delete' value='Delete'>
+                        <input class='btn del-btn' data-productId='{$productId}' type='submit' name='delete' value='Delete'>
                     </form>
                 </td>
             </tr>
