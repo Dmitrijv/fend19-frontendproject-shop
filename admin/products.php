@@ -47,7 +47,7 @@
         <!-- CONTENT area ends -->
 
         <!-- Return to Top -->
-        <button id="back-to-top-btn"><img src="img/svg/up-arrow1.svg" alt="Up to top arrow"></button>
+        <button id="back-to-top-btn"><img class="absolute-center-position" src="img/svg/up-arrow1.svg" alt="Up to top arrow"></button>
 
     </main>
     <script src="js/goToTop.js"></script>
