@@ -1,8 +1,7 @@
 <!-- FEATURES ATTENTION! -->
-<!-- created class:ellipsis (kept in admin-products.scss)
-        wrapped description with span, and put same text in span
-     effect: description will become ellipsis,
-             and whole text will show up when user hover it -->
+<!-- .ellipsis (kept in ad-table.scss) and now it works only when screen's width < 860px
+    structure: wrapped description with span, and put same text in span's title
+    effect: description will become ellipsis, and whole text will show up when user hover it -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +40,7 @@
         <section class="admin-content">
             <div class="content-wrapper">
                 <!-- <table class="db-table"> -->
-                <?php include_once 'php/view/productTable.php';?>
+                <?php include_once 'php/view/productTable.php'; ?>
 
         </section>
         <!-- CONTENT area ends -->
