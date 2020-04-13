@@ -55,7 +55,7 @@ table.db-table {
     }
 
     /* To maintain table border's thickness */
-    tr>td {
+    tr>td:not(:last-child) {
       border-bottom: none !important;
     }
 

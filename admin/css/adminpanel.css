@@ -342,7 +342,7 @@ table.db-table tr:hover {
     white-space: unset;
     padding: 0 15px;
   }
-  .product-table tr > td {
+  .product-table tr > td:not(:last-child) {
     border-bottom: none !important;
   }
   .product-table table,
