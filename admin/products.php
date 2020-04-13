@@ -46,8 +46,11 @@
         </section>
         <!-- CONTENT area ends -->
 
-    </main>
+        <!-- Return to Top -->
+        <button id="back-to-top-btn"><img src="img/svg/up-arrow1.svg" alt="Up to top arrow"></button>
 
+    </main>
+    <script src="js/goToTop.js"></script>
 </body>
 
 </html>
