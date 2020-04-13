@@ -213,16 +213,6 @@ input:focus {
           animation-name: btnEntrance;
 }
 
-/* zoomIn */
-/* @keyframes btnEntrance { 
-  from {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-  to {
-    opacity: 1;
-  }    
-} */
 /* fadeInUp */
 @-webkit-keyframes btnEntrance {
   from {
@@ -258,16 +248,6 @@ input:focus {
           animation-name: btnExit;
 }
 
-/* zoomOut */
-/* @keyframes btnExit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-} */
 /* fadeOutDown */
 @-webkit-keyframes btnExit {
   from {
@@ -343,7 +323,7 @@ table.db-table tr:hover {
     padding: 0 15px;
   }
   .product-table tr > td:not(:last-child) {
-    border-bottom: none !important;
+    border-bottom: none;
   }
   .product-table table,
   .product-table thead,
@@ -372,7 +352,7 @@ table.db-table tr:hover {
     background: #ccc;
   }
   .product-table td {
-    /* Behave  like a "row" */
+    /* Behave like a "row" */
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;

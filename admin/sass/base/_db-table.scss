@@ -44,7 +44,7 @@ table.db-table {
       width: unset;
 
       .show-all-description {
-        // can not delete this class
+        // Can not delete this class
       }
 
       .description-text {
@@ -56,7 +56,7 @@ table.db-table {
 
     /* To maintain table border's thickness */
     tr>td:not(:last-child) {
-      border-bottom: none !important;
+      border-bottom: none;
     }
 
     /* Force table to not be like tables anymore */
@@ -94,7 +94,7 @@ table.db-table {
     }
 
     td {
-      /* Behave  like a "row" */
+      /* Behave like a "row" */
       border: none;
       border-bottom: 1px solid #eee;
       position: relative;
@@ -201,37 +201,5 @@ table.db-table {
     tr>td {
       padding: 8px 0 !important;
     }
-
-    // td:nth-of-type(1)::before {
-    //   left: -50px;
-    // }
-
-    // td:nth-of-type(2)::before {
-    //   left: -43px;
-    // }
-
-    // td:nth-of-type(3)::before {
-    //   left: -32px;
-    // }
-
-    // td:nth-of-type(4)::before {
-    //   left: -38px;
-    // }
-
-    // td:nth-of-type(5)::before {
-    //   left: -37px;
-    // }
-
-    // td:nth-of-type(6)::before {
-    //   left: -25px;
-    // }
-
-    // td:nth-of-type(7)::before {
-    //   left: -16px;
-    // }
-
-    // td:nth-of-type(8)::before {
-    //   left: -34px;
-    // }
   }
 }
