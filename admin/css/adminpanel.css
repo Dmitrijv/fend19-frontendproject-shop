@@ -188,6 +188,9 @@ table.db-table tr:hover {
   .product-table tr > td {
     padding-left: 27vw !important;
   }
+  .product-table tr > td:first-child {
+    background-color: #c4c8bf;
+  }
   .product-table thead tr {
     position: absolute;
     top: -9999px;
