@@ -23,7 +23,7 @@
         <section class="admin-sidebar">
             <nav class="admin-nav">
                 <ul>
-                    <li><a href="../index.php">To Store</a></li>
+                    <li><a href="../index.php">Store</a></li>
                     <li><a class="active">Categories</a></li>
                     <li><a href="products.php">Products</a></li>
                     <li><a href="">Orders</a></li>
