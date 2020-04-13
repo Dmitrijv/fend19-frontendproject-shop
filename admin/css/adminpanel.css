@@ -324,6 +324,7 @@ table.db-table tr:hover {
 
 @media only screen and (max-width: 860px) {
   .product-table {
+    /* To maintain table border's thickness */
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
     /*
@@ -340,6 +341,9 @@ table.db-table tr:hover {
     position: unset;
     white-space: unset;
     padding: 0 15px;
+  }
+  .product-table tr > td {
+    border-bottom: none !important;
   }
   .product-table table,
   .product-table thead,

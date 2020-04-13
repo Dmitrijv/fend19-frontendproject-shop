@@ -54,6 +54,11 @@ table.db-table {
       }
     }
 
+    /* To maintain table border's thickness */
+    tr>td {
+      border-bottom: none !important;
+    }
+
     /* Force table to not be like tables anymore */
     table,
     thead,
