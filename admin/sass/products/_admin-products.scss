@@ -22,3 +22,21 @@ table.product-table {
     border: 1px solid lightgray;
   }
 }
+
+// This class avoids creating multiple lines
+.ellipsis {
+  position: relative;
+  width: 23%;
+}
+
+.ellipsis .description-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 6px;
+}
