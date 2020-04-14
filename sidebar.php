@@ -1,18 +1,24 @@
+<?php
+
+require_once __DIR__ . "/php/model/db.php";
+
+$stmt = DB::run("SELECT name FROM product_category");
+$sidebarItems = "";
+while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
+    $sidebarItems .= "
+        <li class='sidebar__menu__item' data-src='home'>
+            <a href='#' class='menu__link'>{$tableRow["name"]}</a>
+        </li>
+    ";
+}
+
+?>
+
 <div class="sidebar">
-<nav>
+    <nav>
         <ul class="sidebar__menu">
-          <li class="sidebar__menu__item" data-src="home">
-            <a href="#" class="menu__link">KATEGORI</a>
-          </li>
-          <li class="sidebar__menu__item" data-src="about">
-            <a href="#" class="menu__link">KATEGORI</a>
-          </li>
-          <li class="sidebar__menu__item" data-src="projects">
-            <a href="#" class="menu__link">KATEGORI</a>
-          </li>
-          <li class="sidebar__menu__item" data-src="contact">
-            <a href="#" class="menu__link">KATEGORI</a>
-          </li>
+        <?php echo $sidebarItems; ?>
         </ul>
-      </nav>
+    </nav>
 </div>
+
