@@ -10,12 +10,11 @@ header("Content-Type: application/json; charset=UTF-8");
 $selectProducts = DB::run("
     SELECT product.id, product.title, product.description, product_category.name as category, product.number_in_stock
     FROM product, product_category
-    WHERE product.id = product_category.id
+    WHERE product.category_id = product_category.id
 ");
 
 $response = [];
-while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY))
-{
+while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY)) {
 
     $product = [
         "id" => $tableRow['id'],
@@ -26,14 +25,14 @@ while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY))
     ];
 
     $imgSql = "
-        SELECT file_name 
+        SELECT file_name
         FROM product, image_of_product
         WHERE product.id = image_of_product.product_id AND product.id = ?
     ";
     $selectProductImages = DB::run($imgSql, [$tableRow['id']]);
 
     $imageGallery = [];
-    while ($imgRow = $selectProductImages->fetch(PDO::FETCH_LAZY)) { array_push($imageGallery, $imgRow['file_name']); } 
+    while ($imgRow = $selectProductImages->fetch(PDO::FETCH_LAZY)) {array_push($imageGallery, $imgRow['file_name']);}
     $product["imageGallery"] = $imageGallery;
 
     array_push($response, $product);
