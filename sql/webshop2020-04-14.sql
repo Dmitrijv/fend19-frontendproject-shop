@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2020 at 11:18 AM
+-- Generation Time: Apr 14, 2020 at 09:24 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -57,12 +57,13 @@ CREATE TABLE `image_of_product` (
 
 INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
 (2, '2-cover.jpg'),
-(3, '3-cover.jpg'),
 (4, '4-cover.jpg'),
 (6, '6-cover.jpg'),
 (7, '7-cover.jpg'),
 (8, '8-cover.jpg'),
-(5, '5-cover.jpg');
+(5, '5-cover.jpg'),
+(2, 'spike2.jpg'),
+(2, 'spike3.jpg');
 
 -- --------------------------------------------------------
 
