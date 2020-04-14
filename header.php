@@ -17,7 +17,7 @@
         <span class="hamburger__bar"></span>
     </span>
     <header class="main__header">
-        <div class="main__header__logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
+        <div class="main__header__logo"><img class="logo" src="img/svg/logo-no-text.svg" alt="Logo Image"></div>
         <h2 class="shop-title">Frame Me</h2>
         <nav class="nav">
             <div class="nav__item">
@@ -28,6 +28,5 @@
             </div>
         </nav>
     </header>
-    <?php
-    require_once('sidebar.php');
-    ?>
+
+    <?php require_once 'sidebar.php';?>
