@@ -210,7 +210,7 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #fdfdff;
+  background: white;
   color: #fefff0;
   left: -100%;
   position: fixed;
@@ -242,8 +242,12 @@ img {
 
 @media (min-width: 800px) {
   .sidebar {
+    padding-top: 50px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     left: 0;
-    max-width: 350px;
+    max-width: 250px;
     z-index: -1;
   }
 }

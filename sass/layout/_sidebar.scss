@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: rgb(253, 253, 255);
+  background: white;
   color: rgb(254, 255, 240);
   left: -100%;
   position: fixed;
@@ -27,9 +27,12 @@
     margin-bottom: 20px;
   }
   @media (min-width: 800px) {
+    padding-top: 50px;
+    justify-content: flex-start;
     left: 0;
-    max-width: 350px;
+    max-width: 250px;
     z-index: -1;
+
   }
 }
 .sidebar.active {
