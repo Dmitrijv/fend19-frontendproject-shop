@@ -15,7 +15,7 @@
 <span class="hamburger__bar"></span>
 </span>
 <header class="main__header">
-<div class="main__header__logo">LOGOTYPE</div>
+<div id="logo" class="main__header__logo"></div>
 <nav class="nav">
     <div></div>
     <div class="nav__item">
