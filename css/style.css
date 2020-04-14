@@ -22,20 +22,41 @@ img {
 }
 
 .main__header__logo {
-  background: url("../../img/product/svg/Logo.svg") no-repeat center center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
-  width: 70px;
-  height: 70px;
+}
+
+.main__header__logo .logo {
+  width: 60px;
+  margin: -18px auto;
+}
+
+.main__header .shop-title {
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+@media screen and (min-width: 800px) {
+  .main__header .shop-title {
+    margin: 0;
+    white-space: nowrap;
+    margin-left: 10px;
+    place-self: center;
+  }
 }
 
 .main__header__btn {
-  margin-left: 8px;
   background-color: #f60d4d;
   border: none;
   border-radius: 3px;
   color: white;
+}
+
+.main__header__btn:nth-child(2) {
+  margin-left: 8px;
 }
 
 .main__header__btn a {
@@ -53,10 +74,14 @@ img {
           justify-content: center;
 }
 
-.main__header__search button {
-  margin: 0;
+.main__header__search .search-btn {
+  margin: unset;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.main__header__search--input {
+  width: 150px;
 }
 
 @media (min-width: 800px) {
@@ -64,7 +89,7 @@ img {
     margin-top: 0;
   }
   .main__header__search input {
-    min-width: 300px;
+    min-width: 260px;
   }
 }
 
@@ -117,6 +142,7 @@ img {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
+    margin: auto;
   }
 }
 

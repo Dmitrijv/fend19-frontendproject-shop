@@ -1,13 +1,16 @@
 @import "./layout/header";
 @import "./layout/sidebar";
+
 body {
   display: flex;
   flex-direction: column;
   margin: 0;
+
   @media (min-width: 800px) {
     display: block;
   }
 }
+
 * {
   box-sizing: border-box;
 }
@@ -15,11 +18,13 @@ body {
 h1 {
   color: red;
 }
+
 input {
   border-radius: 3px;
   border: none;
   background-color: #f60d4d20;
 }
+
 button {
   cursor: pointer;
   padding: 10px 30px 10px 30px;
