@@ -9,9 +9,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php 
-require_once('sidebar.php');
-?>
 <span class="hamburger__bar-wrapper">
 <span class="hamburger__bar"></span>
 <span class="hamburger__bar"></span>
@@ -20,10 +17,15 @@ require_once('sidebar.php');
 <header class="main__header">
 <div class="main__header__logo">LOGOTYPE</div>
 <nav class="nav">
-<button class="main__header__btn login-btn"><a href="">Logga in</a></button>
-<button class="main__header__btn cart-btn"><a href="">Varukorg</a></button>
-<div class="main__header__search">
-    <input type="text"><button class="main__header__btn search-btn">Sök</button>
+    <div></div>
+    <div class="nav__item">
+<button class="main__header__btn login-btn"><a href="">Logga in</a></button><button class="main__header__btn cart-btn"><a href="">Varukorg</a></button>
+</div>
+<div class="nav__item main__header__search">
+    <input class="main__header__input" type="text"><button class="main__header__btn search-btn">Sök</button>
 </div>
 </nav>
 </header>
+<?php 
+require_once('sidebar.php');
+?>

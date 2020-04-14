@@ -1,7 +1,12 @@
-@import './layout/header';
-@import './layout/sidebar';
+@import "./layout/header";
+@import "./layout/sidebar";
 body {
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  @media (min-width: 800px) {
+    display: block;
+  }
 }
 * {
   box-sizing: border-box;
@@ -11,12 +16,11 @@ h1 {
   color: red;
 }
 input {
-    border-radius: 3px;
-    border: none;
-    background-color: #f60d4d20;
-    
+  border-radius: 3px;
+  border: none;
+  background-color: #f60d4d20;
 }
 button {
-    cursor: pointer;
-    padding: 10px 30px 10px 30px;
+  cursor: pointer;
+  padding: 10px 30px 10px 30px;
 }

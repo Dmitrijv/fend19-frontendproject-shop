@@ -1,15 +1,16 @@
 .main__header {
   box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
-  padding: 1.5em 0 1.5em 0;
+  padding: 1.5em 1em 1.5em 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   &__logo {
     display: flex;
     justify-content: center;
+    align-self: center;
   }
   &__btn {
-    margin: 8px;
+    margin-left: 8px;
     background-color: #f60d4d;
     border: none;
     border-radius: 3px;
@@ -20,6 +21,7 @@
     }
   }
   &__search {
+    margin-top: 8px;
     display: flex;
     justify-content: center;
     button {
@@ -27,13 +29,37 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+    @media (min-width: 800px) {
+      margin-top: 0;
+      input {
+        min-width: 300px;
+      }
+    }
+  }
+  @media (min-width: 800px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1.5em;
   margin-bottom: 1.5em;
+  @media (min-width: 800px) {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    &__item:nth-of-type(1) {
+      order: 2;
+    }
+    &__item:nth-of-type(2) {
+      order: 1;
+    }
+  }
 }
 .hamburger__bar-wrapper {
   position: fixed;
@@ -42,10 +68,10 @@
   height: 2em;
   place-content: center space-evenly;
   flex-direction: column;
-  width: 3.4em;
+  width: 2.4em;
   cursor: pointer;
   z-index: 99999;
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     display: none;
   }
   span {
@@ -59,27 +85,27 @@
   }
 }
 .hamburger__bar-wrapper.active {
-    display: flex;
-    place-content: center center;
-    z-index: 999999;
-    opacity: 0.9;
-    transition: 0.5s ease-in-out;
-    @media (min-width: 700px) {
-      display: none;
-    }
-    span {
-      position: relative;
-      background: #f60d4d;
-    }
-    span:nth-child(1) {
-      top: 11px;
-      transform: rotate(-135deg)
-    }
-    span:nth-child(2) {
-      transform: rotate(135deg);
-      top: 1px;
-    }
-    span:nth-child(3) {
-      background: rgba($color: #000000, $alpha: 0);
-    }
+  display: flex;
+  place-content: center center;
+  z-index: 999999;
+  opacity: 0.9;
+  transition: 0.5s ease-in-out;
+  @media (min-width: 800px) {
+    display: none;
   }
+  span {
+    position: relative;
+    background: #f60d4d;
+  }
+  span:nth-child(1) {
+    top: 11px;
+    transform: rotate(-135deg);
+  }
+  span:nth-child(2) {
+    transform: rotate(135deg);
+    top: 1px;
+  }
+  span:nth-child(3) {
+    background: rgba($color: #000000, $alpha: 0);
+  }
+}
