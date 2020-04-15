@@ -1,16 +1,9 @@
 <footer class="footer">
-            <form action="#" method="POST" class="footer__form">
-                <h3 class="footer__contact__heading">Kontakta oss</h3>
-                <input type="text" class="footer__form__inputs" placeholder="Namn">
-                <input type="text" class="footer__form__inputs" placeholder="E-post adress">
-                <textarea name="" id="" cols="30" rows="10" class="footer__form__msg" placeholder="Meddelande"></textarea>
-                <input type="submit" class="footer__form__button">
-            </form>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.2614397675409!2d18.021236615935116!3d59.34528361678554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d9d263b022d%3A0x82fc0f30ed84f9ed!2sNackademin!5e0!3m2!1ssv!2sse!4v1586423786552!5m2!1ssv!2sse" 
             class="footer__embed__map">
             </iframe>
             <div class="footer__bottom__wrapper">
-                <h4 class="footer__shop__name">Frame me</h4>
+            <div class="logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
                 <div class="footer__bottom__wraper__info__wraper">
                     <h5 class="footer__info__heading">Mer info</h5>
                     <ul class="footer__list">
