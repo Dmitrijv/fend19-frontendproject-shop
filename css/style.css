@@ -297,7 +297,7 @@ button {
   .search-btn,
   .cart-btn {
     position: inherit;
-    margin-top: 8px;
+    margin-top: 0;
     padding: 12px;
   }
 }
