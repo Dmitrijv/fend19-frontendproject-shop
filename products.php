@@ -23,7 +23,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 
 ?>
 
-<div class="wrapper">
+<div class="content">
     <div class="product-container">
         <?php echo $products; ?>
     </div>
