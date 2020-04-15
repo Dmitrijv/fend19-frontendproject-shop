@@ -24,7 +24,7 @@ function getProductCategories()
         ];
         array_push($response, $category);
     }
-    return json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    return $response;
 }
 
 function doesProductCategoryNameExist($categoryName)

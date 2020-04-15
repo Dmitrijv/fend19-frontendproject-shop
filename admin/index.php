@@ -48,8 +48,7 @@
                         <button type="submit">Close</button>
                     </form>
                 </div>
-                <!-- <table class="db-table"> -->
-                <?php include_once 'php/view/categoryTable.php'; ?>
+                <table class="db-table" id="productCategoryAdminTable"></table>
             </div>
         </section>
         <!-- CONTENT area ends -->
@@ -57,6 +56,8 @@
     </main>
 
     <script src="js/adminLib.js"></script>
+
+    <script>adminLib.drawCategoryTable();</script>
 
 </body>
 
