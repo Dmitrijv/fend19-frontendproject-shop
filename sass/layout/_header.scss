@@ -1,8 +1,3 @@
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
 .main__header {
   position: fixed;
   width: 100%;
@@ -11,13 +6,6 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  &__logo {
-    background: url('../../img/product/svg/Logo.svg') no-repeat center center;
-    align-self: center;
-    width: 170px;
-    height: 70px;
-  }
 
   .shop-title {
     text-align: center;
