@@ -17,8 +17,7 @@
         <span class="hamburger__bar"></span>
     </span>
     <header class="main__header">
-        <div class="main__header__logo"><img class="logo" src="img/svg/logo-no-text.svg" alt="Logo Image"></div>
-        <h2 class="shop-title">Frame Me</h2>
+        <div class="main__header__logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
         <nav class="nav">
             <div class="nav__item">
                 <button class="main__header__btn login-btn"><a href="">Logga in</a></button><button class="main__header__btn cart-btn"><a href="">Varukorg</a></button>

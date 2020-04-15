@@ -11,14 +11,10 @@ img {
   justify-content: center;
 
   &__logo {
-    display: flex;
-    // justify-content: center;
+    background: url('../../img/product/svg/Logo.svg') no-repeat center center;
     align-self: center;
-
-    .logo {
-      width: 60px;
-      margin: -18px auto;
-    }
+    width: 170px;
+    height: 70px;
   }
 
   .shop-title {

@@ -22,16 +22,12 @@ img {
 }
 
 .main__header__logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  background: url("../../img/product/svg/Logo.svg") no-repeat center center;
   -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
       align-self: center;
-}
-
-.main__header__logo .logo {
-  width: 60px;
-  margin: -18px auto;
+  width: 170px;
+  height: 70px;
 }
 
 .main__header .shop-title {
@@ -478,6 +474,7 @@ body {
 
 h1 {
   color: red;
+  text-align: center;
 }
 
 input {
