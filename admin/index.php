@@ -55,9 +55,8 @@
 
     </main>
 
-    <script src="js/adminLib.js"></script>
-
-    <script>adminLib.drawCategoryTable();</script>
+    <script type="text/javascript" src="js/transpiled/adminLib.js"></script>
+    <script type="text/javascript"> adminLib.drawCategoryTable(); </script>
 
 </body>
 
