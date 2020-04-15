@@ -292,6 +292,11 @@ button {
           align-items: center;
 }
 
+.product__title {
+  text-align: center;
+  margin: 0 4px 0 4px;
+}
+
 .product-container {
   display: -ms-grid;
   display: grid;
