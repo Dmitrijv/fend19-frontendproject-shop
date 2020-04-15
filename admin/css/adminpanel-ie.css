@@ -146,7 +146,7 @@ body {
     padding: 0 15px;
   }
   .product-table tr > td:not(:last-child) {
-    border-bottom: none;
+    border-bottom: 1px solid #eee;
   }
   .product-table tr > th,
   .product-table tr > td {
@@ -262,7 +262,7 @@ body {
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 580px) {
   .admin-main section.admin-sidebar {
     margin: 0;
   }
@@ -270,10 +270,11 @@ body {
     margin: 0;
   }
   .product-table td:nth-child(8).actionCell {
-    min-width: 70px !important;
+    min-width: 60px !important;
   }
   .actionCell .edit-btn {
-    padding: 0 14px;
+    padding: 0 13px;
+    margin-bottom: 3px;
   }
   .actionCell .del-btn {
     width: 50px;

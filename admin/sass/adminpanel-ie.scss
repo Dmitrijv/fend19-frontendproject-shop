@@ -1,6 +1,7 @@
 /* This CSS works only for IE 8 */
 body {
   overflow: hidden;
+  // min-width: 420px;
 }
 
 .header-container {
@@ -151,7 +152,7 @@ body {
 
     /* To maintain table border's thickness */
     tr>td:not(:last-child) {
-      border-bottom: none;
+      border-bottom: 1px solid #eee;
     }
 
 
@@ -296,7 +297,7 @@ body {
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 580px) {
   .admin-main section.admin-sidebar {
     margin: 0;
   }
@@ -306,11 +307,12 @@ body {
   }
 
   .product-table td:nth-child(8).actionCell {
-    min-width: 70px !important;
+    min-width: 60px !important;
   }
 
   .actionCell .edit-btn {
-    padding: 0 14px;
+    padding: 0 13px;
+    margin-bottom: 3px;
   }
 
   .actionCell .del-btn {
