@@ -39,6 +39,12 @@
                     <input name="newCategoryNameField" class="category-input input-left" type="text" placeholder="Create a new category">
                     <input class="btn btn-right create-btn" type="submit" value="Create">
                 </form>
+                <div id='categoryAlert' class="alert fail hidden">
+                    <span class="msg"></span>
+                    <form onsubmit='adminLib.hideParentElement(event);'>
+                        <button type="submit">Close</button>
+                    </form>
+                </div>
                 <!-- <table class="db-table"> -->
                 <?php include_once 'php/view/categoryTable.php';?>
             </div>
