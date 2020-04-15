@@ -23,5 +23,5 @@ if (strlen($category) < 1 || strlen($category) > 20 || (doesCategoryExist($categ
     die;
 }
 
-createNewCategory($_POST["categoryName"]);
+createNewCategory($category);
 die;
