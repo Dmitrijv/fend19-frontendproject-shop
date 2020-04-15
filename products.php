@@ -8,16 +8,16 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $imageDir = './img/product/' . $tableRow['Image'];
     $products .= "
         <div class='product'>
-            <div class='img-wrapper'>
-                <img class='img-wrapper_img' src='{$imageDir}' alt='product name'>
+            <div class='product__img-wrapper'>
+                <img class='product__img' src='{$imageDir}' alt='product name'>
             </div>
             <p class='product__title'>{$tableRow["Title"]}</p>
-            <div class='count-container'>
-                <button class='count-btn'>-</button>
-                <p class='count'>{$tableRow["Number"]}</p>
-                <button class='count-btn'>+</button>
+            <div class='product__count-container'>
+                <button class='product__count-btn'>-</button>
+                <p class='product__count'>{$tableRow["Number"]}</p>
+                <button class='product__count-btn'>+</button>
             </div>
-            <button class='add-to-cart-btn'>Lägg i varukorgen</button>
+            <button class='product__add-btn'>Lägg i varukorgen</button>
         </div>";
 }
 

@@ -1,0 +1,19 @@
+.form {
+    width: 50%;
+    margin-left: 20%;
+    &__inputs {
+      width: 44%;
+      margin: 10px 0 10px 4%;
+      padding: 1%;
+    }
+    &__msg {
+      width: 93%;
+      margin: 10px 0 10px 4%;
+      padding: 1%;
+    }
+    &__button {
+      width: 15%;
+      margin-left: 82%;
+      margin-right: 3%;
+    }
+  }
