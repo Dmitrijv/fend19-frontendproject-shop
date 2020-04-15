@@ -272,11 +272,14 @@ button {
   }
 }
 
-.filter {
+.add-to-cart-btn {
   margin-bottom: 10px;
 }
 
 .product {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 0.5px solid black;
   -webkit-box-shadow: 0px 0px 11px 1px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 0px 11px 1px rgba(0, 0, 0, 0.75);
@@ -294,7 +297,7 @@ button {
 
 .product__title {
   text-align: center;
-  margin: 0 4px 0 4px;
+  margin: 0 8px 0 8px;
 }
 
 .product-container {
