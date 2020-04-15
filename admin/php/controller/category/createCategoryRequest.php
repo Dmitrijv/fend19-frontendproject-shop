@@ -8,8 +8,17 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
     die;
 }
 
-// invalid or missing category name
-if (!isset($_POST["categoryName"]) || strlen($_POST["categoryName"]) < 1 || strlen($_POST["categoryName"]) > 20) {
+$category;
+// no category name was sent
+if (!isset($_POST["categoryName"])) {
+    http_response_code(500);
+    die;
+} else {
+    $category = $_POST["categoryName"];
+}
+
+// invalid / duplicate name string
+if (strlen($category) < 1 || strlen($category) > 20 || (doesCategoryExist($category) == true)) {
     http_response_code(500);
     die;
 }

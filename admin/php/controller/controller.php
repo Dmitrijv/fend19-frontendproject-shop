@@ -26,3 +26,8 @@ function getProductCategories()
     }
     return json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 }
+
+function doesCategoryExist($categoryName)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE name = ?)", [$categoryName])->fetchColumn();
+}

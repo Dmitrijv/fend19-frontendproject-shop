@@ -38,7 +38,7 @@ adminLib = (function() {
           setSuccessStyle(alertElement);
           messageElement.textContent = "Caregory created succsessfully.";
         } else if (this.readyState == 4 && this.status == 500) {
-          messageElement.textContent = "Internal server error.";
+          messageElement.textContent = "Incorrect or diplicate category name.";
           setFailStyle(alertElement);
           event.preventDefault();
         }
