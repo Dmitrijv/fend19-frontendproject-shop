@@ -124,7 +124,7 @@ body {
 .product-table .productCoverDemo span.gallerySize {
   padding: 17px 3px !important;
   position: relative !important;
-  right: -27px;
+  right: -37px;
 }
 
 .product-table .ellipsis {
@@ -135,6 +135,11 @@ body {
   .product-table {
     /* To maintain table border's thickness */
     /* Hide table headers (but not display: none;, for accessibility) */
+  }
+  .product-table span.gallerySize {
+    padding: 17px 3px !important;
+    position: relative !important;
+    right: -37px !important;
   }
   .product-table .ellipsis {
     width: unset;
@@ -230,7 +235,7 @@ body {
   .product-table tbody > tr > td:nth-child(3) .productCoverDemo span.gallerySize {
     padding: 17px 3px !important;
     position: relative !important;
-    right: -22px;
+    right: -22px !important;
   }
   .product-table tbody > tr > td:nth-child(4) {
     min-width: 50px !important;
