@@ -56,7 +56,7 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
         <tbody role='rowgroup'>
             <tr role='row' data-post-id='{$productId}'>
                 <td role='cell'>{$productId}</td>
-                <td role='cell'>{$product['title']}</td>
+                <td role='cell' class='ie-ellipsis'><span class='ie-ellipsis-text'>{$product['title']}</span></td>
                 <td role='cell'>
                     <div class='productCoverDemo'>
                         <img class='cover-demo' src='../img/product/{$coverImage}' alt='Cover Image'>

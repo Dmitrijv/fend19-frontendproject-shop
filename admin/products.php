@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Area | Products</title>
     <link rel="stylesheet" href="css/adminpanel.css">
+    <!--[if gte IE 8]>
+        <link rel="stylesheet" type="text/css" href="css/adminpanel-ie.css" />
+    <![endif]-->
 </head>
 
 <body>

@@ -472,6 +472,10 @@ header.admin-header div.header-container h1 {
   color: white;
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+}
+
 section.admin-sidebar nav.admin-nav {
   background-color: #fff;
   border-radius: 3px;
@@ -533,6 +537,10 @@ nav.admin-nav::before {
   width: 100%;
   height: 3px;
   left: 0px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
 }
 
 .admin-main {
@@ -622,6 +630,10 @@ form.add-category {
   border-radius: 0px;
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+}
+
 table.product-table div.productCoverDemo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -669,6 +681,7 @@ table.product-table img.cover-demo {
   padding: 0 6px;
 }
 
+<<<<<<< HEAD
 div.alert {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -699,5 +712,9 @@ div.alert.fail {
 
 .hidden {
   display: none !important;
+=======
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+>>>>>>> 2d636fdec849dd6b8a6dcdbceadb661e6221853c
 }
 /*# sourceMappingURL=adminpanel.css.map */
