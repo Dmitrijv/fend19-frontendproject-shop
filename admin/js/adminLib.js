@@ -61,8 +61,8 @@ adminLib = (function() {
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           input.value = ""; // remember to empty input
-          // lib.setSuccessStyle(alertElement);
-          // messageElement.textContent = "Caregory created succsessfully.";
+          lib.setSuccessStyle(alertElement);
+          messageElement.textContent = "Caregory created succsessfully.";
           lib.drawCategoryTable();
           // server validation failed
         } else if (this.readyState == 4 && this.status == 500) {
@@ -92,8 +92,8 @@ adminLib = (function() {
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             document.querySelector(`tr[data-post-id="${categoryId}"]`).remove(); // remove deleted row from table
-            // lib.setSuccessStyle(alertElement);
-            // messageElement.textContent = "Caregory deleted succsessfully.";
+            lib.setSuccessStyle(alertElement);
+            messageElement.textContent = "Caregory deleted succsessfully.";
             lib.drawCategoryTable();
           } else if (this.readyState == 4 && this.status == 500) {
             messageElement.textContent = "Failed to delete category.";
