@@ -111,6 +111,7 @@ body {
 
 .product-table .productCoverDemo {
   position: relative;
+  margin-right: 14px;
 }
 
 .product-table .productCoverDemo .cover-demo {
@@ -134,7 +135,6 @@ body {
 @media only screen and (max-width: 860px) {
   .product-table {
     /* To maintain table border's thickness */
-    /* Hide table headers (but not display: none;, for accessibility) */
   }
   .product-table span.gallerySize {
     padding: 17px 3px !important;
@@ -161,14 +161,6 @@ body {
   .product-table tr > td:first-child {
     background-color: inherit !important;
   }
-  .product-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-  .product-table tr {
-    margin: 0 0 1rem 0;
-  }
   .product-table tr > td:first-child {
     display: none;
   }
@@ -178,43 +170,24 @@ body {
   .product-table tr:nth-child(odd) {
     background: #ccc;
   }
-  .product-table td {
-    /* Behave like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-  }
-  .product-table td:before {
-    /* Now like a table header */
-    position: absolute;
-    /* Top/left values mimic padding */
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-  .product-table table.db-table tr > th,
-  .product-table table.db-table tr > td {
-    padding-left: 25vw;
-  }
-  .product-table table.db-table tr > td:nth-child(3) {
-    padding: 0 0 0 25vw;
-  }
   .product-table tbody > tr > td:nth-child(5) {
     min-width: 40px !important;
   }
-  .product-table table.product-table div.productCoverDemo {
-    display: flow-root !important;
-    position: relative !important;
-    top: 10px !important;
+  .product-table .product-table tbody > tr > td:nth-child(3) {
+    min-width: 65px !important;
+    position: relative;
   }
-  .product-table table.product-table span.gallerySize {
+  .product-table .product-table tbody > tr > td:nth-child(3) .productCoverDemo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .product-table .product-table tbody > tr > td:nth-child(3) .productCoverDemo span.gallerySize {
     padding: 17px 3px !important;
     position: relative !important;
-    top: -20px !important;
+    right: -22px !important;
   }
 }
 
@@ -224,6 +197,7 @@ body {
   }
   .product-table tbody > tr > td:nth-child(3) .productCoverDemo {
     position: relative;
+    margin-right: 0;
   }
   .product-table tbody > tr > td:nth-child(3) .productCoverDemo .cover-demo {
     position: absolute;

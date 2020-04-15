@@ -111,6 +111,7 @@ body {
 
   .productCoverDemo {
     position: relative;
+    margin-right: 14px;
 
     .cover-demo {
       position: absolute;
@@ -168,17 +169,6 @@ body {
       background-color: inherit !important;
     }
 
-    /* Hide table headers (but not display: none;, for accessibility) */
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    tr {
-      margin: 0 0 1rem 0;
-    }
-
     tr>td {
       &:first-child {
         display: none;
@@ -193,48 +183,26 @@ body {
       background: #ccc;
     }
 
-    td {
-      /* Behave like a "row" */
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-    }
-
-    td:before {
-      /* Now like a table header */
-      position: absolute;
-      /* Top/left values mimic padding */
-      top: 50%;
-      transform: translateY(-50%);
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-    }
-
-    table.db-table tr>th,
-    table.db-table tr>td {
-      padding-left: 25vw;
-    }
-
-    table.db-table tr>td:nth-child(3) {
-      padding: 0 0 0 25vw;
-    }
-
     tbody>tr>td:nth-child(5) {
       min-width: 40px !important;
     }
 
-    table.product-table div.productCoverDemo {
-      display: flow-root !important;
-      position: relative !important;
-      top: 10px !important;
-    }
-
-    table.product-table span.gallerySize {
-      padding: 17px 3px !important;
-      position: relative !important;
-      top: -20px !important;
+    .product-table tbody>tr>td:nth-child(3) {
+      min-width: 65px !important;
+      position: relative;
+  
+      .productCoverDemo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+  
+        span.gallerySize {
+          padding: 17px 3px !important;
+          position: relative !important;
+          right: -22px !important;
+        }
+      }
     }
   }
 }
@@ -246,6 +214,7 @@ body {
 
     .productCoverDemo {
       position: relative;
+      margin-right: 0;
 
       .cover-demo {
         position: absolute;
