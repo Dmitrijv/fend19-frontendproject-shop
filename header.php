@@ -20,10 +20,10 @@
         <div class="logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
         <nav class="nav">
             <div class="nav__item">
-                <button class="main__header__btn login-btn"><a href="">Logga in</a></button><button class="main__header__btn cart-btn"><a href="">Varukorg</a></button>
+                <button class="main__header__btn login-btn"><a href="">Logga in</a></button><button class="main__header__btn cart-btn"><a href=""><img class="img-mobile" src="./img/svg/cart-mob.svg" alt=""><p class="desktop-text">Varukorg</p></a></button>
             </div>
             <div class="nav__item main__header__search">
-                <input class="main__header__search--input" type="text"><button class="main__header__btn search-btn">Sök</button>
+                <input class="main__header__search--input" type="text"><button class="main__header__btn search-btn"><img class="img-mobile" src="./img/svg/search-mob.svg" alt=""><p class="desktop-text">Sök</p></button>
             </div>
         </nav>
     </header>

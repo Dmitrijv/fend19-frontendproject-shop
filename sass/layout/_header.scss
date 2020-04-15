@@ -3,7 +3,7 @@
   width: 100%;
   background-color: white;
   box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
-  padding: 1.5em 1em 1.5em 1em;
+  padding: 1em 1em 1em 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
     text-align: center;
     margin-bottom: -10px;
 
-    @media screen and (min-width:800px) {
+    @media screen and (min-width: 800px) {
       margin: 0;
       white-space: nowrap;
       margin-left: 10px;
@@ -26,10 +26,7 @@
     border: none;
     border-radius: 3px;
     color: white;
-
-    &:nth-child(2) {
-      margin-left: 8px;
-    }
+    margin-left: 8px;
 
     a {
       color: white;
@@ -38,28 +35,22 @@
   }
 
   &__search {
-    margin-top: 8px;
     display: flex;
     justify-content: center;
 
-    .search-btn {
-      // margin: 0;
-      margin: unset;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
     &--input {
       width: 150px;
+      display: none;
+      @media (min-width: 800px) {
+        display: block;
+      }
     }
 
     @media (min-width: 800px) {
       margin-top: 0;
-
       input {
         min-width: 260px;
       }
-
     }
   }
 
@@ -73,10 +64,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
 
   @media (min-width: 800px) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
     margin-top: 0;
     margin-bottom: 0;
     width: 100%;
@@ -96,7 +87,7 @@
 
 .hamburger__bar-wrapper {
   position: fixed;
-  margin: 1.5em;
+  margin: 1em;
   display: flex;
   height: 2em;
   place-content: center space-evenly;
@@ -148,5 +139,46 @@
 
   span:nth-child(3) {
     background: rgba($color: #000000, $alpha: 0);
+  }
+}
+.desktop-text {
+  margin: 0;
+  display: none;
+  @media (min-width: 800px) {
+    display: inherit;
+  }
+}
+.img-mobile {
+  max-width: 20px;
+  max-height: 20px;
+  @media (min-width: 800px) {
+    display: none;
+  }
+}
+.login-btn {
+  padding: 12px;
+}
+.search-btn,
+.cart-btn {
+    padding: 4px;
+  margin-top: 1em;
+  margin-right: 1.5em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  @media (min-width: 800px) {
+    position: inherit;
+    margin-top: 8px;
+    padding: 12px;
+  }
+}
+.search-btn {
+  right: 30px;
+  @media (min-width: 800px) {
+    position: inherit;
+    margin-top: 0;
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
