@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Area | Categories</title>
     <link rel="stylesheet" href="css/adminpanel.css">
+    <!--[if gte IE 8]>
+        <link rel="stylesheet" type="text/css" href="css/adminpanel-ie.css" />
+    <![endif]-->
 </head>
 
 <body>
 
     <header class="admin-header">
-        <div class="header-container" >
+        <div class="header-container">
             <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
             <h1>Admin panel - Categories</h1>
         </div>
@@ -34,13 +37,13 @@
 
         <!-- CONTENT area begins -->
         <section class="admin-content">
-            <div class="content-wrapper" >
-                <form class="add-category" onsubmit='adminLib.createNewCategory(event);'>
-                    <input name="newCategoryNameField" class="category-input input-left" type="text" placeholder="Create a new category">
-                    <input class="btn btn-right create-btn" type="submit" value="Create">
+            <div class="content-wrapper">
+                <form class="add-category clearfix" onsubmit='adminLib.createNewCategory(event);'>
+                    <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
+                    <input class="btn btn-right create-btn float-right" type="submit" value="Create">
                 </form>
                 <!-- <table class="db-table"> -->
-                <?php include_once 'php/view/categoryTable.php';?>
+                <?php include_once 'php/view/categoryTable.php'; ?>
             </div>
         </section>
         <!-- CONTENT area ends -->
