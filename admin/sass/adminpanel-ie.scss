@@ -1,0 +1,100 @@
+/* This CSS works only for IE 8 */
+body {
+  overflow: hidden;
+}
+
+.header-container {
+  display: block;
+  margin: 0 0 10px 0 !important;
+
+  .header-icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  h1 {
+    line-height: 45px;
+    display: inline-block;
+  }
+}
+
+.admin-main {
+  position: relative;
+  display: inline-block;
+  // width: 100vw;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .admin-nav {
+    li {
+      width: 25%;
+
+      @media screen and (min-width: 980px) {
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 980px) {
+    max-width: 1004px;
+  }
+
+  section.admin-sidebar {
+    position: relative;
+    display: inline-block;
+    min-width: 400px;
+    width: 92vw;
+    margin: 0 20px;
+
+    @media screen and (min-width: 980px) {
+      position: fixed;
+      display: inline-block;
+      min-width: 150px;
+      width: 77vw;
+      margin: 0 20px;
+      width: 150px;
+
+      .admin-nav>ul {
+
+        li {
+          float: none;
+        }
+      }
+    }
+  }
+
+  section.admin-content {
+    display: inline-block;
+    min-width: 400px;
+    width: 92vw;
+    margin-left: 20px;
+
+    @media screen and (min-width: 980px) {
+      min-width: 700px;
+      width: 77vw;
+      margin-left: 180px;
+    }
+  }
+
+  form.clearfix {
+    height: 46px;
+    margin: 0;
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .float-left {
+      float: left;
+      min-width: 200px !important;
+      width: 79% !important;
+    }
+
+    .float-right {
+      float: right;
+      height: 39px !important;
+    }
+  }
+}

@@ -1,0 +1,102 @@
+/* This CSS works only for IE 8 */
+body {
+  overflow: hidden;
+}
+
+.header-container {
+  display: block;
+  margin: 0 0 10px 0 !important;
+}
+
+.header-container .header-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-container h1 {
+  line-height: 45px;
+  display: inline-block;
+}
+
+.admin-main {
+  position: relative;
+  display: inline-block;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.admin-main .admin-nav li {
+  width: 25%;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main .admin-nav li {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main {
+    max-width: 1004px;
+  }
+}
+
+.admin-main section.admin-sidebar {
+  position: relative;
+  display: inline-block;
+  min-width: 400px;
+  width: 92vw;
+  margin: 0 20px;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main section.admin-sidebar {
+    position: fixed;
+    display: inline-block;
+    min-width: 150px;
+    width: 77vw;
+    margin: 0 20px;
+    width: 150px;
+  }
+  .admin-main section.admin-sidebar .admin-nav > ul li {
+    float: none;
+  }
+}
+
+.admin-main section.admin-content {
+  display: inline-block;
+  min-width: 400px;
+  width: 92vw;
+  margin-left: 20px;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main section.admin-content {
+    min-width: 700px;
+    width: 77vw;
+    margin-left: 180px;
+  }
+}
+
+.admin-main form.clearfix {
+  height: 46px;
+  margin: 0;
+}
+
+.admin-main form.clearfix .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.admin-main form.clearfix .float-left {
+  float: left;
+  min-width: 200px !important;
+  width: 79% !important;
+}
+
+.admin-main form.clearfix .float-right {
+  float: right;
+  height: 39px !important;
+}
+/*# sourceMappingURL=adminpanel-ie.css.map */
