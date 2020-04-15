@@ -1,0 +1,153 @@
+.footer {
+    width: 100%;
+    &__contact__heading {
+        font-weight: bold;
+        margin: 5px auto 0 5%;
+        font-size: 24px;
+    }
+    &__info__heading {
+        font-weight: bold;
+        margin: 5px auto 0 5%;
+        font-size: 24px;
+    }
+    &__contact__list__heading {
+        font-weight: bold;
+        margin: 5px auto 0 5%;
+        font-size: 24px;
+    }
+    &__icon__heading {
+        font-weight: bold;
+        margin: 5px auto 0 5%;
+        font-size: 24px;
+    }
+    &__shop__name {
+        font-size: 32px;
+        color: rgb(238, 76, 76);
+        margin-left: 5%;
+    }
+    &__list {
+        margin-left: 5%;
+        padding-left: 20px;
+        list-style-type:none;       
+        &__categori {
+            color: black;
+            text-decoration: none;        
+        }
+    }
+    &__form {
+        width: 100%;
+        &__inputs {
+            width: 90%;
+            min-height: 40px;
+            background-color: #ffe4ed;
+            border-radius: 5px;
+            border-style: none;
+            margin: 10px 5% 10px 5%;
+            padding: 5px;
+        }
+        &__msg {
+            width: 90%;
+            min-height: 40px;
+            background-color: #ffe4ed;
+            border-radius: 5px;
+            border-style: none;
+            margin: 10px 5% 10px 5%;
+            padding: 5px;
+        }
+        &__button {
+            width: 90%;
+            margin-left: 5%;
+            margin-bottom: 20px;
+            min-height: 40px;
+            background-color: rgb(238, 76, 76);
+            color: white;
+            border-radius: 5px;
+            border-style: none;
+        }
+    }
+    &__embed__map {
+        width: 100%; 
+        border:0;
+    }
+    &__icons__wrapper {
+        padding: 10px 0;
+        margin-left: 5%;
+    }
+    &__icons {
+        width: 50px;
+    }
+    &__contact__button {
+        width: 95%;
+        margin-bottom: 20px;
+        min-height: 40px;
+        background-color: rgb(238, 76, 76);
+        color: white;
+        border-radius: 5px;
+        border-style: none;
+    }
+}
+@media (min-width: 700px) {
+    .footer {
+        &__contact__heading {
+            font-weight: bold;
+            margin: 5px auto 0 4%;
+        }
+        &__form {
+            width: 60%;
+            margin-left: 20%;
+            &__inputs {
+                width: 44%;
+                margin: 10px 0 10px 4%;
+                padding: 1%;
+            }
+            &__msg {
+                width: 93%;
+                margin: 10px 0 10px 4%;
+                padding: 1%;
+            }
+            &__button {
+                width: 15%;
+                margin-left: 82%;
+                margin-right: 3%;
+            }
+        }
+        &__embed__map {
+            height: 250px;
+        }
+
+        &__bottom__wrapper {
+            display: grid;
+            grid-template-columns: 1fr auto auto 1fr;
+            gap: 3%;
+            &__info__wraper {
+                grid-column: 2;
+            }
+            &__contact__wraper {
+                grid-column: 3;
+            }
+        }
+        &__info__heading {
+            margin: 0;
+            margin-top: 50px;
+        }
+        &__contact__list__heading {
+            margin: 0;
+            margin-top: 50px;
+        }
+        &__icon__heading {
+            margin: 0;
+        }
+        &__shop__name {
+            margin: 50px 5% auto auto;
+        }
+        &__icons__wrapper {
+            grid-column: 4;
+            padding-top: 0;
+            margin-top: 50px;
+            margin-right: auto;
+        }
+        &__contact__button {
+            width: 50%;
+        }
+    }
+} 
