@@ -275,6 +275,7 @@ img {
 .count-btn {
   padding: 10px;
   margin: 10px;
+  min-width: 32.1px;
 }
 
 .img-wrapper {
