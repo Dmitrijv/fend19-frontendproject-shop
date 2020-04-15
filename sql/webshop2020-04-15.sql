@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2020 at 08:38 PM
+-- Generation Time: Apr 15, 2020 at 10:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -150,7 +150,7 @@ CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `description` text NOT NULL,
-  `category_id` int(11) NOT NULL DEFAULT 1,
+  `category_id` int(11) DEFAULT 1,
   `number_in_stock` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -188,7 +188,8 @@ INSERT INTO `product_category` (`id`, `name`) VALUES
 (3, 'Tavelvägg'),
 (4, 'Naturmotiv'),
 (5, 'Djur Tavlor'),
-(6, 'Abstrakt');
+(6, 'Abstrakt'),
+(12, 'New Boat');
 
 --
 -- Indexes for dumped tables
@@ -274,7 +275,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -311,7 +312,7 @@ ALTER TABLE `price_of_product`
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `categconstr` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `category_foreignk` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
