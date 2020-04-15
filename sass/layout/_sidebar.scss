@@ -27,7 +27,8 @@
     margin-bottom: 20px;
   }
   @media (min-width: 800px) {
-    padding-top: 50px;
+    position: inherit;
+    padding-top: 250px;
     justify-content: flex-start;
     left: 0;
     max-width: 250px;

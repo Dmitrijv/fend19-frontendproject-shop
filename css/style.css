@@ -6,6 +6,8 @@ img {
 }
 
 .main__header {
+  position: fixed;
+  width: 100%;
   -webkit-box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
   padding: 1.5em 1em 1.5em 1em;
@@ -218,6 +220,92 @@ img {
   background: rgba(0, 0, 0, 0);
 }
 
+.img-wrapper {
+  inline-size: 100%;
+  block-size: 100%;
+  block-size: 200px;
+  position: relative;
+}
+
+.img-wrapper__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px 3px 0px 0px;
+}
+
+.wrapper {
+  max-inline-size: 1360px;
+  margin-left: 250px;
+  z-index: -1;
+}
+
+.wrapper .product-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 100px 0;
+}
+
+.wrapper .product-container .product {
+  inline-size: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 0 20px 0;
+  margin: 20px;
+  -webkit-box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 3px;
+}
+
+.wrapper .product-container .product__title {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.wrapper .product-container .product .count-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  inline-size: 90%;
+}
+
+.wrapper .product-container .product .count-btn,
+.wrapper .product-container .product .add-to-cart-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #f60d4d;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 900;
+  margin: 10px 0;
+}
+
+.wrapper .product-container .product .count {
+  font-size: 20px;
+  font-weight: 900;
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -264,7 +352,8 @@ img {
 
 @media (min-width: 800px) {
   .sidebar {
-    padding-top: 50px;
+    position: inherit;
+    padding-top: 250px;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
