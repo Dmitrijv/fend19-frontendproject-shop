@@ -8,20 +8,20 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
     die;
 }
 
-$categoryName;
+$categoryId;
 // no category name was sent
-if (!isset($_POST["categoryName"])) {
+if (!isset($_POST["categoryId"])) {
     http_response_code(500);
     die;
 } else {
-    $categoryName = $_POST["categoryName"];
+    $categoryId = $_POST["categoryId"];
 }
 
-// invalid / duplicate category name
-if (strlen($categoryName) < 1 || strlen($categoryName) > 20 || (doesProductCategoryNameExist($categoryName) == true)) {
+// category doesn't exist
+if ((doesProductCategoryIdExist($categoryId) == false)) {
     http_response_code(500);
     die;
 }
 
-createNewCategory($categoryName);
+deleteProductCategory($categoryId);
 die;

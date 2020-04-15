@@ -27,7 +27,17 @@ function getProductCategories()
     return json_encode($response, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 }
 
-function doesCategoryExist($categoryName)
+function doesProductCategoryNameExist($categoryName)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE name = ?)", [$categoryName])->fetchColumn();
+}
+
+function doesProductCategoryIdExist($categoryId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE id = ?)", [$categoryId])->fetchColumn();
+}
+
+function deleteProductCategory($categoryId)
+{
+    DB::run("DELETE FROM product_category WHERE id = ?", [$categoryId]);
 }
