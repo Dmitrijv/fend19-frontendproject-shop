@@ -24,6 +24,13 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 ?>
 
 <div class="content">
+<div class="filter">
+<label for="category">Filtrera:</label>
+<select id="category">
+  <option value="volvo">Pastell</option>
+  <option value="saab">Oljemålning</option>
+</select> 
+</div>
     <div class="product-container">
         <?php echo $products; ?>
     </div>
