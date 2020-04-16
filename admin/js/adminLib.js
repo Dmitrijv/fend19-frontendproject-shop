@@ -99,7 +99,8 @@ adminLib = (function() {
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            document.querySelector(`tr[data-post-id="${categoryId}"]`).remove(); // remove deleted row from table
+            const row = document.querySelector(`tr[data-post-id="${categoryId}"]`);
+            row.parentNode.removeChild(row);
             lib.setSuccessStyle(alertElement);
             messageElement.textContent = "Caregory deleted succsessfully.";
             lib.drawCategoryTable();
