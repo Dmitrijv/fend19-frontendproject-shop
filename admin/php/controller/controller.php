@@ -44,6 +44,10 @@ function doesProductCategoryIdExist($categoryId)
 
 function deleteProductCategory($categoryId)
 {
+    // update roducts that belong to this category
+    DB::run("UPDATE product SET category_id = 1 WHERE category_id = ?", [$categoryId]);
+
+    // delete category
     DB::run("DELETE FROM product_category WHERE id = ?", [$categoryId]);
 }
 
