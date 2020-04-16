@@ -58,7 +58,7 @@ input:focus {
 
 .btn {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 4px;
   border: 1px solid transparent;
   line-height: 1.42857143;
@@ -605,7 +605,7 @@ form.add-category {
   padding: 12px;
   margin-right: 2px;
   border-radius: 6px;
-  height: 38px;
+  height: 32px;
   line-height: 6px;
   font-size: 14px;
 }
