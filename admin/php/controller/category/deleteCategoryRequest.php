@@ -9,7 +9,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
 }
 
 $categoryId;
-// no category name was sent
+// no category id was sent
 if (!isset($_POST["categoryId"])) {
     http_response_code(400);
     die;
