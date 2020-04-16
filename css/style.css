@@ -69,6 +69,7 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 1;
 }
 
 .main__header .shop-title {
@@ -449,7 +450,7 @@ button {
             justify-content: flex-start;
     left: 0;
     max-width: 250px;
-    z-index: -1;
+    z-index: 0;
   }
 }
 
