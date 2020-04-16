@@ -18,7 +18,7 @@ adminLib = (function() {
             .concat(category.id, "</td>\n                <td>")
             .concat(
               category.name,
-              "</td>\n                <td>\n                    <form style='display: inline-block;' action='' method='POST' >\n                        <input class='btn btn-left edit-btn' type='submit' data-categoryId='"
+              "</td>\n                <td>\n                    <form style='display: inline-block;'>\n                        <input class='btn btn-left edit-btn' type='submit' data-categoryId='"
             )
             .concat(
               category.id,

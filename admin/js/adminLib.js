@@ -26,7 +26,7 @@ adminLib = (function() {
                 <td>${category.id}</td>
                 <td>${category.name}</td>
                 <td>
-                    <form style='display: inline-block;' action='' method='POST' >
+                    <form style='display: inline-block;'>
                         <input class='btn btn-left edit-btn' type='submit' data-categoryId='${category.id}' name='edit' value='Edit'>
                         <input type='hidden' name='categoryId' value='${category.id}'>
                     </form>
