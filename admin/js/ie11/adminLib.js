@@ -43,11 +43,18 @@ adminLib = (function() {
       var input = event.target.elements.newCategoryNameField;
       var categoryName = input.value; // validate input locally before submitting to server
 
-      if (!categoryName || categoryName.length < 1 || categoryName.length > 20) {
+      if (
+        !categoryName ||
+        categoryName.length < 1 ||
+        categoryName.length > 20 ||
+        /<\/?[a-z][\s\S]*/i.test(categoryName) == true
+      ) {
+        console.log("error");
         messageElement.textContent = "Incorrect category name.";
         lib.setFailStyle(alertElement);
         input.focus();
         event.preventDefault();
+        return;
       }
 
       var xmlhttp = new XMLHttpRequest();
