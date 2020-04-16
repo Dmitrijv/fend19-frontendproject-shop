@@ -22,7 +22,7 @@ if (!isset($_POST["categoryId"]) || !isset($_POST["newName"])) {
 
 // attempting to update a deleted category
 $categoryExists = doesProductCategoryIdExist($categoryId);
-if ($categoryExists !== true) {
+if ($categoryExists !== 1) {
     http_response_code(500);
     die;
 }
