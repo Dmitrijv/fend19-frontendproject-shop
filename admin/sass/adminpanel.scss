@@ -38,3 +38,120 @@ div.alert {
 .hidden {
   display: none !important;
 }
+
+// @media screen and (min-width:420px) {
+//   @-ms-viewport {
+//     width: device-width;
+//     .admin-main {
+//       display: -ms-flexbox;
+//     }
+//   }
+// }
+// @media screen and (min-width:802x) {
+//   @-ms-viewport {
+//     width: device-width;
+
+//     .admin-main {
+//       display: -ms-flexbox;
+
+//       .admin-content {
+//         width: 60%;
+
+//         .content-wrapper {
+//           width: 100%;
+//         }
+//       }
+//     }
+//   }
+// }
+
+/* small screen flex-direction column */
+// @media all and (-ms-high-contrast: none),
+// (-ms-high-contrast: active) and (min-width: 420px){
+//   .admin-main {
+//     display: -ms-flexbox;
+//     flex-direction: row;
+
+//     .admin-sidebar{
+//       // order: 1;
+//     }
+
+//     .admin-content{
+//       width: 100%;
+//       .content-wrapper{
+//         width: 100%;
+//       }
+//     }
+//   }
+// }
+
+/* large screen flex-direction row */
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+
+  /* IE10+ CSS styles go here */
+  .admin-main {
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+
+    .admin-sidebar {
+      .admin-nav {
+        ul {
+          -ms-flex-direction: row;
+
+          li {
+            width: 25%;
+            float: none;
+          }
+        }
+      }
+    }
+
+    .admin-content {
+      width: 100%;
+      max-width: 100%;
+
+      .content-wrapper {
+        width: 100%;
+
+        .product-table {
+          tbody {
+
+            tr>td {
+              padding-left: 0 !important;
+
+              &::before {
+                content: "" !important;
+              }
+            }
+
+            .ellipsis {
+              display: contents;
+              width: 100%;
+              line-height: 35px;
+              height: 35px;
+
+              .description-text {
+                // padding-top: 49px;
+              }
+
+              &::before {
+                left: -27px;
+              }
+            }
+
+            tr>td:nth-child(3) {
+              .productCoverDemo {
+                .cover-demo {}
+
+                .gallerySize {
+                  padding: 16px 3px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
