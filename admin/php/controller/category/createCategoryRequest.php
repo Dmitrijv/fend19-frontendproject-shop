@@ -20,7 +20,7 @@ if (!isset($_POST["categoryName"])) {
 // invalid / duplicate category name
 $duplicateName = doesProductCategoryNameExist($categoryName);
 $containsHtml = strpos($categoryName, '<');
-if (strlen($categoryName) < 1 || strlen($categoryName) > 20 || ($duplicateName == true) || ($containsHtml == true)) {
+if (strlen($categoryName) < 1 || strlen($categoryName) > 20 || ($duplicateName == true) || ($containsHtml !== false)) {
     http_response_code(500);
     die;
 }

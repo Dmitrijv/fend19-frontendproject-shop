@@ -8,7 +8,7 @@
 @import "admin-nav";
 @import "admin-main";
 
-@import "category/add-category";
+@import "category/input-forms";
 
 @import "products/admin-products";
 
@@ -40,9 +40,7 @@ div.alert {
 }
 
 /* IE10+ CSS styles go here */
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
-
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .admin-main {
     display: -ms-flexbox;
     -ms-flex-direction: column;
@@ -82,8 +80,7 @@ div.alert {
 
         .product-table {
           tbody {
-
-            tr>td {
+            tr > td {
               padding-left: 0 !important;
 
               &::before {
@@ -97,16 +94,16 @@ div.alert {
               line-height: 35px;
               height: 35px;
 
-              .description-text {}
+              .description-text {
+              }
 
               &::before {
                 left: -27px;
               }
             }
 
-            tr>td:nth-child(3) {
+            tr > td:nth-child(3) {
               .productCoverDemo {
-
                 .gallerySize {
                   padding: 16px 3px;
                 }
@@ -121,7 +118,6 @@ div.alert {
 
 /* Internet Explorer 11+ */
 @media only screen and (max-width: 1920px) {
-
   _:-ms-fullscreen,
   :root .gallerySize {
     line-height: 18px !important;
