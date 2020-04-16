@@ -40,8 +40,7 @@ div.alert {
 }
 
 /* IE10+ CSS styles go here */
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   body {
     overflow-x: hidden;
   }
@@ -94,8 +93,7 @@ div.alert {
 
         .product-table {
           tbody {
-
-            tr>td {
+            tr > td {
               padding-left: 7px !important;
 
               &::before {
@@ -103,7 +101,7 @@ div.alert {
               }
             }
 
-            tr>td:nth-child(3) {
+            tr > td:nth-child(3) {
               .productCoverDemo {
                 .gallerySize {
                   padding: 16px 3px;
@@ -119,7 +117,6 @@ div.alert {
 
 /* Internet Explorer 11+ */
 @media only screen and (max-width: 1920px) {
-
   _:-ms-fullscreen,
   :root .gallerySize {
     line-height: 18px !important;

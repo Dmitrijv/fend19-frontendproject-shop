@@ -591,7 +591,8 @@ section.admin-content::before {
   left: 0px;
 }
 
-form.add-category {
+form.add-category,
+form.update-category {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -599,7 +600,7 @@ form.add-category {
   margin: 10px 0;
 }
 
-.add-category input.category-input {
+input.category-input {
   width: 100%;
   border: 1px solid gray;
   padding: 12px;
@@ -610,15 +611,15 @@ form.add-category {
   font-size: 14px;
 }
 
-.add-category input.category-input.input-left {
+input.category-input.input-left {
   border-radius: 0.5rem 0 0 0.5rem;
 }
 
-.add-category input.category-input.input-right {
+input.category-input.input-right {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.add-category input.category-input.input-mid {
+input.category-input.input-mid {
   border-radius: 0px;
 }
 

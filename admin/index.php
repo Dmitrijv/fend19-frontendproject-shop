@@ -38,10 +38,6 @@
         <!-- CONTENT area begins -->
         <section class="admin-content">
             <div class="content-wrapper">
-                <!-- <form class="update-category clearfix" onsubmit='adminLib.updateCategory(event);'>
-                    <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
-                    <input class="btn btn-right create-btn float-right" type="submit" value="Create">
-                </form> -->
                 <form class="add-category clearfix" onsubmit='adminLib.createNewCategory(event);'>
                     <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
                     <input class="btn btn-right create-btn float-right" type="submit" value="Create">
@@ -59,7 +55,7 @@
 
     </main>
 
-    <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+    <script type="text/javascript" src="js/adminLib.js"></script>
     <script type="text/javascript"> adminLib.drawCategoryTable(); </script>
 
 </body>

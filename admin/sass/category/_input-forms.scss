@@ -1,10 +1,11 @@
-form.add-category {
+form.add-category,
+form.update-category {
   display: flex;
   max-width: 330px;
   margin: 10px 0;
 }
 
-.add-category input.category-input {
+input.category-input {
   width: 100%;
   border: 1px solid gray;
   padding: 12px;

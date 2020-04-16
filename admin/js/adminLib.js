@@ -1,4 +1,4 @@
-adminLib = (function() {
+adminLib = (function () {
   const info = "Helper library for making controller calls to php.";
 
   const version = "0.1";
@@ -11,7 +11,7 @@ adminLib = (function() {
       const lib = this;
       const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
 
-      lib.loadJsonByXhr(apiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(apiUrl, function (categoryJson) {
         const table = document.querySelector("table#productCategoryAdminTable");
         let tableContent = `
         <tr>
@@ -20,15 +20,20 @@ adminLib = (function() {
             <th>Action</th>
         </tr>
         `;
-        categoryJson.forEach(category => {
+        categoryJson.forEach((category) => {
           tableContent += `
-            <tr data-post-id='${category.id}'>
+            <tr data-category-id='${category.id}'>
                 <td>${category.id}</td>
-                <td>${category.name}</td>
                 <td>
-                    <form style='display: inline-block;'>
+                    <span id='${category.id}-nameLabel' > ${category.name} </span>
+                    <form id='${category.id}-updateForm' class="update-category clearfix hidden" onsubmit='adminLib.updateCategory(event);'>
+                        <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="${category.name}">
+                        <input class="btn btn-right create-btn float-right" type="submit" value="Update">
+                    </form>
+                  </td>
+                <td>
+                    <form style='display: inline-block;' onsubmit='adminLib.toggleCategoryUpdateElements(event);'>
                         <input class='btn btn-left edit-btn' type='submit' data-categoryId='${category.id}' name='edit' value='Edit'>
-                        <input type='hidden' name='categoryId' value='${category.id}'>
                     </form>
                     <form style='display: inline-block;' onsubmit='adminLib.deleteCategory(event);'>
                         <input class='btn btn-right del-btn' data-categoryId='${category.id}' type='submit' name='delete' value='Delete'>
@@ -41,7 +46,7 @@ adminLib = (function() {
       });
     },
 
-    createNewCategory: function(event) {
+    createNewCategory: function (event) {
       const lib = this;
 
       const alertElement = document.querySelector("div#categoryAlert");
@@ -65,7 +70,7 @@ adminLib = (function() {
       }
 
       const xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
+      xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           input.value = ""; // remember to empty input
           lib.setSuccessStyle(alertElement);
@@ -87,7 +92,7 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    deleteCategory: function(event) {
+    deleteCategory: function (event) {
       const lib = this;
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
@@ -97,7 +102,7 @@ adminLib = (function() {
 
       if (confirm("Are you sure?")) {
         const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             lib.setSuccessStyle(alertElement);
             messageElement.textContent = "Caregory deleted succsessfully.";
@@ -118,34 +123,54 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    setSuccessStyle: function(element) {
+    toggleCategoryUpdateElements: function (event) {
+      console.log("toggle");
+      const categoryId = event.target.edit.dataset.categoryid;
+      const editForm = document.getElementById(`${categoryId}-updateForm`);
+      const nameLabel = document.getElementById(`${categoryId}-nameLabel`);
+
+      console.log({ editForm, nameLabel });
+
+      const formIsVisible = editForm.classList.contains("hidden");
+      if (formIsVisible === false) {
+        editForm.classList.add("hidden");
+        nameLabel.classList.remove("hidden");
+      } else {
+        editForm.classList.remove("hidden");
+        nameLabel.classList.add("hidden");
+      }
+
+      event.preventDefault();
+    },
+
+    setSuccessStyle: function (element) {
       element.classList.add("success");
       element.classList.remove("fail");
       element.classList.remove("hidden");
     },
 
-    setFailStyle: function(element) {
+    setFailStyle: function (element) {
       element.classList.add("fail");
       element.classList.remove("success");
       element.classList.remove("hidden");
     },
 
-    hideParentElement: function(event) {
+    hideParentElement: function (event) {
       const elementToHide = event.target.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
     },
 
-    loadJsonByXhr: function(url, callback) {
+    loadJsonByXhr: function (url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
       };
       xhr.open("POST", url, true);
       xhr.send();
-    }
+    },
   };
 
   return adminLib;
