@@ -333,8 +333,6 @@ table.db-table tr:hover {
 .category-table tr > td:nth-of-type(2) {
   width: 40%;
   display: table-cell;
-  text-align: center;
-  vertical-align: middle;
 }
 
 .category-table tr > th:nth-of-type(3),
