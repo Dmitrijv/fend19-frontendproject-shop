@@ -37,6 +37,12 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
 
     $productId = $product['id'];
 
+     // trim product description to make table tidy
+     $productDescription = $product['description'];
+     if (strlen($productDescription) > 50) {
+         $productDescription = substr($productDescription, 0, 45) . " ...";
+     }
+
     $selectImg = "
             SELECT file_name
             FROM product, image_of_product
@@ -66,6 +72,7 @@ while ($product = $selectProducts->fetch(PDO::FETCH_LAZY)) {
                 <td role='cell'>{$product['price']} {$product['currency']}</td>
                 <td role='cell'>{$product['number_in_stock']} st</td>
                 <td role='cell'>{$product['category']}</td>
+                <td role='cell' class='ie-box' title='{$product['description']}' >{$productDescription}</td>
                 <td class='ellipsis' role='cell'><span class='show-all-description' title='{$product['description']}'><span class='description-text'>{$product['description']}</span></span></td>
                 <td role='cell' class='actionCell'>
                     <form style='display: inline-block;' action='' method='POST' >

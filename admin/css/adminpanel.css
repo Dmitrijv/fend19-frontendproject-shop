@@ -669,6 +669,10 @@ table.product-table img.cover-demo {
   padding: 0 6px;
 }
 
+.ie-box {
+  display: none;
+}
+
 div.alert {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -706,6 +710,12 @@ div.alert.fail {
   body {
     overflow-x: hidden;
   }
+  .ie-box {
+    display: table-cell;
+  }
+  .ellipsis {
+    display: none !important;
+  }
   .admin-main {
     font-size: 14px !important;
     display: -ms-flexbox;
@@ -742,22 +752,6 @@ div.alert.fail {
   }
   .admin-main .admin-content .content-wrapper .product-table tbody tr > td::before {
     content: "" !important;
-  }
-  .admin-main .admin-content .content-wrapper .product-table tbody .ellipsis {
-    display: contents;
-    width: 100%;
-    line-height: 35px;
-    height: 35px;
-  }
-  .admin-main .admin-content .content-wrapper .product-table tbody .ellipsis .show-all-description {
-    left: 50%;
-    top: 50%;
-    width: 90%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-  }
-  .admin-main .admin-content .content-wrapper .product-table tbody .ellipsis::before {
-    left: -27px;
   }
   .admin-main .admin-content .content-wrapper .product-table tbody tr > td:nth-child(3) .productCoverDemo .gallerySize {
     padding: 16px 3px;

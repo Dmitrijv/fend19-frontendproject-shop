@@ -40,9 +40,18 @@ div.alert {
 }
 
 /* IE10+ CSS styles go here */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
   body {
     overflow-x: hidden;
+  }
+
+  .ie-box {
+    display: table-cell;
+  }
+
+  .ellipsis {
+    display: none !important;
   }
 
   .admin-main {
@@ -91,27 +100,6 @@ div.alert {
 
               &::before {
                 content: "" !important;
-              }
-            }
-
-            .ellipsis {
-              display: contents;
-              width: 100%;
-              line-height: 35px;
-              height: 35px;
-
-              .show-all-description {
-                left: 50%;
-                top: 50%;
-                width: 90%;
-                position: absolute;
-                -ms-transform: translate(-50%, -50%);
-              }
-
-              .description-text {}
-
-              &::before {
-                left: -27px;
               }
             }
 
