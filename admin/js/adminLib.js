@@ -1,4 +1,4 @@
-adminLib = (function() {
+adminLib = (function () {
   const info = "Helper library for making controller calls to php.";
 
   const version = "0.1";
@@ -11,7 +11,7 @@ adminLib = (function() {
       const lib = this;
       const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
 
-      lib.loadJsonByXhr(apiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(apiUrl, function (categoryJson) {
         const table = document.querySelector("table#productCategoryAdminTable");
         let tableContent = `
         <tr>
@@ -20,7 +20,7 @@ adminLib = (function() {
             <th>Action</th>
         </tr>
         `;
-        categoryJson.forEach(category => {
+        categoryJson.forEach((category) => {
           tableContent += `
             <tr data-post-id='${category.id}'>
                 <td>${category.id}</td>
@@ -41,7 +41,7 @@ adminLib = (function() {
       });
     },
 
-    createNewCategory: function(event) {
+    createNewCategory: function (event) {
       const lib = this;
 
       const alertElement = document.querySelector("div#categoryAlert");
@@ -57,7 +57,6 @@ adminLib = (function() {
         categoryName.length > 20 ||
         /<\/?[a-z][\s\S]*/i.test(categoryName) == true
       ) {
-        console.log("error");
         messageElement.textContent = "Incorrect category name.";
         lib.setFailStyle(alertElement);
         input.focus();
@@ -66,12 +65,13 @@ adminLib = (function() {
       }
 
       const xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function() {
+      xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           input.value = ""; // remember to empty input
           lib.setSuccessStyle(alertElement);
           messageElement.textContent = "Caregory created succsessfully.";
           lib.drawCategoryTable();
+          event.preventDefault();
           // server validation failed
         } else if (this.readyState == 4 && this.status == 500) {
           messageElement.textContent = "Incorrect or diplicate category name.";
@@ -87,7 +87,7 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    deleteCategory: function(event) {
+    deleteCategory: function (event) {
       const lib = this;
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
@@ -97,13 +97,12 @@ adminLib = (function() {
 
       if (confirm("Are you sure?")) {
         const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
-            const row = document.querySelector(`tr[data-post-id="${categoryId}"]`);
-            row.parentNode.removeChild(row);
             lib.setSuccessStyle(alertElement);
             messageElement.textContent = "Caregory deleted succsessfully.";
             lib.drawCategoryTable();
+            event.preventDefault();
           } else if (this.readyState == 4 && this.status == 500) {
             messageElement.textContent = "Failed to delete category.";
             lib.setFailStyle(alertElement);
@@ -119,34 +118,34 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    setSuccessStyle: function(element) {
+    setSuccessStyle: function (element) {
       element.classList.add("success");
       element.classList.remove("fail");
       element.classList.remove("hidden");
     },
 
-    setFailStyle: function(element) {
+    setFailStyle: function (element) {
       element.classList.add("fail");
       element.classList.remove("success");
       element.classList.remove("hidden");
     },
 
-    hideParentElement: function(event) {
+    hideParentElement: function (event) {
       const elementToHide = event.target.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
     },
 
-    loadJsonByXhr: function(url, callback) {
+    loadJsonByXhr: function (url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
       };
-      xhr.open("GET", url, true);
+      xhr.open("POST", url, true);
       xhr.send();
-    }
+    },
   };
 
   return adminLib;
