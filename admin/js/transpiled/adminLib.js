@@ -1,8 +1,9 @@
 adminLib = (function() {
   var info = "Helper library for making controller calls to php.";
   var version = "0.1";
-  var CONTROLLER_PATH = "".concat(location.origin, "/fend19-frontendproject-shop/admin/php/controller");
-  var INTERNAL_API_PATH = "".concat(location.origin, "/fend19-frontendproject-shop/admin/internalApi");
+  var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
+  var CONTROLLER_PATH = "".concat(SHOP_URL, "/admin/php/controller");
+  var INTERNAL_API_PATH = "".concat(SHOP_URL, "/admin/internalApi");
   var adminLib = {
     drawCategoryTable: function drawCategoryTable() {
       var lib = this;

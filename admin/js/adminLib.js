@@ -2,8 +2,9 @@ adminLib = (function() {
   const info = "Helper library for making controller calls to php.";
 
   const version = "0.1";
-  const CONTROLLER_PATH = `${location.origin}/fend19-frontendproject-shop/admin/php/controller`;
-  const INTERNAL_API_PATH = `${location.origin}/fend19-frontendproject-shop/admin/internalApi`;
+  const SHOP_URL = `${location.protocol}//${location.host}/fend19-frontendproject-shop`;
+  const CONTROLLER_PATH = `${SHOP_URL}/admin/php/controller`;
+  const INTERNAL_API_PATH = `${SHOP_URL}/admin/internalApi`;
 
   let adminLib = {
     drawCategoryTable() {
