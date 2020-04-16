@@ -41,7 +41,12 @@ div.alert {
 
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body {
+    overflow-x: hidden;
+  }
+
   .admin-main {
+    font-size: 14px !important;
     display: -ms-flexbox;
     -ms-flex-direction: column;
 
@@ -80,8 +85,9 @@ div.alert {
 
         .product-table {
           tbody {
-            tr > td {
-              padding-left: 0 !important;
+
+            tr>td {
+              padding-left: 7px !important;
 
               &::before {
                 content: "" !important;
@@ -94,15 +100,22 @@ div.alert {
               line-height: 35px;
               height: 35px;
 
-              .description-text {
+              .show-all-description {
+                left: 50%;
+                top: 50%;
+                width: 90%;
+                position: absolute;
+                -ms-transform: translate(-50%, -50%);
               }
+
+              .description-text {}
 
               &::before {
                 left: -27px;
               }
             }
 
-            tr > td:nth-child(3) {
+            tr>td:nth-child(3) {
               .productCoverDemo {
                 .gallerySize {
                   padding: 16px 3px;
@@ -118,6 +131,7 @@ div.alert {
 
 /* Internet Explorer 11+ */
 @media only screen and (max-width: 1920px) {
+
   _:-ms-fullscreen,
   :root .gallerySize {
     line-height: 18px !important;

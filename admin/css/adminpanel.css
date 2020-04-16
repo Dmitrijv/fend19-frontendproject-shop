@@ -703,7 +703,11 @@ div.alert.fail {
 
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  body {
+    overflow-x: hidden;
+  }
   .admin-main {
+    font-size: 14px !important;
     display: -ms-flexbox;
     -ms-flex-direction: column;
   }
@@ -734,7 +738,7 @@ div.alert.fail {
     margin-top: -7px;
   }
   .admin-main .admin-content .content-wrapper .product-table tbody tr > td {
-    padding-left: 0 !important;
+    padding-left: 7px !important;
   }
   .admin-main .admin-content .content-wrapper .product-table tbody tr > td::before {
     content: "" !important;
@@ -744,6 +748,13 @@ div.alert.fail {
     width: 100%;
     line-height: 35px;
     height: 35px;
+  }
+  .admin-main .admin-content .content-wrapper .product-table tbody .ellipsis .show-all-description {
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
   }
   .admin-main .admin-content .content-wrapper .product-table tbody .ellipsis::before {
     left: -27px;
