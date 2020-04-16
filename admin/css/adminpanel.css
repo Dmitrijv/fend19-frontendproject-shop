@@ -122,13 +122,15 @@ input:focus {
   background-size: 110% 110%;
 }
 
-.del-btn {
+.del-btn,
+.close-btn {
   border: 1px solid #d43f3a;
   color: #fff;
   background-color: #d9534f;
 }
 
-.del-btn:hover {
+.del-btn:hover,
+.close-btn:hover {
   background-color: #c9302c;
   border-color: #ac2925;
 }
