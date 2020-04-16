@@ -32,6 +32,11 @@ function doesProductCategoryNameExist($categoryName)
     return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE name = ?)", [$categoryName])->fetchColumn();
 }
 
+function isCategoryNameTaken($categoryName, $categoryId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE name = ? AND NOT id = ?)", [$categoryName, $categoryId])->fetchColumn();
+}
+
 function doesProductCategoryIdExist($categoryId)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM product_category WHERE id = ?)", [$categoryId])->fetchColumn();

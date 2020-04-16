@@ -21,9 +21,9 @@ if (!isset($_POST["categoryId"]) || !isset($_POST["newName"])) {
 }
 
 // invalid / duplicate category name
-$duplicateName = doesProductCategoryNameExist($newCategoryName);
+$nameTaken = isCategoryNameTaken($newCategoryName, $categoryId);
 $containsHtml = strpos($newCategoryName, '<');
-if (strlen($newCategoryName) < 1 || strlen($newCategoryName) > 20 || ($duplicateName == true) || ($containsHtml !== false)) {
+if (strlen($newCategoryName) < 1 || strlen($newCategoryName) > 20 || ($nameTaken == true) || ($containsHtml !== false)) {
     http_response_code(400);
     die;
 }
