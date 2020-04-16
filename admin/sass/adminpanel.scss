@@ -8,7 +8,7 @@
 @import "admin-nav";
 @import "admin-main";
 
-@import "category/add-category";
+@import "category/input-forms";
 
 @import "products/admin-products";
 
@@ -40,8 +40,7 @@ div.alert {
 }
 
 /* IE10+ CSS styles go here */
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) and (min-width: 850px) {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   body {
     overflow-x: hidden;
   }
@@ -118,7 +117,6 @@ div.alert {
 
             tr>td:nth-child(3) {
               .productCoverDemo {
-
                 .gallerySize {
                   padding: 16px 3px;
                 }
