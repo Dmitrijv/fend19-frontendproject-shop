@@ -709,6 +709,10 @@ div.alert.fail {
     display: -ms-flexbox;
     -ms-flex-direction: column;
   }
+  .admin-main .admin-sidebar {
+    margin-top: -20px;
+    margin-bottom: 10px;
+  }
   .admin-main .admin-sidebar .admin-nav ul {
     -ms-flex-direction: row;
   }
