@@ -303,7 +303,7 @@ button {
 }
 
 .search-btn {
-  right: 30px;
+  right: 34px;
 }
 
 @media (min-width: 800px) {
@@ -328,7 +328,7 @@ button {
   margin-top: 246px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .content {
     margin-left: 250px;
     margin-top: 118px;
@@ -586,7 +586,7 @@ button {
   border-style: none;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .footer .logo {
     margin: 50px 5% auto auto;
   }
