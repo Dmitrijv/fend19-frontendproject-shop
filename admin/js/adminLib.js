@@ -128,8 +128,6 @@ adminLib = (function() {
       const newName = input.value;
       const categoryId = event.target.dataset.categoryid;
 
-      console.log({ newName, categoryId });
-
       // validate input locally before submitting to server
       if (lib.isProductCategoryNameValid(newName) === false) {
         messageElement.textContent = "New name is incorrect or diplicate.";
@@ -147,11 +145,15 @@ adminLib = (function() {
           messageElement.textContent = "Caregory name updated successfully.";
           lib.drawCategoryTable();
           event.preventDefault();
+          // attempting to update a deleted category
+        } else if (this.readyState == 4 && this.status == 500) {
+          messageElement.textContent = "Attempting to update a deleted category.";
+          lib.setFailStyle(alertElement);
+          event.preventDefault();
           // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
           messageElement.textContent = "New name is incorrect or diplicate.";
           lib.setFailStyle(alertElement);
-          console.log(this.status);
           event.preventDefault();
         }
       };

@@ -20,6 +20,13 @@ if (!isset($_POST["categoryId"]) || !isset($_POST["newName"])) {
     $newCategoryName = $_POST["newName"];
 }
 
+// attempting to update a deleted category
+$categoryExists = doesProductCategoryIdExist($categoryId);
+if ($categoryExists !== true) {
+    http_response_code(500);
+    die;
+}
+
 // invalid / duplicate category name
 $nameTaken = isCategoryNameTaken($newCategoryName, $categoryId);
 $containsHtml = strpos($newCategoryName, '<');

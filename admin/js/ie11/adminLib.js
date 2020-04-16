@@ -1,6 +1,6 @@
 adminLib = (function() {
   var info = "Helper library for making controller calls to php.";
-  var version = "0.1";
+  var version = "0.2";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
   var CONTROLLER_PATH = "".concat(SHOP_URL, "/admin/php/controller");
   var INTERNAL_API_PATH = "".concat(SHOP_URL, "/admin/internalApi");
@@ -115,11 +115,7 @@ adminLib = (function() {
       var alertElement = document.querySelector("div#categoryAlert");
       var messageElement = document.querySelector("div#categoryAlert span.msg");
       var newName = input.value;
-      var categoryId = event.target.dataset.categoryid;
-      console.log({
-        newName: newName,
-        categoryId: categoryId
-      }); // validate input locally before submitting to server
+      var categoryId = event.target.dataset.categoryid; // validate input locally before submitting to server
 
       if (lib.isProductCategoryNameValid(newName) === false) {
         messageElement.textContent = "New name is incorrect or diplicate.";
@@ -138,11 +134,14 @@ adminLib = (function() {
           lib.setSuccessStyle(alertElement);
           messageElement.textContent = "Caregory name updated successfully.";
           lib.drawCategoryTable();
+          event.preventDefault(); // attempting to update a deleted category
+        } else if (this.readyState == 4 && this.status == 500) {
+          messageElement.textContent = "Attempting to update a deleted category.";
+          lib.setFailStyle(alertElement);
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
           messageElement.textContent = "New name is incorrect or diplicate.";
           lib.setFailStyle(alertElement);
-          console.log(this.status);
           event.preventDefault();
         }
       };
