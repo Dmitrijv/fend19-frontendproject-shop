@@ -260,4 +260,8 @@ body {
     padding: 0;
   }
 }
+
+.ie-box {
+  display: none !important;
+}
 /*# sourceMappingURL=adminpanel-ie.css.map */
