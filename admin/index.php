@@ -45,10 +45,10 @@
                 <div id='categoryAlert' class="alert fail hidden">
                     <span class="msg"></span>
                     <form onsubmit='adminLib.hideParentElement(event);'>
-                        <button type="submit">Close</button>
+                        <button class="close-btn" type="submit">Close</button>
                     </form>
                 </div>
-                <table class="db-table" id="productCategoryAdminTable"></table>
+                <table class="db-table category-table" id="productCategoryAdminTable"></table>
             </div>
         </section>
         <!-- CONTENT area ends -->

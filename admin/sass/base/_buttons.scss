@@ -61,7 +61,8 @@
   }
 }
 
-.del-btn {
+.del-btn,
+.close-btn {
   border: 1px solid #d43f3a;
   color: #fff;
   background-color: #d9534f;
@@ -71,3 +72,5 @@
     border-color: #ac2925;
   }
 }
+
+.close-btn {}
