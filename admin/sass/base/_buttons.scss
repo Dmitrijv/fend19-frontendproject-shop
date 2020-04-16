@@ -61,8 +61,7 @@
   }
 }
 
-.del-btn,
-.close-btn {
+.del-btn {
   border: 1px solid #d43f3a;
   color: #fff;
   background-color: #d9534f;
@@ -73,4 +72,32 @@
   }
 }
 
-.close-btn {}
+.alert.fail {
+  .close-btn {
+    border: 1px solid #d43f3a;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 1px 2px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #c9302c;
+      border-color: #ac2925;
+    }
+  }
+}
+
+.alert.success {
+  .close-btn {
+    border: 1px solid #6e9b47;
+    color: #fff;
+    background-color: #71a047;
+    padding: 1px 2px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #567a37;
+      border-color: #5e863a;
+    }
+  }
+}
