@@ -120,12 +120,14 @@ adminLib = (function() {
 
     setSuccessStyle: function(element) {
       element.classList.add("success");
-      element.classList.remove("fail", "hidden");
+      element.classList.remove("fail");
+      element.classList.remove("hidden");
     },
 
     setFailStyle: function(element) {
       element.classList.add("fail");
-      element.classList.remove("success", "hidden");
+      element.classList.remove("success");
+      element.classList.remove("hidden");
     },
 
     hideParentElement: function(event) {

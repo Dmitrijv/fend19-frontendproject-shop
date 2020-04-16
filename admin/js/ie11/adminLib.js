@@ -111,11 +111,13 @@ adminLib = (function() {
     },
     setSuccessStyle: function setSuccessStyle(element) {
       element.classList.add("success");
-      element.classList.remove("fail", "hidden");
+      element.classList.remove("fail");
+      element.classList.remove("hidden");
     },
     setFailStyle: function setFailStyle(element) {
       element.classList.add("fail");
-      element.classList.remove("success", "hidden");
+      element.classList.remove("success");
+      element.classList.remove("hidden");
     },
     hideParentElement: function hideParentElement(event) {
       var elementToHide = event.target.parentElement;
