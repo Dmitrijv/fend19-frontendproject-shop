@@ -9,11 +9,10 @@ body {
     object-fit: fill;
   }
   .logo {
-    margin-top: 0.5em;
     background: url("../../img/product/svg/Logo.svg") no-repeat center center;
     align-self: center;
-    width: 170px;
-    height: 70px;
+    width: 120px;
+    height: 47px;
     @media (min-width: 800px) {
         margin-top: 0;
     }
