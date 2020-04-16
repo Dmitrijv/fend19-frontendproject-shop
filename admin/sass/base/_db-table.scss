@@ -31,6 +31,37 @@ table.db-table {
   }
 }
 
+.category-table {
+
+  tr>th:nth-of-type(1),
+  tr>td:nth-of-type(1) {
+    width: 10%;
+  }
+
+  tr>th:nth-of-type(2),
+  tr>td:nth-of-type(2) {
+    width: 40%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  tr>th:nth-of-type(3),
+  tr>td:nth-of-type(3) {
+    width: 40%;
+  }
+
+  .update-category {
+    display: inline-flex;
+    justify-content: space-around;
+
+    .category-input {
+      max-width: 100%;
+      min-width: 50%;
+    }
+  }
+}
+
 .product-table {
 
   tbody:nth-child(2)>tr:nth-child(1)>td:nth-child(4) {
