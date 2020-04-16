@@ -41,3 +41,8 @@ function deleteProductCategory($categoryId)
 {
     DB::run("DELETE FROM product_category WHERE id = ?", [$categoryId]);
 }
+
+function updateProductCategoryName($newName, $categoryId)
+{
+    DB::run("UPDATE product_category SET name=? WHERE id=?", [$newName, $categoryId]);
+}

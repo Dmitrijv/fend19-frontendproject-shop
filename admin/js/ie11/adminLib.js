@@ -13,20 +13,26 @@ adminLib = (function() {
         var tableContent =
           "\n        <tr>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Action</th>\n        </tr>\n        ";
         categoryJson.forEach(function(category) {
-          tableContent += "\n            <tr data-post-id='"
+          tableContent += "\n            <tr data-categoryId='"
             .concat(category.id, "'>\n                <td>")
-            .concat(category.id, "</td>\n                <td>")
+            .concat(category.id, "</td>\n                <td>\n                    <span id='")
+            .concat(category.id, "-nameLabel' > ")
+            .concat(category.name, " </span>\n                    <form id='")
+            .concat(
+              category.id,
+              "-updateForm' class=\"update-category clearfix hidden\" onsubmit='adminLib.updateCategory(event);' data-categoryid='"
+            )
+            .concat(
+              category.id,
+              '\'>\n                        <input name="updateCategoryNameField" class="category-input input-left float-left" type="text" placeholder="'
+            )
             .concat(
               category.name,
-              "</td>\n                <td>\n                    <form style='display: inline-block;'>\n                        <input class='btn btn-left edit-btn' type='submit' data-categoryId='"
+              "\">\n                        <input class=\"btn btn-right create-btn float-right\" type=\"submit\" value=\"Update\">\n                    </form>\n                  </td>\n                <td>\n                    <form style='display: inline-block;' onsubmit='adminLib.toggleCategoryUpdateElements(event);'>\n                        <input class='btn btn-left edit-btn' type='submit' data-categoryId='"
             )
             .concat(
               category.id,
-              "' name='edit' value='Edit'>\n                        <input type='hidden' name='categoryId' value='"
-            )
-            .concat(
-              category.id,
-              "'>\n                    </form>\n                    <form style='display: inline-block;' onsubmit='adminLib.deleteCategory(event);'>\n                        <input class='btn btn-right del-btn' data-categoryId='"
+              "' name='edit' value='Edit'>\n                    </form>\n                    <form style='display: inline-block;' onsubmit='adminLib.deleteCategory(event);'>\n                        <input class='btn btn-right del-btn' data-categoryId='"
             )
             .concat(
               category.id,
@@ -43,12 +49,7 @@ adminLib = (function() {
       var input = event.target.elements.newCategoryNameField;
       var categoryName = input.value; // validate input locally before submitting to server
 
-      if (
-        !categoryName ||
-        categoryName.length < 1 ||
-        categoryName.length > 20 ||
-        /<\/?[a-z][\s\S]*/i.test(categoryName) == true
-      ) {
+      if (lib.isProductCategoryNameValid(categoryName) === false) {
         messageElement.textContent = "Incorrect category name.";
         lib.setFailStyle(alertElement);
         input.focus();
@@ -63,7 +64,7 @@ adminLib = (function() {
           input.value = ""; // remember to empty input
 
           lib.setSuccessStyle(alertElement);
-          messageElement.textContent = "Caregory created succsessfully.";
+          messageElement.textContent = "Caregory created successfully.";
           lib.drawCategoryTable();
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
@@ -108,6 +109,65 @@ adminLib = (function() {
 
       event.preventDefault();
     },
+    updateCategory: function updateCategory(event) {
+      var lib = this;
+      var input = event.target.elements.updateCategoryNameField;
+      var alertElement = document.querySelector("div#categoryAlert");
+      var messageElement = document.querySelector("div#categoryAlert span.msg");
+      var newName = input.value;
+      var categoryId = event.target.dataset.categoryid;
+      console.log({
+        newName: newName,
+        categoryId: categoryId
+      }); // validate input locally before submitting to server
+
+      if (lib.isProductCategoryNameValid(newName) === false) {
+        messageElement.textContent = "New name is incorrect or diplicate.";
+        lib.setFailStyle(alertElement);
+        input.focus();
+        event.preventDefault();
+        return;
+      }
+
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          input.value = ""; // remember to empty input
+
+          lib.setSuccessStyle(alertElement);
+          messageElement.textContent = "Caregory name updated successfully.";
+          lib.drawCategoryTable();
+          event.preventDefault(); // server validation failed
+        } else if (this.readyState == 4 && this.status == 400) {
+          messageElement.textContent = "New name is incorrect or diplicate.";
+          lib.setFailStyle(alertElement);
+          console.log(this.status);
+          event.preventDefault();
+        }
+      };
+
+      xmlhttp.open("POST", "".concat(CONTROLLER_PATH, "/category/updateCategoryRequest.php"), true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("newName=".concat(newName, "&categoryId=").concat(categoryId));
+      event.preventDefault();
+    },
+    toggleCategoryUpdateElements: function toggleCategoryUpdateElements(event) {
+      var categoryId = event.target.edit.dataset.categoryid;
+      var editForm = document.getElementById("".concat(categoryId, "-updateForm"));
+      var nameLabel = document.getElementById("".concat(categoryId, "-nameLabel"));
+      var formIsVisible = editForm.classList.contains("hidden");
+
+      if (formIsVisible === false) {
+        editForm.classList.add("hidden");
+        nameLabel.classList.remove("hidden");
+      } else {
+        editForm.classList.remove("hidden");
+        nameLabel.classList.add("hidden");
+      }
+
+      event.preventDefault();
+    },
     setSuccessStyle: function setSuccessStyle(element) {
       element.classList.add("success");
       element.classList.remove("fail");
@@ -122,6 +182,15 @@ adminLib = (function() {
       var elementToHide = event.target.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
+    },
+    isProductCategoryNameValid: function isProductCategoryNameValid(categoryName) {
+      return (
+        (categoryName &&
+          categoryName.length >= 1 &&
+          categoryName.length <= 20 &&
+          /<\/?[a-z][\s\S]*/i.test(categoryName) == false) ||
+        false
+      );
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();
