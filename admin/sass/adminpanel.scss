@@ -41,9 +41,13 @@ div.alert {
 
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
+(-ms-high-contrast: active) and (min-width: 850px) {
+  body {
+    overflow-x: hidden;
+  }
 
   .admin-main {
+    font-size: 14px !important;
     display: -ms-flexbox;
     -ms-flex-direction: column;
 
@@ -84,7 +88,7 @@ div.alert {
           tbody {
 
             tr>td {
-              padding-left: 0 !important;
+              padding-left: 7px !important;
 
               &::before {
                 content: "" !important;
@@ -96,6 +100,14 @@ div.alert {
               width: 100%;
               line-height: 35px;
               height: 35px;
+
+              .show-all-description {
+                left: 50%;
+                top: 50%;
+                width: 90%;
+                position: absolute;
+                -ms-transform: translate(-50%, -50%);
+              }
 
               .description-text {}
 
