@@ -38,14 +38,14 @@
         <!-- CONTENT area begins -->
         <section class="admin-content">
             <div class="content-wrapper">
-                <form class="update-category clearfix" onsubmit='adminLib.updateCategory(event);'>
-                    <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
-                    <input class="btn btn-right create-btn float-right" type="submit" value="Create">
-                </form>
-                <!-- <form class="add-category clearfix" onsubmit='adminLib.createNewCategory(event);'>
+                <!-- <form class="update-category clearfix" onsubmit='adminLib.updateCategory(event);'>
                     <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
                     <input class="btn btn-right create-btn float-right" type="submit" value="Create">
                 </form> -->
+                <form class="add-category clearfix" onsubmit='adminLib.createNewCategory(event);'>
+                    <input name="newCategoryNameField" class="category-input input-left float-left" type="text" placeholder="Create a new category">
+                    <input class="btn btn-right create-btn float-right" type="submit" value="Create">
+                </form>
                 <div id='categoryAlert' class="alert fail hidden">
                     <span class="msg"></span>
                     <form onsubmit='adminLib.hideParentElement(event);'>
