@@ -260,13 +260,16 @@ button {
   }
 }
 
-.img-cart, .img-search, .img-login {
+.img-cart,
+.img-search,
+.img-login {
   max-width: 20px;
   max-height: 20px;
 }
 
 @media (min-width: 800px) {
-  .img-cart, .img-login {
+  .img-cart,
+  .img-login {
     display: none;
   }
 }
@@ -275,7 +278,7 @@ button {
 .cart-btn {
   padding: 4px;
   margin-top: 1em;
-  margin-right: 1.5em;
+  margin-right: 1em;
   position: absolute;
   top: 0;
   right: 0;
