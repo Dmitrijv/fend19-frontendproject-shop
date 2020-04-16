@@ -1,4 +1,4 @@
-adminLib = (function () {
+adminLib = (function() {
   var info = "Helper library for making controller calls to php.";
   var version = "0.1";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
@@ -8,11 +8,11 @@ adminLib = (function () {
     drawCategoryTable: function drawCategoryTable() {
       var lib = this;
       var apiUrl = "".concat(INTERNAL_API_PATH, "/productCategories.php");
-      lib.loadJsonByXhr(apiUrl, function (categoryJson) {
+      lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         var table = document.querySelector("table#productCategoryAdminTable");
         var tableContent =
           "\n        <tr>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Action</th>\n        </tr>\n        ";
-        categoryJson.forEach(function (category) {
+        categoryJson.forEach(function(category) {
           tableContent += "\n            <tr data-post-id='"
             .concat(category.id, "'>\n                <td>")
             .concat(category.id, "</td>\n                <td>")
@@ -58,7 +58,7 @@ adminLib = (function () {
 
       var xmlhttp = new XMLHttpRequest();
 
-      xmlhttp.onreadystatechange = function () {
+      xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           input.value = ""; // remember to empty input
 
@@ -66,7 +66,7 @@ adminLib = (function () {
           messageElement.textContent = "Caregory created succsessfully.";
           lib.drawCategoryTable();
           event.preventDefault(); // server validation failed
-        } else if (this.readyState == 4 && this.status == 500) {
+        } else if (this.readyState == 4 && this.status == 400) {
           messageElement.textContent = "Incorrect or diplicate category name.";
           lib.setFailStyle(alertElement);
           event.preventDefault();
@@ -88,13 +88,13 @@ adminLib = (function () {
       if (confirm("Are you sure?")) {
         var xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.onreadystatechange = function () {
+        xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             lib.setSuccessStyle(alertElement);
             messageElement.textContent = "Caregory deleted succsessfully.";
             lib.drawCategoryTable();
             event.preventDefault();
-          } else if (this.readyState == 4 && this.status == 500) {
+          } else if (this.readyState == 4 && this.status == 400) {
             messageElement.textContent = "Failed to delete category.";
             lib.setFailStyle(alertElement);
             event.preventDefault();
@@ -126,7 +126,7 @@ adminLib = (function () {
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();
 
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -134,7 +134,7 @@ adminLib = (function () {
 
       xhr.open("POST", url, true);
       xhr.send();
-    },
+    }
   };
   return adminLib;
 })();
