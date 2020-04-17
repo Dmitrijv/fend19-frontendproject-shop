@@ -17,6 +17,12 @@ if (!isset($_POST["categoryId"])) {
     $categoryId = $_POST["categoryId"];
 }
 
+// don't allow deleting the default category
+if ($categoryId == 1) {
+    http_response_code(500);
+    die;
+}
+
 // category doesn't exist
 if ((doesProductCategoryIdExist($categoryId) == false)) {
     http_response_code(400);

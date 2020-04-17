@@ -95,6 +95,10 @@ adminLib = (function() {
             messageElement.textContent = "Caregory deleted succsessfully.";
             lib.drawCategoryTable();
             event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 500) {
+            messageElement.textContent = "Deleting the default category is not allowed.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
           } else if (this.readyState == 4 && this.status == 400) {
             messageElement.textContent = "Failed to delete category.";
             lib.setFailStyle(alertElement);
