@@ -21,7 +21,7 @@
 
     @media screen and (min-width: 801px) {
       /* change position to a left sidebar */
-      margin-top: 10px;
+      margin-top: 0px;
       float: left;
       width: 30%;
       max-width: 250px;
@@ -60,8 +60,35 @@
       padding: 0 2em 0 0;
     }
   }
-}
 
+  section.admin-content {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    padding: 0;
+    margin: 0 35px;
+
+    @media screen and (min-width: 801px) {
+      margin: 0;
+    }
+
+    div.content-wrapper {
+      padding: 8px;
+    }
+  }
+
+  section.admin-content::before {
+    z-index: 1;
+    background-color: #006991;
+    content: "";
+    display: block;
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    width: 100%;
+    height: 3px;
+    left: 0px;
+  }
+}
 
 // If user's browser supports grid, then we use grid layout.
 @supports(display: grid) {
@@ -92,6 +119,7 @@
       grid-area: adminContent;
       width: auto;
       padding: 0;
+      margin: 0;
     }
   }
 
@@ -101,7 +129,7 @@
     background-color: #fff;
     border-radius: 3px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-    
+
 
     div.content-wrapper {
       padding: 8px;

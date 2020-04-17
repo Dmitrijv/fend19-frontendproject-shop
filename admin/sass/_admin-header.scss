@@ -10,6 +10,8 @@ header.admin-header div.header-container {
   margin: 0 auto 35px auto;
   background-color: #3b455e;
   padding: 10px;
+  margin-right: auto;
+  margin-left: 20px;
 
   @media screen and (min-width: 801px) {
     h1 {
@@ -24,5 +26,11 @@ header.admin-header div.header-container {
   h1 {
     font-size: 22px;
     color: white;
+  }
+}
+
+@supports (display: grid) {
+  header.admin-header div.header-container {
+    margin: 0 auto 35px auto;
   }
 }
