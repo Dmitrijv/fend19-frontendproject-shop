@@ -1,48 +1,120 @@
+// Fallback layout degradation, use float layout for IE.
 .admin-main {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-areas:
-    "adminSidebar"
-    "adminContent";
-  grid-template-rows: 1fr min-content;
+  /* mobile first */
+  // font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 10px;
-  max-width: $maxContentWidth;
+  padding: 1em;
 
   @media screen and (min-width: 801px) {
-    grid-template-areas: "adminSidebar adminContent";
-    grid-template-columns: 150px auto;
+    padding: 0;
   }
 
-  section.admin-sidebar {
-    grid-area: adminSidebar;
+  /* sidebar */
+  .admin-sidebar {
+    float: top;
+    padding: 0 2em;
+    margin: -40px auto 10px;
+
+    @media screen and (min-width: 801px) {
+      /* change position to a left sidebar */
+      margin-top: 10px;
+      float: left;
+      width: 30%;
+      max-width: 250px;
+    }
+
+    .admin-nav {
+      li {
+        width: 25%;
+
+        @media screen and (min-width: 801px) {
+          width: 100%;
+        }
+
+        a {
+          padding: 14px 0;
+        }
+      }
+
+      @media screen and (min-width: 801px) {}
+    }
   }
+
+  /* content area - table */
+  .admin-content {
+    float: bottom;
+    padding: 0 2em;
+    // margin-bottom: 2em;
+
+    .content-wrapper {
+      min-width: 310px;
+    }
+
+    @media screen and (min-width: 801px) {
+      float: left;
+      width: 70%;
+      padding: 0 2em 0 0;
+    }
+  }
+}
+
+
+// If user's browser supports grid, then we use grid layout.
+@supports(display: grid) {
+  .admin-main {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas:
+      "adminSidebar"
+      "adminContent";
+    grid-template-rows: 1fr min-content;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: $maxContentWidth;
+
+    @media screen and (min-width: 801px) {
+      grid-template-areas: "adminSidebar adminContent";
+      grid-template-columns: 150px auto;
+    }
+
+    section.admin-sidebar {
+      grid-area: adminSidebar;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    section.admin-content {
+      grid-area: adminContent;
+      width: auto;
+    }
+  }
+
+  div.admin-sidebar {}
 
   section.admin-content {
-    grid-area: adminContent;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+
+    div.content-wrapper {
+      padding: 8px;
+    }
   }
-}
 
-div.admin-sidebar {}
-
-section.admin-content {
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-
-  div.content-wrapper {
-    padding: 8px;
+  section.admin-content::before {
+    z-index: 1;
+    background-color: #006991;
+    content: "";
+    display: block;
+    position: relative;
+    border-radius: 3px 3px 0 0;
+    width: 100%;
+    height: 3px;
+    left: 0px;
   }
-}
-
-section.admin-content::before {
-  z-index: 1;
-  background-color: #006991;
-  content: "";
-  display: block;
-  position: relative;
-  border-radius: 3px 3px 0 0;
-  width: 100%;
-  height: 3px;
-  left: 0px;
 }
