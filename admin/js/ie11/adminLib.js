@@ -46,7 +46,7 @@ adminLib = (function() {
       var lib = this;
       var alertElement = document.querySelector("div#categoryAlert");
       var messageElement = document.querySelector("div#categoryAlert span.msg");
-      var input = event.target.elements.newCategoryNameField;
+      var input = event.currentTarget.elements.newCategoryNameField;
       var categoryName = input.value; // validate input locally before submitting to server
 
       if (lib.isProductCategoryNameValid(categoryName) === false) {
@@ -83,7 +83,7 @@ adminLib = (function() {
       var lib = this;
       var alertElement = document.querySelector("div#categoryAlert");
       var messageElement = document.querySelector("div#categoryAlert span.msg");
-      var button = event.target.elements.delete;
+      var button = event.currentTarget.elements.delete;
       var categoryId = button.dataset.categoryid;
 
       if (confirm("Are you sure?")) {
@@ -115,11 +115,11 @@ adminLib = (function() {
     },
     updateCategory: function updateCategory(event) {
       var lib = this;
-      var input = event.target.elements.updateCategoryNameField;
+      var input = event.currentTarget.elements.updateCategoryNameField;
       var alertElement = document.querySelector("div#categoryAlert");
       var messageElement = document.querySelector("div#categoryAlert span.msg");
       var newName = input.value;
-      var categoryId = event.target.dataset.categoryid; // validate input locally before submitting to server
+      var categoryId = event.currentTarget.dataset.categoryid; // validate input locally before submitting to server
 
       if (lib.isProductCategoryNameValid(newName) === false) {
         messageElement.textContent = "New name is incorrect or diplicate.";
@@ -156,7 +156,7 @@ adminLib = (function() {
       event.preventDefault();
     },
     toggleCategoryUpdateElements: function toggleCategoryUpdateElements(event) {
-      var categoryId = event.target.edit.dataset.categoryid;
+      var categoryId = event.currentTarget.edit.dataset.categoryid;
       var editForm = document.getElementById("".concat(categoryId, "-updateForm"));
       var nameLabel = document.getElementById("".concat(categoryId, "-nameLabel"));
       var formIsVisible = editForm.classList.contains("hidden");
@@ -182,7 +182,7 @@ adminLib = (function() {
       element.classList.remove("hidden");
     },
     hideParentElement: function hideParentElement(event) {
-      var elementToHide = event.target.parentElement;
+      var elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
     },
