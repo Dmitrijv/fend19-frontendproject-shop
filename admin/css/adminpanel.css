@@ -688,6 +688,7 @@ nav.admin-nav::before {
     -ms-grid-column: 1;
     grid-area: adminContent;
     width: auto;
+    padding: 0;
   }
   section.admin-content {
     background-color: #fff;
