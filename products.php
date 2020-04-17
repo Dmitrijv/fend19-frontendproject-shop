@@ -1,8 +1,11 @@
 <?php
 
 require_once __DIR__ . "/php/model/db.php";
+isset($_GET['cat']) ? 
+$categoryId = $_GET['cat'] 
+: $categoryId = 1;
 
-$stmt = DB::run("SELECT p.title Title, p.number_in_stock Number, I.file_name Image FROM product AS P JOIN image_of_product AS I WHERE P.id = I.product_id");
+$stmt = DB::run("SELECT p.title Title, p.number_in_stock Number, I.file_name Image FROM product AS P JOIN image_of_product AS I WHERE P.category_id = {$categoryId}");
 $products = "";
 while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $imageDir = './img/product/' . $tableRow['Image'];
@@ -24,7 +27,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 ?>
 
 <div class="content">
+<h2><?php $name?></h2>
     <div class="product-container">
-        <?php echo $products; ?>
-    </div>
+        <?php echo $products;?>
 </div>
