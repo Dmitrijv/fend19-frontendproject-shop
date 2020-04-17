@@ -52,7 +52,7 @@ adminLib = (function() {
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
 
-      const input = event.target.elements.newCategoryNameField;
+      const input = event.currentTarget.elements.newCategoryNameField;
       const categoryName = input.value;
 
       // validate input locally before submitting to server
@@ -92,7 +92,7 @@ adminLib = (function() {
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
 
-      const button = event.target.elements.delete;
+      const button = event.currentTarget.elements.delete;
       const categoryId = button.dataset.categoryid;
 
       if (confirm("Are you sure?")) {
@@ -124,13 +124,13 @@ adminLib = (function() {
 
     updateCategory: function(event) {
       const lib = this;
-      const input = event.target.elements.updateCategoryNameField;
+      const input = event.currentTarget.elements.updateCategoryNameField;
 
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
 
       const newName = input.value;
-      const categoryId = event.target.dataset.categoryid;
+      const categoryId = event.currentTarget.dataset.categoryid;
 
       // validate input locally before submitting to server
       if (lib.isProductCategoryNameValid(newName) === false) {
@@ -170,7 +170,7 @@ adminLib = (function() {
     },
 
     toggleCategoryUpdateElements: function(event) {
-      const categoryId = event.target.edit.dataset.categoryid;
+      const categoryId = event.currentTarget.edit.dataset.categoryid;
       const editForm = document.getElementById(`${categoryId}-updateForm`);
       const nameLabel = document.getElementById(`${categoryId}-nameLabel`);
       const formIsVisible = editForm.classList.contains("hidden");
@@ -197,7 +197,7 @@ adminLib = (function() {
     },
 
     hideParentElement: function(event) {
-      const elementToHide = event.target.parentElement;
+      const elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
     },
