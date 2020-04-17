@@ -600,7 +600,7 @@ nav.admin-nav::before {
 
 .admin-main {
   /* mobile first */
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.2rem;
   line-height: 1.6;
   max-width: 1000px;
