@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../controller.php";
+require_once __DIR__ . "/../../model/utils.php";
 
 // only POST requests are allowed
 if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
@@ -29,8 +30,8 @@ if ($categoryExists !== 1) {
 
 // invalid / duplicate category name
 $nameTaken = isCategoryNameTaken($newCategoryName, $categoryId);
-$containsHtml = strpos($newCategoryName, '<');
-if (strlen($newCategoryName) < 1 || strlen($newCategoryName) > 20 || ($nameTaken == true) || ($containsHtml !== false)) {
+$validFormat = isProductCategoryNameValid($newCategoryName);
+if ($validFormat == false || $nameTaken == true) {
     http_response_code(400);
     die;
 }
