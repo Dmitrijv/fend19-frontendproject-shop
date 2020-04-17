@@ -11,30 +11,3 @@
 @import "category/input-forms";
 
 @import "products/admin-products";
-
-div.alert {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 6px;
-  border-radius: 2px;
-  margin-bottom: 10px;
-
-  &.success {
-    background-color: #dff2d5;
-    border: 1px solid #83b655;
-    border-left: 5px solid #83b655;
-  }
-
-  &.fail {
-    background-color: #f2dede;
-    border: 1px solid #d03f00;
-    border-left: 5px solid #d03f00;
-    color: #333;
-  }
-}
-
-.hidden {
-  display: none !important;
-}

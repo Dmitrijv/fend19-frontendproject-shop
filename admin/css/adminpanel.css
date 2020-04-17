@@ -104,6 +104,13 @@ input:focus {
   background-size: 110% 110%;
   color: #fff;
   border: 1px solid rgba(27, 31, 35, 0.2);
+  width: 82px;
+}
+
+@supports (display: grid) {
+  .create-btn {
+    width: unset;
+  }
 }
 
 .create-btn:hover {
@@ -126,6 +133,7 @@ input:focus {
   border: 1px solid #d43f3a;
   color: #fff;
   background-color: #d9534f;
+  width: 60px;
 }
 
 .del-btn:hover {
@@ -296,6 +304,7 @@ input:focus {
   }
 }
 
+/* Let's support IE first */
 table.db-table {
   border-collapse: collapse;
   width: 100%;
@@ -357,7 +366,7 @@ table.db-table tr:hover {
   min-width: 68px;
 }
 
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 801px) {
   .product-table {
     /* To maintain table border's thickness */
     /* Force table to not be like tables anymore */
@@ -542,7 +551,7 @@ section.admin-sidebar nav.admin-nav {
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   section.admin-sidebar nav.admin-nav ul {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -607,10 +616,10 @@ nav.admin-nav::before {
   margin: 0 auto;
   padding: 1em;
   /* sidebar */
-  /* content area - table */
+  /* Content area - table */
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   .admin-main {
     padding: 0;
   }
@@ -618,17 +627,17 @@ nav.admin-nav::before {
 
 .admin-main .admin-sidebar {
   float: top;
-  padding: 0 2em;
+  padding: 0 10px;
   margin: -40px auto 10px;
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   .admin-main .admin-sidebar {
-    /* change position to a left sidebar */
+    /* Change position to be a left sidebar */
     margin-top: 0px;
     float: left;
     width: 30%;
-    max-width: 250px;
+    max-width: 160px;
   }
 }
 
@@ -636,7 +645,7 @@ nav.admin-nav::before {
   width: 25%;
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   .admin-main .admin-sidebar .admin-nav li {
     width: 100%;
   }
@@ -655,7 +664,7 @@ nav.admin-nav::before {
   min-width: 310px;
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   .admin-main .admin-content {
     float: left;
     width: 70%;
@@ -669,10 +678,10 @@ nav.admin-nav::before {
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
   padding: 0;
-  margin: 0 35px;
+  margin: 0 10px;
 }
 
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 900px) {
   .admin-main section.admin-content {
     margin: 0;
   }
@@ -707,7 +716,7 @@ nav.admin-nav::before {
     padding: 0 10px;
     max-width: 1200px;
   }
-  @media screen and (min-width: 801px) {
+  @media screen and (min-width: 900px) {
     .admin-main {
           grid-template-areas: "adminSidebar adminContent";
       -ms-grid-columns: 150px auto;
@@ -784,57 +793,6 @@ input.category-input.input-mid {
   border-radius: 0px;
 }
 
-table.product-table div.productCoverDemo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-table.product-table span.gallerySize {
-  background-color: green;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  line-height: 50px;
-  padding: 0 3px;
-  border-left: 2px solid white;
-}
-
-table.product-table img.cover-demo {
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  width: 60px;
-  height: 50px;
-  border: 1px solid lightgray;
-}
-
-.ellipsis {
-  position: relative;
-  width: 23%;
-}
-
-.ellipsis .description-text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 6px;
-}
-
-.ie-box {
-  display: none;
-}
-
 div.alert {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -865,5 +823,73 @@ div.alert.fail {
 
 .hidden {
   display: none !important;
+}
+
+table.product-table div.productCoverDemo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+table.product-table span.gallerySize {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  padding: 0 3px;
+  border-left: 2px solid white;
+}
+
+table.product-table img.cover-demo {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 60px;
+  height: 50px;
+  border: 1px solid lightgray;
+}
+
+/* Display only .ie-box for IE 11 */
+.ellipsis {
+  display: none;
+}
+
+/* Display ellipsis if it is a modern browser*/
+@supports (display: grid) {
+  /* Use ellipsis to display all description info */
+  .ie-box {
+    display: none;
+  }
+  .ellipsis {
+    display: block;
+    position: relative;
+    width: 23%;
+  }
+  .ellipsis .description-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+  }
+  /* When it goes to big screen, display partial description, use .ie-box */
+  @media screen and (min-width: 801px) {
+    .ie-box {
+      display: table-cell;
+    }
+    .ellipsis {
+      display: none;
+    }
+  }
 }
 /*# sourceMappingURL=adminpanel.css.map */

@@ -1,6 +1,6 @@
 // https://css-tricks.com/responsive-data-tables/ check this out
-
 // 860px table+margin extends html width, bp is set here for both tablet and mobile. 
+/* Let's support IE first */
 
 table.db-table {
   border-collapse: collapse;
@@ -9,7 +9,6 @@ table.db-table {
   td.actionCell {
     min-width: 135px;
   }
-
 
   tr>td {
     text-align: center;
@@ -66,7 +65,7 @@ table.db-table {
     min-width: 68px;
   }
 
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 801px) {
 
     // This is for ellipsis description column
     .ellipsis {

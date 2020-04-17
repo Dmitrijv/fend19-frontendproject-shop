@@ -23,24 +23,46 @@ table.product-table {
   }
 }
 
-// This class avoids creating multiple lines
+/* Display only .ie-box for IE 11 */
 .ellipsis {
-  position: relative;
-  width: 23%;
-}
-
-.ellipsis .description-text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 6px;
-}
-
-.ie-box {
   display: none;
+}
+
+/* Display ellipsis if it is a modern browser*/
+@supports (display: grid) {
+
+  /* Use ellipsis to display all description info */
+  .ie-box {
+    display: none;
+  }
+
+  // This class avoids creating multiple lines
+  .ellipsis {
+    display: block;
+    position: relative;
+    width: 23%;
+  }
+
+  .ellipsis .description-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+  }
+
+  /* When it goes to big screen, display partial description, use .ie-box */
+  @media screen and (min-width: 801px) {
+    .ie-box {
+      display: table-cell;
+    }
+
+    .ellipsis {
+      display: none;
+    }
+  }
 }
