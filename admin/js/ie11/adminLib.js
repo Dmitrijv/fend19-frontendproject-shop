@@ -68,7 +68,7 @@ adminLib = (function() {
           lib.drawCategoryTable();
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
-          messageElement.textContent = "Incorrect or diplicate category name.";
+          messageElement.textContent = "Incorrect or duplicate category name.";
           lib.setFailStyle(alertElement);
           event.preventDefault();
         }
