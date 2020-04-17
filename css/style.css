@@ -302,6 +302,7 @@ button {
 }
 
 .content {
+  margin-top: 50px;
   padding: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -310,13 +311,11 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 246px;
 }
 
 @media (min-width: 800px) {
   .content {
     margin-left: 250px;
-    margin-top: 118px;
   }
 }
 
@@ -431,7 +430,7 @@ button {
           justify-content: center;
   list-style: none;
   border-radius: 3px;
-  padding: 8px 90px 8px 90px;
+  padding: 8px 45px 8px 45px;
   -webkit-box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
@@ -440,7 +439,7 @@ button {
 @media (min-width: 800px) {
   .sidebar {
     position: absolute;
-    padding-top: 250px;
+    padding-top: 118px;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;

@@ -1,11 +1,10 @@
 .content {
+  margin-top: 50px;
   padding: 2em;
   display: flex;
   flex-direction: column;
-  margin-top: 246px;
   @media (min-width: 800px) {
     margin-left: 250px;
-    margin-top: 118px;
   }
 }
 .product-container {

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/php/model/db.php";
 
-$stmt = DB::run("SELECT name, id FROM product_category");
+$stmt = DB::run("SELECT name, id FROM product_category ORDER BY id DESC");
 $sidebarItems = "";
 while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $sidebarItems .= "
@@ -19,7 +19,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 <div class="sidebar">
 <nav>
         <ul class="sidebar__menu">
-        <form class="form" id="myForm" method="GET">
+        <form class="sidebar__form" method="GET">
         <?php echo $sidebarItems; ?>
         </form>
         </ul>
