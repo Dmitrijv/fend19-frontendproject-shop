@@ -353,7 +353,19 @@ button {
 }
 
 .product__img {
-  max-height: 260px;
+  max-height: 170px;
+}
+
+@media (min-width: 370px) {
+  .product__img {
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 574px) {
+  .product__img {
+    max-height: 200px;
+  }
 }
 
 .product__title {
