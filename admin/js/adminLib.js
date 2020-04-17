@@ -25,7 +25,7 @@ adminLib = (function() {
             <tr data-categoryId='${category.id}'>
                 <td>${category.id}</td>
                 <td>
-                    <span id='${category.id}-nameLabel' > ${category.name} </span>
+                    <span id='${category.id}-nameLabel' >${category.name}</span>
                     <form id='${category.id}-updateForm' class="update-category clearfix hidden" onsubmit='adminLib.updateCategory(event);' data-categoryid='${category.id}'>
                         <input name="updateCategoryNameField" class="category-input input-left float-left" type="text" placeholder="${category.name}">
                         <input class="btn btn-right create-btn float-right" type="submit" value="Update">

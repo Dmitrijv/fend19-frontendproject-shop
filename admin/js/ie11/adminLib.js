@@ -16,8 +16,8 @@ adminLib = (function() {
           tableContent += "\n            <tr data-categoryId='"
             .concat(category.id, "'>\n                <td>")
             .concat(category.id, "</td>\n                <td>\n                    <span id='")
-            .concat(category.id, "-nameLabel' > ")
-            .concat(category.name, " </span>\n                    <form id='")
+            .concat(category.id, "-nameLabel' >")
+            .concat(category.name, "</span>\n                    <form id='")
             .concat(
               category.id,
               "-updateForm' class=\"update-category clearfix hidden\" onsubmit='adminLib.updateCategory(event);' data-categoryid='"
