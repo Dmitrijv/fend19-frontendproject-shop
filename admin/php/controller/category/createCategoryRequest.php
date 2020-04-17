@@ -18,6 +18,10 @@ if (!isset($_POST["categoryName"])) {
     $categoryName = $_POST["categoryName"];
 }
 
+// trim whitepsace from the beginning and end of the name
+$categoryName = ltrim($categoryName);
+$categoryName = rtrim($categoryName);
+
 // invalid / duplicate category name
 $duplicateName = doesProductCategoryNameExist($categoryName);
 $validFormat = isProductCategoryNameValid($categoryName);

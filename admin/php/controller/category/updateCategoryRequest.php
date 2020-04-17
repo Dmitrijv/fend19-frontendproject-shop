@@ -21,6 +21,10 @@ if (!isset($_POST["categoryId"]) || !isset($_POST["newName"])) {
     $newCategoryName = $_POST["newName"];
 }
 
+// trim whitepsace from the beginning and end of the name
+$categoryName = ltrim($categoryName);
+$categoryName = rtrim($categoryName);
+
 // attempting to update a deleted category
 $categoryExists = doesProductCategoryIdExist($categoryId);
 if ($categoryExists !== 1) {
