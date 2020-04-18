@@ -803,8 +803,24 @@ table.product-table img.cover-demo {
 }
 
 /* Display only .ie-box for IE 11 */
+.ie-box {
+  display: none !important;
+}
+
+@media screen and (min-width: 801px) {
+  .ie-box {
+    display: table-cell !important;
+  }
+}
+
 .ellipsis {
-  display: none;
+  display: block;
+}
+
+@media screen and (min-width: 801px) {
+  .ellipsis {
+    display: none;
+  }
 }
 
 /* Display ellipsis if it is a modern browser*/
