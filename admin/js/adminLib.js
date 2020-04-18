@@ -57,7 +57,7 @@ adminLib = (function() {
 
       // validate input locally before submitting to server
       if (lib.isProductCategoryNameValid(categoryName) === false) {
-        messageElement.textContent = "Incorrect category name.";
+        messageElement.textContent = "Invalid category name.";
         lib.setFailStyle(alertElement);
         input.focus();
         event.preventDefault();
@@ -69,12 +69,12 @@ adminLib = (function() {
         if (this.readyState == 4 && this.status == 200) {
           input.value = ""; // remember to empty input
           lib.setSuccessStyle(alertElement);
-          messageElement.textContent = "Caregory created successfully.";
+          messageElement.textContent = "Category created successfully.";
           lib.drawCategoryTable();
           event.preventDefault();
           // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
-          messageElement.textContent = "Incorrect or duplicate category name.";
+          messageElement.textContent = "Invalid or duplicate category name.";
           lib.setFailStyle(alertElement);
           event.preventDefault();
         }
@@ -100,7 +100,7 @@ adminLib = (function() {
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             lib.setSuccessStyle(alertElement);
-            messageElement.textContent = "Caregory deleted succsessfully.";
+            messageElement.textContent = "Category deleted successfully.";
             lib.drawCategoryTable();
             event.preventDefault();
           } else if (this.readyState == 4 && this.status == 500) {
