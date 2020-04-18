@@ -1,156 +1,87 @@
-// Fallback layout degradation, use float layout for IE.
 .admin-main {
-  /* mobile first */
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  max-width: 1000px;
+  display: grid;
+  grid-template-areas:
+    "adminSidebar"
+    "."
+    "adminContent";
+  -ms-grid-rows: 1fr 10px auto;
+  -ms-grid-columns: 1fr;
+  grid-template-rows: 1fr 10px min-content;
   margin: 0 auto;
-  padding: 1em;
+  padding: 0 10px;
+  max-width: $maxContentWidth;
+
+
+  .admin-sidebar {
+    -ms-grid-row: 1;
+    grid-area: adminSidebar;
+    width: auto;
+    margin: 0;
+    padding: 0;
+
+    li {
+      width: 25%;
+    }
+  }
+
+  .admin-content {
+    -ms-grid-row: 3;
+    grid-area: adminContent;
+    width: auto;
+    padding: 0;
+    margin: 0;
+  }
 
   @media screen and (min-width: 900px) {
-    padding: 0;
-  }
-
-  /* sidebar */
-  .admin-sidebar {
-    float: top;
-    padding: 0 10px;
-    margin: -40px auto 10px;
-
-    @media screen and (min-width: 900px) {
-      /* Change position to be a left sidebar */
-      margin-top: 0px;
-      float: left;
-      width: 30%;
-      max-width: 160px;
-    }
-
-    .admin-nav {
-      li {
-        width: 25%;
-
-        @media screen and (min-width: 900px) {
-          width: 100%;
-        }
-
-        a {
-          padding: 14px 0;
-        }
-      }
-
-      @media screen and (min-width: 900px) {}
-    }
-  }
-
-  /* Content area - table */
-  .admin-content {
-    float: bottom;
-    padding: 0 2em;
-
-    .content-wrapper {
-      min-width: 310px;
-    }
-
-    @media screen and (min-width: 900px) {
-      float: left;
-      width: 70%;
-      padding: 0 2em 0 0;
-    }
-  }
-
-  section.admin-content {
-    background-color: #fff;
-    // min-width: 725px;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-    padding: 0;
-    margin: 0 10px;
-
-    @media screen and (min-width: 900px) {
-      margin: 0;
-      // min-width: unset !important;
-      // width: 100%;
-    }
-
-    div.content-wrapper {
-      padding: 8px;
-    }
-  }
-
-  section.admin-content::before {
-    z-index: 1;
-    background-color: #006991;
-    content: "";
-    display: block;
-    position: relative;
-    border-radius: 3px 3px 0 0;
-    width: 100%;
-    // min-width: 725px;
-    height: 3px;
-    left: 0px;
-
-    @media screen and (min-width: 900px) {
-      // min-width: unset !important;
-      // width: 100%;
-    }
-  }
-}
-
-// If user's browser supports grid, then we use grid layout.
-@supports(display: grid) {
-  .admin-main {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-areas:
-      "adminSidebar"
-      "adminContent";
-    grid-template-rows: 1fr min-content;
-    margin: 0 auto;
-    padding: 0 10px;
-    max-width: $maxContentWidth;
-
-    @media screen and (min-width: 900px) {
-      grid-template-areas: "adminSidebar adminContent";
-      grid-template-columns: 150px auto;
-    }
+    grid-template-areas: "adminSidebar . adminContent";
+    grid-template-columns: 150px 10px 1fr;
+    -ms-grid-rows: 1fr 10px auto;
+    -ms-grid-columns: 150px 10px 1fr;
 
     section.admin-sidebar {
       grid-area: adminSidebar;
+      -ms-grid-row: 1/4;
+      -ms-grid-column: span 3;
+      grid-column: 1/2;
       width: auto;
       margin: 0;
       padding: 0;
+
+      li {
+        width: 100%;
+      }
     }
 
     section.admin-content {
       grid-area: adminContent;
+      -ms-grid-row: 1/4;
+      -ms-grid-column: span 3;
+      grid-column: 3/4;
       width: auto;
       padding: 0;
       margin: 0;
     }
   }
+}
 
-  div.admin-sidebar {}
+section.admin-content {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
 
-  section.admin-content {
-    background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-
-    div.content-wrapper {
-      padding: 8px;
-    }
+  div.content-wrapper {
+    padding: 8px;
   }
+}
 
-  section.admin-content::before {
-    z-index: 1;
-    background-color: #006991;
-    content: "";
-    display: block;
-    position: relative;
-    border-radius: 3px 3px 0 0;
-    width: 100%;
-    height: 3px;
-    left: 0px;
-  }
+section.admin-content::before {
+  z-index: 1;
+  background-color: #006991;
+  content: "";
+  display: block;
+  position: relative;
+  border-radius: 3px 3px 0 0;
+  width: 100%;
+  height: 3px;
+  left: 0px;
 }
