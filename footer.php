@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div class="footer__bottom__wraper__contact__wraper">
-                    <h5 class="footer__contact__list__heading">Ipsum</h5>
+                    <h5 class="footer__info__heading">Ipsum</h5>
                     <ul class="footer__list">
                         <a href="" class="footer__list__categori"><li>Kategori</li></a>
                         <a href="" class="footer__list__categori"><li>Kategori</li></a>
