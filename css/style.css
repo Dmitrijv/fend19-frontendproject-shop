@@ -689,5 +689,62 @@ label {
   .footer .footer__wrapper > *:not(:first-child) {
     margin-top: 10px;
   }
+  .footer .footer__wrapper .footer-icon {
+    cursor: pointer;
+  }
+  .footer .footer__wrapper .pulse:hover,
+  .footer .footer__wrapper .pulse:focus {
+    -webkit-animation: pulse 1s;
+            animation: pulse 1s;
+    -webkit-box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+            box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+  }
+  @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 var(--hover);
+              box-shadow: 0 0 0 0 var(--hover);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 var(--hover);
+              box-shadow: 0 0 0 0 var(--hover);
+    }
+  }
+}
+
+.fill {
+  --color: #a972cb;
+  --hover: #cb72aa;
+}
+
+.pulse {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
+}
+
+.close {
+  --color: #ff7f82;
+  --hover: #ffdc7f;
+}
+
+.raise {
+  --color: #ffa260;
+  --hover: #e5ff60;
+}
+
+.up {
+  --color: #e4cb58;
+  --hover: #94e458;
+}
+
+.slide {
+  --color: #8fc866;
+  --hover: #66c887;
+}
+
+.offset {
+  --color: #19bc8b;
+  --hover: #1973bc;
 }
 /*# sourceMappingURL=style.css.map */

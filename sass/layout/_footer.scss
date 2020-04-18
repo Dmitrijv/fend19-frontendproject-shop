@@ -172,6 +172,38 @@
       &>*:not(:first-child) {
         margin-top: 10px;
       }
+
+      .footer-icon {
+        cursor: pointer;
+      }
+
+      .pulse:hover,
+      .pulse:focus {
+        animation: pulse 1s;
+        box-shadow: 0 0 0 2em rgba(#fff, 0);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--hover);
+        }
+      }
     }
+  }
+}
+
+$colors: (fill: #a972cb,
+  pulse: #ef6eae,
+  close: #ff7f82,
+  raise: #ffa260,
+  up: #e4cb58,
+  slide: #8fc866,
+  offset: #19bc8b);
+
+@each $button,
+$color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 45deg)};
   }
 }

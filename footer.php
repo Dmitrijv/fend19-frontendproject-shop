@@ -52,12 +52,12 @@
         <div class="footer__wrapper">
             <h6 class="footer__icon__heading">Följ oss</h6>
             <div class="icon-wrapper">
-                <img src="img/svg/footer/facebook.svg" alt="facebook" class="footer__icons">
-                <img src="img/svg/footer/instagram.svg" alt="instagram" class="footer__icons">
-                <img src="img/svg/footer/twitter.svg" alt="twitter" class="footer__icons">
-                <img src="img/svg/footer/youtube.svg" alt="youtube" class="footer__icons">
+                <a class="footer-icon" href="#"><img src="img/svg/footer/facebook.svg" alt="Facebook Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="#"><img src="img/svg/footer/instagram.svg" alt="Instagram Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="#"><img src="img/svg/footer/twitter.svg" alt="Twitter Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="#"><img src="img/svg/footer/youtube.svg" alt="Youtube Icon" class="footer__icons"></a>
             </div>
-            <button class="footer__contact__button">Kontakta oss</button>
+            <button class="pulse footer__contact__button">Kontakta oss</button>
         </div>
     </div>
 </footer>
