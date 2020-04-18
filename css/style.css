@@ -27,6 +27,7 @@ img {
 
 @media (min-width: 800px) {
   .logo {
+    width: auto;
     margin-top: 0;
   }
 }
