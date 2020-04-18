@@ -136,7 +136,7 @@ adminLib = (function() {
           input.value = ""; // remember to empty input
 
           lib.setSuccessStyle(alertElement);
-          messageElement.textContent = "Caregory name updated successfully.";
+          messageElement.textContent = "Category name updated successfully.";
           lib.drawCategoryTable();
           event.preventDefault(); // attempting to update a deleted category
         } else if (this.readyState == 4 && this.status == 500) {
@@ -144,7 +144,7 @@ adminLib = (function() {
           lib.setFailStyle(alertElement);
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
-          messageElement.textContent = "New name is incorrect or diplicate.";
+          messageElement.textContent = "New name is invalid or duplicate.";
           lib.setFailStyle(alertElement);
           event.preventDefault();
         }
