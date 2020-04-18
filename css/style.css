@@ -543,6 +543,8 @@ label {
   margin-left: 5%;
   padding-left: 20px;
   list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
 }
 
 .footer__list__categori {
