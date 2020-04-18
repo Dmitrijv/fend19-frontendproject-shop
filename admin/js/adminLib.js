@@ -170,17 +170,32 @@ adminLib = (function() {
     },
 
     toggleCategoryUpdateElements: function(event) {
-      const categoryId = event.currentTarget.edit.dataset.categoryid;
-      const editForm = document.getElementById(`${categoryId}-updateForm`);
-      const nameLabel = document.getElementById(`${categoryId}-nameLabel`);
-      const formIsVisible = editForm.classList.contains("hidden");
-      if (formIsVisible === false) {
-        editForm.classList.add("hidden");
-        nameLabel.classList.remove("hidden");
-      } else {
-        editForm.classList.remove("hidden");
-        nameLabel.classList.add("hidden");
+      const targetCategoryId = event.currentTarget.edit.dataset.categoryid;
+
+      // loop over all table update rows in the table
+      const updateForms = document.querySelectorAll("table.category-table tr form.update-category");
+      for (let i = 0; i < updateForms.length; ++i) {
+        const editForm = updateForms[i];
+        const formIsVisible = editForm.classList.contains("hidden");
+
+        const categoryId = editForm.dataset.categoryid;
+        const nameLabel = document.getElementById(`${categoryId}-nameLabel`);
+
+        // current edit form is not the one we clicked "edit" for but it was left visible
+        if (formIsVisible === true && categoryId !== targetCategoryId) {
+          editForm.classList.add("hidden");
+          nameLabel.classList.remove("hidden");
+          // current form is the one we want to fill in but it's hidden, so lets show it
+        } else if (formIsVisible === false) {
+          editForm.classList.add("hidden");
+          nameLabel.classList.remove("hidden");
+          // user clicked "edit" on a row where the form was already visible so lets hide it
+        } else {
+          editForm.classList.remove("hidden");
+          nameLabel.classList.add("hidden");
+        }
       }
+
       event.preventDefault();
     },
 
