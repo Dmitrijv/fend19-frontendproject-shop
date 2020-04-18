@@ -362,8 +362,9 @@ table.db-table tr:hover {
   min-width: 50%;
 }
 
-.product-table tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(4) {
-  min-width: 68px;
+.product-table thead tr > td:nth-child(4),
+.product-table tbody tr > td:nth-child(4) {
+  min-width: 75px;
 }
 
 @media only screen and (max-width: 801px) {
@@ -861,10 +862,11 @@ table.product-table img.cover-demo {
 
 /* Display ellipsis if it is a modern browser*/
 @supports (display: grid) {
-  /* Use ellipsis to display all description info */
+  /* Hide partial description when it comes to a smaller device */
   .ie-box {
-    display: none;
+    display: none !important;
   }
+  /* Use ellipsis to display all description info when it comes to a tablet / mobile device*/
   .ellipsis {
     display: block;
     position: relative;
@@ -883,9 +885,9 @@ table.product-table img.cover-demo {
     padding: 0 6px;
   }
   /* When it goes to big screen, display partial description, use .ie-box */
-  @media screen and (min-width: 801px) {
+  @media screen and (min-width: 802px) {
     .ie-box {
-      display: table-cell;
+      display: table-cell !important;
     }
     .ellipsis {
       display: none;

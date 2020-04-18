@@ -31,11 +31,12 @@ table.product-table {
 /* Display ellipsis if it is a modern browser*/
 @supports (display: grid) {
 
-  /* Use ellipsis to display all description info */
+  /* Hide partial description when it comes to a smaller device */
   .ie-box {
-    display: none;
+    display: none !important;
   }
-
+  
+  /* Use ellipsis to display all description info when it comes to a tablet / mobile device*/
   // This class avoids creating multiple lines
   .ellipsis {
     display: block;
@@ -56,9 +57,9 @@ table.product-table {
   }
 
   /* When it goes to big screen, display partial description, use .ie-box */
-  @media screen and (min-width: 801px) {
+  @media screen and (min-width: 802px) {
     .ie-box {
-      display: table-cell;
+      display: table-cell !important;
     }
 
     .ellipsis {
