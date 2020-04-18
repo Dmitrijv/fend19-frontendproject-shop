@@ -15,14 +15,13 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 }
 
 ?>
-
-<div class="sidebar">
-<nav>
-        <ul class="sidebar__menu">
-        <form class="sidebar__form" method="GET">
-        <?php echo $sidebarItems; ?>
-        </form>
-        </ul>
-    </nav>
-</div>
-
+<main>
+    <div class="sidebar">
+        <nav>
+            <ul class="sidebar__menu">
+                <form class="sidebar__form" method="GET">
+                    <?php echo $sidebarItems; ?>
+                </form>
+            </ul>
+        </nav>
+    </div>

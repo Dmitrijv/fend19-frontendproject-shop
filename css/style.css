@@ -351,6 +351,7 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 300px;
 }
 
 .product__img-wrapper {
@@ -629,6 +630,7 @@ label {
   }
   .footer__embed__map {
     height: 250px;
+    padding-right: 0 30px;
   }
   .footer__bottom__wrapper {
     display: -ms-grid;
