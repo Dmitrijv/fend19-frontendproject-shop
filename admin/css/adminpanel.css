@@ -528,8 +528,6 @@ header.admin-header div.header-container {
   margin: 0 auto 35px auto;
   background-color: #3b455e;
   padding: 10px;
-  margin-right: auto;
-  margin-left: 20px;
 }
 
 @media screen and (min-width: 801px) {
