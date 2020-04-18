@@ -1,30 +1,36 @@
 .footer {
   width: 100%;
+
   &__contact__heading {
     font-weight: bold;
     margin: 5px auto 0 5%;
     font-size: 24px;
   }
+
   &__info__heading {
     font-weight: bold;
     margin: 5px auto;
     font-size: 24px;
   }
+
   &__contact__list__heading {
     font-weight: bold;
     margin: 5px auto 0 5%;
     font-size: 24px;
   }
+
   &__icon__heading {
     font-weight: bold;
     margin: 5px auto 0 5%;
     font-size: 24px;
   }
+
   &__shop__name {
     font-size: 32px;
     color: rgb(238, 76, 76);
     margin-left: 5%;
   }
+
   &__list {
     margin-left: 5%;
     padding-left: 20px;
@@ -37,8 +43,10 @@
       text-decoration: none;
     }
   }
+
   &__form {
     width: 100%;
+
     &__inputs {
       width: 90%;
       min-height: 40px;
@@ -48,6 +56,7 @@
       margin: 10px 5% 10px 5%;
       padding: 5px;
     }
+
     &__msg {
       width: 90%;
       min-height: 40px;
@@ -57,6 +66,7 @@
       margin: 10px 5% 10px 5%;
       padding: 5px;
     }
+
     &__button {
       width: 90%;
       margin-left: 5%;
@@ -68,19 +78,23 @@
       border-style: none;
     }
   }
+
   &__embed__map {
     width: 100%;
     border: 0;
   }
+
   &__icons__wrapper {
     padding: 10px 0;
     margin-left: 5%;
   }
+
   &__icons {
     width: 50px;
     height: 50px;
     margin: 10px 5px;
   }
+
   &__contact__button {
     width: 95%;
     margin-bottom: 20px;
@@ -91,15 +105,18 @@
     border-style: none;
   }
 }
+
 @media (min-width: 800px) {
   .footer {
     .logo {
       margin: 50px 5% auto auto;
     }
+
     &__contact__heading {
       font-weight: bold;
       margin: 5px auto 0 4%;
     }
+
     &__embed__map {
       height: 250px;
     }
@@ -108,32 +125,53 @@
       display: grid;
       grid-template-columns: 1fr auto auto 1fr;
       gap: 3%;
-      &__info__wraper {
+
+      &__info__wrapper {
         grid-column: 2;
       }
-      &__contact__wraper {
+
+      &__contact__wrapper {
         grid-column: 3;
       }
+
+      &__info__wrapper,
+      &__contact__wrapper,
+      .footer__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
+
     &__info__heading {
       margin: 0;
       margin-top: 50px;
     }
+
     &__contact__list__heading {
       margin: 0;
       margin-top: 50px;
     }
+
     &__icon__heading {
       margin: 0;
     }
-    &__icons__wrapper {
+
+    &__wrapper {
       grid-column: 4;
       padding-top: 0;
       margin-top: 50px;
       margin-right: auto;
     }
-    &__contact__button {
-      width: 50%;
+
+    .footer__wrapper {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+
+      &>*:not(:first-child) {
+        margin-top: 10px;
+      }
     }
   }
 }
