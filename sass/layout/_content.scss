@@ -1,3 +1,27 @@
+/* bp: 425px / 768px / 1220px / max: 1440  */
+/* col: 1    /  2-3  /   4    /  maintain 4, add margin*/
+
+/* mobile  */
+.product-container {
+  background-color: yellow;
+  display: -ms-grid;
+  -ms-grid-rows: (1fr 80px)[12] !important;
+  -ms-grid-columns: 1fr;
+}
+
+// $grid-boxs: ".grid-box";
+
+// @each $grid-box in $grid-boxes
+
+$elements: 13;
+
+@for $i from 1 to $elements {
+  .product-container>:nth-child(#{$i }) {
+    grid-row: $i + $i -1 !important;
+  }
+}
+
+
 .content {
   margin-top: 80px;
   padding: 2em;
@@ -76,6 +100,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     @supports(display: grid) {
       display: grid;
       justify-items: center;

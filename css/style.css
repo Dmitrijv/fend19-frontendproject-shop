@@ -415,6 +415,76 @@ button {
   max-height: 170px;
 }
 
+/* bp: 425px / 768px / 1220px / max: 1440  */
+/* col: 1    /  2-3  /   4    /  maintain 4, add margin*/
+/* mobile  */
+.product-container {
+  background-color: yellow;
+  display: -ms-grid;
+  -ms-grid-rows: 1fr 80px [12] !important;
+  -ms-grid-columns: 1fr;
+}
+
+.product-container > :nth-child(1) {
+  -ms-grid-row: 1 !important;
+  grid-row: 1 !important;
+}
+
+.product-container > :nth-child(2) {
+  -ms-grid-row: 3 !important;
+  grid-row: 3 !important;
+}
+
+.product-container > :nth-child(3) {
+  -ms-grid-row: 5 !important;
+  grid-row: 5 !important;
+}
+
+.product-container > :nth-child(4) {
+  -ms-grid-row: 7 !important;
+  grid-row: 7 !important;
+}
+
+.product-container > :nth-child(5) {
+  -ms-grid-row: 9 !important;
+  grid-row: 9 !important;
+}
+
+.product-container > :nth-child(6) {
+  -ms-grid-row: 11 !important;
+  grid-row: 11 !important;
+}
+
+.product-container > :nth-child(7) {
+  -ms-grid-row: 13 !important;
+  grid-row: 13 !important;
+}
+
+.product-container > :nth-child(8) {
+  -ms-grid-row: 15 !important;
+  grid-row: 15 !important;
+}
+
+.product-container > :nth-child(9) {
+  -ms-grid-row: 17 !important;
+  grid-row: 17 !important;
+}
+
+.product-container > :nth-child(10) {
+  -ms-grid-row: 19 !important;
+  grid-row: 19 !important;
+}
+
+.product-container > :nth-child(11) {
+  -ms-grid-row: 21 !important;
+  grid-row: 21 !important;
+}
+
+.product-container > :nth-child(12) {
+  -ms-grid-row: 23 !important;
+  grid-row: 23 !important;
+}
+
 .content {
   margin-top: 80px;
   padding: 2em;
