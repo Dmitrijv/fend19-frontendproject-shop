@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/php/model/db.php";
+require_once __DIR__ . "/../model/db.php";
 
 $categoryId = isset($_GET['cat']) ? $_GET['cat'] : 'p.category_id';
 // Display all products by default.
@@ -27,7 +27,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
 }
 ?>
 
-<div class="content">
-    <div class="product-container">
-        <?php echo $products; ?>
-    </div>
+
+<div class="product-container">
+    <?php echo $products; ?>
+</div>
