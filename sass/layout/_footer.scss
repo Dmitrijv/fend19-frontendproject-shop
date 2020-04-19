@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-
+  background-color: whitesmoke;
   &__contact__heading {
     font-weight: bold;
     margin: 5px auto 0 5%;
@@ -170,7 +170,7 @@
       flex-direction: column;
       place-items: center;
 
-      &>*:not(:first-child) {
+      & > *:not(:first-child) {
         margin-top: 10px;
       }
 
@@ -193,16 +193,17 @@
   }
 }
 
-$colors: (fill: #a972cb,
+$colors: (
+  fill: #a972cb,
   pulse: #ef6eae,
   close: #ff7f82,
   raise: #ffa260,
   up: #e4cb58,
   slide: #8fc866,
-  offset: #19bc8b);
+  offset: #19bc8b,
+);
 
-@each $button,
-$color in $colors {
+@each $button, $color in $colors {
   .#{$button} {
     --color: #{$color};
     --hover: #{adjust-hue($color, 45deg)};
