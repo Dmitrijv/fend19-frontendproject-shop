@@ -1,4 +1,5 @@
 <header class="main__header">
+<div class="main__header__top">
     <div class="logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
     <nav class="nav">
         <div class="nav__item">
@@ -7,5 +8,11 @@
         <div class="nav__item main__header__search">
             <input class="main__header__search--input" type="text"><button class="main__header__btn search-btn"><img class="img-search" src="./img/svg/search-mob.svg" alt=""></button>
         </div>
+    </nav>
+    </div>
+    <nav class="main__header__bottom">
+    <form class="header__form" method="GET">
+                    <?php echo $sidebarItems; ?>
+                </form>
     </nav>
 </header>

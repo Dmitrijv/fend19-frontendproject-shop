@@ -1,12 +1,8 @@
 .content {
-  margin-top: 50px;
+  margin-top: 130px;
   padding: 2em;
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 800px) {
-    margin-left: 250px;
-  }
 }
 
 .product-container {

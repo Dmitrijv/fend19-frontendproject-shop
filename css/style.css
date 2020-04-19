@@ -53,6 +53,18 @@ button {
   padding: 10px 30px 10px 30px;
 }
 
+.header__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+
+.header__form .sidebar__menu__list-item {
+  margin-left: 20px;
+  list-style: none;
+}
+
 .main__header {
   position: fixed;
   width: 100%;
@@ -71,6 +83,38 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 1;
+}
+
+.main__header__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 800px) {
+  .main__header__top {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.main__header__bottom {
+  margin-top: 10px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .main__header__btn {
@@ -105,18 +149,6 @@ button {
   }
   .main__header__search input {
     min-width: 260px;
-  }
-}
-
-@media (min-width: 800px) {
-  .main__header {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
   }
 }
 
@@ -374,7 +406,7 @@ button {
 }
 
 .content {
-  margin-top: 50px;
+  margin-top: 130px;
   padding: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -383,12 +415,6 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-@media (min-width: 800px) {
-  .content {
-    margin-left: 250px;
-  }
 }
 
 .product-container {
@@ -523,14 +549,7 @@ button {
 
 @media (min-width: 800px) {
   .sidebar {
-    position: absolute;
-    padding-top: 118px;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    left: 0;
-    max-width: 250px;
-    z-index: 0;
+    display: none;
   }
 }
 

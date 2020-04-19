@@ -1,3 +1,12 @@
+.header__form {
+    display: flex;
+    margin-left: 20px;
+    .sidebar__menu__list-item {
+        margin-left: 20px;
+        list-style: none;
+    }
+}
+
 .main__header {
   position: fixed;
   width: 100%;
@@ -8,7 +17,19 @@
   flex-direction: column;
   justify-content: center;
   z-index: 1;
-
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-width: 800px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+  }
+  &__bottom {
+      margin-top: 10px;
+      align-self: center;
+}
   &__btn {
     // margin-left: 8px;
     background-color: #f60d4d;
@@ -37,11 +58,6 @@
         min-width: 260px;
       }
     }
-  }
-
-  @media (min-width: 800px) {
-    flex-direction: row;
-    justify-content: space-between;
   }
 }
 

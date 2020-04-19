@@ -32,12 +32,7 @@
     margin-bottom: 20px;
   }
   @media (min-width: 800px) {
-    position: absolute;
-    padding-top: 118px;
-    justify-content: flex-start;
-    left: 0;
-    max-width: 250px;
-    z-index: 0;
+    display: none;
   }
 }
 .sidebar.active {
