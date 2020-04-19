@@ -53,6 +53,31 @@ button {
   padding: 10px 30px 10px 30px;
 }
 
+.top-nav {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .top-nav {
+    display: block;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+  .top-nav__form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-left: 20px;
+  }
+  .top-nav__form .sidebar__menu__list-item {
+    margin-left: 20px;
+    list-style: none;
+  }
+}
+
 .main__header {
   position: fixed;
   width: 100%;
@@ -390,31 +415,6 @@ button {
   max-height: 170px;
 }
 
-.top-nav {
-  display: none;
-}
-
-@media (min-width: 800px) {
-  .top-nav {
-    display: block;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-  }
-  .top-nav__form {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-left: 20px;
-  }
-  .top-nav__form .sidebar__menu__list-item {
-    margin-left: 20px;
-    list-style: none;
-  }
-}
-
 .content {
   margin-top: 80px;
   padding: 2em;
@@ -439,7 +439,6 @@ button {
 }
 
 .product {
-  float: left;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
