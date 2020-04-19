@@ -13,10 +13,14 @@
 
   .grid-box {
     margin-bottom: 20px;
+
+    .product__title {
+      width: 100%;
+    }
   }
 }
 
-$elements: 12;
+$elements: 120;
 
 @for $i from 1 to $elements {
   .product-container>:nth-child(#{$i }) {
@@ -31,7 +35,7 @@ $elements: 12;
     -ms-grid-columns: 1fr 2em 1fr;
   }
 
-  $elements: 12;
+  $elements: 120;
 
   @for $i from 1 to $elements {
     .product-container>:nth-child(#{$i*2 - 1}) {
@@ -53,7 +57,7 @@ $elements: 12;
     -ms-grid-columns: 1fr 2em 1fr 2em 1fr;
   }
 
-  $elements: 12;
+  $elements: 120;
 
   @for $i from 0 to $elements {
 
@@ -91,7 +95,7 @@ $elements: 12;
     -ms-grid-columns: 1fr 2em 1fr 2em 1fr 2em 1fr;
   }
 
-  $elements: 12;
+  $elements: 120;
 
   @for $i from 0 to $elements {
 
@@ -191,6 +195,7 @@ $elements: 12;
   }
 
   .grid-2 {
+    margin-top: 20px;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     display: -ms-flexbox;
