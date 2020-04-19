@@ -1,11 +1,4 @@
-.header__form {
-    display: flex;
-    margin-left: 20px;
-    .sidebar__menu__list-item {
-        margin-left: 20px;
-        list-style: none;
-    }
-}
+
 
 .main__header {
   position: fixed;
@@ -26,10 +19,6 @@
         justify-content: space-between;
       }
   }
-  &__bottom {
-      margin-top: 10px;
-      align-self: center;
-}
   &__btn {
     // margin-left: 8px;
     background-color: #f60d4d;

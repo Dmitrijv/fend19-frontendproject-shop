@@ -10,9 +10,4 @@
         </div>
     </nav>
     </div>
-    <nav class="main__header__bottom">
-    <form class="header__form" method="GET">
-                    <?php echo $sidebarItems; ?>
-                </form>
-    </nav>
 </header>

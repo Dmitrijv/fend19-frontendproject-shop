@@ -23,6 +23,7 @@
 
     <main>
         <div class="content">
+        <?php require_once __DIR__ . '/php/view/top-nav.php';?>
             <?php require_once __DIR__ . '/php/view/products.php';?>
         </div>
     </main>
