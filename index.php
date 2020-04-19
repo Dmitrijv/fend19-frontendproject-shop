@@ -33,6 +33,7 @@
 
     <script src="./js/sidebar.js"></script>
     <script src="./js/cart.js"></script>
+    <script src="./js/search-validation.js"></script>
 
 </body>
 </html>
