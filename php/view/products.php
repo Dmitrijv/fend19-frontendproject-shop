@@ -12,17 +12,19 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $image1 = (count($images) > 0) ? $images[0] : 'placeholder.png';
     $imageDir = './img/product/' . $image1;
     $products .= "
-        <div class='product'>
-            <div class='product__img-wrapper'>
+        <div class='product grid-box'>
+            <div class='product__img-wrapper grid-3'>
                 <img class='product__img' src='{$imageDir}' alt='product name'>
             </div>
-            <p class='product__title'>{$tableRow["Title"]}</p>
-            <div class='product__count-container'>
-                <button class='product__count-btn'>-</button>
-                <p class='product__count'>{$tableRow["Number"]}</p>
-                <button class='product__count-btn'>+</button>
+            <div class='grid-2'>
+                <p class='product__title'>{$tableRow["Title"]}</p>
+                <div class='product__count-container'>
+                    <button class='product__count-btn'>-</button>
+                    <p class='product__count'>{$tableRow["Number"]}</p>
+                    <button class='product__count-btn'>+</button>
+                </div>
+                <button class='product__add-btn'>Lägg i varukorgen</button>
             </div>
-            <button class='product__add-btn'>Lägg i varukorgen</button>
         </div>";
 }
 ?>
