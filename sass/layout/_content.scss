@@ -1,5 +1,8 @@
 /* bp: 425px / 768px / 1220px / max: 1440  */
 /* col: 1    /  2-3  /   4    /  maintain 4, add margin*/
+/* Width between 425px - 843px 2 */
+/* Width between 843px - 1113px 3 */
+/* Width 1113px above 4 */
 
 /* mobile  */
 .product-container {
@@ -7,6 +10,14 @@
   display: -ms-grid;
   -ms-grid-rows: (1fr 80px)[12] !important;
   -ms-grid-columns: 1fr;
+
+//   $elements: 130;
+
+// @for $i from 1 to $elements {
+//   .product-container>:nth-child(#{$i }) {
+//     -ms-grid-row: $i + $i -1 !important;
+//   }
+// }
 }
 
 // $grid-boxs: ".grid-box";
@@ -21,6 +32,28 @@ $elements: 130;
   }
 }
 
+/* Width between 425px - 768px 2 */
+@media screen and (max-width: 768px) and (min-width: 500px){
+  .product-container {
+    -ms-grid-rows: (1fr 80px)[12] !important;
+    -ms-grid-columns: 1fr 2em 1fr;
+  }
+
+  $elements: 130;
+
+  @for $i from 1 to $elements {
+    .product-container>:nth-child(#{$i*2 - 1}) {
+      -ms-grid-row: (($i + 1) ) !important;
+      -ms-grid-column: 1 !important;
+    }
+
+    .product-container>:nth-child(#{$i*2}) {
+      -ms-grid-row: $i !important;
+      -ms-grid-column: 3 !important;
+    }
+  }
+
+}
 
 .content {
   margin-top: 80px;
