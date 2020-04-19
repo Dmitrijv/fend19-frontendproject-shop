@@ -233,7 +233,6 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
-  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -246,7 +245,6 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -264,13 +262,11 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
-      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -5718,7 +5714,7 @@ button {
           align-items: center;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -5752,7 +5748,6 @@ main {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
-  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
@@ -5838,6 +5833,11 @@ label {
 .footer {
   width: 100%;
   background-color: whitesmoke;
+  padding: 20px;
+}
+
+.footer .logo {
+  width: 220px;
 }
 
 .footer__contact__heading {
@@ -5962,6 +5962,9 @@ label {
     -ms-grid-columns: 1fr auto auto 1fr;
         grid-template-columns: 1fr auto auto 1fr;
     gap: 3%;
+  }
+  .footer__bottom__wrapper__info__wrapper, .footer__bottom__wrapper__contact__wrapper {
+    margin-right: 20px;
   }
   .footer__bottom__wrapper__info__wrapper {
     -ms-grid-column: 2;
