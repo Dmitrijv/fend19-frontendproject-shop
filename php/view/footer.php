@@ -5,48 +5,39 @@
     <div class="footer__bottom__wrapper">
         <div class="logo"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></div>
         <div class="footer__bottom__wrapper__info__wrapper">
-            <h5 class="footer__info__heading">Lorem</h5>
+            <h5 class="footer__info__heading">Kundtjänst</h5>
             <ul class="footer__list">
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Kontakta oss</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Vanliga frågor</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Köpvillkor</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
-                </a>
-                <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
-                </a>
-                <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Retur & reklamationer</li>
                 </a>
             </ul>
         </div>
         <div class="footer__bottom__wrapper__contact__wrapper">
-            <h5 class="footer__info__heading">Ipsum</h5>
+            <h5 class="footer__info__heading">Information</h5>
             <ul class="footer__list">
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Om oss</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Hitta Motiv</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Retur</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Presentkort</li>
                 </a>
                 <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
-                </a>
-                <a href="" class="footer__list__categori">
-                    <li>Kategori</li>
+                    <li>Jobba hos oss</li>
                 </a>
             </ul>
         </div>
@@ -58,7 +49,7 @@
                 <a class="footer-icon" href="#"><img src="img/svg/footer/twitter.svg" alt="Twitter Icon" class="footer__icons"></a>
                 <a class="footer-icon" href="#"><img src="img/svg/footer/youtube.svg" alt="Youtube Icon" class="footer__icons"></a>
             </div>
-            <button class="pulse footer__contact__button">Kontakta oss</button>
+            <!-- <button class="pulse footer__contact__button">Kontakta oss</button> -->
         </div>
     </div>
 </footer>
