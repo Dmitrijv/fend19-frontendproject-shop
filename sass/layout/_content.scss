@@ -13,7 +13,7 @@
 
 // @each $grid-box in $grid-boxes
 
-$elements: 13;
+$elements: 130;
 
 @for $i from 1 to $elements {
   .product-container>:nth-child(#{$i }) {
