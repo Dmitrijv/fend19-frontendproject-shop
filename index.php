@@ -4,3 +4,4 @@ require_once('main-product-page.php');
 require_once('footer.php');
 ?> 
 <script src="./js/sidebar.js"></script>
+<script src="./js/cart.js"></script>
