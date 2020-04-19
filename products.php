@@ -1,9 +1,8 @@
 <?php
 require_once __DIR__ . "/php/model/db.php";
-isset($_GET['cat']) ? $categoryId = $_GET['cat'] : $categoryId = 1;
-echo $_GET['cat'];
-// Default, display undeletable category products
-// I think something needs to be done in database. This is beyond my capability.
+
+$categoryId = isset($_GET['cat']) ? $_GET['cat'] : 'p.category_id';
+// Display all products by default.
 
 $stmt = DB::run("SELECT p.title Title, p.number_in_stock Number, p.category_id, GROUP_CONCAT(ip.file_name ORDER BY ip.file_name) AS images 
 FROM product_category AS pc LEFT JOIN product AS p ON p.category_id = pc.id INNER JOIN image_of_product AS ip ON ip.product_id = p.id 
