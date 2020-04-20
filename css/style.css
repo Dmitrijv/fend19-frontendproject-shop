@@ -15,7 +15,6 @@ body {
 }
 
 img {
-  width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -53,7 +52,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   input {
     border: none;
   }
@@ -255,6 +254,7 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -267,6 +267,7 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -284,11 +285,13 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -397,7 +400,7 @@ button {
   .dropdown {
     position: relative;
     display: inline-block;
-    margin: auto;
+    margin-right: auto;
   }
   /*@media all and (min-width:800px)*/
   .top-nav__form {
@@ -1091,7 +1094,7 @@ main {
 
 /* IE part ends here, but legend continues. */
 /* Here comes code for other browsers */
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .product-container {
     display: -ms-grid;
     display: grid;
@@ -1152,17 +1155,6 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 8px;
-}
-
-.product__count {
-  text-align: center;
-}
-
-.product__count-btn {
-  padding: 10px;
-  margin: 10px;
-  min-width: 32.1px;
 }
 
 .product__add-btn {
@@ -1175,8 +1167,8 @@ main {
   display: grid;
   -ms-grid-rows: 3fr 200px !important;
   -ms-grid-columns: 1fr;
-  -ms-grid-rows: 3fr;
-      grid-template-rows: 3fr;
+  -ms-grid-rows: 250px 150px;
+      grid-template-rows: 250px 150px;
   grid-template-columns: 1fr;
 }
 
@@ -1193,7 +1185,6 @@ main {
 }
 
 .grid-box .grid-2 {
-  margin-top: 20px;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   display: -ms-flexbox;
@@ -1204,17 +1195,167 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-@supports (display: grid) {
+.grid-box .grid-2 .product__title {
+  font-size: 14px;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
     justify-items: center;
+    align-self: flex-end;
+    -ms-grid-rows: 0.8fr min-content 0.5fr 1fr;
+        grid-template-rows: 0.8fr -webkit-min-content 0.5fr 1fr;
+        grid-template-rows: 0.8fr min-content 0.5fr 1fr;
   }
+  .grid-box .grid-2 .product__count-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 35px;
+    width: 100px;
+  }
+  .grid-box .grid-2 .product__count-container .product__count-btn {
+    display: inline-block;
+    height: 30px;
+    padding: 0 9px;
+    margin: 0;
+  }
+  .grid-box .grid-2 .product__count-container .product__count {
+    display: inline-block;
+    text-align: center;
+  }
+  .grid-box .grid-2 .product__price {
+    height: 30px;
+  }
+}
+
+div.product > div > button:nth-child(4) {
+  padding: 5px 15px;
+}
+
+/* Button animation code */
+.ctrl-standard.fx-bubbleUp {
+  color: #9fa255;
+  border-color: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp::after {
+  top: auto;
+  border-radius: 50% 50% 0 0/75% 75% 0 0;
+  background: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed::after {
+  height: 300%;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed:hover {
+  color: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
+  height: 0;
+}
+
+.ctrl-standard.fx-sliderIn.is-reversed:hover::after {
+  width: 0;
+}
+
+[class*="ctrl-"] {
+  padding: 5ox 10px;
+  border-radius: 2px;
+  border: 1px solid #231f20;
+}
+
+[class*="ctrl-"][class*="fx-"]:hover,
+[class*="ctrl-"][class*="fx-"].active {
+  color: #231f20;
+}
+
+[class*="ctrl-"][class*="fx-"].is-reversed {
+  color: #231f20;
+}
+
+[class*="fx-"],
+[class*="fx-"]:hover {
+  -webkit-transition: color 0.5s ease-in-out;
+  -o-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+}
+
+[class*="fx-"]:not(.fx-dyna) {
+  position: relative;
+  z-index: 1;
+  -webkit-transition-delay: 0.2s !important;
+  -o-transition-delay: 0.2s !important;
+     transition-delay: 0.2s !important;
+  overflow: hidden;
+}
+
+[class*="fx-"]:not(.fx-dyna)::after,
+[class*="fx-"]:not(.fx-dyna)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+
+[class*="fx-bubble"]::after {
+  -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+}
+
+[class*="fx-bubble"]:hover::after,
+[class*="fx-bubble"].active::after {
+  -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  height: 300%;
+}
+
+[class*="fx-bubble"]:disabled:hover::after {
+  height: 0;
+}
+
+.fx-sliderIn::after {
+  -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+}
+
+.fx-sliderIn:hover::after,
+.fx-sliderIn.active::after {
+  -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  width: 100%;
+}
+
+:checked + .fx-sliderIn::after,
+.fx-sliderIn.active::after {
+  width: 300%;
 }
 
 .sidebar {
@@ -1239,6 +1380,7 @@ main {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 

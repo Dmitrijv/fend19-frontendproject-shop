@@ -133,30 +133,29 @@ $elements: 12;
 /* IE part ends here, but legend continues. */
 
 /* Here comes code for other browsers */
-@supports (display: grid){
-.product-container {
-  display: grid;
-  grid-row-gap: 2em;
-  // grid-auto-rows: minmax(0, 1fr);
-  justify-items: center;
-  grid-template-columns: 300px;
+@supports (display: grid) {
+  .product-container {
+    display: grid;
+    grid-row-gap: 2em;
+    justify-items: center;
+    grid-template-columns: 300px;
 
-  @media screen and (min-width: 680px) {
-    grid-template-columns: repeat(2, 300px);
-    grid-column-gap: calc((100vw - 680px) /2);
-  }
+    @media screen and (min-width: 680px) {
+      grid-template-columns: repeat(2, 300px);
+      grid-column-gap: calc((100vw - 680px) /2);
+    }
 
-  @media screen and (min-width: 1012px) {
-    grid-template-columns: repeat(3, 300px);
-    grid-column-gap: calc((100vw - 964px)/3);
-  }
+    @media screen and (min-width: 1012px) {
+      grid-template-columns: repeat(3, 300px);
+      grid-column-gap: calc((100vw - 964px)/3);
+    }
 
-  @media screen and (min-width: 1321px) {
-    grid-template-columns: repeat(4, 300px);
-    // grid-column-gap: calc((100vw - 1264px)/4);
-    grid-column-gap: 20px;
+    @media screen and (min-width: 1321px) {
+      grid-template-columns: repeat(4, 300px);
+      grid-column-gap: 20px;
+    }
   }
-}}
+}
 
 .product {
   display: flex;
@@ -174,17 +173,6 @@ $elements: 12;
 
   &__count-container {
     display: flex;
-    margin: 8px;
-  }
-
-  &__count {
-    text-align: center;
-  }
-
-  &__count-btn {
-    padding: 10px;
-    margin: 10px;
-    min-width: 32.1px;
   }
 
   &__add-btn {
@@ -192,17 +180,15 @@ $elements: 12;
   }
 }
 
+
 /* Set each product cart to display grid */
 .grid-box {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 3fr 200px !important;
   -ms-grid-columns: 1fr;
-  // grid-template-rows: 3fr 2fr;
-  grid-template-rows: 3fr;
-  // grid-template-rows: 3fr 30vh;
+  grid-template-rows: 250px 150px;
   grid-template-columns: 1fr;
-  // max-height: 300px;
 
   .grid-3 {
     -ms-grid-row: 1;
@@ -217,17 +203,158 @@ $elements: 12;
   }
 
   .grid-2 {
-    margin-top: 20px;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     display: -ms-flexbox;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+
+    .product__title {
+      font-size: 14px;
+    }
 
     @supports (display: grid) {
       display: grid;
       justify-items: center;
+      align-self: flex-end;
+      grid-template-rows: 0.8fr min-content 0.5fr 1fr;
+
+      .product__count-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 35px;
+        width: 100px;
+
+        .product__count-btn {
+          display: inline-block;
+          height: 30px;
+          padding: 0 9px;
+          margin: 0;
+        }
+
+        .product__count {
+          display: inline-block;
+          text-align: center;
+        }
+      }
+
+      .product__price {
+        height: 30px;
+      }
     }
   }
+}
+
+div.product>div>button:nth-child(4) {
+  padding: 5px 15px;
+}
+
+/* Button animation code */
+.ctrl-standard.fx-bubbleUp {
+  color: #9fa255;
+  border-color: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp::after {
+  top: auto;
+  border-radius: 50% 50% 0 0/75% 75% 0 0;
+  background: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed::after {
+  height: 300%;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed:hover {
+  color: #9fa255;
+}
+
+.ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
+  height: 0;
+}
+
+.ctrl-standard.fx-sliderIn.is-reversed:hover::after {
+  width: 0;
+}
+
+[class*="ctrl-"] {
+  padding: 5ox 10px;
+  border-radius: 2px;
+  border: 1px solid #231f20;
+}
+
+[class*="ctrl-"][class*="fx-"]:hover,
+[class*="ctrl-"][class*="fx-"].active {
+  color: #231f20;
+}
+
+[class*="ctrl-"][class*="fx-"].is-reversed {
+  color: #231f20;
+}
+
+[class*="fx-"],
+[class*="fx-"]:hover {
+  -webkit-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+}
+
+[class*="fx-"]:not(.fx-dyna) {
+  position: relative;
+  z-index: 1;
+  -webkit-transition-delay: 0.2s !important;
+  transition-delay: 0.2s !important;
+  overflow: hidden;
+}
+
+[class*="fx-"]:not(.fx-dyna)::after,
+[class*="fx-"]:not(.fx-dyna)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+
+[class*="fx-bubble"]::after {
+  -webkit-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+}
+
+[class*="fx-bubble"]:hover::after,
+[class*="fx-bubble"].active::after {
+  -webkit-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out;
+  height: 300%;
+}
+
+[class*="fx-bubble"]:disabled:hover::after {
+  height: 0;
+}
+
+.fx-sliderIn::after {
+  -webkit-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+}
+
+.fx-sliderIn:hover::after,
+.fx-sliderIn.active::after {
+  -webkit-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  width: 100%;
+}
+
+:checked+.fx-sliderIn::after,
+.fx-sliderIn.active::after {
+  width: 300%;
 }
