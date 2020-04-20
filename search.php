@@ -1,46 +1,39 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-require_once __DIR__ . "/php/model/db.php";
-require_once __DIR__ . "/php/view/header.php";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
+<body>
 
+    <span class="hamburger__bar-wrapper">
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+    </span>
 
-if (isset($_POST['searchbtn'])){
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
-    $searchterm = $_POST['searchinput'];
-    $stmt = DB::run("SELECT Title, Description, p.number_in_stock Number, p.category_id, GROUP_CONCAT(ip.file_name ORDER BY ip.file_name) AS images FROM product_category AS pc LEFT JOIN product AS p ON p.category_id = pc.id INNER JOIN image_of_product AS ip ON ip.product_id = p.id WHERE Title LIKE '%$searchterm%' OR Description LIKE '%$searchterm%' GROUP BY p.id");
-   
-    $products = "";
-    while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
-     
-        $imageDir = './img/product/';
-        for ($x = 0; $x <= 3; $x++) {
-            $products .= "
-            <div class='product grid-box'>
-                <div class='product__img-wrapper grid-3'>
-                    <img class='product__img' src='{$imageDir}' alt='product name'>
-                </div>
-                <div class='grid-2'>
-                    <p class='product__title'>{$tableRow["Title"]}</p>
-                    <div class='product__count-container'>
-                        <button class='product__count-btn'>-</button>
-                        <p class='product__count'>{$tableRow["Number"]}</p>
-                        <button class='product__count-btn'>+</button>
-                    </div>
-                    <button class='product__add-btn'>Lägg i varukorgen</button>
-                </div>
-            </div>";
-        }
-    }
-}
+    <main>
+        <div class="content">
+            <?php require_once __DIR__ . '/php/view/search-result.php';?>
+        </div>
+    </main>
 
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    ?>
-    
-    
-    <div class="product-container">
-        <?php echo $products; ?>
-    </div>
-<?php
-    require_once __DIR__ . "/php/view/footer.php";
-?>
+    <script src="./js/ie11/sidebar.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/search-validation.js"></script>
+
+</body>
+
+</html>
