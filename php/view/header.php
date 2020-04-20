@@ -20,15 +20,11 @@
 
             <div class="dropdown">
                 <button class="dropbtn">Categories</button>
-                <div class="dropdown-content">
-                    <form class="top-nav__form" method="GET">
-                        <?php echo $sidebarItems; ?>
-                    </form>
-                    <!-- <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a> -->
+                <div class="dropdown-content" id="categoryDropdownFormContainer">
+                    <form id="categoryDropdownForm" class="top-nav__form""></form>
                 </div>
             </div>
+
         </nav>
     </div>
 </header>

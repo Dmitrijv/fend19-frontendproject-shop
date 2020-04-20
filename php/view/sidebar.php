@@ -7,8 +7,8 @@ $sidebarItems = "";
 while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $sidebarItems .= "
     <li class='sidebar__menu__list-item'>
-    <input class='sidebar__input__item' type='radio' id='{$tableRow["id"]}' name='cat' value='{$tableRow["id"]}'>
-    <label class='sidebar__menu__item' for='{$tableRow["id"]}'>{$tableRow["name"]}</label>
+        <input class='sidebar__input__item' type='radio' id='{$tableRow["id"]}' name='cat' value='{$tableRow["id"]}'>
+        <label class='sidebar__menu__item' for='{$tableRow["id"]}'>{$tableRow["name"]}</label>
     </li>
     ";
 }
