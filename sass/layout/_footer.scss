@@ -1,6 +1,13 @@
 .footer {
   width: 100%;
   background-color: whitesmoke;
+
+  padding: 20px;
+
+  .logo {
+    width: 220px;
+  }
+
   &__contact__heading {
     font-weight: bold;
     margin: 5px auto 0 5%;
@@ -126,6 +133,11 @@
       display: grid;
       grid-template-columns: 1fr auto auto 1fr;
       gap: 3%;
+
+      &__info__wrapper,
+      &__contact__wrapper {
+        margin-right: 20px;
+      }
 
       &__info__wrapper {
         grid-column: 2;
