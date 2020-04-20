@@ -37,8 +37,11 @@ h1 {
 
 input {
   border-radius: 3px;
-  border: none;
   background-color: #f60d4d20;
+
+  @supports(display:grid) {
+    border: none;
+  }
 }
 
 button {

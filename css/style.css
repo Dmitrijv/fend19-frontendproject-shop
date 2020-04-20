@@ -49,8 +49,13 @@ h1 {
 
 input {
   border-radius: 3px;
-  border: none;
   background-color: #f60d4d20;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
+  input {
+    border: none;
+  }
 }
 
 button {
@@ -152,6 +157,8 @@ button {
 
 .main__header__search--input {
   width: 150px;
+  background-color: pink;
+  background-color: #f60d4d20;
 }
 
 @media (min-width: 800px) {
