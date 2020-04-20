@@ -1,5 +1,9 @@
 * {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 body {
@@ -40,7 +44,7 @@ input {
   border-radius: 3px;
   background-color: #f60d4d20;
 
-  @supports(display:grid) {
+  @supports (display: grid) {
     border: none;
   }
 }

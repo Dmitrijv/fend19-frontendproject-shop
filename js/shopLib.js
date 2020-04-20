@@ -22,7 +22,7 @@ shopLib = (function() {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
-            <input type='submit' id='-1' value='Visa Alla'>
+            <input type='submit' id='-1' value='Visa Alla' onclick="shopLib.drawFilteredProductPanel(event)" >
         </li>`;
 
         dropdown.innerHTML += defaultRow;
@@ -32,7 +32,7 @@ shopLib = (function() {
         categoryJson.forEach(category => {
           const categoryRow = `
             <li class='sidebar__menu__list-item'>
-                <input type='submit' id='${category.id}' value='${category.name}'>
+                <input type='submit' id='${category.id}' value='${category.name}' onclick="shopLib.drawFilteredProductPanel(event)">
             </li>`;
           dropdown.innerHTML += categoryRow;
           sidebar.innerHTML += categoryRow;
@@ -40,16 +40,23 @@ shopLib = (function() {
       });
     },
 
+    drawDefaultProductPanel: function(event) {
+      const lib = this;
+      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      lib.loadJsonByXhr(productApi, function(productJson) {
+        lib.drawProductPanel(productJson);
+      });
+    },
+
     drawFilteredProductPanel: function(event) {
       const lib = this;
-      const allowedCategoryId = Number(event.submitter.id);
+      const allowedCategoryId = Number(event.currentTarget.id);
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          console.log(productJson);
           productJson = productJson.filter(product => product.categoryId === allowedCategoryId);
           lib.drawProductPanel(productJson);
         }
@@ -63,7 +70,6 @@ shopLib = (function() {
       productJson.forEach(item => {
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-
         cardHtml += `
         <div class='product grid-box'>
             <div class='product__img-wrapper grid-3'>
