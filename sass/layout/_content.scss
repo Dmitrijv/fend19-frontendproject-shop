@@ -22,7 +22,7 @@
 $elements: 12;
 
 @for $i from 1 to $elements {
-  .product-container>:nth-child(#{$i }) {
+  .product-container > :nth-child(#{$i }) {
     -ms-grid-row: $i + $i -1 !important;
   }
 }
@@ -37,12 +37,12 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 1 to $elements {
-    .product-container>:nth-child(#{$i*2 - 1}) {
+    .product-container > :nth-child(#{$i*2 - 1}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container>:nth-child(#{$i*2}) {
+    .product-container > :nth-child(#{$i*2}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 3 !important;
     }
@@ -58,30 +58,28 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
-
     /* 1/4/7/10/.. */
-    .product-container>:nth-child(#{$i*3 + 1}) {
+    .product-container > :nth-child(#{$i*3 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
     /* 2/5/8/11/... */
-    .product-container>:nth-child(#{$i*3 + 2}) {
-      -ms-grid-row: $i +1 !important;
+    .product-container > :nth-child(#{$i*3 + 2}) {
+      -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
     /* 3/6/9/12/... */
-    .product-container>:nth-child(#{$i*3 + 3}) {
-      -ms-grid-row: $i +1 !important;
+    .product-container > :nth-child(#{$i*3 + 3}) {
+      -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
   }
 }
 
 /* Width 1113px above 4 */
-@media screen and (-ms-high-contrast: active),
-(-ms-high-contrast: none) and (min-width: 1000px) {
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 1000px) {
   .product-container {
     padding: 0 40px;
   }
@@ -96,24 +94,23 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
-
-    .product-container>:nth-child(#{$i*4 + 1}) {
+    .product-container > :nth-child(#{$i*4 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container>:nth-child(#{$i*4 + 2}) {
-      -ms-grid-row: $i +1 !important;
+    .product-container > :nth-child(#{$i*4 + 2}) {
+      -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
-    .product-container>:nth-child(#{$i*4 + 3}) {
-      -ms-grid-row: $i +1 !important;
+    .product-container > :nth-child(#{$i*4 + 3}) {
+      -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
 
-    .product-container>:nth-child(#{$i*4 + 4}) {
-      -ms-grid-row: $i +1 !important;
+    .product-container > :nth-child(#{$i*4 + 4}) {
+      -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 7 !important;
     }
   }
@@ -121,7 +118,7 @@ $elements: 12;
 
 .content {
   margin-top: 80px;
-  padding: 2em;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
 }
@@ -129,7 +126,7 @@ $elements: 12;
 .product-container {
   display: grid;
   grid-gap: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   grid-auto-rows: minmax(0, 1fr);
   justify-items: center;
 }
@@ -201,13 +198,13 @@ $elements: 12;
     justify-content: center;
     align-items: center;
 
-    @supports(display: grid) {
+    @supports (display: grid) {
       display: grid;
       justify-items: center;
     }
   }
 }
 
-main{
+main {
   overflow: hidden;
 }

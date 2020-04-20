@@ -52,7 +52,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   input {
     border: none;
   }
@@ -251,7 +251,6 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
-  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -264,7 +263,6 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -282,13 +280,11 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
-      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -1070,7 +1066,7 @@ button {
 
 .content {
   margin-top: 80px;
-  padding: 2em;
+  padding: 20px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1084,8 +1080,8 @@ button {
   display: -ms-grid;
   display: grid;
   grid-gap: 30px;
-  -ms-grid-columns: (minmax(350px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  -ms-grid-columns: (minmax(310px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   grid-auto-rows: minmax(0, 1fr);
   justify-items: center;
 }
@@ -1176,7 +1172,7 @@ button {
           align-items: center;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -1210,7 +1206,6 @@ main {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
-  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
