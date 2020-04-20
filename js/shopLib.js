@@ -9,7 +9,7 @@ shopLib = (function() {
   let shopLib = {
     drawCategorySelectors: function() {
       const lib = this;
-      const productApiUrl = `${INTERNAL_API_PATH}/categories.php`;
+      const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
 
       const sidebar = document.querySelector("ul#sidebarCategoryContainer");
       sidebar.innerHTML = "";
@@ -18,7 +18,7 @@ shopLib = (function() {
       dropdown.innerHTML = "";
 
       // get category json from api
-      lib.loadJsonByXhr(productApiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
@@ -41,14 +41,49 @@ shopLib = (function() {
     },
 
     drawFilteredProductPanel: function(event) {
-      const categoryId = event.submitter.id;
-      console.log(categoryId);
-      event.preventDefault();
       const lib = this;
-      //lib.drawProductPanel();
+      const allowedCategoryId = Number(event.submitter.id);
+
+      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      lib.loadJsonByXhr(productApi, function(productJson) {
+        if (allowedCategoryId === -1) {
+          lib.drawProductPanel(productJson);
+        } else {
+          console.log(productJson);
+          productJson = productJson.filter(product => product.categoryId === allowedCategoryId);
+          lib.drawProductPanel(productJson);
+        }
+      });
+      event.preventDefault();
     },
 
-    drawProductPanel: function(productJson) {},
+    drawProductPanel: function(productJson) {
+      const productPanel = document.querySelector("div#productPanel");
+      let cardHtml = "";
+      productJson.forEach(item => {
+        const coverImage =
+          item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
+
+        cardHtml += `
+        <div class='product grid-box'>
+            <div class='product__img-wrapper grid-3'>
+                <img class='product__img' src='${coverImage}' alt='product name'>
+            </div>
+            <div class='grid-2'>
+                <p class='product__title'>${item.title}</p>
+                <div class='product__count-container'>
+                    <button class='product__count-btn'>-</button>
+                    <p class='product__count'>${item.numberInStock}</p>
+                    <button class='product__count-btn'>+</button>
+                </div>
+                <div class='product__price'>${item.price} ${item.currency}</div>
+                <button class='product__add-btn'>Lägg i varukorgen</button>
+            </div>
+        </div>`;
+      });
+      productPanel.innerHTML = "";
+      productPanel.innerHTML += cardHtml;
+    },
 
     loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();

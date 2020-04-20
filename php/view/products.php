@@ -29,11 +29,10 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
             </div>
         </div>";
 }
-// }
+; // }
 ?>
 
 
 
-<div class="product-container">
-    <?php echo $products; ?>
+<div class="product-container" id="productPanel">
 </div>
