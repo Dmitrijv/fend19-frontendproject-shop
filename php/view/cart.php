@@ -27,3 +27,7 @@
     <div class="cart__order"><button>Till Kassan</button></div>
 
 </div>
+
+<?php 
+
+?>
