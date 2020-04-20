@@ -1,6 +1,6 @@
 <header class="main__header">
     <div class="main__header__top">
-        <div class="logo"><a href="#"><img class="logo" src="img/svg/Logo.svg" alt="Logo Image"></a></div>
+        <div class="logo"><a href="#"><img class="logo" src="img/svg/Logo_SVG.svg" alt="Logo Image"></a></div>
         <nav class="nav">
             <div class="nav__item">
                 <button class="main__header__btn login-btn"><a href=""><img class="img-login" src="./img/svg/login-mob.svg" alt="">
