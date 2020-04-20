@@ -47,7 +47,6 @@ $elements: 12;
 /* Width between 650px - 975px 2 */
 @media screen and (max-width: 975px) and (min-width: 650px) {
   .product-container {
-    // -ms-grid-rows: (1fr 80px)[12] !important;
     -ms-grid-columns: 300px 2em 300px;
     margin: auto;
   }
@@ -176,10 +175,9 @@ $elements: 12;
   }
 
   &__add-btn {
-    margin-bottom: 10px;
+    margin: 5px auto;
   }
 }
-
 
 /* Set each product cart to display grid */
 .grid-box {
@@ -213,6 +211,23 @@ $elements: 12;
       font-size: 14px;
     }
 
+    .product__count-btn {
+      display: inline-block;
+      height: 30px;
+      padding: 0 10px;
+      margin: 0;
+      border-radius: 50%;
+      border: 1px solid white;
+
+      &:nth-of-type(2) {
+        background-color: #9fa255;
+
+        &:hover {
+          background-color: #d1d39a;
+        }
+      }
+    }
+
     @supports (display: grid) {
       display: grid;
       justify-items: center;
@@ -225,13 +240,6 @@ $elements: 12;
         justify-content: space-between;
         height: 35px;
         width: 100px;
-
-        .product__count-btn {
-          display: inline-block;
-          height: 30px;
-          padding: 0 9px;
-          margin: 0;
-        }
 
         .product__count {
           display: inline-block;
@@ -295,14 +303,12 @@ div.product>div>button:nth-child(4) {
 
 [class*="fx-"],
 [class*="fx-"]:hover {
-  -webkit-transition: color 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
 }
 
 [class*="fx-"]:not(.fx-dyna) {
   position: relative;
   z-index: 1;
-  -webkit-transition-delay: 0.2s !important;
   transition-delay: 0.2s !important;
   overflow: hidden;
 }
@@ -316,7 +322,6 @@ div.product>div>button:nth-child(4) {
 }
 
 [class*="fx-bubble"]::after {
-  -webkit-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -328,7 +333,6 @@ div.product>div>button:nth-child(4) {
 
 [class*="fx-bubble"]:hover::after,
 [class*="fx-bubble"].active::after {
-  -webkit-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   height: 300%;
 }
@@ -338,7 +342,6 @@ div.product>div>button:nth-child(4) {
 }
 
 .fx-sliderIn::after {
-  -webkit-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -349,7 +352,6 @@ div.product>div>button:nth-child(4) {
 
 .fx-sliderIn:hover::after,
 .fx-sliderIn.active::after {
-  -webkit-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   width: 100%;
 }
