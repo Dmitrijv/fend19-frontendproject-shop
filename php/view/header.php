@@ -12,8 +12,11 @@
                 </button>
             </div>
             <div class="nav__item main__header__search">
-                <input class="main__header__search--input" type="text"><button class="main__header__btn search-btn"><img class="img-search" src="./img/svg/search-mob.svg" alt=""></button>
-            </div>
+            <form class="nav__item main__header__search" action="search.php" method="post" name="searchform" onsubmit="return validateSearchForm()">
+            <input class="main__header__search--input" type="text" name="searchinput">
+            <button class="main__header__btn search-btn" name="searchbtn"  type="submit">Sök</button>
+            </form>
+        </div>
         </nav>
     </div>
 </header>
