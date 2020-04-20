@@ -7,12 +7,15 @@ shopLib = (function() {
   const INTERNAL_API_PATH = `${SHOP_URL}/api`;
 
   let shopLib = {
-    drawHeaderCategoryDropdown: function() {
+    drawCategorySelectors: function() {
       const lib = this;
       const productApiUrl = `${INTERNAL_API_PATH}/categories.php`;
 
-      const virtualDom = new DOMParser().parseFromString(`<form class="top-nav__form"></form>`, "text/html");
-      const newDropdown = virtualDom.querySelector("form.top-nav__form");
+      const sidebar = document.querySelector("ul#sidebarCategoryContainer");
+      sidebar.innerHTML = "";
+
+      const dropdown = document.querySelector("form.top-nav__form");
+      dropdown.innerHTML = "";
 
       // get category json from api
       lib.loadJsonByXhr(productApiUrl, function(categoryJson) {
@@ -22,7 +25,8 @@ shopLib = (function() {
             <input type='submit' id='-1' value='Visa Alla'>
         </li>`;
 
-        newDropdown.innerHTML += defaultRow;
+        dropdown.innerHTML += defaultRow;
+        sidebar.innerHTML += defaultRow;
 
         // iterate over all categories
         categoryJson.forEach(category => {
@@ -30,33 +34,21 @@ shopLib = (function() {
             <li class='sidebar__menu__list-item'>
                 <input type='submit' id='${category.id}' value='${category.name}'>
             </li>`;
-          newDropdown.innerHTML += categoryRow;
+          dropdown.innerHTML += categoryRow;
+          sidebar.innerHTML += categoryRow;
         });
-
-        // replace old drop down with the new one
-        const sidebar = document.querySelector("div#dropdownCategoryContainer");
-        sidebar.innerHTML = "";
-        sidebar.appendChild(newDropdown);
-
-        // replace old sidebar with new one
-        // const dropdown = document.querySelector("ul#sidebarCategoryContainer");
-        // dropdown.innerHTML = "";
-        // dropdown.appendChild(newDropdown);
       });
     },
 
     drawFilteredProductPanel: function(event) {
-      const lib = this;
-      //   console.log(12313);
-      //   console.log(event.currentTarget);
+      const categoryId = event.submitter.id;
+      console.log(categoryId);
       event.preventDefault();
+      const lib = this;
       //lib.drawProductPanel();
     },
 
-    drawProductPanel: function(event) {
-      console.log(products);
-      event.preventDefault();
-    },
+    drawProductPanel: function(productJson) {},
 
     loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
