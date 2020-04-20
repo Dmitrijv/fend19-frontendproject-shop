@@ -12,7 +12,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
     $image1 = (count($images) > 0) ? $images[0] : 'placeholder.png';
     $imageDir = './img/product/' . $image1;
     // for ($x = 0; $x <= 3; $x++) {
-        $products .= "
+    $products .= "
         <div class='product grid-box'>
             <div class='product__img-wrapper grid-3'>
                 <img class='product__img' src='{$imageDir}' alt='product name'>
@@ -27,7 +27,7 @@ while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
                 <button class='product__add-btn'>Lägg i varukorgen</button>
             </div>
         </div>";
-    }
+}
 // }
 ?>
 

@@ -7,7 +7,6 @@
 /* mobile  */
 .product-container {
   display: -ms-grid;
-  // -ms-grid-rows: (1fr 80px)[12] !important;
   -ms-grid-columns: 1fr;
   overflow: hidden;
 
@@ -20,7 +19,7 @@
   }
 }
 
-$elements: 120;
+$elements: 12;
 
 @for $i from 1 to $elements {
   .product-container>:nth-child(#{$i }) {
@@ -35,7 +34,7 @@ $elements: 120;
     -ms-grid-columns: 1fr 2em 1fr;
   }
 
-  $elements: 120;
+  $elements: 12;
 
   @for $i from 1 to $elements {
     .product-container>:nth-child(#{$i*2 - 1}) {
@@ -53,11 +52,10 @@ $elements: 120;
 /* Width between 843px - 1113px 3 */
 @media screen and (max-width: 1113px) and (min-width: 843px) {
   .product-container {
-    // -ms-grid-rows: (1fr 80px)[12] !important;
     -ms-grid-columns: 1fr 2em 1fr 2em 1fr;
   }
 
-  $elements: 120;
+  $elements: 12;
 
   @for $i from 0 to $elements {
 
@@ -95,7 +93,7 @@ $elements: 120;
     -ms-grid-columns: 1fr 2em 1fr 2em 1fr 2em 1fr;
   }
 
-  $elements: 120;
+  $elements: 12;
 
   @for $i from 0 to $elements {
 
