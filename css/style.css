@@ -1422,15 +1422,6 @@ div.product > div > button:nth-child(4) {
   margin: 0;
 }
 
-.sidebar__menu a {
-  text-decoration: none;
-  color: black;
-}
-
-.sidebar__input__item {
-  position: absolute;
-}
-
 .sidebar__menu__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1456,21 +1447,14 @@ div.product > div > button:nth-child(4) {
   left: 0;
 }
 
-input[type="radio"] {
-  opacity: 0.01;
-  z-index: 100;
+.sidebar.active ul li input {
+  min-width: 250px;
 }
 
-label {
-  z-index: 90;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  color: black;
-  padding: 5px;
-  border: 1px solid #ccc;
+.sidebar.active ul li input:hover {
   cursor: pointer;
-  z-index: 90;
+  background-color: #ddd;
+  color: #3c3c3c;
 }
 
 .form {
