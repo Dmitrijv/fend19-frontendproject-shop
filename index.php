@@ -18,21 +18,22 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main>
         <div class="content">
-            <?php require_once __DIR__ . '/php/view/top-nav.php';?>
-            <?php require_once __DIR__ . '/php/view/products.php';?>
+            <?php require_once __DIR__ . '/php/view/top-nav.php'; ?>
+            <?php require_once __DIR__ . '/php/view/products.php'; ?>
         </div>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
     <script src="./js/sidebar.js"></script>
     <script src="./js/cart.js"></script>
 
 </body>
+
 </html>
