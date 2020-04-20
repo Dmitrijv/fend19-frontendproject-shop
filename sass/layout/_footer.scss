@@ -1,11 +1,25 @@
 .footer {
   width: 100%;
   background-color: whitesmoke;
-
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Mobile footer setting
+  .flex-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ul {
+      text-align: center;
+    }
+  }
 
   .logo {
-    width: 220px;
+    width: 200px;
+    margin: auto;
   }
 
   &__contact__heading {
@@ -28,8 +42,8 @@
 
   &__icon__heading {
     font-weight: bold;
-    margin: 5px auto 0 5%;
     font-size: 24px;
+    margin: 10px auto;
   }
 
   &__shop__name {
@@ -99,7 +113,6 @@
   &__icons {
     width: 50px;
     height: 50px;
-    margin: 10px 5px;
   }
 
   &__contact__button {
@@ -116,7 +129,7 @@
 @media (min-width: 800px) {
   .footer {
     .logo {
-      margin: 50px 5% auto auto;
+      -ms-grid-column: 1;
     }
 
     &__contact__heading {
@@ -131,20 +144,19 @@
 
     &__bottom__wrapper {
       display: grid;
-      grid-template-columns: 1fr auto auto 1fr;
-      gap: 3%;
+      -ms-grid-columns: 1fr 5px auto 5px auto 8px 1fr;
+      grid-template-columns: 0.7fr auto auto 1.6fr;
 
-      &__info__wrapper,
-      &__contact__wrapper {
-        margin-right: 20px;
+      @media screen and (min-width:810px) {
+        grid-gap: 20px;
       }
 
       &__info__wrapper {
-        grid-column: 2;
+        -ms-grid-column: 3;
       }
 
       &__contact__wrapper {
-        grid-column: 3;
+        -ms-grid-column: 5;
       }
 
       &__info__wrapper,
@@ -177,11 +189,12 @@
     }
 
     .footer__wrapper {
+      -ms-grid-column: 7;
       display: flex;
       flex-direction: column;
       place-items: center;
 
-      & > *:not(:first-child) {
+      &>*:not(:first-child) {
         margin-top: 10px;
       }
 

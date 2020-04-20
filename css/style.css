@@ -1207,10 +1207,38 @@ label {
   width: 100%;
   background-color: whitesmoke;
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer .flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer .flex-box ul {
+  text-align: center;
 }
 
 .footer .logo {
-  width: 220px;
+  width: 200px;
+  margin: auto;
 }
 
 .footer__contact__heading {
@@ -1233,8 +1261,8 @@ label {
 
 .footer__icon__heading {
   font-weight: bold;
-  margin: 5px auto 0 5%;
   font-size: 24px;
+  margin: 10px auto;
 }
 
 .footer__shop__name {
@@ -1304,7 +1332,6 @@ label {
 .footer__icons {
   width: 50px;
   height: 50px;
-  margin: 10px 5px;
 }
 
 .footer__contact__button {
@@ -1319,7 +1346,7 @@ label {
 
 @media (min-width: 800px) {
   .footer .logo {
-    margin: 50px 5% auto auto;
+    -ms-grid-column: 1;
   }
   .footer__contact__heading {
     font-weight: bold;
@@ -1332,20 +1359,23 @@ label {
   .footer__bottom__wrapper {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr auto auto 1fr;
-        grid-template-columns: 1fr auto auto 1fr;
-    gap: 3%;
+    -ms-grid-columns: 1fr 5px auto 5px auto 8px 1fr;
+    grid-template-columns: 0.7fr auto auto 1.6fr;
   }
-  .footer__bottom__wrapper__info__wrapper, .footer__bottom__wrapper__contact__wrapper {
-    margin-right: 20px;
+}
+
+@media screen and (min-width: 800px) and (min-width: 810px) {
+  .footer__bottom__wrapper {
+    grid-gap: 20px;
   }
+}
+
+@media (min-width: 800px) {
   .footer__bottom__wrapper__info__wrapper {
-    -ms-grid-column: 2;
-    grid-column: 2;
+    -ms-grid-column: 3;
   }
   .footer__bottom__wrapper__contact__wrapper {
-    -ms-grid-column: 3;
-    grid-column: 3;
+    -ms-grid-column: 5;
   }
   .footer__bottom__wrapper__info__wrapper, .footer__bottom__wrapper__contact__wrapper,
   .footer__bottom__wrapper .footer__wrapper {
@@ -1376,6 +1406,7 @@ label {
     margin-right: auto;
   }
   .footer .footer__wrapper {
+    -ms-grid-column: 7;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

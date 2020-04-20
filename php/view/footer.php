@@ -3,7 +3,7 @@
     </iframe> -->
     <div class="footer__bottom__wrapper">
         <div class="logo"><img src="img/svg/Logo.svg" alt="Logo Image"></div>
-        <div class="footer__bottom__wrapper__info__wrapper">
+        <div class="footer__bottom__wrapper__info__wrapper flex-box">
             <h5 class="footer__info__heading">Kundtjänst</h5>
             <ul class="footer__list">
                 <a href="" class="footer__list__categori">
@@ -20,7 +20,7 @@
                 </a>
             </ul>
         </div>
-        <div class="footer__bottom__wrapper__contact__wrapper">
+        <div class="footer__bottom__wrapper__contact__wrapper flex-box">
             <h5 class="footer__info__heading">Information</h5>
             <ul class="footer__list">
                 <a href="" class="footer__list__categori">
@@ -40,7 +40,7 @@
                 </a>
             </ul>
         </div>
-        <div class="footer__wrapper">
+        <div class="footer__wrapper flex-box">
             <h6 class="footer__icon__heading">Följ oss</h6>
             <div class="icon-wrapper">
                 <a class="footer-icon" href="#"><img src="img/svg/footer/facebook.svg" alt="Facebook Icon" class="footer__icons"></a>
