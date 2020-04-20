@@ -30,8 +30,7 @@
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <!-- <script src="./js/sidebar-es5.js"></script> -->
-    <!-- <script src="./js/sidebar.js"></script> -->
+    <script src="./js/ie11/sidebar.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/search-validation.js"></script>
 

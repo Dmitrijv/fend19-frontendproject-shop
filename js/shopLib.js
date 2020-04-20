@@ -1,7 +1,7 @@
 shopLib = (function() {
   const info = "Helper library for drawing html elements based on db data.";
 
-  const version = "0.1";
+  const version = "0.2";
   const SHOP_URL = `${location.protocol}//${location.host}/fend19-frontendproject-shop`;
   const CONTROLLER_PATH = `${SHOP_URL}/php/controller`;
   const INTERNAL_API_PATH = `${SHOP_URL}/api`;
@@ -10,29 +10,25 @@ shopLib = (function() {
     drawCategorySelectors: function() {
       const lib = this;
       const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
-
+      //cache selectors
       const sidebar = document.querySelector("ul#sidebarCategoryContainer");
-      sidebar.innerHTML = "";
-
       const dropdown = document.querySelector("form.top-nav__form");
+      sidebar.innerHTML = "";
       dropdown.innerHTML = "";
-
       // get category json from api
       lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
-            <input type='submit' id='-1' value='Visa Alla' onclick="shopLib.drawFilteredProductPanel(event)" >
+            <input class="categoryFilterButton" type='button' id='-1' value='Visa Alla' onclick="shopLib.drawFilteredProductPanel(event)" >
         </li>`;
-
         dropdown.innerHTML += defaultRow;
         sidebar.innerHTML += defaultRow;
-
         // iterate over all categories
         categoryJson.forEach(category => {
           const categoryRow = `
             <li class='sidebar__menu__list-item'>
-                <input type='submit' id='${category.id}' value='${category.name}' onclick="shopLib.drawFilteredProductPanel(event)">
+                <input class="categoryFilterButton" type='button' id='${category.id}' value='${category.name}' onclick="shopLib.drawFilteredProductPanel(event)">
             </li>`;
           dropdown.innerHTML += categoryRow;
           sidebar.innerHTML += categoryRow;
@@ -61,6 +57,7 @@ shopLib = (function() {
           lib.drawProductPanel(productJson);
         }
       });
+      lib.hideSidePanel();
       event.preventDefault();
     },
 
@@ -100,6 +97,16 @@ shopLib = (function() {
       };
       xhr.open("POST", url, true);
       xhr.send();
+    },
+
+    hideSidePanel: function() {
+      document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
+      document.querySelector(".sidebar").classList.remove("active");
+    },
+
+    showSidePanel: function() {
+      document.querySelector(".hamburger__bar-wrapper").classList.add("active");
+      document.querySelector(".sidebar").classList.add("active");
     }
   };
 

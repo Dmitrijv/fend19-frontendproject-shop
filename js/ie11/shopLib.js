@@ -1,27 +1,28 @@
 shopLib = (function() {
   var info = "Helper library for drawing html elements based on db data.";
-  var version = "0.1";
+  var version = "0.2";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
   var CONTROLLER_PATH = "".concat(SHOP_URL, "/php/controller");
   var INTERNAL_API_PATH = "".concat(SHOP_URL, "/api");
   var shopLib = {
     drawCategorySelectors: function drawCategorySelectors() {
       var lib = this;
-      var categoryApiUrl = "".concat(INTERNAL_API_PATH, "/categories.php");
+      var categoryApiUrl = "".concat(INTERNAL_API_PATH, "/categories.php"); //cache selectors
+
       var sidebar = document.querySelector("ul#sidebarCategoryContainer");
-      sidebar.innerHTML = "";
       var dropdown = document.querySelector("form.top-nav__form");
+      sidebar.innerHTML = "";
       dropdown.innerHTML = ""; // get category json from api
 
       lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         var defaultRow =
-          "\n        <li class='sidebar__menu__list-item'>\n            <input type='submit' id='-1' value='Visa Alla' onclick=\"shopLib.drawFilteredProductPanel(event)\" >\n        </li>";
+          "\n        <li class='sidebar__menu__list-item'>\n            <input class=\"categoryFilterButton\" type='button' id='-1' value='Visa Alla' onclick=\"shopLib.drawFilteredProductPanel(event)\" >\n        </li>";
         dropdown.innerHTML += defaultRow;
         sidebar.innerHTML += defaultRow; // iterate over all categories
 
         categoryJson.forEach(function(category) {
-          var categoryRow = "\n            <li class='sidebar__menu__list-item'>\n                <input type='submit' id='"
+          var categoryRow = "\n            <li class='sidebar__menu__list-item'>\n                <input class=\"categoryFilterButton\" type='button' id='"
             .concat(category.id, "' value='")
             .concat(category.name, '\' onclick="shopLib.drawFilteredProductPanel(event)">\n            </li>');
           dropdown.innerHTML += categoryRow;
@@ -50,6 +51,7 @@ shopLib = (function() {
           lib.drawProductPanel(productJson);
         }
       });
+      lib.hideSidePanel();
       event.preventDefault();
     },
     drawProductPanel: function drawProductPanel(productJson) {
@@ -91,6 +93,14 @@ shopLib = (function() {
 
       xhr.open("POST", url, true);
       xhr.send();
+    },
+    hideSidePanel: function hideSidePanel() {
+      document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
+      document.querySelector(".sidebar").classList.remove("active");
+    },
+    showSidePanel: function showSidePanel() {
+      document.querySelector(".hamburger__bar-wrapper").classList.add("active");
+      document.querySelector(".sidebar").classList.add("active");
     }
   };
   return shopLib;
