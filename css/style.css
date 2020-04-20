@@ -159,6 +159,9 @@ button {
   width: 150px;
   background-color: pink;
   background-color: #f60d4d20;
+  border: 0px;
+  border-radius: 3px 0 0 3px;
+  padding-left: 8px;
 }
 
 @media (min-width: 800px) {
@@ -229,7 +232,7 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 2.0em;
+  width: 2em;
   cursor: pointer;
   z-index: 99999;
 }

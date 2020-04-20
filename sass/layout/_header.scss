@@ -28,10 +28,6 @@
     color: white;
     margin-left: 8px;
 
-    // &:first-child {
-    //   display: block;
-    // }
-
     a {
       color: white;
       text-decoration: none;
@@ -46,14 +42,15 @@
       width: 150px;
       background-color: pink;
       background-color: #f60d4d20;
-
+      border: 0px;
+      border-radius: 3px 0 0 3px;
+      padding-left: 8px;
     }
 
     @media (min-width: 800px) {
       margin-top: 0;
 
       input {
-        // min-width: 260px;
         min-width: 220px;
       }
     }
@@ -98,7 +95,7 @@
   height: 2em;
   place-content: center space-between;
   flex-direction: column;
-  width: 2.0em;
+  width: 2em;
   cursor: pointer;
   z-index: 99999;
 
@@ -231,7 +228,6 @@
   .dropdown-content,
   .dropdown-content a {
     display: block;
-    // display: unset;
   }
 
   .dropbtn {
