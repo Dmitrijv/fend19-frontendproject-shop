@@ -39,7 +39,7 @@ main {
 $elements: 12;
 
 @for $i from 1 to $elements {
-  .product-container > :nth-child(#{$i }) {
+  .product-container> :nth-child(#{$i }) {
     -ms-grid-row: $i + $i -1 !important;
   }
 }
@@ -55,12 +55,12 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 1 to $elements {
-    .product-container > :nth-child(#{$i*2 - 1}) {
+    .product-container> :nth-child(#{$i*2 - 1}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*2}) {
+    .product-container> :nth-child(#{$i*2}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 3 !important;
     }
@@ -77,20 +77,21 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
+
     /* 1/4/7/10/.. */
-    .product-container > :nth-child(#{$i*3 + 1}) {
+    .product-container> :nth-child(#{$i*3 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
     /* 2/5/8/11/... */
-    .product-container > :nth-child(#{$i*3 + 2}) {
+    .product-container> :nth-child(#{$i*3 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
     /* 3/6/9/12/... */
-    .product-container > :nth-child(#{$i*3 + 3}) {
+    .product-container> :nth-child(#{$i*3 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
@@ -107,51 +108,55 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
-    .product-container > :nth-child(#{$i*4 + 1}) {
+    .product-container> :nth-child(#{$i*4 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 2}) {
+    .product-container> :nth-child(#{$i*4 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 3}) {
+    .product-container> :nth-child(#{$i*4 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 4}) {
+    .product-container> :nth-child(#{$i*4 + 4}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 7 !important;
     }
   }
 }
+
 /* IE part ends here, but legend continues. */
 
 /* Here comes code for other browsers */
-
+@supports (display: grid){
 .product-container {
   display: grid;
   grid-row-gap: 2em;
   // grid-auto-rows: minmax(0, 1fr);
   justify-items: center;
   grid-template-columns: 300px;
+
   @media screen and (min-width: 680px) {
     grid-template-columns: repeat(2, 300px);
     grid-column-gap: calc((100vw - 680px) /2);
-  }  
-  @media screen and (min-width: 1012px) {
-  grid-template-columns: repeat(3, 300px);
-  grid-column-gap: calc((100vw - 964px)/3);
   }
+
+  @media screen and (min-width: 1012px) {
+    grid-template-columns: repeat(3, 300px);
+    grid-column-gap: calc((100vw - 964px)/3);
+  }
+
   @media screen and (min-width: 1321px) {
     grid-template-columns: repeat(4, 300px);
     // grid-column-gap: calc((100vw - 1264px)/4);
     grid-column-gap: 20px;
   }
-}
+}}
 
 .product {
   display: flex;
