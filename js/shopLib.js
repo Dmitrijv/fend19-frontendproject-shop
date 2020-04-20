@@ -7,7 +7,7 @@ shopLib = (function() {
   const INTERNAL_API_PATH = `${SHOP_URL}/api`;
 
   let shopLib = {
-    drawHeaderCategoryDropdown() {
+    drawHeaderCategoryDropdown: function() {
       const lib = this;
       const productApiUrl = `${INTERNAL_API_PATH}/categories.php`;
 
@@ -17,45 +17,45 @@ shopLib = (function() {
       // get category json from api
       lib.loadJsonByXhr(productApiUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
-        const defaultRow = new DOMParser().parseFromString(
-          `<li class='sidebar__menu__list-item'>
-                <input class='sidebar__input__item' type='radio' id='-1' name='categoryid' value='-1'>
-                <label class='sidebar__menu__item' for='-1'>Visa Alla</label>
-            </li>`,
-          "text/html"
-        );
-        defaultRow.querySelector(`label`).addEventListener("click", lib.drawFilteredProductPanel);
+        const defaultRow = `
+        <li class='sidebar__menu__list-item'>
+            <input type='submit' id='-1' value='Visa Alla'>
+        </li>`;
 
-        console.log(defaultRow.querySelector("li.sidebar__menu__list-item"));
-
-        virtualDd.appendChild(defaultRow.querySelector("li.sidebar__menu__list-item"));
+        newDropdown.innerHTML += defaultRow;
 
         // iterate over all categories
         categoryJson.forEach(category => {
-          categoryRow = new DOMParser().parseFromString(
-            `<li class='sidebar__menu__list-item'>
-                <input class='sidebar__input__item' type='radio' id='${category.id}' name='categoryid' value='${category.id}'>
-                <label class='sidebar__menu__item' for='${category.id}'>${category.name}</label>
-            </li>`,
-            "text/html"
-          );
-          newDropdown.appendChild(categoryRow.querySelector(".sidebar__menu__list-item"));
+          const categoryRow = `
+            <li class='sidebar__menu__list-item'>
+                <input type='submit' id='${category.id}' value='${category.name}'>
+            </li>`;
+          newDropdown.innerHTML += categoryRow;
         });
+
         // replace old drop down with the new one
-        const formContainer = document.querySelector("div#categoryDropdownFormContainer");
-        formContainer.innerHTML = "";
-        formContainer.appendChild(newDropdown.querySelector("form.top-nav__form"));
+        const sidebar = document.querySelector("div#dropdownCategoryContainer");
+        sidebar.innerHTML = "";
+        sidebar.appendChild(newDropdown);
+
+        // replace old sidebar with new one
+        // const dropdown = document.querySelector("ul#sidebarCategoryContainer");
+        // dropdown.innerHTML = "";
+        // dropdown.appendChild(newDropdown);
       });
     },
 
-    drawFilteredProductPanel(productId) {
+    drawFilteredProductPanel: function(event) {
       const lib = this;
-      console.log(productId);
+      //   console.log(12313);
+      //   console.log(event.currentTarget);
+      event.preventDefault();
       //lib.drawProductPanel();
     },
 
-    drawProductPanel(products) {
+    drawProductPanel: function(event) {
       console.log(products);
+      event.preventDefault();
     },
 
     loadJsonByXhr: function(url, callback) {

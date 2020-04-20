@@ -20,8 +20,9 @@
 
             <div class="dropdown">
                 <button class="dropbtn">Categories</button>
-                <div class="dropdown-content" id="categoryDropdownFormContainer">
-                    <form id="categoryDropdownForm" class="top-nav__form""></form>
+                <div class="dropdown-content" id="dropdownCategoryContainer">
+                    <form action="" id="categoryDropdownForm" class="top-nav__form" onsubmit="shopLib.drawFilteredProductPanel(event)" >
+                    </form>
                 </div>
             </div>
 
