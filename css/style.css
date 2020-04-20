@@ -17,8 +17,9 @@ body {
 img {
   width: 100%;
   height: 100%;
-  -o-object-fit: fill;
-     object-fit: fill;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
 }
 
 .logo {
@@ -166,11 +167,11 @@ button {
     margin-top: 0;
   }
   .main__header__search input {
-    min-width: 220px;
+    min-width: 200px;
   }
 }
 
-@media (min-width: 830px) {
+@media (min-width: 930px) {
   .main__header__search input {
     min-width: 260px;
   }
@@ -363,7 +364,7 @@ button {
 }
 
 /* This is for dropdown menu */
-/* It should be visible only for widht > 800px */
+/* It should be visible only for width > 800px */
 .dropbtn,
 .dropdown,
 .dropdown-content,
@@ -517,15 +518,39 @@ button {
   max-height: 170px;
 }
 
-/* bp: 425px / 768px / 1220px / max: 1440  */
+/* bp: 650px / 975px / 1280px / max: don't care anymore  */
 /* col: 1    /  2-3  /   4    /  maintain 4, add margin*/
-/* Width between 425px - 843px 2 */
-/* Width between 843px - 1113px 3 */
-/* Width 1113px above 4 */
+/* Width between 650px - 975px 2 */
+/* Width between 976px - 1280px 3 */
+/* Width 1280px above 4 */
+/* Max-width for each column: 300px */
+/* IE, my lord, you are so amazing! */
+/* Keep product-content in center */
+.content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 80px;
+  padding-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* Cut extra unknown white space on IE */
+main {
+  overflow: hidden;
+}
+
 /* mobile  */
 .product-container {
   display: -ms-grid;
-  -ms-grid-columns: 1fr;
+  -ms-grid-columns: 300px;
+  margin: auto;
   overflow: hidden;
 }
 
@@ -581,10 +606,11 @@ button {
   -ms-grid-row: 21 !important;
 }
 
-/* Width between 425px - 768px 2 */
-@media screen and (max-width: 843px) and (min-width: 500px) {
+/* Width between 650px - 975px 2 */
+@media screen and (max-width: 975px) and (min-width: 650px) {
   .product-container {
-    -ms-grid-columns: 1fr 2em 1fr;
+    -ms-grid-columns: 300px 2em 300px;
+    margin: auto;
   }
   .product-container > :nth-child(1) {
     -ms-grid-row: 1 !important;
@@ -676,10 +702,11 @@ button {
   }
 }
 
-/* Width between 843px - 1113px 3 */
-@media screen and (max-width: 1113px) and (min-width: 843px) {
+/* Width between 976px - 1280px 3 */
+@media screen and (max-width: 1360px) and (min-width: 976px) {
   .product-container {
-    -ms-grid-columns: 1fr 2em 1fr 2em 1fr;
+    -ms-grid-columns: 300px 2rem 300px 2rem 300px;
+    margin: auto;
   }
   /* 1/4/7/10/.. */
   .product-container > :nth-child(1) {
@@ -863,16 +890,11 @@ button {
   }
 }
 
-/* Width 1113px above 4 */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 1000px) {
+/* When screen's width > 1280, 4 col */
+@media screen and (min-width: 1360px) {
   .product-container {
-    padding: 0 40px;
-  }
-}
-
-@media screen and (min-width: 1114px) {
-  .product-container {
-    -ms-grid-columns: 1fr 2em 1fr 2em 1fr 2em 1fr;
+    -ms-grid-columns: 300px 3rem 300px 3rem 300px 3rem 300px;
+    margin: auto;
   }
   .product-container > :nth-child(1) {
     -ms-grid-row: 1 !important;
@@ -1068,26 +1090,39 @@ button {
   }
 }
 
-.content {
-  margin-top: 80px;
-  padding: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
+/* IE part ends here, but legend continues. */
+/* Here comes code for other browsers */
 .product-container {
   display: -ms-grid;
   display: grid;
-  grid-gap: 30px;
-  -ms-grid-columns: (minmax(350px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-auto-rows: minmax(0, 1fr);
+  grid-row-gap: 2em;
   justify-items: center;
+  -ms-grid-columns: 300px;
+      grid-template-columns: 300px;
+}
+
+@media screen and (min-width: 680px) {
+  .product-container {
+    -ms-grid-columns: (300px)[2];
+        grid-template-columns: repeat(2, 300px);
+    grid-column-gap: calc((100vw - 680px) /2);
+  }
+}
+
+@media screen and (min-width: 1012px) {
+  .product-container {
+    -ms-grid-columns: (300px)[3];
+        grid-template-columns: repeat(3, 300px);
+    grid-column-gap: calc((100vw - 964px)/3);
+  }
+}
+
+@media screen and (min-width: 1321px) {
+  .product-container {
+    -ms-grid-columns: (300px)[4];
+        grid-template-columns: repeat(4, 300px);
+    grid-column-gap: 20px;
+  }
 }
 
 .product {
@@ -1182,10 +1217,6 @@ button {
     display: grid;
     justify-items: center;
   }
-}
-
-main {
-  overflow: hidden;
 }
 
 .sidebar {
@@ -1320,6 +1351,16 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.footer .flex-box .icon-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer .flex-box .icon-wrapper > *:not(:last-child) {
+  margin-right: 10px;
 }
 
 .footer .flex-box ul {

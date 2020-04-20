@@ -1,13 +1,30 @@
-/* bp: 425px / 768px / 1220px / max: 1440  */
+/* bp: 650px / 975px / 1280px / max: don't care anymore  */
 /* col: 1    /  2-3  /   4    /  maintain 4, add margin*/
-/* Width between 425px - 843px 2 */
-/* Width between 843px - 1113px 3 */
-/* Width 1113px above 4 */
+/* Width between 650px - 975px 2 */
+/* Width between 976px - 1280px 3 */
+/* Width 1280px above 4 */
+/* Max-width for each column: 300px */
+
+/* IE, my lord, you are so amazing! */
+/* Keep product-content in center */
+.content {
+  align-items: center;
+  margin-top: 80px;
+  padding-top: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cut extra unknown white space on IE */
+main {
+  overflow: hidden;
+}
 
 /* mobile  */
 .product-container {
   display: -ms-grid;
-  -ms-grid-columns: 1fr;
+  -ms-grid-columns: 300px;
+  margin: auto;
   overflow: hidden;
 
   .grid-box {
@@ -27,11 +44,12 @@ $elements: 12;
   }
 }
 
-/* Width between 425px - 768px 2 */
-@media screen and (max-width: 843px) and (min-width: 500px) {
+/* Width between 650px - 975px 2 */
+@media screen and (max-width: 975px) and (min-width: 650px) {
   .product-container {
     // -ms-grid-rows: (1fr 80px)[12] !important;
-    -ms-grid-columns: 1fr 2em 1fr;
+    -ms-grid-columns: 300px 2em 300px;
+    margin: auto;
   }
 
   $elements: 12;
@@ -49,10 +67,11 @@ $elements: 12;
   }
 }
 
-/* Width between 843px - 1113px 3 */
-@media screen and (max-width: 1113px) and (min-width: 843px) {
+/* Width between 976px - 1280px 3 */
+@media screen and (max-width: 1360px) and (min-width: 976px) {
   .product-container {
-    -ms-grid-columns: 1fr 2em 1fr 2em 1fr;
+    -ms-grid-columns: 300px 2rem 300px 2rem 300px;
+    margin: auto;
   }
 
   $elements: 12;
@@ -79,18 +98,11 @@ $elements: 12;
   }
 }
 
-/* Width 1113px above 4 */
-@media screen and (-ms-high-contrast: active),
-(-ms-high-contrast: none) and (min-width: 1000px) {
+/* When screen's width > 1280, 4 col */
+@media screen and (min-width: 1360px) {
   .product-container {
-    padding: 0 40px;
-  }
-}
-
-@media screen and (min-width: 1114px) {
-  .product-container {
-    // -ms-grid-rows: (1fr 80px)[12] !important;
-    -ms-grid-columns: 1fr 2em 1fr 2em 1fr 2em 1fr;
+    -ms-grid-columns: 300px 3rem 300px 3rem 300px 3rem 300px; //control max-width of each card
+    margin: auto;
   }
 
   $elements: 12;
@@ -118,20 +130,29 @@ $elements: 12;
     }
   }
 }
+/* IE part ends here, but legend continues. */
 
-.content {
-  margin-top: 80px;
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-}
+/* Here comes code for other browsers */
 
 .product-container {
   display: grid;
-  grid-gap: 30px;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-auto-rows: minmax(0, 1fr);
+  grid-row-gap: 2em;
+  // grid-auto-rows: minmax(0, 1fr);
   justify-items: center;
+  grid-template-columns: 300px;
+  @media screen and (min-width: 680px) {
+    grid-template-columns: repeat(2, 300px);
+    grid-column-gap: calc((100vw - 680px) /2);
+  }  
+  @media screen and (min-width: 1012px) {
+  grid-template-columns: repeat(3, 300px);
+  grid-column-gap: calc((100vw - 964px)/3);
+  }
+  @media screen and (min-width: 1321px) {
+    grid-template-columns: repeat(4, 300px);
+    // grid-column-gap: calc((100vw - 1264px)/4);
+    grid-column-gap: 20px;
+  }
 }
 
 .product {
@@ -206,8 +227,4 @@ $elements: 12;
       justify-items: center;
     }
   }
-}
-
-main{
-  overflow: hidden;
 }

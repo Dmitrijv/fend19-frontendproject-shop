@@ -54,11 +54,11 @@
 
       input {
         // min-width: 260px;
-        min-width: 220px;
+        min-width: 200px;
       }
     }
 
-    @media (min-width: 830px) {
+    @media (min-width: 930px) {
       input {
         min-width: 260px;
       }
@@ -207,7 +207,7 @@
 }
 
 /* This is for dropdown menu */
-/* It should be visible only for widht > 800px */
+/* It should be visible only for width > 800px */
 .dropbtn,
 .dropdown,
 .dropdown-content,
@@ -221,6 +221,7 @@
     color: #3c3c3c;
   }
 }
+
 @media (min-width: 800px) {
   .top-nav {
     display: none;
@@ -231,7 +232,6 @@
   .dropdown-content,
   .dropdown-content a {
     display: block;
-    // display: unset;
   }
 
   .dropbtn {
