@@ -1,4 +1,4 @@
-shopLib = (function () {
+shopLib = (function() {
   const info = "Helper library for drawing html elements based on db data.";
 
   const version = "0.2";
@@ -7,7 +7,7 @@ shopLib = (function () {
   const INTERNAL_API_PATH = `${SHOP_URL}/api`;
 
   let shopLib = {
-    drawCategorySelectors: function () {
+    drawCategorySelectors: function() {
       const lib = this;
       const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
       //cache selectors
@@ -16,7 +16,7 @@ shopLib = (function () {
       sidebar.innerHTML = "";
       dropdown.innerHTML = "";
       // get category json from api
-      lib.loadJsonByXhr(categoryApiUrl, function (categoryJson) {
+      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
@@ -25,7 +25,7 @@ shopLib = (function () {
         dropdown.innerHTML += defaultRow;
         sidebar.innerHTML += defaultRow;
         // iterate over all categories
-        categoryJson.forEach((category) => {
+        categoryJson.forEach(category => {
           const categoryRow = `
             <li class='sidebar__menu__list-item'>
                 <input class="categoryFilterButton" type='button' id='${category.id}' value='${category.name}' onclick="shopLib.drawFilteredProductPanel(event)">
@@ -36,24 +36,24 @@ shopLib = (function () {
       });
     },
 
-    drawDefaultProductPanel: function (event) {
+    drawDefaultProductPanel: function(event) {
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      lib.loadJsonByXhr(productApi, function(productJson) {
         lib.drawProductPanel(productJson);
       });
     },
 
-    drawFilteredProductPanel: function (event) {
+    drawFilteredProductPanel: function(event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      lib.loadJsonByXhr(productApi, function(productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          productJson = productJson.filter((product) => product.categoryId === allowedCategoryId);
+          productJson = productJson.filter(product => product.categoryId === allowedCategoryId);
           lib.drawProductPanel(productJson);
         }
       });
@@ -61,10 +61,10 @@ shopLib = (function () {
       event.preventDefault();
     },
 
-    drawProductPanel: function (productJson) {
+    drawProductPanel: function(productJson) {
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
-      productJson.forEach((item) => {
+      productJson.forEach(item => {
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
@@ -100,34 +100,87 @@ shopLib = (function () {
       addProduct(productBtn);
     },
 
-    searchProducts: function (event) {
-      const keyword = document.forms["searchform"]["searchinput"].value;
-
-      // if we are not on search.php page go there
+    searchProducts: function(event) {
+      console.log("searchProducts");
+      const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
+      console.log(keyword);
+      // if we are not on search.php page remember this keyword in session storage and go to search.php
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
+        sessionStorage.setItem("searchKeyword", keyword);
         location.href = SHOP_URL + "/search.php";
+        event.preventDefault();
+        return;
       }
-
-      console.log(location);
-      //   console.log(event);
-
+      // validate keyword length again
       if (keyword.length < 2) {
         event.preventDefault();
-        return false;
+        return;
       }
-
-      //   const lib = this;
-      //   const productApi = `${INTERNAL_API_PATH}/products.php`;
-      //   lib.loadJsonByXhr(productApi, function(productJson) {
-      //     console.log("hello world");
-      const matchingProducts =
-        //   });
-        event.preventDefault();
+      const lib = this;
+      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      lib.loadJsonByXhr(productApi, function(productJson) {
+        const matchingProducts = productJson.filter(
+          product =>
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
+            product.description.toLowerCase().indexOf(keyword) !== -1
+        );
+        console.log(matchingProducts);
+        lib.drawSearchResultList(matchingProducts);
+      });
+      sessionStorage.removeItem("searchKeyword");
+      event.preventDefault();
     },
 
-    loadJsonByXhr: function (url, callback) {
+    sessionStorageProductSearch() {
+      console.log("sessionStorageProductSearch");
+      const lib = this;
+      const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
+      console.log(keyword);
+      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      lib.loadJsonByXhr(productApi, function(productJson) {
+        const matchingProducts = productJson.filter(
+          product =>
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
+            product.description.toLowerCase().indexOf(keyword) !== -1
+        );
+        console.log(matchingProducts);
+        lib.drawSearchResultList(matchingProducts);
+      });
+      sessionStorage.removeItem("searchKeyword");
+    },
+
+    drawSearchResultList(productJson) {
+      const productPanel = document.querySelector("div.searchResults");
+      let cardHtml = "";
+      productJson.forEach(item => {
+        const coverImage =
+          item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
+        cardHtml += `
+        <div id='${item.id}' class='product grid-box'>
+            <div class='product__img-wrapper grid-3'>
+                <img class='product__img' src='${coverImage}' alt='product name'>
+            </div>
+            <div class='grid-2'>
+                <p class='product__title'>${item.title}</p>
+                <div class='product__price'>${item.price} ${item.currency}</div>
+            </div>
+        </div>`;
+      });
+      productPanel.innerHTML = "";
+      productPanel.innerHTML += cardHtml;
+
+      // show error message if this category has no products
+      const errorMsg = document.querySelector(".emptyResultMessage");
+      if (cardHtml.length === 0) {
+        errorMsg.classList.remove("hidden");
+      } else {
+        errorMsg.classList.add("hidden");
+      }
+    },
+
+    loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -136,15 +189,15 @@ shopLib = (function () {
       xhr.send();
     },
 
-    hideSidePanel: function () {
+    hideSidePanel: function() {
       document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
       document.querySelector(".sidebar").classList.remove("active");
     },
 
-    showSidePanel: function () {
+    showSidePanel: function() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
-    },
+    }
   };
 
   return shopLib;
