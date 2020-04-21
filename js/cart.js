@@ -134,25 +134,25 @@ function updateSum(getLs) {
   totalSum.textContent = sum;
 }
 
-function changeQty(getJSON) {
-  const qtyBtns = document.querySelectorAll(".qtyBtn");
-  qtyBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      var index = getJSON.findIndex(function (prod) {
-        return prod.id == btn.parentElement.parentElement.parentElement.id;
-      });
+// function changeQty(getJSON) {
+//   const qtyBtns = document.querySelectorAll(".qtyBtn");
+//   qtyBtns.forEach((btn) => {
+//     btn.addEventListener("click", function () {
+//       var index = getJSON.findIndex(function (prod) {
+//         return prod.id == btn.parentElement.parentElement.parentElement.id;
+//       });
 
-      if (btn.innerHTML === "+") {
-        getJSON[index].qty -= 1; //???
-        getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent =
-          getJSON[index].qty;
-      } else {
-        if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
-        btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
-      }
-      localStorage.setItem("products", JSON.stringify(getJSON));
-      updateSum(getJSON);
-    });
-  });
-}
+//       if (btn.innerHTML === "+") {
+//         getJSON[index].qty -= 1; //???
+//         getJSON[index].qty += 2;
+//         btn.parentElement.previousElementSibling.textContent =
+//           getJSON[index].qty;
+//       } else {
+//         if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
+//         btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+//       }
+//       localStorage.setItem("products", JSON.stringify(getJSON));
+//       updateSum(getJSON);
+//     });
+//   });
+// }
