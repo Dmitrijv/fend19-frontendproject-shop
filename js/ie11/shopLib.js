@@ -79,7 +79,7 @@ shopLib = (function() {
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml; // show error message if this category has no products
 
-      if (cardHtml.length === 0) {
+      if (cardHtml.length === 0 && productPanel.parentNode.innerHTML.search("emptyCategoryMessage") === -1) {
         productPanel.parentNode.innerHTML =
           "<div class='emptyCategoryMessage' >Det finns inga produkter i den här kategorin!</div>" +
           productPanel.parentNode.innerHTML;
