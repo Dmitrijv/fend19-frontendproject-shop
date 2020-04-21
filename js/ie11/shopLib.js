@@ -89,7 +89,7 @@ shopLib = (function() {
 
       var productBtn = document.querySelectorAll(".product__add-btn");
       var deleteBtn = document.querySelectorAll(".cart__product-delete");
-      addProduct(productBtn, productJson);
+      addProduct(productBtn);
       deleteProduct(deleteBtn);
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
