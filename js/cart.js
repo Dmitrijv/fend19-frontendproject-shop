@@ -112,13 +112,19 @@ function deleteProduct(getJSON) {
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
+      updateSum(getJSON)
     });
   });
 }
 
 function updateSum(getLs) {
-    getLs.forEach(element => {
-        console.log(element.price);
-        
-    });
-}
+    let sum = 0;
+  
+    for (let i = 0; i < getLs.length; i++) {
+      var str = getLs[i].price;
+      var res = str.replace(/\D/g, "");
+      sum += +res * getLs[i].qty;
+    } 
+   const totalSum = document.querySelector('.total-sum');
+   totalSum.textContent = sum;
+  }
