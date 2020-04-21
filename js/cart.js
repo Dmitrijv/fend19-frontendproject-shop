@@ -58,10 +58,10 @@ var productInfo = function productInfo(btn, productJson) {
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
     for (let i = 0; i < productJson.length; i++) {
-
         console.log(productJson[i].id);
         
     }
+    
   return {
     id: 1,
     name: productName,

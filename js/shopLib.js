@@ -68,7 +68,7 @@ shopLib = (function() {
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
-        <div class='product grid-box'>
+        <div id='${item.id}' class='product grid-box'>
             <div class='product__img-wrapper grid-3'>
                 <img class='product__img' src='${coverImage}' alt='product name'>
             </div>
@@ -86,11 +86,19 @@ shopLib = (function() {
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
+
+      // show error message if this category has no products
+      if (cardHtml.length === 0 && productPanel.parentNode.innerHTML.search("emptyCategoryMessage") === -1) {
+        productPanel.parentNode.innerHTML =
+          "<div class='emptyCategoryMessage' >Det finns inga produkter i den här kategorin!</div>" +
+          productPanel.parentNode.innerHTML;
+      }
+
+      // add event listeners to "add to cart" buttons
       var productBtn = document.querySelectorAll(".product__add-btn");
       var deleteBtn = document.querySelectorAll(".cart__product-delete");
       addProduct(productBtn, productJson);
       deleteProduct(deleteBtn);
-      
     },
 
     loadJsonByXhr: function(url, callback) {
