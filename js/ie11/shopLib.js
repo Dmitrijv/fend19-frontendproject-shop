@@ -95,9 +95,9 @@ shopLib = (function() {
       addProduct(productBtn);
     },
     searchProducts: function searchProducts(event) {
-      console.log("searchProducts");
-      var keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
-      console.log(keyword); // if we are not on search.php page remember this keyword in session storage and go to search.php
+      //console.log("searchProducts");
+      var keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase(); //console.log(keyword);
+      // if we are not on search.php page remember this keyword in session storage and go to search.php
 
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
         sessionStorage.setItem("searchKeyword", keyword);
@@ -105,10 +105,16 @@ shopLib = (function() {
         event.preventDefault();
         return;
       } // validate keyword length again
+      // show error message if this keyword is invalid
+
+      var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
 
       if (keyword.length < 2) {
+        keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
+      } else {
+        keywordErrMsg.classList.add("hidden");
       }
 
       var lib = this;
@@ -119,18 +125,28 @@ shopLib = (function() {
             product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
           );
-        });
-        console.log(matchingProducts);
+        }); // console.log(matchingProducts);
+
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
       event.preventDefault();
     },
     sessionStorageProductSearch: function sessionStorageProductSearch() {
-      console.log("sessionStorageProductSearch");
+      //   console.log("sessionStorageProductSearch");
       var lib = this;
-      var keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
-      console.log(keyword);
+      var keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase(); // show error message if this keyword is invalid
+
+      var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
+
+      if (keyword.length < 2) {
+        keywordErrMsg.classList.remove("hidden");
+        event.preventDefault();
+        return;
+      } else {
+        keywordErrMsg.classList.add("hidden");
+      }
+
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
@@ -138,8 +154,8 @@ shopLib = (function() {
             product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
           );
-        });
-        console.log(matchingProducts);
+        }); // console.log(matchingProducts);
+
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");

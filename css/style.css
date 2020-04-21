@@ -63,7 +63,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   input {
     border: none;
   }
@@ -149,7 +149,7 @@ button {
   width: 100%;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .main__header__top .logo a {
     height: 100%;
   }
@@ -293,7 +293,6 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
-  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -306,7 +305,6 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -324,13 +322,11 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
-      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -526,7 +522,6 @@ button {
   position: relative;
   right: -50%;
   -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   border-radius: 5px;
   border: 1px solid #a89e9e;
@@ -653,7 +648,7 @@ main {
   margin-bottom: 20px;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .product-container .grid-box {
     margin-bottom: 0;
   }
@@ -1208,7 +1203,7 @@ main {
 
 /* IE part ends here, but legend continues. */
 /* Here comes code for other browsers */
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .product-container {
     display: -ms-grid;
     display: grid;
@@ -1338,7 +1333,7 @@ div.product > div:nth-child(2) > button:nth-child(4) {
   background-color: #d1d39a;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -1419,7 +1414,6 @@ div.product > div > button:nth-child(4) {
 [class*="fx-"],
 [class*="fx-"]:hover {
   -webkit-transition: color 0.5s ease-in-out;
-  -o-transition: color 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
 }
 
@@ -1427,7 +1421,6 @@ div.product > div > button:nth-child(4) {
   position: relative;
   z-index: 1;
   -webkit-transition-delay: 0.2s !important;
-       -o-transition-delay: 0.2s !important;
           transition-delay: 0.2s !important;
   overflow: hidden;
 }
@@ -1442,7 +1435,6 @@ div.product > div > button:nth-child(4) {
 
 [class*="fx-bubble"]::after {
   -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1455,7 +1447,6 @@ div.product > div > button:nth-child(4) {
 [class*="fx-bubble"]:hover::after,
 [class*="fx-bubble"].active::after {
   -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   height: 300%;
 }
@@ -1466,7 +1457,6 @@ div.product > div > button:nth-child(4) {
 
 .fx-sliderIn::after {
   -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1478,7 +1468,6 @@ div.product > div > button:nth-child(4) {
 .fx-sliderIn:hover::after,
 .fx-sliderIn.active::after {
   -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   width: 100%;
 }
@@ -1516,7 +1505,6 @@ div.product > div > button:nth-child(4) {
   cursor: pointer;
   -webkit-transition: -webkit-box-shadow 0.1s linear;
   transition: -webkit-box-shadow 0.1s linear;
-  -o-transition: box-shadow 0.1s linear;
   transition: box-shadow 0.1s linear;
   transition: box-shadow 0.1s linear, -webkit-box-shadow 0.1s linear;
   display: -webkit-box;
@@ -1595,7 +1583,6 @@ div.product > div > button:nth-child(4) {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
-  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
@@ -1915,7 +1902,8 @@ div.product > div > button:nth-child(4) {
   text-align: center;
 }
 
-.searchContent h2.emptyResultMessage {
+.searchContent h2.emptyResultMessage,
+.searchContent h2.invalidKeywordMessage {
   color: red;
   text-align: center;
 }
