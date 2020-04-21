@@ -50,7 +50,7 @@ function fillCartList(fromClick) {
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
-  productPrice = btn.previousElementSibling.textContent;
+  productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id;
@@ -92,15 +92,12 @@ function addProduct(productBtn) {
       setLocalStorage(addBtn, fromClick);
     });
   });
-}
+} 
 function deleteProduct(getJSON) {
-  var deleteBtn = document.querySelectorAll(".cart__product-delete");
+  const deleteBtn = document.querySelectorAll(".cart__product-delete");
   deleteBtn.forEach((delBtn) => {
     delBtn.addEventListener("click", (e) => {
-      console.log("hello");
-      var index = getJSON.findIndex(function (prod) {
-        return prod.id == delBtn.parentElement.parentElement.id;
-      });
+      const index = getJSON.findIndex((prod) =>  { return prod.id == delBtn.parentElement.parentElement.id});
       console.log(delBtn.parentElement.parentElement.id);
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
