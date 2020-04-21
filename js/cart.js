@@ -35,17 +35,18 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = `<div id="${productId}" class="cart__product">
-    <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
-    <div class="cart__product-text">${productName}</div>
-    <div class="cart__product-price">${productPrice}</div>
-    <div class="cart__product-pull-right">
-        <span><button class="qtyBtn minusQty">-</button></span>
-        <div class="cart__product-qty">${productQty}</div>
-        <span><button class="qtyBtn plusQty">+</button></span>
-        <div class="cart__product-delete">X</div>
-    </div>
-    </div>`;
+    product = `
+      <div id="${productId}" class="cart__product">
+        <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
+        <div class="cart__product-text">${productName}</div>
+        <div class="cart__product-price">${productPrice}</div>
+        <div class="cart__product-pull-right">
+          <span><button class="qtyBtn minusQty">-</button></span>
+          <div class="cart__product-qty">${productQty}</div>
+          <span><button class="qtyBtn plusQty">+</button></span>
+          <div class="cart__product-delete">X</div>
+        </div>
+      </div>`;
 
     if (fromClick === false) {
       cartList.innerHTML += product;
