@@ -19,7 +19,7 @@
             </div>
 
             <div class="dropdown">
-                <button class="dropbtn">Categories</button>
+                <button class="dropbtn">Kategorier</button>
                 <div class="dropdown-content" id="dropdownCategoryContainer">
                     <form id="categoryDropdownForm" class="top-nav__form">
                     </form>
