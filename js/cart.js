@@ -53,6 +53,7 @@ function fillCartList(fromClick) {
     cartList.innerHTML += product;
   }
   deleteProduct(getLs);
+  updateSum(getLs);
 }
 
 const productInfo = (btn) => {
@@ -113,4 +114,11 @@ function deleteProduct(getJSON) {
       localStorage.setItem("products", JSON.stringify(getJSON));
     });
   });
+}
+
+function updateSum(getLs) {
+    getLs.forEach(element => {
+        console.log(element.price);
+        
+    });
 }
