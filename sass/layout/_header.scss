@@ -14,13 +14,23 @@
     flex-direction: column;
     justify-content: center;
 
+    @media all and (-ms-high-contrast: none) {
+      *::-ms-backdrop,
+      .logo {
+        padding-top: 10px;
+        /* IE11 */
+      }
+    }
+
     .logo {
       a {
         display: block;
         width: 100%;
+
         @supports (display: grid) {
           height: 100%;
         }
+
         img {
           max-width: 140px;
           object-fit: contain;

@@ -136,6 +136,14 @@ button {
           justify-content: center;
 }
 
+@media all and (-ms-high-contrast: none) {
+  .main__header__top *::-ms-backdrop,
+  .main__header__top .logo {
+    padding-top: 10px;
+    /* IE11 */
+  }
+}
+
 .main__header__top .logo a {
   display: block;
   width: 100%;
@@ -639,6 +647,9 @@ main {
   width: 155px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .product-container > :nth-child(1) {
@@ -1263,6 +1274,8 @@ div.product > div:nth-child(2) > button:nth-child(4) {
 .grid-box .grid-3 .product__img {
   width: 100%;
   max-width: 100%;
+  -o-object-position: 0 22%;
+     object-position: 0 22%;
 }
 
 .grid-box .grid-2 {
