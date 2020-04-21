@@ -60,7 +60,11 @@ shopLib = (function() {
       productJson.forEach(function(item) {
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-        cardHtml += "\n        <div class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='"
+        cardHtml += "\n        <div id='"
+          .concat(
+            item.id,
+            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='"
+          )
           .concat(
             coverImage,
             "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
@@ -89,6 +93,19 @@ shopLib = (function() {
 
       var productBtn = document.querySelectorAll(".product__add-btn");
       addProduct(productBtn);
+    },
+    searchProducts: function searchProducts(event) {
+      var keyword = document.forms["searchform"]["searchinput"].value;
+      console.log(event.location);
+
+      if (keyword.length < 2) {
+        return;
+      } //   const lib = this;
+      //   const productApi = `${INTERNAL_API_PATH}/products.php`;
+      //   lib.loadJsonByXhr(productApi, function(productJson) {
+      //     console.log("hello world");
+
+      var matchingProducts = event.preventDefault(); //   });
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();
