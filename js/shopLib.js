@@ -100,6 +100,26 @@ shopLib = (function() {
       addProduct(productBtn);
     },
 
+    searchProducts: function(event) {
+      const keyword = document.forms["searchform"]["searchinput"].value;
+
+      console.log(location);
+      //   console.log(event);
+
+      if (keyword.length < 2) {
+        return false;
+        event.preventDefault();
+      }
+
+      //   const lib = this;
+      //   const productApi = `${INTERNAL_API_PATH}/products.php`;
+      //   lib.loadJsonByXhr(productApi, function(productJson) {
+      //     console.log("hello world");
+      const matchingProducts =
+        //   });
+        event.preventDefault();
+    },
+
     loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {

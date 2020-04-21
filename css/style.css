@@ -58,11 +58,6 @@ img {
           box-sizing: border-box;
 }
 
-h1 {
-  color: red;
-  text-align: center;
-}
-
 input {
   border-radius: 3px;
   background-color: #f60d4d20;
@@ -194,9 +189,8 @@ button {
 
 .main__header__search--input {
   width: 150px;
-  background-color: pink;
-  background-color: #f60d4d20;
-  border: 0px;
+  background-color: white;
+  border: 1px solid #f60d4d;
   border-radius: 3px 0 0 3px;
   padding-left: 8px;
 }
@@ -1868,5 +1862,14 @@ div.product > div > button:nth-child(4) {
               box-shadow: 0 0 0 0 var(--hover);
     }
   }
+}
+
+.searchContent h1 {
+  text-align: center;
+}
+
+.searchContent h2.emptyResultMessage {
+  color: red;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

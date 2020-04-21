@@ -14,14 +14,14 @@
     flex-direction: column;
     justify-content: center;
 
-    .logo{
-      a{
+    .logo {
+      a {
         display: block;
         width: 100%;
-        @supports(display: grid){
+        @supports (display: grid) {
           height: 100%;
         }
-        img{
+        img {
           max-width: 140px;
           object-fit: contain;
         }
@@ -54,9 +54,8 @@
 
     &--input {
       width: 150px;
-      background-color: pink;
-      background-color: #f60d4d20;
-      border: 0px;
+      background-color: white;
+      border: 1px solid #f60d4d;
       border-radius: 3px 0 0 3px;
       padding-left: 8px;
     }

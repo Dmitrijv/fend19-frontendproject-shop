@@ -23,16 +23,21 @@
     <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main>
-        <div class="content">
-            <?php require_once __DIR__ . '/php/view/search-result.php';?>
+        <div class="content searchContent">
+            <h1>Sök resultat</h1>
+            <h2 class="emptyResultMessage hidden" >Dear customer, unfortunately your search did not match any of our current inventory!</h2>
+            <div class="product-container"></div>
         </div>
     </main>
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <script src="./js/ie11/sidebar.js"></script>
-    <script src="./js/cart.js"></script>
-    <script src="./js/search-validation.js"></script>
+    <!-- <script src="./js/ie11/sidebar.js"></script> -->
+
+    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
+    <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
+    <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
+    <script type="text/javascript" src="./js/cart.js"></script>
 
 </body>
 
