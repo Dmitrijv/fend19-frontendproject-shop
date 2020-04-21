@@ -86,6 +86,8 @@ shopLib = (function() {
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
+      const addProduct = document.querySelectorAll(".product__add-btn");
+      clickProduct(addProduct);
     },
 
     loadJsonByXhr: function(url, callback) {

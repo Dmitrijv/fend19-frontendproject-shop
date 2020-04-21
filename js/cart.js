@@ -1,19 +1,20 @@
-const cartBtn = document.querySelector(".cart-btn");
-const cart = document.querySelector(".cart");
-cartBtn.addEventListener("click", (e) => {
+var cartBtn = document.querySelector(".cart-btn");
+var cart = document.querySelector(".cart");
+cartBtn.addEventListener("click", function (e) {
   cart.style.display === "flex"
     ? (cart.style.display = "none")
     : (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
-  let productName, productImg, productPrice, productQty;
-  let product;
-  const getLs = JSON.parse(localStorage.getItem("products"));
-  const cartList = document.querySelector(".cart__product-list");
-  for (let i = 0; i < getLs.length; i++) {
+  var productName, productImg, productPrice, productQty;
+  var product;
+  var getLs = JSON.parse(localStorage.getItem("products"));
+  var cartList = document.querySelector(".cart__product-list");
+
+  for (var i = 0; i < getLs.length; i++) {
     if (fromClick) {
-      const lastItem = getLs.length - 1;
+      var lastItem = getLs.length - 1;
       productName = getLs[lastItem].name;
       productImg = getLs[lastItem].img;
       productPrice = getLs[lastItem].price;
@@ -25,33 +26,38 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = `<div class="cart__product">
-    <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
-    <div class="cart__product-text">${productName}</div>
-    <div class="cart__product-price">${productPrice}</div>
-    <div class="cart__product-pull-right">
-        <div class="cart__product-qty">${productQty}</div>
-        <div class="cart__product-delete">X</div>
-    </div>
-    </div>`;
+    product = '<div class="cart__product">\n    <div class="cart__product-img"><img class="cart__product__img-src" src="'
+      .concat(
+        productImg,
+        '" alt="product name"></div>\n    <div class="cart__product-text">'
+      )
+      .concat(productName, '</div>\n    <div class="cart__product-price">')
+      .concat(
+        productPrice,
+        '</div>\n    <div class="cart__product-pull-right">\n        <div class="cart__product-qty">'
+      )
+      .concat(
+        productQty,
+        '</div>\n        <div class="cart__product-delete">X</div>\n    </div>\n    </div>'
+      );
 
     if (fromClick === false) {
       cartList.innerHTML += product;
     }
   }
+
   if (fromClick) {
     cartList.innerHTML += product;
   }
 }
 
-const productInfo = (btn) => {
+var productInfo = function productInfo(btn) {
   productName = btn.parentElement.firstElementChild.textContent;
   productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
   productPrice = btn.previousElementSibling.textContent;
   productQty =
-  btn.previousElementSibling.previousElementSibling.firstElementChild
+    btn.previousElementSibling.firstElementChild
       .nextElementSibling.textContent;
-
   return {
     id: 1,
     name: productName,
@@ -62,9 +68,10 @@ const productInfo = (btn) => {
 };
 
 function setLocalStorage(obj, fromClick) {
-  let getArray;
+  var getArray;
+
   if (localStorage.getItem("products") === null) {
-    let prodArray = [];
+    var prodArray = [];
     prodArray.push(productInfo(obj));
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
@@ -72,21 +79,26 @@ function setLocalStorage(obj, fromClick) {
     getArray.push(productInfo(obj));
     localStorage.setItem("products", JSON.stringify(getArray));
   }
+
   fillCartList(fromClick);
 }
 
 function refreshCartList() {
-  const getLocalStorage = JSON.parse(localStorage.getItem("products"));
+  var getLocalStorage = JSON.parse(localStorage.getItem("products"));
   if (getLocalStorage === null) return;
-  let fromClick = false;
+  var fromClick = false;
   fillCartList(fromClick);
 }
+
 refreshCartList();
 
-const addProduct = document.querySelectorAll(".product__add-btn");
-addProduct.forEach((addBtn) => {
-  addBtn.addEventListener("click", (e) => {
-    let fromClick = true;
-    setLocalStorage(addBtn, fromClick);
-  });
-});
+function clickProduct(addProduct) {
+  for (let index = 0; index < addProduct.length; index++) {
+    const addBtn = addProduct[index];
+
+    addBtn.addEventListener("click", function (e) {
+      var fromClick = true;
+      setLocalStorage(addBtn, fromClick);
+    });
+  }
+}

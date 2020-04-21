@@ -65,7 +65,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   input {
     border: none;
   }
@@ -267,7 +267,6 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
-  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -280,7 +279,6 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -298,13 +296,11 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
-      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -531,15 +527,28 @@ button {
   width: 100%;
 }
 
-.cart__product-img, .cart__product-text, .cart__product-price, .cart__product-pull-right {
+.cart__product-text, .cart__product-price, .cart__product-pull-right {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
 
 .cart__product-img {
-  max-width: 170px;
-  max-height: 170px;
+  max-width: 70px !important;
+  max-height: 70px !important;
+}
+
+.cart__product-pull-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.cart__product-delete {
+  cursor: pointer;
 }
 
 /* bp: 650px / 975px / 1280px / max: don't care anymore  */
@@ -1116,7 +1125,7 @@ main {
 
 /* IE part ends here, but legend continues. */
 /* Here comes code for other browsers */
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .product-container {
     display: -ms-grid;
     display: grid;
@@ -1240,7 +1249,7 @@ main {
   background-color: #d1d39a;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -1322,7 +1331,6 @@ div.product > div > button:nth-child(4) {
 [class*="fx-"],
 [class*="fx-"]:hover {
   -webkit-transition: color 0.5s ease-in-out;
-  -o-transition: color 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
 }
 
@@ -1330,7 +1338,6 @@ div.product > div > button:nth-child(4) {
   position: relative;
   z-index: 1;
   -webkit-transition-delay: 0.2s !important;
-       -o-transition-delay: 0.2s !important;
           transition-delay: 0.2s !important;
   overflow: hidden;
 }
@@ -1345,7 +1352,6 @@ div.product > div > button:nth-child(4) {
 
 [class*="fx-bubble"]::after {
   -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1358,7 +1364,6 @@ div.product > div > button:nth-child(4) {
 [class*="fx-bubble"]:hover::after,
 [class*="fx-bubble"].active::after {
   -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   height: 300%;
 }
@@ -1369,7 +1374,6 @@ div.product > div > button:nth-child(4) {
 
 .fx-sliderIn::after {
   -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1381,7 +1385,6 @@ div.product > div > button:nth-child(4) {
 .fx-sliderIn:hover::after,
 .fx-sliderIn.active::after {
   -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   width: 100%;
 }
@@ -1413,7 +1416,6 @@ div.product > div > button:nth-child(4) {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
-  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
