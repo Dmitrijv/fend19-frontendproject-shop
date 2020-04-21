@@ -86,8 +86,11 @@ shopLib = (function() {
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
-      const productBtn = document.querySelectorAll(".product__add-btn");
-      clickProduct(productBtn);
+      var productBtn = document.querySelectorAll(".product__add-btn");
+      var deleteBtn = document.querySelectorAll(".cart__product-delete");
+      addProduct(productBtn, productJson);
+      deleteProduct(deleteBtn);
+      
     },
 
     loadJsonByXhr: function(url, callback) {

@@ -5,9 +5,6 @@ shopLib = function () {
   var CONTROLLER_PATH = "".concat(SHOP_URL, "/php/controller");
   var INTERNAL_API_PATH = "".concat(SHOP_URL, "/api");
   var shopLib = {
-    buttons: function buttons() {
-      return document.querySelectorAll(".product__add-btn");
-    },
     drawCategorySelectors: function drawCategorySelectors() {
       var lib = this;
       var categoryApiUrl = "".concat(INTERNAL_API_PATH, "/categories.php"); //cache selectors
@@ -59,12 +56,14 @@ shopLib = function () {
       var cardHtml = "";
       productJson.forEach(function (item) {
         var coverImage = item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-        cardHtml += "\n        <div class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='".concat(coverImage, "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>").concat(item.title, "</p>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>").concat(item.numberInStock, "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <div class='product__price'>").concat(item.price, " ").concat(item.currency, "</div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>");
+        cardHtml += "\n        <div class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='".concat(coverImage, "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>").concat(item.title, "</p>\n                <div class='product__price'>").concat(item.price, " ").concat(item.currency, "</div>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>").concat(item.numberInStock, "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>");
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
-      var addProduct = document.querySelectorAll(".product__add-btn");
-      clickProduct(addProduct);
+      var productBtn = document.querySelectorAll(".product__add-btn");
+      var deleteBtn = document.querySelectorAll(".cart__product-delete");
+      addProduct(productBtn, productJson);
+      deleteProduct(deleteBtn);
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();

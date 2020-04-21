@@ -51,13 +51,17 @@ function fillCartList(fromClick) {
   }
 }
 
-var productInfo = function productInfo(btn) {
+var productInfo = function productInfo(btn, productJson) {
   productName = btn.parentElement.firstElementChild.textContent;
   productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
   productPrice = btn.previousElementSibling.textContent;
   productQty =
-    btn.previousElementSibling.firstElementChild
-      .nextElementSibling.textContent;
+    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+    for (let i = 0; i < productJson.length; i++) {
+
+        console.log(productJson[i].id);
+        
+    }
   return {
     id: 1,
     name: productName,
@@ -67,16 +71,16 @@ var productInfo = function productInfo(btn) {
   };
 };
 
-function setLocalStorage(obj, fromClick) {
+function setLocalStorage(obj, fromClick, productJson) {
   var getArray;
-
+    
   if (localStorage.getItem("products") === null) {
     var prodArray = [];
-    prodArray.push(productInfo(obj));
+    prodArray.push(productInfo(obj, productJson));
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
     getArray = JSON.parse(localStorage.getItem("products"));
-    getArray.push(productInfo(obj));
+    getArray.push(productInfo(obj, productJson));
     localStorage.setItem("products", JSON.stringify(getArray));
   }
 
@@ -92,13 +96,23 @@ function refreshCartList() {
 
 refreshCartList();
 
-function addProduct(productBtn) {
+function addProduct(productBtn, productJson) {
   for (let index = 0; index < productBtn.length; index++) {
     const addBtn = productBtn[index];
 
     addBtn.addEventListener("click", function (e) {
       var fromClick = true;
-      setLocalStorage(addBtn, fromClick);
+      setLocalStorage(addBtn, fromClick, productJson);
+    });
+  }
+}
+function deleteProduct(deleteBtn) {
+  for (let index = 0; index < deleteBtn.length; index++) {
+    const delBtn = deleteBtn[index];
+
+    delBtn.addEventListener("click", function (e) {
+     console.log(productJson);
+     
     });
   }
 }
