@@ -141,6 +141,14 @@ button {
           justify-content: center;
 }
 
+@media all and (-ms-high-contrast: none) {
+  .main__header__top *::-ms-backdrop,
+  .main__header__top .logo {
+    padding-top: 10px;
+    /* IE11 */
+  }
+}
+
 .main__header__top .logo a {
   display: block;
   width: 100%;
