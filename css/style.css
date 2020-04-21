@@ -427,13 +427,22 @@ button {
     padding-right: 20px;
     margin: 0;
     padding-top: 20px;
+    z-index: 1000;
   }
   .top-nav__form li {
     min-width: 200px;
   }
-  .top-nav__form li label:hover {
+  .top-nav__form li .categoryFilterButton {
+    width: 200px;
+  }
+  .top-nav__form li .categoryFilterButton:hover {
+    cursor: pointer;
     background-color: #ddd;
     color: #3c3c3c;
+  }
+  /* Keep first product-add-btn z-index smaller than this form */
+  div.product:nth-child(1) > div:nth-child(2) > button:nth-child(4) {
+    z-index: -1;
   }
   .dropdown-content {
     display: none;
@@ -458,7 +467,7 @@ button {
     display: block;
   }
   .dropdown:hover .dropbtn {
-    background-color: #2abeec;
+    background-color: #9fa255;
   }
 }
 
@@ -1171,7 +1180,7 @@ main {
 }
 
 .product__add-btn {
-  margin-bottom: 10px;
+  margin: 5px auto;
 }
 
 /* Set each product cart to display grid */
@@ -1214,6 +1223,23 @@ main {
   font-size: 14px;
 }
 
+.grid-box .grid-2 .product__count-btn {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  margin: 0;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.grid-box .grid-2 .product__count-btn:nth-of-type(2) {
+  background-color: #9fa255;
+}
+
+.grid-box .grid-2 .product__count-btn:nth-of-type(2):hover {
+  background-color: #d1d39a;
+}
+
 @supports ((display: -ms-grid) or (display: grid)) {
   .grid-box .grid-2 {
     display: -ms-grid;
@@ -1236,12 +1262,6 @@ main {
             justify-content: space-between;
     height: 35px;
     width: 100px;
-  }
-  .grid-box .grid-2 .product__count-container .product__count-btn {
-    display: inline-block;
-    height: 30px;
-    padding: 0 9px;
-    margin: 0;
   }
   .grid-box .grid-2 .product__count-container .product__count {
     display: inline-block;
@@ -1310,8 +1330,8 @@ div.product > div > button:nth-child(4) {
   position: relative;
   z-index: 1;
   -webkit-transition-delay: 0.2s !important;
-  -o-transition-delay: 0.2s !important;
-     transition-delay: 0.2s !important;
+       -o-transition-delay: 0.2s !important;
+          transition-delay: 0.2s !important;
   overflow: hidden;
 }
 
@@ -1402,15 +1422,6 @@ div.product > div > button:nth-child(4) {
   margin: 0;
 }
 
-.sidebar__menu a {
-  text-decoration: none;
-  color: black;
-}
-
-.sidebar__input__item {
-  position: absolute;
-}
-
 .sidebar__menu__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1436,21 +1447,14 @@ div.product > div > button:nth-child(4) {
   left: 0;
 }
 
-input[type="radio"] {
-  opacity: 0.01;
-  z-index: 100;
+.sidebar.active ul li input {
+  min-width: 250px;
 }
 
-label {
-  z-index: 90;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  color: black;
-  padding: 5px;
-  border: 1px solid #ccc;
+.sidebar.active ul li input:hover {
   cursor: pointer;
-  z-index: 90;
+  background-color: #ddd;
+  color: #3c3c3c;
 }
 
 .form {
