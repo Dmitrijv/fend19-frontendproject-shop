@@ -139,7 +139,7 @@ shopLib = function () {
       var cardHtml = "";
       productJson.forEach(function (item) {
         var coverImage = item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-        cardHtml += "\n        <div id='".concat(item.id, "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='").concat(coverImage, "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>").concat(item.title, "</p>\n                <div class='product__price'>").concat(item.price, " ").concat(item.currency, "</div>\n            </div>\n        </div>");
+        cardHtml += "\n        <div id='".concat(item.id, "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3' style=\"background-image: url(").concat(coverImage, ")\">\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>").concat(item.title, "</p>\n                <div class='product__price'>").concat(item.price, " ").concat(item.currency, "</div>\n            </div>\n        </div>");
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml; // show error message if this category has no products
