@@ -6,12 +6,50 @@ cartBtn.addEventListener("click", (e) => {
     : (cart.style.display = "flex");
 });
 
-const productInfo = (obj) => {
-  productName = obj.parentElement.firstElementChild.textContent;
-  productImg = obj.parentElement.previousElementSibling.firstElementChild.src;
-  productPrice = obj.previousElementSibling.textContent;
+function fillCartList(fromClick) {
+  let productName, productImg, productPrice, productQty;
+  let product;
+  const getLs = JSON.parse(localStorage.getItem("products"));
+  const cartList = document.querySelector(".cart__product-list");
+  for (let i = 0; i < getLs.length; i++) {
+    if (fromClick) {
+      const lastItem = getLs.length - 1;
+      productName = getLs[lastItem].name;
+      productImg = getLs[lastItem].img;
+      productPrice = getLs[lastItem].price;
+      productQty = getLs[lastItem].qty;
+    } else {
+      productName = getLs[i].name;
+      productImg = getLs[i].img;
+      productPrice = getLs[i].price;
+      productQty = getLs[i].qty;
+    }
+
+    product = `<div class="cart__product">
+    <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
+    <div class="cart__product-text">${productName}</div>
+    <div class="cart__product-price">${productPrice}</div>
+    <div class="cart__product-pull-right">
+        <div class="cart__product-qty">${productQty}</div>
+        <div class="cart__product-delete">X</div>
+    </div>
+    </div>`;
+
+    if (fromClick === false) {
+      cartList.innerHTML += product;
+    }
+  }
+  if (fromClick) {
+    cartList.innerHTML += product;
+  }
+}
+
+const productInfo = (btn) => {
+  productName = btn.parentElement.firstElementChild.textContent;
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
+  productPrice = btn.previousElementSibling.textContent;
   productQty =
-    obj.previousElementSibling.previousElementSibling.firstElementChild
+  btn.previousElementSibling.previousElementSibling.firstElementChild
       .nextElementSibling.textContent;
 
   return {
@@ -23,45 +61,32 @@ const productInfo = (obj) => {
   };
 };
 
-function setLocalStorage(btn) {
+function setLocalStorage(obj, fromClick) {
   let getArray;
   if (localStorage.getItem("products") === null) {
     let prodArray = [];
-    prodArray.push(productInfo(btn));
+    prodArray.push(productInfo(obj));
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
     getArray = JSON.parse(localStorage.getItem("products"));
-    getArray.push(productInfo(btn));
+    getArray.push(productInfo(obj));
     localStorage.setItem("products", JSON.stringify(getArray));
   }
+  fillCartList(fromClick);
 }
 
-function fillCartList() {
-    const cartList = document.querySelector(".cart__product-list");
-    const product = `<div class="cart__product">
-  <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
-  <div class="cart__product-text">${productName}</div>
-  <div class="cart__product-price">${productPrice}</div>
-  <div class="cart__product-pull-right">
-      <div class="cart__product-qty">${productQty}</div>
-      <div class="cart__product-delete">X</div>
-  </div>
-  </div>`;
-    cartList.innerHTML += product;
+function refreshCartList() {
+  const getLocalStorage = JSON.parse(localStorage.getItem("products"));
+  if (getLocalStorage === null) return;
+  let fromClick = false;
+  fillCartList(fromClick);
 }
-
-function renderProduct(btn) {
-  setLocalStorage(btn);
-
-  const getArray = JSON.parse(localStorage.getItem("products"));
-  console.log(getArray[clickedItem].id);
-  
-  fillCartList();
-}
+refreshCartList();
 
 const addProduct = document.querySelectorAll(".product__add-btn");
 addProduct.forEach((addBtn) => {
   addBtn.addEventListener("click", (e) => {
-    renderProduct(addBtn);
+    let fromClick = true;
+    setLocalStorage(addBtn, fromClick);
   });
 });
