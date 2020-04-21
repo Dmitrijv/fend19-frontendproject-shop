@@ -92,9 +92,9 @@ function refreshCartList() {
 
 refreshCartList();
 
-function clickProduct(addProduct) {
-  for (let index = 0; index < addProduct.length; index++) {
-    const addBtn = addProduct[index];
+function addProduct(productBtn) {
+  for (let index = 0; index < productBtn.length; index++) {
+    const addBtn = productBtn[index];
 
     addBtn.addEventListener("click", function (e) {
       var fromClick = true;

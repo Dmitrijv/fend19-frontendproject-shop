@@ -44,6 +44,11 @@
   &__product-img {
     max-width: 70px !important;
     max-height: 70px !important;
+    img {
+        object-fit: fill;
+        width: 100%;
+        height: 100%;
+    }
   }
   &__product-text {
   }
