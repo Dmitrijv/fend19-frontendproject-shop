@@ -1395,6 +1395,10 @@ div.product > div > button:nth-child(4) {
   width: 300%;
 }
 
+div.product:nth-child(1) > div:nth-child(2) > button:nth-child(4) {
+  z-index: 1;
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;

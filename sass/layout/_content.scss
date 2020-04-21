@@ -360,3 +360,8 @@ div.product > div > button:nth-child(4) {
 .fx-sliderIn.active::after {
   width: 300%;
 }
+
+// I have no idea why z-index is set to -1 on this element
+div.product:nth-child(1) > div:nth-child(2) > button:nth-child(4) {
+  z-index: 1;
+}
