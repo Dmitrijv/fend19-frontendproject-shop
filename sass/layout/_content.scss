@@ -37,8 +37,27 @@ main {
   .grid-box {
     margin-bottom: 20px;
 
-    .product__title {
-      width: 100%;
+    @supports (display: grid) {
+      margin-bottom: 0;
+    }
+
+    .grid-2 {
+      align-items: center;
+
+      .product__title {
+        width: 100%;
+      }
+
+      .product__count-container {
+        width: 155px;
+        justify-content: space-around;
+        // display: flex;
+        // justify-content: center;
+      }
+
+      .product__price {
+        // text-align: center;
+      }
     }
   }
 }
@@ -162,6 +181,10 @@ $elements: 12;
   }
 }
 
+div.product > div:nth-child(2) > button:nth-child(4) {
+  z-index: 0 !important;
+}
+
 .product {
   display: flex;
   justify-content: space-between;
@@ -237,7 +260,7 @@ $elements: 12;
     @supports (display: grid) {
       display: grid;
       justify-items: center;
-      align-self: flex-end;
+      // align-self: flex-end;
       grid-template-rows: 0.8fr min-content 0.5fr 1fr;
 
       .product__count-container {
@@ -367,7 +390,84 @@ div.product > div > button:nth-child(4) {
   width: 300%;
 }
 
-// I have no idea why z-index is set to -1 on this element
-div.product:nth-child(1) > div:nth-child(2) > button:nth-child(4) {
-  z-index: 1;
+/* For contact-btn */
+$bounced-timing: cubic-bezier(0.64, 0.57, 0.47, 1.29);
+$back-timing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$time-fast: 0.1s;
+$time-mid: 0.6s;
+$font: "Prata";
+$bg-button: #233142;
+$color-text: #ccc; //lighten($bg-button, 20%);
+$bg-body: #fd9191;
+
+// display only
+.contact-btn {
+  position: absolute;
+  left: 50%;
+  background-color: $bg-button;
+  border: none;
+  border-radius: 4px;
+  color: $color-text;
+  font-size: 1.5rem;
+  font-family: $font;
+  letter-spacing: 2px;
+}
+
+// positioning button
+#button1 {
+  top: 88%;
+  left: 92%;
+  padding: 0;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.contact-btn {
+  display: block;
+  width: 60px;
+  height: 176px;
+  cursor: pointer;
+  transition: box-shadow $time-fast linear;
+  display: flex;
+  justify-content: center;
+  background: #f60d4d;
+  color: whitesmoke;
+  position: fixed;
+
+  p {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-family: "Pacifico";
+    font-size: 14px;
+    letter-spacing: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.pulse:hover,
+.pulse:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(#fff, 0);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+$colors: (
+  pulse: #ef6eae
+);
+
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 45deg)};
+  }
 }
