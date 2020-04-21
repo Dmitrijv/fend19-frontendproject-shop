@@ -40,7 +40,9 @@ function fillCartList(fromClick) {
     <div class="cart__product-text">${productName}</div>
     <div class="cart__product-price">${productPrice}</div>
     <div class="cart__product-pull-right">
+        <span><button class="qtyBtn minusQty">-</button></span>
         <div class="cart__product-qty">${productQty}</div>
+        <span><button class="qtyBtn plusQty">+</button></span>
         <div class="cart__product-delete">X</div>
     </div>
     </div>`;
@@ -54,6 +56,7 @@ function fillCartList(fromClick) {
   }
   deleteProduct(getLs);
   updateSum(getLs);
+  changeQty(getLs);
 }
 
 const productInfo = (btn) => {
@@ -127,4 +130,26 @@ function updateSum(getLs) {
     } 
    const totalSum = document.querySelector('.total-sum');
    totalSum.textContent = sum;
+  }
+  function changeQty(getJSON) {
+    const qtyBtns = document.querySelectorAll(".qtyBtn");
+  
+    qtyBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        var index = getJSON.findIndex(function(prod) {
+          return prod.id == btn.parentElement.parentElement.parentElement.id;
+        });
+  
+        if (btn.innerHTML === "+") {
+            getJSON[index].qty -= 1; //???
+            getJSON[index].qty += 2;
+          btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
+        } else {
+          if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
+          btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+        }
+        localStorage.setItem("myObject", JSON.stringify(getJSON));
+        updateSum(getJSON);
+      });
+    });
   }
