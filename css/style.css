@@ -1920,4 +1920,15 @@ div.product > div > button:nth-child(4) {
   color: red;
   text-align: center;
 }
+
+.searchContent .grid-box {
+  -ms-grid-rows: 250px 100px !important;
+  grid-template-rows: 250px 100px;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
+  .searchContent .grid-box .grid-2 {
+    height: 50px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
