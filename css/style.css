@@ -27,6 +27,10 @@ body {
   margin: 0;
 }
 
+main {
+  margin-bottom: 2rem;
+}
+
 img {
   height: 100%;
   -o-object-fit: cover;
@@ -39,7 +43,6 @@ img {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  width: 120px;
   height: 47px;
 }
 
@@ -132,6 +135,23 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.main__header__top .logo a {
+  display: block;
+  width: 100%;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
+  .main__header__top .logo a {
+    height: 100%;
+  }
+}
+
+.main__header__top .logo a img {
+  max-width: 140px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 @media (min-width: 800px) {
@@ -440,10 +460,6 @@ button {
     background-color: #ddd;
     color: #3c3c3c;
   }
-  /* Keep first product-add-btn z-index smaller than this form */
-  div.product:nth-child(1) > div:nth-child(2) > button:nth-child(4) {
-    z-index: -1;
-  }
   .dropdown-content {
     display: none;
     position: absolute;
@@ -582,8 +598,26 @@ main {
   margin-bottom: 20px;
 }
 
-.product-container .grid-box .product__title {
+@supports ((display: -ms-grid) or (display: grid)) {
+  .product-container .grid-box {
+    margin-bottom: 0;
+  }
+}
+
+.product-container .grid-box .grid-2 {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.product-container .grid-box .grid-2 .product__title {
   width: 100%;
+}
+
+.product-container .grid-box .grid-2 .product__count-container {
+  width: 155px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .product-container > :nth-child(1) {
@@ -1148,6 +1182,10 @@ main {
   }
 }
 
+div.product > div:nth-child(2) > button:nth-child(4) {
+  z-index: 0 !important;
+}
+
 .product {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1245,7 +1283,6 @@ main {
     display: -ms-grid;
     display: grid;
     justify-items: center;
-    align-self: flex-end;
     -ms-grid-rows: 0.8fr min-content 0.5fr 1fr;
         grid-template-rows: 0.8fr -webkit-min-content 0.5fr 1fr;
         grid-template-rows: 0.8fr min-content 0.5fr 1fr;
@@ -1391,6 +1428,91 @@ div.product > div > button:nth-child(4) {
   width: 300%;
 }
 
+/* For contact-btn */
+.contact-btn {
+  position: absolute;
+  left: 50%;
+  background-color: #233142;
+  border: none;
+  border-radius: 4px;
+  color: #ccc;
+  font-size: 1.5rem;
+  font-family: "Prata";
+  letter-spacing: 2px;
+}
+
+#button1 {
+  top: 88%;
+  left: 92%;
+  padding: 0;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
+
+.contact-btn {
+  display: block;
+  width: 60px;
+  height: 176px;
+  cursor: pointer;
+  -webkit-transition: -webkit-box-shadow 0.1s linear;
+  transition: -webkit-box-shadow 0.1s linear;
+  -o-transition: box-shadow 0.1s linear;
+  transition: box-shadow 0.1s linear;
+  transition: box-shadow 0.1s linear, -webkit-box-shadow 0.1s linear;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #f60d4d;
+  color: whitesmoke;
+  position: fixed;
+}
+
+.contact-btn p {
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "Pacifico";
+  font-size: 14px;
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.contact-btn:hover {
+  -webkit-box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  -webkit-box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+          box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 var(--hover);
+            box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 var(--hover);
+            box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+.pulse {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1524,7 +1646,6 @@ div.product > div > button:nth-child(4) {
 }
 
 .footer .logo {
-  width: 200px;
   margin: auto;
 }
 
