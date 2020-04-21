@@ -133,9 +133,9 @@ function updateSum(getLs) {
   const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
+
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
-
   qtyBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
       var index = getJSON.findIndex(function (prod) {
