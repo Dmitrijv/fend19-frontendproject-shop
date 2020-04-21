@@ -3,16 +3,16 @@ const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
 cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
-})
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
+});
 
 function fillCartList(fromClick) {
   let productName, productImg, productPrice, productQty;
@@ -40,7 +40,9 @@ function fillCartList(fromClick) {
     <div class="cart__product-text">${productName}</div>
     <div class="cart__product-price">${productPrice}</div>
     <div class="cart__product-pull-right">
+        <span><button class="qtyBtn minusQty">-</button></span>
         <div class="cart__product-qty">${productQty}</div>
+        <span><button class="qtyBtn plusQty">+</button></span>
         <div class="cart__product-delete">X</div>
     </div>
     </div>`;
@@ -54,6 +56,7 @@ function fillCartList(fromClick) {
   }
   deleteProduct(getLs);
   updateSum(getLs);
+  changeQty(getLs);
 }
 
 const productInfo = (btn) => {
@@ -107,24 +110,49 @@ function deleteProduct(getJSON) {
   const deleteBtn = document.querySelectorAll(".cart__product-delete");
   deleteBtn.forEach((delBtn) => {
     delBtn.addEventListener("click", (e) => {
-      const index = getJSON.findIndex((prod) =>  { return prod.id == delBtn.parentElement.parentElement.id});
+      const index = getJSON.findIndex((prod) => {
+        return prod.id == delBtn.parentElement.parentElement.id;
+      });
       console.log(delBtn.parentElement.parentElement.id);
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
-      updateSum(getJSON)
+      updateSum(getJSON);
     });
   });
 }
 
 function updateSum(getLs) {
-    let sum = 0;
-  
-    for (let i = 0; i < getLs.length; i++) {
-      var str = getLs[i].price;
-      var res = str.replace(/\D/g, "");
-      sum += +res * getLs[i].qty;
-    } 
-   const totalSum = document.querySelector('.total-sum');
-   totalSum.textContent = sum;
+  let sum = 0;
+
+  for (let i = 0; i < getLs.length; i++) {
+    var str = getLs[i].price;
+    var res = str.replace(/\D/g, "");
+    sum += +res * getLs[i].qty;
   }
+  const totalSum = document.querySelector(".total-sum");
+  totalSum.textContent = sum;
+}
+function changeQty(getJSON) {
+  const qtyBtns = document.querySelectorAll(".qtyBtn");
+
+  qtyBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      var index = getJSON.findIndex(function (prod) {
+        return prod.id == btn.parentElement.parentElement.parentElement.id;
+      });
+
+      if (btn.innerHTML === "+") {
+        getJSON[index].qty -= 1; //???
+        getJSON[index].qty += 2;
+        btn.parentElement.previousElementSibling.textContent =
+          getJSON[index].qty;
+      } else {
+        if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
+        btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+      }
+      localStorage.setItem("products", JSON.stringify(getJSON));
+      updateSum(getJSON);
+    });
+  });
+}
