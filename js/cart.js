@@ -44,6 +44,7 @@ function fillCartList(fromClick) {
   if (fromClick) {
     cartList.innerHTML += product;
   }
+  deleteProduct(getLs);
 }
 
 const productInfo = (btn) => {
@@ -92,16 +93,15 @@ function addProduct(productBtn) {
     });
   });
 }
-function deleteProduct(deleteBtn) {
+function deleteProduct(getJSON) {
+  var deleteBtn = document.querySelectorAll(".cart__product-delete");
   deleteBtn.forEach((delBtn) => {
     delBtn.addEventListener("click", (e) => {
       console.log("hello");
-
-      let getJSON = JSON.parse(localStorage.getItem("products"));
       var index = getJSON.findIndex(function (prod) {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
-
+      console.log(delBtn.parentElement.parentElement.id);
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
