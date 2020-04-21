@@ -13,7 +13,7 @@
             </div>
             <div class="nav__item main__header__search">
                 <form class="nav__item main__header__search" name="searchform" onsubmit="shopLib.searchProducts(event)">
-                    <input class="main__header__search--input" type="text" name="searchinput" minlength="2">
+                    <input class="main__header__search--input" type="text" name="searchinput" required pattern=".{2,}">
                     <button class="main__header__btn search-btn" name="searchbtn" type="submit">Sök</button>
                 </form>
             </div>
