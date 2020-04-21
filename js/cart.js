@@ -1,10 +1,18 @@
 const cartBtn = document.querySelector(".cart-btn");
 const cart = document.querySelector(".cart");
+const cartCloseBtn = document.querySelector(".cart-close-btn");
+
 cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
 });
+
+cartCloseBtn.addEventListener("click", (e) => {
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
+})
 
 function fillCartList(fromClick) {
   let productName, productImg, productPrice, productQty;
@@ -92,7 +100,8 @@ function addProduct(productBtn) {
       setLocalStorage(addBtn, fromClick);
     });
   });
-} 
+}
+
 function deleteProduct(getJSON) {
   const deleteBtn = document.querySelectorAll(".cart__product-delete");
   deleteBtn.forEach((delBtn) => {

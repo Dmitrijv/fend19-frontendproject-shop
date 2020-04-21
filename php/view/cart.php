@@ -1,4 +1,5 @@
 <div class="cart">
+    <button class="cart-close-btn">X</button>
     <h2>Varukorg</h2>
     <div class="cart__product-list">
     </div>
