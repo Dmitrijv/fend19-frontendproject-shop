@@ -86,6 +86,17 @@ shopLib = (function() {
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
+
+      // show error message if this category has no products
+      if (cardHtml.length === 0) {
+        productPanel.parentNode.innerHTML =
+          "<div class='emptyCategoryMessage' >Det finns inga produkter i den här kategorin!</div>" +
+          productPanel.parentNode.innerHTML;
+      }
+
+      // add event listeners to "add to cart" buttons
+      const addProduct = document.querySelectorAll(".product__add-btn");
+      clickProduct(addProduct);
     },
 
     loadJsonByXhr: function(url, callback) {

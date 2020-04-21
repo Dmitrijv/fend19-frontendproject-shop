@@ -65,22 +65,28 @@ shopLib = (function() {
             coverImage,
             "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
           )
-          .concat(
-            item.title,
-            "</p>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
-          )
-          .concat(
-            item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <div class='product__price'>"
-          )
+          .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")
           .concat(
             item.currency,
-            "</div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
+            "</div>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
+          )
+          .concat(
+            item.numberInStock,
+            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
           );
       });
       productPanel.innerHTML = "";
-      productPanel.innerHTML += cardHtml;
+      productPanel.innerHTML += cardHtml; // show error message if this category has no products
+
+      if (cardHtml.length === 0) {
+        productPanel.parentNode.innerHTML =
+          "<div class='emptyCategoryMessage' >Det finns inga produkter i den här kategorin!</div>" +
+          productPanel.parentNode.innerHTML;
+      } // add event listeners to "add to cart" buttons
+
+      var addProduct = document.querySelectorAll(".product__add-btn");
+      clickProduct(addProduct);
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();
