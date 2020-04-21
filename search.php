@@ -38,9 +38,14 @@
     <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
     <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
     <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
+
     <script type="text/javascript" src="./js/cart.js"></script>
 
-    <script type="text/javascript"> if (sessionStorage.getItem("searchKeyword")) { shopLib.sessionStorageProductSearch(); } </script>
+    <script type="text/javascript">
+        if (sessionStorage.getItem("searchKeyword")) {
+            shopLib.sessionStorageProductSearch();
+        }
+    </script>
 
 </body>
 

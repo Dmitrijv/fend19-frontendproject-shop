@@ -496,7 +496,6 @@ button {
 .cart {
   padding: 1em;
   position: fixed;
-  top: 64px;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -509,12 +508,18 @@ button {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   right: 32px;
-  top: 64px;
   z-index: 1000;
   background: #e6dfdf;
   min-width: 300px;
   min-height: 300px;
   border-radius: 8px;
+  top: 88px;
+}
+
+@media screen and (min-width: 800px) {
+  .cart {
+    top: 64px;
+  }
 }
 
 .cart .cart-close-btn {

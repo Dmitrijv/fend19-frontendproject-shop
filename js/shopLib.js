@@ -119,7 +119,8 @@ shopLib = (function() {
       lib.loadJsonByXhr(productApi, function(productJson) {
         const matchingProducts = productJson.filter(
           product =>
-            product.title.toLowerCase().includes(keyword) || product.description.toLowerCase().includes(keyword)
+            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.description.toLowerCase().indexOf(keyword) !== -1
         );
         // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
@@ -135,7 +136,8 @@ shopLib = (function() {
       lib.loadJsonByXhr(productApi, function(productJson) {
         const matchingProducts = productJson.filter(
           product =>
-            product.title.toLowerCase().includes(keyword) || product.description.toLowerCase().includes(keyword)
+            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.description.toLowerCase().indexOf(keyword) !== -1
         );
         lib.drawSearchResultList(matchingProducts);
       });
@@ -157,11 +159,8 @@ shopLib = (function() {
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
                 <div class='product__count-container'>
-                    <button class='product__count-btn'>-</button>
                     <p class='product__count'>${item.numberInStock}</p>
-                    <button class='product__count-btn'>+</button>
                 </div>
-                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>Lägg i varukorgen</button>
             </div>
         </div>`;
       });

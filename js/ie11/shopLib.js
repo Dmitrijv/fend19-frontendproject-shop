@@ -1,5 +1,3 @@
-"use strict";
-
 shopLib = (function() {
   var info = "Helper library for drawing html elements based on db data.";
   var version = "0.2";
@@ -115,7 +113,10 @@ shopLib = (function() {
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
-          return product.title.toLowerCase().includes(keyword) || product.description.toLowerCase().includes(keyword);
+          return (
+            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.description.toLowerCase().indexOf(keyword) !== -1
+          );
         }); // console.log(matchingProducts);
 
         lib.drawSearchResultList(matchingProducts);
@@ -129,7 +130,10 @@ shopLib = (function() {
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
-          return product.title.toLowerCase().includes(keyword) || product.description.toLowerCase().includes(keyword);
+          return (
+            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.description.toLowerCase().indexOf(keyword) !== -1
+          );
         });
         lib.drawSearchResultList(matchingProducts);
       });
@@ -154,12 +158,9 @@ shopLib = (function() {
           .concat(item.price, " ")
           .concat(
             item.currency,
-            "</div>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
+            "</div>\n                <div class='product__count-container'>\n                    <p class='product__count'>"
           )
-          .concat(
-            item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
-          );
+          .concat(item.numberInStock, "</p>\n                </div>\n            </div>\n        </div>");
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml; // show error message if this category has no products
