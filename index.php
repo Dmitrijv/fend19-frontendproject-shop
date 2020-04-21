@@ -24,6 +24,7 @@
 
     <main>
         <div class="content">
+            <div class='emptyCategoryMessage hidden'>Det finns inga produkter i den här kategorin!</div>
             <div class="product-container" id="productPanel"> </div>
         </div>
     </main>
