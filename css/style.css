@@ -501,7 +501,8 @@ button {
 
 .cart {
   padding: 1em;
-  position: absolute;
+  position: fixed;
+  top: 64px;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -514,12 +515,28 @@ button {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   right: 32px;
-  top: 60px;
+  top: 64px;
   z-index: 1000;
   background: #e6dfdf;
   min-width: 300px;
   min-height: 300px;
   border-radius: 8px;
+}
+
+.cart .cart-close-btn {
+  position: relative;
+  right: -50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 5px;
+  border: 1px solid #a89e9e;
+}
+
+.cart .cart-close-btn:hover {
+  background-color: #ee6388;
+  border: 1px solid #f35680;
+  color: white;
 }
 
 .cart h2 {
