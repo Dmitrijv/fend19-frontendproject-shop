@@ -101,9 +101,9 @@ shopLib = (function() {
     },
 
     searchProducts: function(event) {
-      console.log("searchProducts");
+      //console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
-      console.log(keyword);
+      //console.log(keyword);
       // if we are not on search.php page remember this keyword in session storage and go to search.php
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
         sessionStorage.setItem("searchKeyword", keyword);
@@ -112,10 +112,17 @@ shopLib = (function() {
         return;
       }
       // validate keyword length again
+
+      // show error message if this keyword is invalid
+      const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
       if (keyword.length < 2) {
+        keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
+      } else {
+        keywordErrMsg.classList.add("hidden");
       }
+
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
@@ -124,7 +131,7 @@ shopLib = (function() {
             product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
         );
-        console.log(matchingProducts);
+        // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -132,10 +139,19 @@ shopLib = (function() {
     },
 
     sessionStorageProductSearch() {
-      console.log("sessionStorageProductSearch");
+      //   console.log("sessionStorageProductSearch");
       const lib = this;
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
-      console.log(keyword);
+      // show error message if this keyword is invalid
+      const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
+      if (keyword.length < 2) {
+        keywordErrMsg.classList.remove("hidden");
+        event.preventDefault();
+        return;
+      } else {
+        keywordErrMsg.classList.add("hidden");
+      }
+
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
         const matchingProducts = productJson.filter(
@@ -143,7 +159,7 @@ shopLib = (function() {
             product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
         );
-        console.log(matchingProducts);
+        // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");

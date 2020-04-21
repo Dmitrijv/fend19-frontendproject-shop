@@ -1902,7 +1902,8 @@ div.product > div > button:nth-child(4) {
   text-align: center;
 }
 
-.searchContent h2.emptyResultMessage {
+.searchContent h2.emptyResultMessage,
+.searchContent h2.invalidKeywordMessage {
   color: red;
   text-align: center;
 }
