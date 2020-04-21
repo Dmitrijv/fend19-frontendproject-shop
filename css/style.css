@@ -572,6 +572,7 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: 70vh;
 }
 
 /* Cut extra unknown white space on IE */
@@ -1138,14 +1139,14 @@ main {
     .product-container {
       -ms-grid-columns: (300px)[2];
           grid-template-columns: repeat(2, 300px);
-      grid-column-gap: calc((100vw - 680px) /2);
+      grid-column-gap: calc((100vw - 680px) / 2);
     }
   }
   @media screen and (min-width: 1012px) {
     .product-container {
       -ms-grid-columns: (300px)[3];
           grid-template-columns: repeat(3, 300px);
-      grid-column-gap: calc((100vw - 964px)/3);
+      grid-column-gap: calc((100vw - 964px) / 3);
     }
   }
   @media screen and (min-width: 1321px) {
