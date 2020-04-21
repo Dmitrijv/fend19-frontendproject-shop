@@ -575,6 +575,12 @@ button {
   min-height: 70vh;
 }
 
+.content .emptyCategoryMessage {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
 /* Cut extra unknown white space on IE */
 main {
   overflow: hidden;

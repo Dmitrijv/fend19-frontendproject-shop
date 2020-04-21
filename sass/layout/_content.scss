@@ -14,6 +14,12 @@
   display: flex;
   flex-direction: column;
   min-height: 70vh;
+
+  .emptyCategoryMessage {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
 }
 
 /* Cut extra unknown white space on IE */
