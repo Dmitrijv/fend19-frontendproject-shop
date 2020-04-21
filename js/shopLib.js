@@ -101,7 +101,9 @@ shopLib = (function() {
     },
 
     searchProducts: function(event) {
+      console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
+      console.log(keyword);
       // if we are not on search.php page remember this keyword in session storage and go to search.php
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
         sessionStorage.setItem("searchKeyword", keyword);
@@ -119,10 +121,10 @@ shopLib = (function() {
       lib.loadJsonByXhr(productApi, function(productJson) {
         const matchingProducts = productJson.filter(
           product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
         );
-        // console.log(matchingProducts);
+        console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -130,15 +132,18 @@ shopLib = (function() {
     },
 
     sessionStorageProductSearch() {
+      console.log("sessionStorageProductSearch");
       const lib = this;
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
+      console.log(keyword);
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
         const matchingProducts = productJson.filter(
           product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
         );
+        console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -158,9 +163,6 @@ shopLib = (function() {
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
-                <div class='product__count-container'>
-                    <p class='product__count'>${item.numberInStock}</p>
-                </div>
             </div>
         </div>`;
       });

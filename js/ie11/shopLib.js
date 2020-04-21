@@ -95,7 +95,9 @@ shopLib = (function() {
       addProduct(productBtn);
     },
     searchProducts: function searchProducts(event) {
-      var keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase(); // if we are not on search.php page remember this keyword in session storage and go to search.php
+      console.log("searchProducts");
+      var keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
+      console.log(keyword); // if we are not on search.php page remember this keyword in session storage and go to search.php
 
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
         sessionStorage.setItem("searchKeyword", keyword);
@@ -114,27 +116,30 @@ shopLib = (function() {
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
           return (
-            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
           );
-        }); // console.log(matchingProducts);
-
+        });
+        console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
       event.preventDefault();
     },
     sessionStorageProductSearch: function sessionStorageProductSearch() {
+      console.log("sessionStorageProductSearch");
       var lib = this;
       var keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
+      console.log(keyword);
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
           return (
-            product.title.toLowerCase().indexOf(keyword) !== -1 &&
+            product.title.toLowerCase().indexOf(keyword) !== -1 ||
             product.description.toLowerCase().indexOf(keyword) !== -1
           );
         });
+        console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -156,11 +161,7 @@ shopLib = (function() {
           )
           .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")
-          .concat(
-            item.currency,
-            "</div>\n                <div class='product__count-container'>\n                    <p class='product__count'>"
-          )
-          .concat(item.numberInStock, "</p>\n                </div>\n            </div>\n        </div>");
+          .concat(item.currency, "</div>\n            </div>\n        </div>");
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml; // show error message if this category has no products
