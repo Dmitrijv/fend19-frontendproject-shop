@@ -109,7 +109,7 @@ shopLib = (function() {
 
       var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
 
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -139,7 +139,7 @@ shopLib = (function() {
 
       var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
 
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;

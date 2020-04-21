@@ -115,7 +115,7 @@ shopLib = (function() {
 
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -144,7 +144,7 @@ shopLib = (function() {
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
