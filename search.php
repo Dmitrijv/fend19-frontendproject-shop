@@ -25,7 +25,7 @@
     <main>
         <div class="content searchContent">
             <h1>Sök resultat</h1>
-            <h2 class="emptyResultMessage hidden">Search did not match any items in our current inventory.</h2>
+            <h2 class="emptyResultMessage hidden">Inga produkter hittades.</h2>
             <div class="product-container searchResults"></div>
         </div>
     </main>
