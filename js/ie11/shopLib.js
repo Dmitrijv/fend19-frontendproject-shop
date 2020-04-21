@@ -1,4 +1,4 @@
-shopLib = (function() {
+shopLib = (function () {
   var info = "Helper library for drawing html elements based on db data.";
   var version = "0.2";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
@@ -14,14 +14,14 @@ shopLib = (function() {
       sidebar.innerHTML = "";
       dropdown.innerHTML = ""; // get category json from api
 
-      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(categoryApiUrl, function (categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         var defaultRow =
           "\n        <li class='sidebar__menu__list-item'>\n            <input class=\"categoryFilterButton\" type='button' id='-1' value='Visa Alla' onclick=\"shopLib.drawFilteredProductPanel(event)\" >\n        </li>";
         dropdown.innerHTML += defaultRow;
         sidebar.innerHTML += defaultRow; // iterate over all categories
 
-        categoryJson.forEach(function(category) {
+        categoryJson.forEach(function (category) {
           var categoryRow = "\n            <li class='sidebar__menu__list-item'>\n                <input class=\"categoryFilterButton\" type='button' id='"
             .concat(category.id, "' value='")
             .concat(category.name, '\' onclick="shopLib.drawFilteredProductPanel(event)">\n            </li>');
@@ -33,7 +33,7 @@ shopLib = (function() {
     drawDefaultProductPanel: function drawDefaultProductPanel(event) {
       var lib = this;
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         lib.drawProductPanel(productJson);
       });
     },
@@ -41,11 +41,11 @@ shopLib = (function() {
       var lib = this;
       var allowedCategoryId = Number(event.currentTarget.id);
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          productJson = productJson.filter(function(product) {
+          productJson = productJson.filter(function (product) {
             return product.categoryId === allowedCategoryId;
           });
           lib.drawProductPanel(productJson);
@@ -57,7 +57,7 @@ shopLib = (function() {
     drawProductPanel: function drawProductPanel(productJson) {
       var productPanel = document.querySelector("div#productPanel");
       var cardHtml = "";
-      productJson.forEach(function(item) {
+      productJson.forEach(function (item) {
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += "\n        <div id='"
@@ -95,11 +95,17 @@ shopLib = (function() {
       addProduct(productBtn);
     },
     searchProducts: function searchProducts(event) {
-      var keyword = document.forms["searchform"]["searchinput"].value;
-      console.log(event.location);
+      var keyword = document.forms["searchform"]["searchinput"].value; // if we are not on search.php page go there
+
+      if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
+        location.href = SHOP_URL + "/search.php";
+      }
+
+      console.log(location); //   console.log(event);
 
       if (keyword.length < 2) {
-        return;
+        event.preventDefault();
+        return false;
       } //   const lib = this;
       //   const productApi = `${INTERNAL_API_PATH}/products.php`;
       //   lib.loadJsonByXhr(productApi, function(productJson) {
@@ -110,7 +116,7 @@ shopLib = (function() {
     loadJsonByXhr: function loadJsonByXhr(url, callback) {
       var xhr = new XMLHttpRequest();
 
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -126,7 +132,7 @@ shopLib = (function() {
     showSidePanel: function showSidePanel() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
-    }
+    },
   };
   return shopLib;
 })();
