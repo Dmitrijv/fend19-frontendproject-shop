@@ -52,7 +52,7 @@
                     <form onsubmit="adminLib.createNewProduct(event);" method="POST" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>Cover image</label>
-                            <input type="file" name="product_attatched_image" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple required>
+                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>

@@ -127,12 +127,24 @@ function createNewProduct($newProduct)
     DB::run($priceSQL, [$newProductId, 'SEK', $newProduct['price']]);
 
     // register uploaded images
-    $gallery = $newProduct['gallery'];
-    if (doesImageExist($fileName) == false) {
-        createNewImage($fileName);
+    foreach ($newProduct['gallery'] as &$fileName) {
+        // register image in db
+        if (doesImageExist($fileName) === false) {
+            createNewImage($fileName);
+        }
+        // associate image with product
+        addImageOfProduct($newProductId, $fileName);
     }
 
-    // assosiate the new images with this product
+}
+
+function addImageOfProduct($productId, $fileName)
+{
+    $sql = "
+        INSERT INTO image_of_product (product_id, file_name)
+        VALUES (?,?)
+    ";
+    DB::run($sql, [$productId, $fileName]);
 }
 
 function createNewImage($fileName)
@@ -146,7 +158,7 @@ function createNewImage($fileName)
 
 function doesImageExist($fileName)
 {
-    return DB::run("SELECT EXISTS(SELECT * FROM `image` WHERE `file_name` = ?)", [$fileName])->fetchColumn();
+    return DB::run("SELECT EXISTS(SELECT * FROM image WHERE file_name = ?)", [$fileName])->fetchColumn();
 }
 
 function deleteProduct($productId)
