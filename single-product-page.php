@@ -25,16 +25,24 @@
         <div class="wrapper">
             <div class="single-product">
                 <div class="p-grid-1">
-                    <!-- <p class="single-product__esc">X</p> -->
                     <div id="slideshow">
-                        <img src="img/svg/close.svg" class="slide-close-btn">
                         <!-- If no image, can set slide0 = default image -->
                         <!-- Amount of img-div is decided by img number -->
+                        <!-- TODO: 
+                        when hover, img should not auto-change -->
                         <div class="slide slide1"></div>
                         <div class="slide slide2"></div>
                         <div class="slide slide3"></div>
                         <div class="slide slide4"></div>
                     </div>
+                    <!-- TODO: 
+                    Need to add function (when click dot, jump to relevant img) -->
+                    <ul class="slick-dots" role="tablist">
+                        <li id="slick-slide1" class=""><button>1</button></li>
+                        <li id="slick-slide2" class=""><button>2</button></li>
+                        <li id="slick-slide3" class="slick-active"><button>3</button></li>
+                        <li id="slick-slide4" class=""><button>4</button></li>
+                    </ul>
                 </div>
                 <div class="p-grid-2">
                     <article>
@@ -66,7 +74,8 @@
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
     <script type="text/javascript" src="./js/cart.js"></script>
 
-    <!-- need to be rewritten -->
+    <!-- TODO: 
+    need to be rewritten -->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script>
         $("#slideshow > div:gt(0)").hide();
