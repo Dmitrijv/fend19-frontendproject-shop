@@ -25,6 +25,10 @@
 /* Cut extra unknown white space on IE */
 main {
   overflow: hidden;
+
+  @supports(display: grid) {
+    overflow: unset;
+  }
 }
 
 /* mobile  */

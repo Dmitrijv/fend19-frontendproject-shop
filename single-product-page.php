@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./css/style.css" />
-        <title>single-product - info</title>
-    </head>
-    <body class="single-product-pgage__body">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Single-product - info</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="single-product-page__body">
 
     <span class="hamburger__bar-wrapper">
         <span class="hamburger__bar"></span>
@@ -17,132 +21,65 @@
     <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
     <?php require_once __DIR__ . '/php/view/header.php'; ?>
     <?php require_once __DIR__ . '/php/view/cart.php'; ?>
-
+    <main id="p-main">
         <div class="wrapper">
             <div class="single-product">
-                <p class="single-product__esc">X</p>
-                <div class="img-wrapper">
-                    <section class="carousel" aria-label="Gallery">
-                        <ol class="carousel__viewport">
-                            <li id="carousel__slide1" class="carousel__slide">
-                                <div
-                                    tabindex="0"
-                                    class="img-wrapper__img img1"
-                                ></div>
-                                <div class="carousel__snapper">
-                                    <a
-                                        href="#carousel__slide4"
-                                        class="carousel__prev"
-                                        >Go to last slide</a
-                                    >
-                                    <a
-                                        href="#carousel__slide2"
-                                        class="carousel__next"
-                                        >Go to next slide</a
-                                    >
-                                </div>
-                            </li>
-                            <li id="carousel__slide2" class="carousel__slide">
-                                <div
-                                    tabindex="0"
-                                    class="img-wrapper__img img2"
-                                ></div>
-                                <div class="carousel__snapper"></div>
-                                <a
-                                    href="#carousel__slide1"
-                                    class="carousel__prev"
-                                    >Go to previous slide</a
-                                >
-                                <a
-                                    href="#carousel__slide3"
-                                    class="carousel__next"
-                                    >Go to next slide</a
-                                >
-                            </li>
-                            <li id="carousel__slide3" class="carousel__slide">
-                                <div
-                                    tabindex="0"
-                                    class="img-wrapper__img img3"
-                                ></div>
-                                <div class="carousel__snapper"></div>
-                                <a
-                                    href="#carousel__slide2"
-                                    class="carousel__prev"
-                                    >Go to previous slide</a
-                                >
-                                <a
-                                    href="#carousel__slide4"
-                                    class="carousel__next"
-                                    >Go to next slide</a
-                                >
-                            </li>
-                            <li id="carousel__slide4" class="carousel__slide">
-                                <div
-                                    tabindex="0"
-                                    class="img-wrapper__img img4"
-                                ></div>
-                                <div class="carousel__snapper"></div>
-                                <a
-                                    href="#carousel__slide3"
-                                    class="carousel__prev"
-                                    >Go to previous slide</a
-                                >
-                                <a
-                                    href="#carousel__slide1"
-                                    class="carousel__next"
-                                    >Go to first slide</a
-                                >
-                            </li>
-                        </ol>
-                        <aside class="carousel__navigation">
-                            <ol class="carousel__navigation-list">
-                                <li class="carousel__navigation-item">
-                                    <a
-                                        href="#carousel__slide1"
-                                        class="carousel__navigation-button"
-                                        >Go to slide 1</a
-                                    >
-                                </li>
-                                <li class="carousel__navigation-item">
-                                    <a
-                                        href="#carousel__slide2"
-                                        class="carousel__navigation-button"
-                                        >Go to slide 2</a
-                                    >
-                                </li>
-                                <li class="carousel__navigation-item">
-                                    <a
-                                        href="#carousel__slide3"
-                                        class="carousel__navigation-button"
-                                        >Go to slide 3</a
-                                    >
-                                </li>
-                                <li class="carousel__navigation-item">
-                                    <a
-                                        href="#carousel__slide4"
-                                        class="carousel__navigation-button"
-                                        >Go to slide 4</a
-                                    >
-                                </li>
-                            </ol>
-                        </aside>
-                    </section>
+                <div class="p-grid-1">
+                    <!-- <p class="single-product__esc">X</p> -->
+                    <div id="slideshow">
+                        <img src="img/svg/close.svg" class="slide-close-btn">
+                        <!-- If no image, can set slide0 = default image -->
+                        <!-- Amount of img-div is decided by img number -->
+                        <div class="slide slide1"></div>
+                        <div class="slide slide2"></div>
+                        <div class="slide slide3"></div>
+                        <div class="slide slide4"></div>
+                    </div>
                 </div>
-                <article>
-                    <h1 class="single-product__title">Title</h1>
-                    <p class="single-product__text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi nemo eos odit voluptates veritatis, et voluptatum.
-                        Qui culpa excepturi mollitia, ducimus consequatur a
-                        animi sunt vitae suscipit? Aut, deserunt tempora.
-                    </p>
-                </article>
-                <p class="single-product__storage-count">Storage-count</p>
+                <div class="p-grid-2">
+                    <article>
+                        <h1 class="single-product__title">Title</h1>
+                        <p class="single-product__text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Animi nemo eos odit voluptates veritatis, et voluptatum.
+                            Qui culpa excepturi mollitia, ducimus consequatur a
+                            animi sunt vitae suscipit? Aut, deserunt tempora.
+                        </p>
+                    </article>
+                    <p class="single-product__storage-count">Storage-count</p>
+                </div>
             </div>
         </div>
+    </main>
 
-        <?php require_once __DIR__ . '/php/view/footer.php'; ?>
-        <!-- JS for imgae carousel -->
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    </body>
+
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+
+    <!-- <script src="./js/ie11/sidebar.js"></script> -->
+    <!-- <script src="./js/sidebar.js"></script> -->
+
+    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
+    <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
+    <!-- <script type="text/javascript"> shopLib.drawCategorySelectors(); </script> -->
+    <!-- <script type="text/javascript"> shopLib.drawDefaultProductPanel(); </script> -->
+
+    <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
+    <script type="text/javascript" src="./js/cart.js"></script>
+
+    <!-- need to be rewritten -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script>
+        $("#slideshow > div:gt(0)").hide();
+
+        setInterval(function() {
+            $('#slideshow > div:first')
+                .fadeOut(1000)
+                .next()
+                .fadeIn(1000)
+                .end()
+                .appendTo('#slideshow');
+        }, 3000);
+    </script>
+</body>
+
 </html>
