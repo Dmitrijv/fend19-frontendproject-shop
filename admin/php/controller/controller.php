@@ -147,8 +147,7 @@ function addImageOfProduct($productId, $fileName)
 function createNewImage($fileName)
 {
     $sql = "
-        INSERT INTO image (file_name)
-        VALUES (?)
+        INSERT INTO image (file_name) VALUES (?)
     ";
     DB::run($sql, [$fileName]);
 }
