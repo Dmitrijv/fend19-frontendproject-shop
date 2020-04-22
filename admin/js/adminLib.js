@@ -271,19 +271,24 @@ adminLib = (function() {
     createNewProduct: function(event) {
       const lib = this;
 
-      const alertElement = document.querySelector("div#productAlert");
-      const messageElement = document.querySelector("div#productAlert span.msg");
+      const form = event.currentTarget;
+      const image = form.elements.product_attatched_image;
 
-      messageElement.textContent = "Invalid input.";
-      lib.setFailStyle(alertElement);
+      console.log(image);
+      console.log(image.files);
+      console.log(image.value);
 
-      const input = event.currentTarget.elements.newCategoryNameField;
-      const categoryName = input.value;
+      //   const alertElement = document.querySelector("div#productAlert");
+      //   const messageElement = document.querySelector("div#productAlert span.msg");
+      //   messageElement.textContent = "Invalid input.";
+      //   lib.setFailStyle(alertElement);
+
+      event.preventDefault();
     },
 
     fillProductCategoryDropdown: function() {
       const lib = this;
-      const select = document.querySelector("select[name='product-category']");
+      const select = document.querySelector("select[name='product_category']");
       const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         categoryJson.forEach(category => {

@@ -247,9 +247,22 @@ adminLib = (function() {
         table.innerHTML = tableContent;
       });
     },
+    createNewProduct: function createNewProduct(event) {
+      var lib = this;
+      var form = event.currentTarget;
+      var image = form.elements.product_attatched_image;
+      console.log(image);
+      console.log(image.files);
+      console.log(image.value); //   const alertElement = document.querySelector("div#productAlert");
+      //   const messageElement = document.querySelector("div#productAlert span.msg");
+      //   messageElement.textContent = "Invalid input.";
+      //   lib.setFailStyle(alertElement);
+
+      event.preventDefault();
+    },
     fillProductCategoryDropdown: function fillProductCategoryDropdown() {
       var lib = this;
-      var select = document.querySelector("select[name='product-category']");
+      var select = document.querySelector("select[name='product_category']");
       var apiUrl = "".concat(INTERNAL_API_PATH, "/productCategories.php");
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         categoryJson.forEach(function(category) {

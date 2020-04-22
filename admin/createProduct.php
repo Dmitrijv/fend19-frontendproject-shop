@@ -48,30 +48,30 @@
                         </form>
                     </div>
 
-                    <form onsubmit="adminLib.createNewProduct();" enctype="multipart/form-data" >
+                    <form onsubmit="adminLib.createNewProduct(event);" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>Cover image</label>
-                            <input type="file" name="product-attatched_image" id="product-attatched_image" accept=".jpg,.jpeg,.png,.gif" required>
+                            <input type="file" name="product_attatched_image" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" required>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input name="product-title" type="text" class="form-control" required>
+                            <input name="product_title" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="product-description" class="form-control" required></textarea>
+                            <textarea name="product_description" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select name="product-category" class="form-control" required></select>
+                            <select name="product_category" class="form-control" required></select>
                         </div>
                         <div class="form-group">
                             <label>Price</label>
-                            <input name="product-price" type="text" class="form-control" pattern="\d{1,10}" required>
+                            <input name="product_price" type="text" class="form-control" pattern="\d{1,10}" required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product-stock" type="text" class="form-control"  pattern="\d{1,10}" required>
+                            <input name="product_stock" type="text" class="form-control"  pattern="\d{1,10}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn float-right" value="Submit">
                     </form>
@@ -81,6 +81,7 @@
 
         </main>
 
+        <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
         <script type="text/javascript" src="js/ie11/adminLib.js"></script>
         <script type="text/javascript"> adminLib.fillProductCategoryDropdown(); </script>
 
