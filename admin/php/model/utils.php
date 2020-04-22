@@ -24,8 +24,27 @@ function isValidNumber($value)
     if (!isset($value)) {return false;}
     // can't beconverted to number
     if (!is_numeric($value)) {return false;}
-    $value = (int) $value;
     // smaller than 1
     if ($value < 0) {return false;}
     return true;
+}
+
+function isValidProductString($string)
+{
+    // not set
+    if (!isset($string)) {return false;}
+    // string contains html code
+    if (strpos($string, '<') !== false) {return false;}
+    // string contains nullbyte character(s)
+    if (strpos($string, chr(0)) !== false) {return false;}
+    // string consists of spaces or nullbyte characters
+    if (trim($string) == '') {return false;}
+    return true;
+}
+
+function trimSides($string)
+{
+    $string = ltrim($string);
+    $string = rtrim($string);
+    return $string;
 }

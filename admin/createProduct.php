@@ -67,14 +67,14 @@
                             <select name="product_category" class="form-control" required></select>
                         </div>
                         <div class="form-group">
-                            <label>Price</label>
-                            <input name="product_price" type="text" class="form-control" pattern="\d{1,10}" required>
+                            <label>Price (SEK)</label>
+                            <input name="product_price" type="number" step='0.01' class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product_stock" type="text" class="form-control"  pattern="\d{1,10}" required>
+                            <input name="product_stock" type="number" step='1' class="form-control"  pattern="\d{1,100}" required>
                         </div>
-                        <input type="submit" class="btn btn-round create-btn float-right" value="Submit">
+                        <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>
 
             </section>

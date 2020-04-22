@@ -1,5 +1,6 @@
 <?php
 
-print_r($_FILES);
+// print_r($_FILES);
 
-var_dump($_FILES);
+var_dump($_POST);
+//

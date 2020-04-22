@@ -274,8 +274,6 @@ adminLib = (function() {
       const form = event.currentTarget;
       const formData = new FormData(form);
 
-      // validate input 123
-
       const alertElement = document.querySelector("div#productAlert");
       const messageElement = document.querySelector("div#productAlert span.msg");
       const xmlhttp = new XMLHttpRequest();
@@ -283,13 +281,12 @@ adminLib = (function() {
         if (this.readyState == 4 && this.status == 200) {
           lib.setSuccessStyle(alertElement);
           messageElement.textContent = "New product created successfully.";
+          form.reset();
           event.preventDefault();
-          location.href = "createProduct.php#productAlert";
           // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
-          messageElement.textContent = "Input did ff not pass serverside validation.";
+          messageElement.textContent = "Input did not pass validation.";
           lib.setFailStyle(alertElement);
-          location.href = "createProduct.php#productAlert";
           event.preventDefault();
         }
       };

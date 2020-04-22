@@ -42,9 +42,8 @@ function doesProductCategoryIdExist($categoryId)
 
 function deleteProductCategory($categoryId)
 {
-    // update roducts that belong to this category
+    // update products that belong to this category
     DB::run("UPDATE product SET category_id = 1 WHERE category_id = ?", [$categoryId]);
-
     // delete category
     DB::run("DELETE FROM product_category WHERE id = ?", [$categoryId]);
 }
@@ -101,4 +100,37 @@ function getProducts()
     }
 
     return $response;
+}
+
+function getProductIdByTitle($title)
+{
+    return DB::run("SELECT id FROM product WHERE title = ?", [$title])->fetchColumn();
+}
+
+function createNewProduct($newProduct)
+{
+    // register product
+    $productSQL = "
+        INSERT INTO product (title, description, category_id, number_in_stock)
+        VALUES (?, ?, ?, ?)
+    ";
+    DB::run($productSQL, [$newProduct['title'], $newProduct['description'], $newProduct['category_id'], $newProduct['number_in_stock']]);
+
+    // get the id of the product we've just created
+    $newProductId = getProductIdByTitle($newProduct['title']);
+
+    // register price for the new product
+    $priceSQL = "
+        INSERT INTO price_of_product (product_id, currency_id, amount)
+        VALUES (?, ?, ?)
+    ";
+    DB::run($priceSQL, [$newProductId, 'SEK', $newProduct['price']]);
+
+    // register uploaded images
+    // assosiate the new images with this product
+}
+
+function doesProductTitleExist($productTitle)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product WHERE title = ?)", [$productTitle])->fetchColumn();
 }

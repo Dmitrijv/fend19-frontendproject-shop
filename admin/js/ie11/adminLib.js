@@ -250,12 +250,7 @@ adminLib = (function() {
     createNewProduct: function createNewProduct(event) {
       var lib = this;
       var form = event.currentTarget;
-      var formData = new FormData(form); //   const image = form.elements.product_attatched_image;
-      //   console.log(image);
-      //   console.log(image.files);
-      //   console.log(image.value);
-      // validate input
-
+      var formData = new FormData(form);
       var alertElement = document.querySelector("div#productAlert");
       var messageElement = document.querySelector("div#productAlert span.msg");
       var xmlhttp = new XMLHttpRequest();
@@ -266,7 +261,7 @@ adminLib = (function() {
           messageElement.textContent = "New product created successfully.";
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
-          messageElement.textContent = "Input did ff not pass serverside validation.";
+          messageElement.textContent = "Input did not pass validation.";
           lib.setFailStyle(alertElement);
           event.preventDefault();
         }
