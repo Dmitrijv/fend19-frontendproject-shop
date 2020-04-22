@@ -3,15 +3,15 @@ const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
 cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
@@ -62,7 +62,8 @@ function fillCartList(fromClick) {
 
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
+  //get url from product card
+  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(5, -2);
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
@@ -134,6 +135,7 @@ function updateSum(getLs) {
   const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
+
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
 
