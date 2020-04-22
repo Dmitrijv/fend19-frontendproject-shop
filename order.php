@@ -107,8 +107,8 @@
                     </tr>
                     <tr class="font-bold">
                         <td>Totalt:</td>
-                        <td class="products-amount">3</td>
                         <td></td>
+                        <td class="products-amount">3</td>
                         <td></td>
                         <td class="item-total">195.85 kr</td>
                     </tr>
