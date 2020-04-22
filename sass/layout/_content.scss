@@ -252,10 +252,10 @@ div.product>div:nth-child(2)>button:nth-child(4) {
       border: 1px solid white;
 
       &:nth-of-type(2) {
-        background-color: #9fa255;
+        background-color: $green;
 
         &:hover {
-          background-color: #d1d39a;
+          background-color: $green-light;
         }
       }
     }
@@ -292,14 +292,14 @@ div.product>div>button:nth-child(4) {
 
 /* Button animation code */
 .ctrl-standard.fx-bubbleUp {
-  color: #9fa255;
-  border-color: #9fa255;
+  color: $green;
+  border-color: $green;
 }
 
 .ctrl-standard.fx-bubbleUp::after {
   top: auto;
   border-radius: 50% 50% 0 0/75% 75% 0 0;
-  background: #9fa255;
+  background: $green;
 }
 
 .ctrl-standard.fx-bubbleUp.is-reversed::after {
@@ -307,7 +307,7 @@ div.product>div>button:nth-child(4) {
 }
 
 .ctrl-standard.fx-bubbleUp.is-reversed:hover {
-  color: #9fa255;
+  color: $green;
 }
 
 .ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
