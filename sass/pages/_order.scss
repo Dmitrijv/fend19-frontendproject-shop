@@ -1,24 +1,77 @@
+#order-main {
+  margin: 0 auto;
+
+  p,
+  tr,
+  td,
+  th,
+  dt,
+  dd {
+    font-family: "Lato", sans-serif !important;
+  }
+}
+
 .content {
   .emptyOrderMessage {
     display: none;
   }
 }
 
+.white-panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  display: block;
+  // margin: 0 auto;
+}
+
 section.order-confirmation {
-  margin: 20vh 40px 0;
   overflow: hidden;
   font-size: 16px;
+  margin: 12vh 40px 35px;
+
+  @media screen and (min-width: 800px) {
+    margin: 10vh 40px 35px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: 10vh auto 35px;
+  }
+
+  .panel-heading {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: $black;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    border-bottom-color: rgb(221, 221, 221);
+    padding: 10px 15px;
+    border-bottom: 1px solid lightgray;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+  }
 
   .order-description {
     margin: 2rem 5vw;
     line-height: 1.4rem;
+    font-family: 'Lato', sans-serif;
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
 
     h2 {
       font-size: 1.2rem;
     }
 
     dl {
-      max-width: 360px;
+      max-width: 500px;
     }
 
     dt {
@@ -30,11 +83,28 @@ section.order-confirmation {
 
     dd {
       text-align: right;
+      margin-bottom: 0.5rem;
     }
   }
 
   table {
     margin: 2rem 5vw;
+    border-collapse: collapse;
+
+    th:first-child,
+    td:first-child {
+      width: 10%;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 40%;
+    }
+
+    th:last-child,
+    td:last-child {
+      width: 15%;
+    }
 
     .item-total {
       text-align: right;
@@ -52,11 +122,12 @@ section.order-confirmation {
     }
 
     td {
-      height: 40px;
+      height: 45px;
 
       .product-cover-small {
         width: 30px;
         margin-right: 5px;
+        display: inline;
       }
     }
   }
@@ -68,10 +139,45 @@ section.order-confirmation {
     }
   }
 
+  .btn {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+  }
+
+  .btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    margin-left: 5vw;
+
+    &:hover {
+      color: #fff;
+      background-color: #138496;
+      border-color: #117a8b;
+    }
+  }
+
   button.confirm-order-button {
     // font-size: 18px;
     float: right;
     margin: 0 5vw 2rem 5vw;
+  }
+
+  .btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+
+    &:hover {
+      color: #fff;
+      background-color: #218838;
+      border-color: #1e7e34;
+    }
   }
 
   button[disabled] {

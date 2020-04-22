@@ -1858,19 +1858,75 @@ div.product > div > button:nth-child(4) {
   }
 }
 
+#order-main {
+  margin: 0 auto;
+}
+
+#order-main p,
+#order-main tr,
+#order-main td,
+#order-main th,
+#order-main dt,
+#order-main dd {
+  font-family: "Lato", sans-serif !important;
+}
+
 .content .emptyOrderMessage {
   display: none;
 }
 
+.white-panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  display: block;
+}
+
 section.order-confirmation {
-  margin: 20vh 40px 0;
   overflow: hidden;
   font-size: 16px;
+  margin: 12vh 40px 35px;
+}
+
+@media screen and (min-width: 800px) {
+  section.order-confirmation {
+    margin: 10vh 40px 35px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  section.order-confirmation {
+    margin: 10vh auto 35px;
+  }
+}
+
+section.order-confirmation .panel-heading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  border-bottom-color: #dddddd;
+  padding: 10px 15px;
+  border-bottom: 1px solid lightgray;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 section.order-confirmation .order-description {
   margin: 2rem 5vw;
   line-height: 1.4rem;
+  font-family: 'Lato', sans-serif;
+}
+
+section.order-confirmation .order-description p {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 section.order-confirmation .order-description h2 {
@@ -1878,7 +1934,7 @@ section.order-confirmation .order-description h2 {
 }
 
 section.order-confirmation .order-description dl {
-  max-width: 360px;
+  max-width: 500px;
 }
 
 section.order-confirmation .order-description dt {
@@ -1890,10 +1946,27 @@ section.order-confirmation .order-description dt {
 
 section.order-confirmation .order-description dd {
   text-align: right;
+  margin-bottom: 0.5rem;
 }
 
 section.order-confirmation table {
   margin: 2rem 5vw;
+  border-collapse: collapse;
+}
+
+section.order-confirmation table th:first-child,
+section.order-confirmation table td:first-child {
+  width: 10%;
+}
+
+section.order-confirmation table th:nth-child(2),
+section.order-confirmation table td:nth-child(2) {
+  width: 40%;
+}
+
+section.order-confirmation table th:last-child,
+section.order-confirmation table td:last-child {
+  width: 15%;
 }
 
 section.order-confirmation table .item-total {
@@ -1912,12 +1985,13 @@ section.order-confirmation table tr + tr {
 }
 
 section.order-confirmation table td {
-  height: 40px;
+  height: 45px;
 }
 
 section.order-confirmation table td .product-cover-small {
   width: 30px;
   margin-right: 5px;
+  display: inline;
 }
 
 section.order-confirmation .address p {
@@ -1925,9 +1999,48 @@ section.order-confirmation .address p {
   margin: 0;
 }
 
+section.order-confirmation .btn {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  -o-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+}
+
+section.order-confirmation .btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  margin-left: 5vw;
+}
+
+section.order-confirmation .btn-info:hover {
+  color: #fff;
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
 section.order-confirmation button.confirm-order-button {
   float: right;
   margin: 0 5vw 2rem 5vw;
+}
+
+section.order-confirmation .btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+section.order-confirmation .btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
 }
 
 section.order-confirmation button[disabled] {
