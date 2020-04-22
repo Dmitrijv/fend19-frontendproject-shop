@@ -11,8 +11,8 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
 
 function isAttatchedImageValid($target_file, $i)
 {
-    // check if format is allowed
     $allowedExtentions = ["gif", "jpeg", "jpg", "png"];
+    // check if format is allowed
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if (!in_array($imageFileType, $allowedExtentions)) {return false;}
     // check if image file is a actual image or fake image
