@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 06:58 PM
+-- Generation Time: Apr 22, 2020 at 10:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4  */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `webshop`
@@ -50,6 +50,24 @@ CREATE TABLE `image` (
   `file_name` varchar(255) NOT NULL DEFAULT '''placeholder.png'''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`file_name`) VALUES
+('2-cover.jpg'),
+('3-cover.jpg'),
+('4-cover.jpg'),
+('5-cover.jpg'),
+('5B1vlLe.jpg'),
+('5cm_wallpaper_03.png'),
+('7-cover.jpg'),
+('8-cover.jpg'),
+('obl.jpg'),
+('spike2.jpg'),
+('spike3.jpg'),
+('tumblr_lz6o21vKYj1rpqeqto1_400.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -66,14 +84,18 @@ CREATE TABLE `image_of_product` (
 --
 
 INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
-(2, '2-cover.jpg'),
-(4, '4-cover.jpg'),
-(6, '6-cover.jpg'),
-(7, '7-cover.jpg'),
-(8, '8-cover.jpg'),
-(5, '5-cover.jpg'),
-(2, 'spike2.jpg'),
-(2, 'spike3.jpg');
+(29, '2-cover.jpg'),
+(29, 'spike2.jpg'),
+(29, 'spike3.jpg'),
+(30, '3-cover.jpg'),
+(31, '5-cover.jpg'),
+(32, '7-cover.jpg'),
+(33, '8-cover.jpg'),
+(34, '5B1vlLe.jpg'),
+(35, '5cm_wallpaper_03.png'),
+(37, '4-cover.jpg'),
+(41, 'obl.jpg'),
+(42, 'tumblr_lz6o21vKYj1rpqeqto1_400.jpg');
 
 -- --------------------------------------------------------
 
@@ -142,13 +164,16 @@ CREATE TABLE `price_of_product` (
 --
 
 INSERT INTO `price_of_product` (`product_id`, `currency_id`, `amount`) VALUES
-(2, 'SEK', 700),
-(3, 'SEK', 1200),
-(4, 'SEK', 800),
-(5, 'SEK', 750),
-(6, 'SEK', 800),
-(7, 'SEK', 550),
-(8, 'SEK', 3400);
+(29, 'SEK', 1000),
+(30, 'SEK', 500),
+(31, 'SEK', 1500),
+(32, 'SEK', 999.99),
+(33, 'SEK', 400),
+(34, 'SEK', 800),
+(35, 'SEK', 8000),
+(37, 'SEK', 100),
+(41, 'SEK', 22),
+(42, 'SEK', 999);
 
 -- --------------------------------------------------------
 
@@ -169,13 +194,16 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(2, 'Tavla - Spike', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis beatae distinctio porro magnam recusandae ex dicta expedita necessitatibus, quia omnis', 4, 12),
-(3, 'Elefant Tavla - Pastell Förälskelse', 'Deserunt, illo! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quis, sequi laudantium ut labore ducimus dolores? Explicabo voluptate maiores culpa alias, similique at numquam ipsa id sapiente harum?', 5, 2),
-(4, 'Abstrakt Oljemålning - Sailor', 'Modern abstrakt oljemålning. Tavlan är målad härliga gråa toner med detaljer i bruna och konjak nyanser. \r\n\r\n    Levereras: Uppspänd, redo för upphängning', 6, 31),
-(5, 'Abstrakt Oljemålning - Dimensional Shift', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova nyanser av rosa.', 6, 7),
-(6, 'Abstrakt Oljemålning - Tales of the Past', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova och tidlösa nyanser. ', 6, 35),
-(7, 'Abstrakt Oljemålning - Sentinels of the Soul', 'Stilren abstrakt oljemålning, som passar i alla moderna hem och kontor. Kalla, dova och tidlösa nyanser.', 6, 1),
-(8, 'Oljemåling - Horse', 'En galopperande vit häst i en turkos bakgrund. Enligt många är den vita hästen bland de vackraste djuren. ', 5, 3);
+(29, 'Spike', 'this is a desert spike yo', 1, 5),
+(30, 'Pastell Förälskelse', 'elephants in love', 1, 1),
+(31, 'Dimensional Shift', 'it\'s a shift hue hue', 6, 12),
+(32, 'Tales of the Past', 'some tales of bullshit', 6, 3),
+(33, 'Horse', 'here comes horsy', 1, 3),
+(34, 'Horde Baloon', 'smh over here', 1, 2),
+(35, 'Clouds', 'lalala clouds yo', 1, 1),
+(37, 'Some Nonsense', 'it\'s a nonsense not gona lie', 1, 3),
+(41, 'Oblivion', '123123', 1, 11),
+(42, 'Nice', 'brrrrrrrrrrrrr', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -194,8 +222,6 @@ CREATE TABLE `product_category` (
 
 INSERT INTO `product_category` (`id`, `name`) VALUES
 (1, 'Diverse'),
-(2, 'Porträtt'),
-(3, 'Tavelvägg'),
 (4, 'Naturmotiv'),
 (5, 'Djur Tavlor'),
 (6, 'Abstrakt');
@@ -248,7 +274,6 @@ ALTER TABLE `order_status`
 -- Indexes for table `price_of_product`
 --
 ALTER TABLE `price_of_product`
-  ADD PRIMARY KEY (`product_id`),
   ADD KEY `product` (`product_id`),
   ADD KEY `currency` (`currency_id`);
 
@@ -285,7 +310,7 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -298,15 +323,10 @@ ALTER TABLE `product_category`
 --
 
 --
--- Constraints for table `image`
---
-ALTER TABLE `image`
-  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`file_name`) REFERENCES `image_of_product` (`file_name`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `image_of_product`
 --
 ALTER TABLE `image_of_product`
+  ADD CONSTRAINT `imagenameek` FOREIGN KEY (`file_name`) REFERENCES `image` (`file_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productkeyy` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
