@@ -247,6 +247,19 @@ adminLib = (function() {
         table.innerHTML = tableContent;
       });
     },
+    fillProductCategoryDropdown: function fillProductCategoryDropdown() {
+      var lib = this;
+      var select = document.querySelector("select[name='product-category']");
+      var apiUrl = "".concat(INTERNAL_API_PATH, "/productCategories.php");
+      lib.loadJsonByXhr(apiUrl, function(categoryJson) {
+        categoryJson.forEach(function(category) {
+          var option = document.createElement("option");
+          option.setAttribute("value", category.id);
+          option.textContent = category.name;
+          select.appendChild(option);
+        });
+      });
+    },
     hideParentElement: function hideParentElement(event) {
       var elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");

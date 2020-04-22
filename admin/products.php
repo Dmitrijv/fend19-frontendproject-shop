@@ -41,7 +41,7 @@
         <section class="admin-content">
             <div class="content-wrapper">
                 <form class="add-category clearfix" action="createProduct.php">
-                    <input class="btn btn-round create-btn float-right" type="submit" value="Create New Product">
+                    <input class="btn btn-round create-btn float-right" type="submit" value="Create">
                 </form>
                 <div id='productAlert' class="alert fail hidden">
                     <span class="msg"></span>

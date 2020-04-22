@@ -211,7 +211,7 @@ adminLib = (function() {
       element.classList.remove("hidden");
     },
 
-    drawProductTable() {
+    drawProductTable: function() {
       const lib = this;
       const apiUrl = `${INTERNAL_API_PATH}/products.php`;
 
@@ -263,10 +263,22 @@ adminLib = (function() {
             </tr>
         `;
         });
-
         tableContent += `</tbody>`;
-
         table.innerHTML = tableContent;
+      });
+    },
+
+    fillProductCategoryDropdown: function() {
+      const lib = this;
+      const select = document.querySelector("select[name='product-category']");
+      const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
+      lib.loadJsonByXhr(apiUrl, function(categoryJson) {
+        categoryJson.forEach(category => {
+          const option = document.createElement("option");
+          option.setAttribute("value", category.id);
+          option.textContent = category.name;
+          select.appendChild(option);
+        });
       });
     },
 

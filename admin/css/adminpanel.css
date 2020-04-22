@@ -65,6 +65,7 @@ input:focus {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
+  min-width: 40px;
 }
 
 .btn.btn-left {
