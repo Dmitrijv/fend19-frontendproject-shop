@@ -97,7 +97,7 @@ function setLocalStorage(obj, fromClick) {
     getArray = JSON.parse(localStorage.getItem("products"));
 
     if (alreadyExist(getArray, productName)) {
-      alert("You already have this item in your cart.");
+      alert("Produkten finns redan i varukorgen!");
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
