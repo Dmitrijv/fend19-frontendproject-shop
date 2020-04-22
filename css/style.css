@@ -1754,7 +1754,7 @@ div.product > div > button:nth-child(4) {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 5px auto 5px auto 8px 1fr;
-    grid-template-columns: 0.7fr auto auto 1.6fr;
+    grid-template-columns: 1fr .7fr .7fr 1.4fr;
   }
 }
 
@@ -1797,8 +1797,16 @@ div.product > div > button:nth-child(4) {
     grid-column: 4;
     padding-top: 0;
     margin-top: 50px;
-    margin-right: auto;
   }
+}
+
+@media screen and (min-width: 800px) and (min-width: 800px) {
+  .footer__wrapper .footer__icon__heading {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 800px) {
   .footer .footer__wrapper {
     -ms-grid-column: 7;
     display: -webkit-box;

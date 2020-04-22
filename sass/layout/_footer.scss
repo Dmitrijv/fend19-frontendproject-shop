@@ -153,7 +153,7 @@
     &__bottom__wrapper {
       display: grid;
       -ms-grid-columns: 1fr 5px auto 5px auto 8px 1fr;
-      grid-template-columns: 0.7fr auto auto 1.6fr;
+      grid-template-columns: 1fr .7fr .7fr 1.4fr;
 
       @media screen and (min-width:810px) {
         grid-gap: 20px;
@@ -193,7 +193,12 @@
       grid-column: 4;
       padding-top: 0;
       margin-top: 50px;
-      margin-right: auto;
+
+      @media screen and (min-width: 800px) {
+        .footer__icon__heading {
+          margin-bottom: 20px;
+        }
+      }
     }
 
     .footer__wrapper {
