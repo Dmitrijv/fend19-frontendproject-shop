@@ -48,7 +48,7 @@
                         </form>
                     </div>
 
-                    <form onsubmit="adminLib.createProduct();" enctype="multipart/form-data" >
+                    <form onsubmit="adminLib.createNewProduct();" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>Cover image</label>
                             <input type="file" name="product-attatched_image" id="product-attatched_image" accept=".jpg,.jpeg,.png,.gif" required>
@@ -67,11 +67,11 @@
                         </div>
                         <div class="form-group">
                             <label>Price</label>
-                            <input name="product-price" type="text" class="form-control" required>
+                            <input name="product-price" type="text" class="form-control" pattern="\d{1,10}" required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product-stock" type="text" class="form-control" required>
+                            <input name="product-stock" type="text" class="form-control"  pattern="\d{1,10}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn float-right" value="Submit">
                     </form>

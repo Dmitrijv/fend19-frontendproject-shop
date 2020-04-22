@@ -268,6 +268,19 @@ adminLib = (function() {
       });
     },
 
+    createNewProduct: function(event) {
+      const lib = this;
+
+      const alertElement = document.querySelector("div#productAlert");
+      const messageElement = document.querySelector("div#productAlert span.msg");
+
+      messageElement.textContent = "Invalid input.";
+      lib.setFailStyle(alertElement);
+
+      const input = event.currentTarget.elements.newCategoryNameField;
+      const categoryName = input.value;
+    },
+
     fillProductCategoryDropdown: function() {
       const lib = this;
       const select = document.querySelector("select[name='product-category']");
