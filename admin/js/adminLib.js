@@ -279,7 +279,7 @@ adminLib = (function() {
       //   console.log(image.files);
       //   console.log(image.value);
 
-      // validate input
+      // validate input 123
 
       const alertElement = document.querySelector("div#productAlert");
       const messageElement = document.querySelector("div#productAlert span.msg");
