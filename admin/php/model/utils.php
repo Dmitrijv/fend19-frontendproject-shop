@@ -53,3 +53,8 @@ function truncateFloat($number)
 {
     return ($number * 100) / 100;
 }
+
+function deleteProductImageFromDisc($fileName)
+{
+    unlink(__DIR__ . "../../../../img/product/" . $fileName);
+}

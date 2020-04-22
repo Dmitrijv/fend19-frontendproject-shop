@@ -5,86 +5,89 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Area | Edit Product</title>
-    <link rel="stylesheet" href="css/adminpanel.css">
-    <!--[if gte IE 8]>
-        <link rel="stylesheet" type="text/css" href="css/adminpanel-ie.css" />
-    <![endif]-->
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Area | Edit Product</title>
+        <link rel="stylesheet" href="css/adminpanel.css">
+        <!--[if gte IE 8]>
+            <link rel="stylesheet" type="text/css" href="css/adminpanel-ie.css" />
+        <![endif]-->
+    </head>
 
-<body>
+    <body>
 
-    <header class="admin-header">
-        <div class="header-container">
-            <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
-            <h1>Admin panel - Edit Product</h1>
-        </div>
-    </header>
+        <header class="admin-header">
+            <div class="header-container">
+                <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
+                <h1>Admin panel - Edit Product</h1>
+            </div>
+        </header>
 
-    <main class="admin-main">
-        <!-- SIDEBAR begins -->
-        <section class="admin-sidebar">
-            <nav class="admin-nav">
-                <ul>
-                    <li><a href="../index.php">Store</a></li>
-                    <li><a href="index.php">Categories</a></li>
-                    <li><a href="products.php" class="active">Products</a></li>
-                    <li><a href="">Orders</a></li>
-                </ul>
-            </nav>
-        </section>
-        <!-- SIDEBAR ends -->
-        <!-- CONTENT area begins -->
-        <section class="admin-content">
-            <div class="content-wrapper">
+        <main class="admin-main">
+            <!-- SIDEBAR begins -->
+            <section class="admin-sidebar">
+                <nav class="admin-nav">
+                    <ul>
+                        <li><a href="../index.php">Store</a></li>
+                        <li><a href="index.php">Categories</a></li>
+                        <li><a href="products.php" class="active">Products</a></li>
+                        <li><a href="">Orders</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <!-- SIDEBAR ends -->
+            <!-- CONTENT area begins -->
+            <section class="admin-content">
+                <div class="content-wrapper">
 
-                <?php //echo $_POST["productId"]; ;;;?>
+                    <div id='productAlert' class="alert fail hidden">
+                        <span class="msg"></span>
+                        <form onsubmit='adminLib.hideParentElement(event);'>
+                            <button class="close-btn" type="submit">Close</button>
+                        </form>
+                    </div>
 
-                <div id='productAlert' class="alert fail hidden">
-                    <span class="msg"></span>
-                    <form onsubmit='adminLib.hideParentElement(event);'>
-                        <button class="close-btn" type="submit">Close</button>
+                    <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" > -->
+                    <form onsubmit="adminLib.updateProduct(event);" enctype="multipart/form-data" >
+                        <div class="form-group">
+                            <label>Cover image</label>
+                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input name="product_title" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="product_description" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="product_category" class="form-control" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (SEK)</label>
+                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input name="product_stock" type="number" min=0 step='1' class="form-control"  pattern="\d{1,100}" required>
+                        </div>
+                        <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>
-                </div>
 
-                <form action="php-routines/createBlogPost.php" method="POST" enctype="multipart/form-data" >
-                    <div class="form-group">
-                        <label>Cover image</label>
-                        <input type="file" name="post-attatched_image" id="post-attatched_image" accept=".jpg,.jpeg,.png,.gif" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input name="post-title" type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea name="post-description" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <input name="post-price" type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input name="post-price" type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Stock</label>
-                        <input name="post-price" type="text" class="form-control" required>
-                    </div>
-                    <input type="submit" class="btn btn-round create-btn float-right" value="Submit">
-                </form>
+            </section>
+            <!-- CONTENT area ends -->
 
-        </section>
-        <!-- CONTENT area ends -->
-    </main>
+        </main>
 
-    <script type="text/javascript" src="js/ie11/adminLib.js"></script>
-    <script type="text/javascript"> adminLib.fillProductCategoryDropdown(); </script>
+        <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+        <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
+        <script type="text/javascript"> adminLib.fillProductCategoryDropdown(); </script>
+        <script type="text/javascript"> adminLib.loadProductInformationToEdit(); </script>
 
-</body>
+    </body>
+
 
 </html>

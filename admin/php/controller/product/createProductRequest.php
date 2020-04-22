@@ -29,7 +29,7 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
     $img_target_dir = __DIR__ . "../../../../../img/product/";
     $target_file = $img_target_dir . basename($_FILES["product_attatched_image"]["name"][$i]);
     // if it's a valid file save it to disk
-    if (isAttatchedImageValid($target_file, $i) === true) {
+    if (isAttatchedImageValid($target_file, $i) === true && !doesImageExist($_FILES["product_attatched_image"]["name"][$i])) {
         array_push($gallery, $_FILES["product_attatched_image"]["name"][$i]);
         move_uploaded_file($_FILES["product_attatched_image"]["tmp_name"][$i], $target_file);
     }

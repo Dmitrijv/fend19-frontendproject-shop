@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../../php/model/db.php";
+require_once __DIR__ . "/../model/utils.php";
 
 function createNewCategory($categoryName)
 {
@@ -128,11 +129,7 @@ function createNewProduct($newProduct)
 
     // register uploaded images
     foreach ($newProduct['gallery'] as &$fileName) {
-        // register image in db
-        if (doesImageExist($fileName) === false) {
-            createNewImage($fileName);
-        }
-        // associate image with product
+        createNewImage($fileName);
         addImageOfProduct($newProductId, $fileName);
     }
 
@@ -158,17 +155,40 @@ function createNewImage($fileName)
 
 function doesImageExist($fileName)
 {
-    return DB::run("SELECT EXISTS(SELECT * FROM image WHERE file_name = ?)", [$fileName])->fetchColumn();
+    return DB::run("SELECT EXISTS(SELECT * FROM `image` WHERE `file_name` = ?)", [$fileName])->fetchColumn();
 }
 
 function deleteProduct($productId)
 {
+    // delete images of this product
+    $gallery = getProductImages($productId);
+    foreach ($gallery as &$fileName) {
+        deleteImageFromDb($fileName);
+        deleteProductImageFromDisc($fileName);
+    }
+
     DB::run("DELETE FROM product WHERE id = ?", [$productId]);
     DB::run("DELETE FROM price_of_product WHERE product_id = ?", [$productId]);
-    DB::run("DELETE FROM image_of_product WHERE product_id = ?", [$productId]);
+    // DB::run("DELETE FROM image_of_product WHERE product_id = ?", [$productId]);
+
 }
 
 function doesProductTitleExist($productTitle)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM product WHERE title = ?)", [$productTitle])->fetchColumn();
+}
+
+function getProductImages($productId)
+{
+    $stmt = DB::run("SELECT DISTINCT file_name FROM image_of_product WHERE product_id = ?", [$productId]);
+    $response = [];
+    while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
+        array_push($response, $tableRow['file_name']);
+    }
+    return $response;
+}
+
+function deleteImageFromDb($fileName)
+{
+    DB::run("DELETE FROM `image` WHERE `file_name` = ?", [$fileName]);
 }
