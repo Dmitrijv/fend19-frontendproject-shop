@@ -17,3 +17,15 @@ function isProductCategoryNameValid($name)
 
     return true;
 }
+
+function isValidNumber($value)
+{
+    // not set
+    if (!isset($value)) {return false;}
+    // can't beconverted to number
+    if (!is_numeric($value)) {return false;}
+    $value = (int) $value;
+    // smaller than 1
+    if ($value < 0) {return false;}
+    return true;
+}

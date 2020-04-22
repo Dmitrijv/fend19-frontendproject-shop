@@ -48,7 +48,7 @@
                         </form>
                     </div>
 
-                    <!-- <form action="php/controller/product/createProductRequest.php" method="POST" enctype="multipart/form-data" > -->
+                    <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" > -->
                     <form onsubmit="adminLib.createNewProduct(event);" method="POST" enctype="multipart/form-data" >
                         <div class="form-group">
                             <label>Cover image</label>
@@ -82,8 +82,8 @@
 
         </main>
 
-        <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
-        <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+        <script type="text/javascript" src="js/adminLib.js"></script>
+        <!-- <script type="text/javascript" src="js/ie11/adminLib.js"></script> -->
         <script type="text/javascript"> adminLib.fillProductCategoryDropdown(); </script>
 
     </body>
