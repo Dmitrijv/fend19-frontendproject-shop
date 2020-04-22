@@ -3,15 +3,15 @@ const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
 cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
@@ -63,7 +63,10 @@ function fillCartList(fromClick) {
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(5, -2);
+  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(
+    5,
+    -2
+  );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
@@ -76,8 +79,15 @@ const productInfo = (btn) => {
     qty: productQty,
   };
 };
-
+function alreadyExist(getArray, productName) {
+  let nameInLs;
+  for (let i = 0; i < getArray.length; i++) {
+    nameInLs = getArray[i].name;
+    }
+  return nameInLs === productName;
+}
 function setLocalStorage(obj, fromClick) {
+  const productName = obj.parentElement.firstElementChild.textContent;
   let getArray;
   if (localStorage.getItem("products") === null) {
     let prodArray = [];
@@ -85,12 +95,16 @@ function setLocalStorage(obj, fromClick) {
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
     getArray = JSON.parse(localStorage.getItem("products"));
-    getArray.push(productInfo(obj));
-    localStorage.setItem("products", JSON.stringify(getArray));
-  }
-  fillCartList(fromClick);
-}
 
+    if (alreadyExist(getArray, productName)) {
+      alert("Produkten finns redan i varukorgen!");
+    } else {
+      getArray.push(productInfo(obj));
+      localStorage.setItem("products", JSON.stringify(getArray));
+      fillCartList(fromClick);
+    }
+  }
+}
 function refreshCartList() {
   const getLocalStorage = JSON.parse(localStorage.getItem("products"));
   if (getLocalStorage === null) return;
@@ -98,7 +112,6 @@ function refreshCartList() {
   fillCartList(fromClick);
 }
 refreshCartList();
-
 function addProduct(productBtn) {
   productBtn.forEach((addBtn) => {
     addBtn.addEventListener("click", (e) => {
@@ -115,7 +128,6 @@ function deleteProduct(getJSON) {
       const index = getJSON.findIndex((prod) => {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
-      console.log(delBtn.parentElement.parentElement.id);
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
@@ -135,13 +147,11 @@ function updateSum(getLs) {
   const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
-
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
-
   qtyBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
-      var index = getJSON.findIndex(function (prod) {
+      const index = getJSON.findIndex((prod) => {
         return prod.id == btn.parentElement.parentElement.parentElement.id;
       });
 
