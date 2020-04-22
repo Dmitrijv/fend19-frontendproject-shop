@@ -32,7 +32,7 @@ $newProduct = [];
 $newProduct['title'] = $productTitle;
 $newProduct['description'] = $productDescription;
 $newProduct['category_id'] = $productCategoryId;
-$newProduct['price'] = $productPrice;
+$newProduct['price'] = truncateFloat($productPrice);
 $newProduct['number_in_stock'] = $productStock;
 
 createNewProduct($newProduct);

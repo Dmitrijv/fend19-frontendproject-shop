@@ -48,3 +48,8 @@ function trimSides($string)
     $string = rtrim($string);
     return $string;
 }
+
+function truncateFloat($number)
+{
+    return ($number * 100) / 100;
+}
