@@ -211,6 +211,65 @@ adminLib = (function() {
       element.classList.remove("hidden");
     },
 
+    drawProductTable() {
+      const lib = this;
+      const apiUrl = `${INTERNAL_API_PATH}/products.php`;
+
+      lib.loadJsonByXhr(apiUrl, function(productJson) {
+        const table = document.querySelector("table.product-table");
+        let tableContent = `
+            <thead role="rowgroup">
+                <tr role="row">
+                    <th role="columnheader">ID</th>
+                    <th role="columnheader">Title</th>
+                    <th role="columnheader">Gallery</th>
+                    <th role="columnheader">Price</th>
+                    <th role="columnheader">Stock</th>
+                    <th role="columnheader">Category</th>
+                    <th role="columnheader">Description</th>
+                    <th role="columnheader">Action</th>
+                </tr>
+            </thead>
+        <tbody role='rowgroup'>
+        `;
+        productJson.forEach(product => {
+          const trimmedProductDescription = product.description.substring(0, 45) + "...";
+          const coverImage = product.imageGallery[0] || "placeholder.png";
+          const gallerySize = product.imageGallery.length;
+          tableContent += `
+            <tr role='row' data-post-id='${product.id}'>
+                <td role='cell'>${product.id}</td>
+                <td role='cell' class='ie-ellipsis'><span class='ie-ellipsis-text'>${product.title}</span></td>
+                <td role='cell'>
+                    <div class='productCoverDemo'>
+                        <img class='cover-demo' src='../img/product/${coverImage}' alt='Cover Image'>
+                        <span class='gallerySize'>${gallerySize}</span>
+                    </div>
+                </td>
+                <td role='cell'>${product.price} ${product.currency}</td>
+                <td role='cell'>${product.numberInStock} st</td>
+                <td role='cell'>${product.category}</td>
+                <td role='cell' class='ie-box' title='${product.description}' >${trimmedProductDescription}</td>
+                <td class='ellipsis' role='cell'><span class='show-all-description' title='${product.description}'><span class='description-text'>${product.description}</span></span></td>
+                <td role='cell' class='actionCell'>
+                    <form style='display: inline-block;' action='editProduct.php' method='POST'>
+                        <input class='btn edit-btn' type='submit' data-productId='${product.id}' name='edit' value='Edit'>
+                        <input type='hidden' name='productId' value='${product.id}'>
+                    </form>
+                    <form style='display: inline-block;' onsubmit='adminLib.deleteProduct(event);'>
+                        <input class='btn del-btn' data-productId='${product.id}' type='submit' name='delete' value='Delete'>
+                    </form>
+                </td>
+            </tr>
+        `;
+        });
+
+        tableContent += `</tbody>`;
+
+        table.innerHTML = tableContent;
+      });
+    },
+
     hideParentElement: function(event) {
       const elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");

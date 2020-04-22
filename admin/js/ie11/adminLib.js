@@ -190,6 +190,63 @@ adminLib = (function() {
       element.classList.remove("success");
       element.classList.remove("hidden");
     },
+    drawProductTable: function drawProductTable() {
+      var lib = this;
+      var apiUrl = "".concat(INTERNAL_API_PATH, "/products.php");
+      lib.loadJsonByXhr(apiUrl, function(productJson) {
+        var table = document.querySelector("table.product-table");
+        var tableContent =
+          '\n            <thead role="rowgroup">\n                <tr role="row">\n                    <th role="columnheader">ID</th>\n                    <th role="columnheader">Title</th>\n                    <th role="columnheader">Gallery</th>\n                    <th role="columnheader">Price</th>\n                    <th role="columnheader">Stock</th>\n                    <th role="columnheader">Category</th>\n                    <th role="columnheader">Description</th>\n                    <th role="columnheader">Action</th>\n                </tr>\n            </thead>\n        <tbody role=\'rowgroup\'>\n        ';
+        productJson.forEach(function(product) {
+          var trimmedProductDescription = product.description.substring(0, 45) + "...";
+          var coverImage = product.imageGallery[0] || "placeholder.png";
+          var gallerySize = product.imageGallery.length;
+          tableContent += "\n            <tr role='row' data-post-id='"
+            .concat(product.id, "'>\n                <td role='cell'>")
+            .concat(
+              product.id,
+              "</td>\n                <td role='cell' class='ie-ellipsis'><span class='ie-ellipsis-text'>"
+            )
+            .concat(
+              product.title,
+              "</span></td>\n                <td role='cell'>\n                    <div class='productCoverDemo'>\n                        <img class='cover-demo' src='../img/product/"
+            )
+            .concat(coverImage, "' alt='Cover Image'>\n                        <span class='gallerySize'>")
+            .concat(
+              gallerySize,
+              "</span>\n                    </div>\n                </td>\n                <td role='cell'>"
+            )
+            .concat(product.price, " ")
+            .concat(product.currency, "</td>\n                <td role='cell'>")
+            .concat(product.numberInStock, " st</td>\n                <td role='cell'>")
+            .concat(product.category, "</td>\n                <td role='cell' class='ie-box' title='")
+            .concat(product.description, "' >")
+            .concat(
+              trimmedProductDescription,
+              "</td>\n                <td class='ellipsis' role='cell'><span class='show-all-description' title='"
+            )
+            .concat(product.description, "'><span class='description-text'>")
+            .concat(
+              product.description,
+              "</span></span></td>\n                <td role='cell' class='actionCell'>\n                    <form style='display: inline-block;' action='editProduct.php' method='POST'>\n                        <input class='btn edit-btn' type='submit' data-productId='"
+            )
+            .concat(
+              product.id,
+              "' name='edit' value='Edit'>\n                        <input type='hidden' name='productId' value='"
+            )
+            .concat(
+              product.id,
+              "'>\n                    </form>\n                    <form style='display: inline-block;' onsubmit='adminLib.deleteProduct(event);'>\n                        <input class='btn del-btn' data-productId='"
+            )
+            .concat(
+              product.id,
+              "' type='submit' name='delete' value='Delete'>\n                    </form>\n                </td>\n            </tr>\n        "
+            );
+        });
+        tableContent += "</tbody>";
+        table.innerHTML = tableContent;
+      });
+    },
     hideParentElement: function hideParentElement(event) {
       var elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");

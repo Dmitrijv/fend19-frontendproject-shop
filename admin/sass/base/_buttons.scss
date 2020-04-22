@@ -20,6 +20,10 @@
     border-radius: 0;
   }
 
+  &.btn-round {
+    border-radius: 0.5rem;
+  }
+
   &:hover {
     cursor: pointer;
   }
