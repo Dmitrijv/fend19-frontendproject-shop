@@ -252,7 +252,7 @@ adminLib = (function() {
                 <td role='cell' class='ie-box' title='${product.description}' >${trimmedProductDescription}</td>
                 <td class='ellipsis' role='cell'><span class='show-all-description' title='${product.description}'><span class='description-text'>${product.description}</span></span></td>
                 <td role='cell' class='actionCell'>
-                    <form style='display: inline-block;' action='editProduct.php' method='POST'>
+                    <form style='display: inline-block;' action='editProduct.php?productId=${product.id}' method='POST'>
                         <input class='btn edit-btn' type='submit' data-productid='${product.id}' name='edit' value='Edit'>
                         <input type='hidden' name='productId' value='${product.id}'>
                     </form>

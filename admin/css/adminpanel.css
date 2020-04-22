@@ -713,6 +713,16 @@ form.update-category {
   margin: 10px 0;
 }
 
+img.small-img-on-edit {
+  width: 105px;
+  height: 65px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin-right: 9px;
+}
+
 input.category-input {
   width: 100%;
   border: 1px solid gray;

@@ -228,7 +228,11 @@ adminLib = (function() {
             .concat(product.description, "'><span class='description-text'>")
             .concat(
               product.description,
-              "</span></span></td>\n                <td role='cell' class='actionCell'>\n                    <form style='display: inline-block;' action='editProduct.php' method='POST'>\n                        <input class='btn edit-btn' type='submit' data-productid='"
+              "</span></span></td>\n                <td role='cell' class='actionCell'>\n                    <form style='display: inline-block;' action='editProduct.php?productId="
+            )
+            .concat(
+              product.id,
+              "' method='POST'>\n                        <input class='btn edit-btn' type='submit' data-productid='"
             )
             .concat(
               product.id,

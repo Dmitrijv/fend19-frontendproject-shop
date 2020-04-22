@@ -5,6 +5,14 @@ form.update-category {
   margin: 10px 0;
 }
 
+img.small-img-on-edit {
+  width: 105px;
+  height: 65px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 9px;
+}
+
 input.category-input {
   width: 100%;
   border: 1px solid gray;

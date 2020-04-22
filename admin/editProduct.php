@@ -1,7 +1,29 @@
-<!-- FEATURES ATTENTION! -->
-<!-- .ellipsis (kept in ad-table.scss) and now it works only when screen's width < 860px
-    structure: wrapped description with span, and put same text in span's title
-    effect: description will become ellipsis, and whole text will show up when user hover it -->
+<?php
+
+require_once __DIR__ . "/php/controller/controller.php";
+
+$productId = $_POST['productId'];
+if (!is_numeric($productId)) {die;}
+$p = getProductById($productId);
+
+$gallery = getProductImages($productId);
+$currentPicPreview = "<div class='previewPicContainer' >";
+foreach ($gallery as &$fileName) {
+    $currentPicPreview = $currentPicPreview . '<img class="small-img-on-edit hoverZoomLink" src="../img/product/' . $fileName . '" alt="post-img">';
+}
+$currentPicPreview = $currentPicPreview . '</div>';
+
+$allCategories = getProductCategories();
+$categoryDropdown = '<option value="' . $p['categoryId'] . '">' . $p['category'] . '</option>';
+foreach ($allCategories as &$category) {
+    if ($category['id'] !== $p['categoryId']) {
+        $categoryDropdown = $categoryDropdown . '<option value="' . $category['id'] . '">' . $category['name'] . '</option>';
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,28 +73,34 @@
                     <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" > -->
                     <form onsubmit="adminLib.updateProduct(event);" enctype="multipart/form-data" >
                         <div class="form-group">
-                            <label>Cover image</label>
-                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple required>
+                            <label>Add new pictures</label>
+                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple>
+                        </div>
+                        <div class="form-group">
+                            <label>Current pictures</label>
+                            <?php echo $currentPicPreview; ?>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input name="product_title" type="text" class="form-control" required>
+                            <input name="product_title" type="text" class="form-control" value="<?php echo $p['title']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="product_description" class="form-control" required></textarea>
+                            <textarea name="product_description" class="form-control" required><?php echo $p['description']; ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Category</label>
-                            <select name="product_category" class="form-control" required></select>
+                            <select name="product_category" class="form-control" required>
+                            <?php echo $categoryDropdown; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Price (SEK)</label>
-                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" required>
+                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" value='<?php echo $p['price']; ?>' required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product_stock" type="number" min=0 step='1' class="form-control"  pattern="\d{1,100}" required>
+                            <input name="product_stock" type="number" min=0 step='1' class="form-control" value='<?php echo $p['number_in_stock']; ?>' pattern="\d{1,100}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>
@@ -83,9 +111,6 @@
         </main>
 
         <script type="text/javascript" src="js/ie11/adminLib.js"></script>
-        <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
-        <script type="text/javascript"> adminLib.fillProductCategoryDropdown(); </script>
-        <script type="text/javascript"> adminLib.loadProductInformationToEdit(); </script>
 
     </body>
 

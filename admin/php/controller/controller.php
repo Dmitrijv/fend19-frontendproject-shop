@@ -103,6 +103,24 @@ function getProducts()
     return $response;
 }
 
+function getProductById($productId)
+{
+    return DB::run("
+        SELECT product.id,
+        product.title,
+        product_category.name as category,
+        product_category.id as categoryId,
+        product.description,
+        price_of_product.amount as price,
+        product.number_in_stock
+        FROM product, product_category, price_of_product
+        WHERE product.category_id = product_category.id
+        AND product.id = price_of_product.product_id
+        AND product.id = ?
+    ", [$productId])->fetch(PDO::FETCH_LAZY);
+
+}
+
 function getProductIdByTitle($title)
 {
     return DB::run("SELECT id FROM product WHERE title = ?", [$title])->fetchColumn();
