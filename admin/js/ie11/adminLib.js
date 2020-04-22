@@ -259,6 +259,7 @@ adminLib = (function() {
         if (this.readyState == 4 && this.status == 200) {
           lib.setSuccessStyle(alertElement);
           messageElement.textContent = "New product created successfully.";
+          form.reset();
           event.preventDefault(); // server validation failed
         } else if (this.readyState == 4 && this.status == 400) {
           messageElement.textContent = "Input did not pass validation.";
