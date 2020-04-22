@@ -53,7 +53,6 @@ input:focus {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
@@ -80,6 +79,10 @@ input:focus {
   border-radius: 0;
 }
 
+.btn.btn-round {
+  border-radius: 0.5rem;
+}
+
 .btn:hover {
   cursor: pointer;
 }
@@ -99,7 +102,6 @@ input:focus {
 .create-btn {
   background-color: #28a745;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#34d058), color-stop(90%, #28a745));
-  background-image: -o-linear-gradient(top, #34d058, #28a745 90%);
   background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
   background-repeat: repeat-x;
   background-position: -1px -1px;
@@ -109,7 +111,7 @@ input:focus {
   width: 82px;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   .create-btn {
     width: unset;
   }
@@ -118,7 +120,6 @@ input:focus {
 .create-btn:hover {
   background-color: #269f42;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#2fcb53), color-stop(90%, #269f42));
-  background-image: -o-linear-gradient(top, #2fcb53, #269f42 90%);
   background-image: linear-gradient(-180deg, #2fcb53, #269f42 90%);
   background-position: -0.5em;
   border-color: rgba(27, 31, 35, 0.5);
@@ -126,7 +127,6 @@ input:focus {
 
 .create-btn:active {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#34d058), color-stop(90%, #28a745));
-  background-image: -o-linear-gradient(top, #34d058, #28a745 90%);
   background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
   background-repeat: repeat-x;
   background-position: -1px -1px;
@@ -186,13 +186,10 @@ input:focus {
   border: 1px solid #c4c8bf;
   border-radius: 50%;
   -webkit-transition-duration: 0.2s;
-       -o-transition-duration: 0.2s;
           transition-duration: 0.2s;
   -webkit-transition-timing-function: ease-in-out;
-       -o-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
   -webkit-transition-property: background-color, color;
-  -o-transition-property: background-color, color;
   transition-property: background-color, color;
 }
 
@@ -436,7 +433,6 @@ table.db-table tr:hover {
     /* Top/left values mimic padding */
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
             transform: translateY(-50%);
     width: 45%;
     padding-right: 10px;
@@ -545,7 +541,7 @@ header.admin-header div.header-container h1 {
   color: white;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   header.admin-header div.header-container {
     margin: 0 auto 35px auto;
   }
@@ -822,7 +818,7 @@ table.product-table img.cover-demo {
 }
 
 /* Display ellipsis if it is a modern browser*/
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   /* Hide partial description when it comes to a smaller device */
   .ie-box {
     display: none !important;
@@ -839,12 +835,10 @@ table.product-table img.cover-demo {
     right: 0;
     top: 50%;
     -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
             transform: translateY(-50%);
     white-space: nowrap;
     overflow: hidden;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     padding: 0 6px;
   }
   /* When it goes to big screen, display partial description, use .ie-box */
@@ -856,5 +850,45 @@ table.product-table img.cover-demo {
       display: none;
     }
   }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.form-group input[type="file"] {
+  display: block;
+}
+
+.form-group textarea.form-control {
+  max-width: 1004px;
+  min-height: 200px;
+}
+
+.form-group .form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
 }
 /*# sourceMappingURL=adminpanel.css.map */
