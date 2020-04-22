@@ -253,11 +253,11 @@ adminLib = (function() {
                 <td class='ellipsis' role='cell'><span class='show-all-description' title='${product.description}'><span class='description-text'>${product.description}</span></span></td>
                 <td role='cell' class='actionCell'>
                     <form style='display: inline-block;' action='editProduct.php' method='POST'>
-                        <input class='btn edit-btn' type='submit' data-productId='${product.id}' name='edit' value='Edit'>
+                        <input class='btn edit-btn' type='submit' data-productid='${product.id}' name='edit' value='Edit'>
                         <input type='hidden' name='productId' value='${product.id}'>
                     </form>
                     <form style='display: inline-block;' onsubmit='adminLib.deleteProduct(event);'>
-                        <input class='btn del-btn' data-productId='${product.id}' type='submit' name='delete' value='Delete'>
+                        <input class='btn del-btn' data-productid='${product.id}' type='submit' name='delete' value='Delete'>
                     </form>
                 </td>
             </tr>
@@ -309,6 +309,37 @@ adminLib = (function() {
           select.appendChild(option);
         });
       });
+    },
+
+    deleteProduct: function(event) {
+      const lib = this;
+      const alertElement = document.querySelector("div#productAlert");
+      const messageElement = document.querySelector("div#productAlert span.msg");
+
+      const button = event.currentTarget.elements.delete;
+      const productId = button.dataset.productid;
+
+      if (confirm("Are you sure?")) {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            lib.setSuccessStyle(alertElement);
+            messageElement.textContent = "Product deleted successfully.";
+            lib.drawProductTable();
+            event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 400) {
+            messageElement.textContent = "Failed to delete product.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+          }
+        };
+
+        xmlhttp.open("POST", `${CONTROLLER_PATH}/product/deleteProductRequest.php`, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(`productId=${productId}`);
+      }
+
+      event.preventDefault();
     },
 
     hideParentElement: function(event) {

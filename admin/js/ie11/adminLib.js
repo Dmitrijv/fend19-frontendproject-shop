@@ -228,7 +228,7 @@ adminLib = (function() {
             .concat(product.description, "'><span class='description-text'>")
             .concat(
               product.description,
-              "</span></span></td>\n                <td role='cell' class='actionCell'>\n                    <form style='display: inline-block;' action='editProduct.php' method='POST'>\n                        <input class='btn edit-btn' type='submit' data-productId='"
+              "</span></span></td>\n                <td role='cell' class='actionCell'>\n                    <form style='display: inline-block;' action='editProduct.php' method='POST'>\n                        <input class='btn edit-btn' type='submit' data-productid='"
             )
             .concat(
               product.id,
@@ -236,7 +236,7 @@ adminLib = (function() {
             )
             .concat(
               product.id,
-              "'>\n                    </form>\n                    <form style='display: inline-block;' onsubmit='adminLib.deleteProduct(event);'>\n                        <input class='btn del-btn' data-productId='"
+              "'>\n                    </form>\n                    <form style='display: inline-block;' onsubmit='adminLib.deleteProduct(event);'>\n                        <input class='btn del-btn' data-productid='"
             )
             .concat(
               product.id,
@@ -284,6 +284,36 @@ adminLib = (function() {
           select.appendChild(option);
         });
       });
+    },
+    deleteProduct: function deleteProduct(event) {
+      var lib = this;
+      var alertElement = document.querySelector("div#productAlert");
+      var messageElement = document.querySelector("div#productAlert span.msg");
+      var button = event.currentTarget.elements.delete;
+      var productId = button.dataset.productid;
+
+      if (confirm("Are you sure?")) {
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            lib.setSuccessStyle(alertElement);
+            messageElement.textContent = "Product deleted successfully.";
+            lib.drawProductTable();
+            event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 400) {
+            messageElement.textContent = "Failed to delete product.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+          }
+        };
+
+        xmlhttp.open("POST", "".concat(CONTROLLER_PATH, "/product/deleteProductRequest.php"), true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("productId=".concat(productId));
+      }
+
+      event.preventDefault();
     },
     hideParentElement: function hideParentElement(event) {
       var elementToHide = event.currentTarget.parentElement;

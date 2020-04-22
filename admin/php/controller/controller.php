@@ -130,6 +130,13 @@ function createNewProduct($newProduct)
     // assosiate the new images with this product
 }
 
+function deleteProduct($productId)
+{
+    DB::run("DELETE FROM product WHERE id = ?", [$productId]);
+    DB::run("DELETE FROM price_of_product WHERE product_id = ?", [$productId]);
+    DB::run("DELETE FROM image_of_product WHERE product_id = ?", [$productId]);
+}
+
 function doesProductTitleExist($productTitle)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM product WHERE title = ?)", [$productTitle])->fetchColumn();

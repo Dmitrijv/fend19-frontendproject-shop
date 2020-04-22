@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2020 at 10:18 PM
+-- Generation Time: Apr 22, 2020 at 06:58 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -43,12 +43,22 @@ INSERT INTO `currency` (`id`, `shorthand`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `file_name` varchar(255) NOT NULL DEFAULT '''placeholder.png'''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `image_of_product`
 --
 
 CREATE TABLE `image_of_product` (
   `product_id` int(11) NOT NULL,
-  `file_name` text NOT NULL
+  `file_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -188,8 +198,7 @@ INSERT INTO `product_category` (`id`, `name`) VALUES
 (3, 'Tavelvägg'),
 (4, 'Naturmotiv'),
 (5, 'Djur Tavlor'),
-(6, 'Abstrakt'),
-(12, 'New Boat');
+(6, 'Abstrakt');
 
 --
 -- Indexes for dumped tables
@@ -202,10 +211,17 @@ ALTER TABLE `currency`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`file_name`);
+
+--
 -- Indexes for table `image_of_product`
 --
 ALTER TABLE `image_of_product`
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `file_name` (`file_name`);
 
 --
 -- Indexes for table `ordered_product`
@@ -280,6 +296,12 @@ ALTER TABLE `product_category`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `image`
+--
+ALTER TABLE `image`
+  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`file_name`) REFERENCES `image_of_product` (`file_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `image_of_product`
