@@ -7,7 +7,7 @@
         <span class="pull-left">Summa:</span>
         <span class="pull-right total-sum">2100kr</span>
     </div>
-    <div class="cart__order"><button>Till Kassan</button></div>
+    <div class="cart__order"><button><a href="order.php">Till Kassan</a></button></div>
 
 </div>
 
