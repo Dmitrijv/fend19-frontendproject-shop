@@ -35,17 +35,18 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = `<div id="${productId}" class="cart__product">
-    <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
-    <div class="cart__product-text">${productName}</div>
-    <div class="cart__product-price">${productPrice}</div>
-    <div class="cart__product-pull-right">
-        <span><button class="qtyBtn minusQty">-</button></span>
-        <div class="cart__product-qty">${productQty}</div>
-        <span><button class="qtyBtn plusQty">+</button></span>
-        <div class="cart__product-delete">X</div>
-    </div>
-    </div>`;
+    product = `
+      <div id="${productId}" class="cart__product">
+        <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
+        <div class="cart__product-text">${productName}</div>
+        <div class="cart__product-price">${productPrice}</div>
+        <div class="cart__product-pull-right">
+          <span><button class="qtyBtn minusQty">-</button></span>
+          <div class="cart__product-qty">${productQty}</div>
+          <span><button class="qtyBtn plusQty">+</button></span>
+          <div class="cart__product-delete">X</div>
+        </div>
+      </div>`;
 
     if (fromClick === false) {
       cartList.innerHTML += product;
@@ -61,7 +62,11 @@ function fillCartList(fromClick) {
 
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.src;
+  //get url from product card
+  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(
+    5,
+    -2
+  );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
@@ -74,8 +79,15 @@ const productInfo = (btn) => {
     qty: productQty,
   };
 };
-
+function alreadyExist(getArray, productName) {
+  let nameInLs;
+  for (let i = 0; i < getArray.length; i++) {
+    nameInLs = getArray[i].name;
+    }
+  return nameInLs === productName;
+}
 function setLocalStorage(obj, fromClick) {
+  const productName = obj.parentElement.firstElementChild.textContent;
   let getArray;
   if (localStorage.getItem("products") === null) {
     let prodArray = [];
@@ -83,12 +95,16 @@ function setLocalStorage(obj, fromClick) {
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
     getArray = JSON.parse(localStorage.getItem("products"));
-    getArray.push(productInfo(obj));
-    localStorage.setItem("products", JSON.stringify(getArray));
-  }
-  fillCartList(fromClick);
-}
 
+    if (alreadyExist(getArray, productName)) {
+      alert("You already have this item in your cart.");
+    } else {
+      getArray.push(productInfo(obj));
+      localStorage.setItem("products", JSON.stringify(getArray));
+      fillCartList(fromClick);
+    }
+  }
+}
 function refreshCartList() {
   const getLocalStorage = JSON.parse(localStorage.getItem("products"));
   if (getLocalStorage === null) return;
@@ -96,7 +112,6 @@ function refreshCartList() {
   fillCartList(fromClick);
 }
 refreshCartList();
-
 function addProduct(productBtn) {
   productBtn.forEach((addBtn) => {
     addBtn.addEventListener("click", (e) => {
@@ -113,7 +128,6 @@ function deleteProduct(getJSON) {
       const index = getJSON.findIndex((prod) => {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
-      console.log(delBtn.parentElement.parentElement.id);
       getJSON.splice(index, 1);
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
@@ -133,7 +147,6 @@ function updateSum(getLs) {
   const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
-
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
   qtyBtns.forEach((btn) => {

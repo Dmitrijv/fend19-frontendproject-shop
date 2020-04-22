@@ -13,13 +13,13 @@
             </div>
             <div class="nav__item main__header__search">
                 <form class="nav__item main__header__search" name="searchform" onsubmit="shopLib.searchProducts(event)">
-                    <input class="main__header__search--input" type="text" name="searchinput" minlength="2">
+                    <input class="main__header__search--input" type="text" name="searchinput" required pattern=".{2,}">
                     <button class="main__header__btn search-btn" name="searchbtn" type="submit">Sök</button>
                 </form>
             </div>
 
             <div class="dropdown">
-                <button class="dropbtn">Categories</button>
+                <button class="dropbtn">Kategorier</button>
                 <div class="dropdown-content" id="dropdownCategoryContainer">
                     <form id="categoryDropdownForm" class="top-nav__form">
                     </form>

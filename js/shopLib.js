@@ -39,14 +39,30 @@ shopLib = (function() {
     drawDefaultProductPanel: function(event) {
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
+      const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
+
       lib.loadJsonByXhr(productApi, function(productJson) {
-        lib.drawProductPanel(productJson);
+        if (redirectFilterId && redirectFilterId !== -1) {
+          productJson = productJson.filter(product => product.categoryId === redirectFilterId);
+          lib.drawProductPanel(productJson);
+          sessionStorage.setItem("categoryFilterId", "");
+        } else {
+          lib.drawProductPanel(productJson);
+        }
       });
     },
 
     drawFilteredProductPanel: function(event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
+
+      // if we are clicking category from some page other than start page go back there
+      if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
+        sessionStorage.setItem("categoryFilterId", allowedCategoryId);
+        location.href = SHOP_URL + "/index.php";
+        event.preventDefault();
+        return;
+      }
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
@@ -69,8 +85,7 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3'>
-                <img class='product__img' src='${coverImage}' alt='product name'>
+            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
             </div>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
@@ -115,7 +130,7 @@ shopLib = (function() {
 
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -144,7 +159,7 @@ shopLib = (function() {
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -173,8 +188,7 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3'>
-                <img class='product__img' src='${coverImage}' alt='product name'>
+            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
             </div>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>

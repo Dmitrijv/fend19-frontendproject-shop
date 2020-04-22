@@ -33,13 +33,30 @@ shopLib = (function() {
     drawDefaultProductPanel: function drawDefaultProductPanel(event) {
       var lib = this;
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
+      var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
       lib.loadJsonByXhr(productApi, function(productJson) {
-        lib.drawProductPanel(productJson);
+        if (redirectFilterId && redirectFilterId !== -1) {
+          productJson = productJson.filter(function(product) {
+            return product.categoryId === redirectFilterId;
+          });
+          lib.drawProductPanel(productJson);
+          sessionStorage.setItem("categoryFilterId", "");
+        } else {
+          lib.drawProductPanel(productJson);
+        }
       });
     },
     drawFilteredProductPanel: function drawFilteredProductPanel(event) {
       var lib = this;
-      var allowedCategoryId = Number(event.currentTarget.id);
+      var allowedCategoryId = Number(event.currentTarget.id); // if we are clicking category from some page other than start page go back there
+
+      if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
+        sessionStorage.setItem("categoryFilterId", allowedCategoryId);
+        location.href = SHOP_URL + "/index.php";
+        event.preventDefault();
+        return;
+      }
+
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         if (allowedCategoryId === -1) {
@@ -63,11 +80,11 @@ shopLib = (function() {
         cardHtml += "\n        <div id='"
           .concat(
             item.id,
-            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='"
+            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3' style=\"background-image: url("
           )
           .concat(
             coverImage,
-            "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
+            ")\">\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
           )
           .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")
@@ -109,7 +126,7 @@ shopLib = (function() {
 
       var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
 
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -139,7 +156,7 @@ shopLib = (function() {
 
       var keywordErrMsg = document.querySelector(".invalidKeywordMessage");
 
-      if (keyword.length < 2) {
+      if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
         event.preventDefault();
         return;
@@ -169,11 +186,11 @@ shopLib = (function() {
         cardHtml += "\n        <div id='"
           .concat(
             item.id,
-            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3'>\n                <img class='product__img' src='"
+            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3' style=\"background-image: url("
           )
           .concat(
             coverImage,
-            "' alt='product name'>\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
+            ")\">\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
           )
           .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")

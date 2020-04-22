@@ -1,13 +1,11 @@
-"use strict";
-
 var cartBtn = document.querySelector(".cart-btn");
 var cart = document.querySelector(".cart");
 var cartCloseBtn = document.querySelector(".cart-close-btn");
-cartBtn.addEventListener("click", function (e) {
-  cart.style.display === "flex" ? cart.style.display = "none" : cart.style.display = "flex";
+cartBtn.addEventListener("click", function(e) {
+  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
 });
-cartCloseBtn.addEventListener("click", function (e) {
-  cart.style.display === "flex" ? cart.style.display = "none" : cart.style.display = "flex";
+cartCloseBtn.addEventListener("click", function(e) {
+  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
@@ -32,7 +30,18 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = "<div id=\"".concat(productId, "\" class=\"cart__product\">\n    <div class=\"cart__product-img\"><img class=\"cart__product__img-src\" src=\"").concat(productImg, "\" alt=\"product name\"></div>\n    <div class=\"cart__product-text\">").concat(productName, "</div>\n    <div class=\"cart__product-price\">").concat(productPrice, "</div>\n    <div class=\"cart__product-pull-right\">\n        <div class=\"cart__product-qty\">").concat(productQty, "</div>\n        <div class=\"cart__product-delete\">X</div>\n    </div>\n    </div>");
+    product = '<div id="'
+      .concat(
+        productId,
+        '" class="cart__product">\n    <div class="cart__product-img"><img class="cart__product__img-src" src="'
+      )
+      .concat(productImg, '" alt="product name"></div>\n    <div class="cart__product-text">')
+      .concat(productName, '</div>\n    <div class="cart__product-price">')
+      .concat(
+        productPrice,
+        '</div>\n    <div class="cart__product-pull-right">\n        <div class="cart__product-qty">'
+      )
+      .concat(productQty, '</div>\n        <div class="cart__product-delete">X</div>\n    </div>\n    </div>');
 
     if (fromClick === false) {
       cartList.innerHTML += product;
@@ -87,8 +96,8 @@ function refreshCartList() {
 refreshCartList();
 
 function addProduct(productBtn) {
-  productBtn.forEach(function (addBtn) {
-    addBtn.addEventListener("click", function (e) {
+  productBtn.forEach(function(addBtn) {
+    addBtn.addEventListener("click", function(e) {
       var fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
@@ -97,9 +106,9 @@ function addProduct(productBtn) {
 
 function deleteProduct(getJSON) {
   var deleteBtn = document.querySelectorAll(".cart__product-delete");
-  deleteBtn.forEach(function (delBtn) {
-    delBtn.addEventListener("click", function (e) {
-      var index = getJSON.findIndex(function (prod) {
+  deleteBtn.forEach(function(delBtn) {
+    delBtn.addEventListener("click", function(e) {
+      var index = getJSON.findIndex(function(prod) {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
       console.log(delBtn.parentElement.parentElement.id);
