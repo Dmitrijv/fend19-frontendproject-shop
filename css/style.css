@@ -1568,14 +1568,14 @@ div.product > div > button:nth-child(4) {
 }
 
 .contact__form__name, .contact__form__email, .contact__form__phone {
-  width: 93%;
+  width: 100%;
   margin: 10px 0 10px 0;
   padding: 3%;
   height: 3em;
 }
 
 .contact__form__msg {
-  width: 93%;
+  width: 100%;
   padding: 3%;
   border-radius: 3px;
   background-color: #f60d4d20;
