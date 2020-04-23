@@ -2056,22 +2056,6 @@ section.order-confirmation button[disabled] {
   border: 0;
 }
 
-.slide1 {
-  background-image: url("https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80https://images.unsplash.com/photo-1523554888454-84137e72c3ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-}
-
-.slide2 {
-  background-image: url("https://images.unsplash.com/photo-1554188248-986adbb73be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-}
-
-.slide3 {
-  background-image: url("https://images.unsplash.com/photo-1558879787-4c4aea1fbb83?ixlib=rb-1.2.1&auto=format&fit=crop&w=932&q=80");
-}
-
-.slide4 {
-  background-image: url("https://images.unsplash.com/photo-1572450732467-5eb1311e7bc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80");
-}
-
 #p-main {
   overflow: visible;
   /* mobile */
