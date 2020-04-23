@@ -4,19 +4,19 @@ shopLib = (function () {
   const version = "0.2";
   const SHOP_URL = `${location.protocol}//${location.host}/fend19-frontendproject-shop`;
   const CONTROLLER_PATH = `${SHOP_URL}/php/controller`;
-  const INTERNAL_API_PATH = `${SHOP_URL}/api`;
+  const INTERNAL_PATH = `${SHOP_URL}/php/internal`;
 
   let shopLib = {
     drawCategorySelectors: function () {
       const lib = this;
-      const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
+      const categoryInternalUrl = `${INTERNAL_PATH}/categories.php`;
       //cache selectors
       const sidebar = document.querySelector("ul#sidebarCategoryContainer");
       const dropdown = document.querySelector("form.top-nav__form");
       sidebar.innerHTML = "";
       dropdown.innerHTML = "";
-      // get category json from api
-      lib.loadJsonByXhr(categoryApiUrl, function (categoryJson) {
+      // get category json from Internal
+      lib.loadJsonByXhr(categoryInternalUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
@@ -38,10 +38,10 @@ shopLib = (function () {
 
     drawDefaultProductPanel: function (event) {
       const lib = this;
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      const productInternal = `${INTERNAL_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
 
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
           productJson = productJson.filter(product => product.categoryId === redirectFilterId);
           lib.drawProductPanel(productJson);
@@ -66,8 +66,8 @@ shopLib = (function () {
         return;
       }
 
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
@@ -141,8 +141,8 @@ shopLib = (function () {
       }
 
       const lib = this;
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         lib.drawSearchResultList(matchingProducts);
       });
@@ -163,8 +163,8 @@ shopLib = (function () {
         keywordErrMsg.classList.add("hidden");
       }
 
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function (productJson) {
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
