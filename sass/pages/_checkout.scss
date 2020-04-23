@@ -1,0 +1,51 @@
+#checkout-main {
+  margin: 0 auto;
+  padding: 70px;
+
+  font-family: "Lato", sans-serif;
+
+  p,
+  tr,
+  td,
+  th,
+  dt,
+  dd {
+    font-family: "Lato", sans-serif !important;
+  }
+}
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__email-section {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    background: rgb(226, 225, 221);
+  }
+  &__delivery-section {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    background: rgb(226, 225, 221);
+    opacity: 0.4;
+  }
+  &__delivery-section--click {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    background: rgb(226, 225, 221);
+  }
+
+  &__label {
+  }
+  &__input,
+  &__input--email {
+    background: rgb(255, 255, 255);
+    border: 1px solid $red;
+    height: 30px;
+    width: 260px;
+    margin-bottom: 20px;
+  }
+}
