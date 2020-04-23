@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     } else {
         $email = test_input($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailError = "Ogiltig E-post adress";
+            $emailError = "Ogiltig e-post adress";
         }
     }
 
