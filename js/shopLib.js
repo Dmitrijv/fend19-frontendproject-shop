@@ -45,7 +45,7 @@ shopLib = (function() {
         if (redirectFilterId && redirectFilterId !== -1) {
           productJson = productJson.filter(product => product.categoryId === redirectFilterId);
           lib.drawProductPanel(productJson);
-          sessionStorage.setItem("categoryFilterId", "");
+          sessionStorage.setItem("categoryFilterId", -1);
         } else {
           lib.drawProductPanel(productJson);
         }
@@ -55,7 +55,7 @@ shopLib = (function() {
     drawFilteredProductPanel: function(event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
-
+      console.log({ allowedCategoryId });
       // if we are clicking category from some page other than start page go back there
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -69,8 +69,8 @@ shopLib = (function() {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          productJson = productJson.filter(product => product.categoryId === allowedCategoryId);
-          lib.drawProductPanel(productJson);
+          const newList = productJson.filter(product => product.categoryId == allowedCategoryId);
+          lib.drawProductPanel(newList);
         }
       });
       lib.hideSidePanel();

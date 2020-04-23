@@ -40,7 +40,7 @@ shopLib = (function() {
             return product.categoryId === redirectFilterId;
           });
           lib.drawProductPanel(productJson);
-          sessionStorage.setItem("categoryFilterId", "");
+          sessionStorage.setItem("categoryFilterId", -1);
         } else {
           lib.drawProductPanel(productJson);
         }
@@ -48,7 +48,10 @@ shopLib = (function() {
     },
     drawFilteredProductPanel: function drawFilteredProductPanel(event) {
       var lib = this;
-      var allowedCategoryId = Number(event.currentTarget.id); // if we are clicking category from some page other than start page go back there
+      var allowedCategoryId = Number(event.currentTarget.id);
+      console.log({
+        allowedCategoryId: allowedCategoryId
+      }); // if we are clicking category from some page other than start page go back there
 
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -62,10 +65,10 @@ shopLib = (function() {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          productJson = productJson.filter(function(product) {
-            return product.categoryId === allowedCategoryId;
+          var newList = productJson.filter(function(product) {
+            return product.categoryId == allowedCategoryId;
           });
-          lib.drawProductPanel(productJson);
+          lib.drawProductPanel(newList);
         }
       });
       lib.hideSidePanel();
