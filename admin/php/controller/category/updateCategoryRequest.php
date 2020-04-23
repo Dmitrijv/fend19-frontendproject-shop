@@ -26,11 +26,11 @@ $categoryName = ltrim($categoryName);
 $categoryName = rtrim($categoryName);
 
 // attempting to update a deleted category
-$categoryExists = doesProductCategoryIdExist($categoryId);
-if ($categoryExists !== 1) {
-    http_response_code(500);
-    die;
-}
+// $categoryExists = doesProductCategoryIdExist($categoryId);
+// if ($categoryExists !== 1) {
+//     http_response_code(500);
+//     die;
+// }
 
 // invalid / duplicate category name
 $nameTaken = isCategoryNameTaken($newCategoryName, $categoryId);

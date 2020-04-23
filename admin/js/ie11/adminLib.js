@@ -3,11 +3,11 @@ adminLib = (function() {
   var version = "0.2";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
   var CONTROLLER_PATH = "".concat(SHOP_URL, "/admin/php/controller");
-  var INTERNAL_API_PATH = "".concat(SHOP_URL, "/admin/internalApi");
+  var INTERNAL_PATH = "".concat(SHOP_URL, "/admin/internal");
   var adminLib = {
     drawCategoryTable: function drawCategoryTable() {
       var lib = this;
-      var apiUrl = "".concat(INTERNAL_API_PATH, "/productCategories.php");
+      var apiUrl = "".concat(INTERNAL_PATH, "/productCategories.php");
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         var table = document.querySelector("table#productCategoryAdminTable");
         var tableContent =
@@ -192,7 +192,7 @@ adminLib = (function() {
     },
     drawProductTable: function drawProductTable() {
       var lib = this;
-      var apiUrl = "".concat(INTERNAL_API_PATH, "/products.php");
+      var apiUrl = "".concat(INTERNAL_PATH, "/products.php");
       lib.loadJsonByXhr(apiUrl, function(productJson) {
         var table = document.querySelector("table.product-table");
         var tableContent =
@@ -321,7 +321,7 @@ adminLib = (function() {
     fillProductCategoryDropdown: function fillProductCategoryDropdown() {
       var lib = this;
       var select = document.querySelector("select[name='product_category']");
-      var apiUrl = "".concat(INTERNAL_API_PATH, "/productCategories.php");
+      var apiUrl = "".concat(INTERNAL_PATH, "/productCategories.php");
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         categoryJson.forEach(function(category) {
           var option = document.createElement("option");

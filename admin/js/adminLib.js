@@ -4,12 +4,12 @@ adminLib = (function() {
   const version = "0.2";
   const SHOP_URL = `${location.protocol}//${location.host}/fend19-frontendproject-shop`;
   const CONTROLLER_PATH = `${SHOP_URL}/admin/php/controller`;
-  const INTERNAL_API_PATH = `${SHOP_URL}/admin/internalApi`;
+  const INTERNAL_PATH = `${SHOP_URL}/admin/internal`;
 
   let adminLib = {
     drawCategoryTable() {
       const lib = this;
-      const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
+      const apiUrl = `${INTERNAL_PATH}/productCategories.php`;
 
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         const table = document.querySelector("table#productCategoryAdminTable");
@@ -213,7 +213,7 @@ adminLib = (function() {
 
     drawProductTable: function() {
       const lib = this;
-      const apiUrl = `${INTERNAL_API_PATH}/products.php`;
+      const apiUrl = `${INTERNAL_PATH}/products.php`;
 
       lib.loadJsonByXhr(apiUrl, function(productJson) {
         const table = document.querySelector("table.product-table");
@@ -342,7 +342,7 @@ adminLib = (function() {
     fillProductCategoryDropdown: function() {
       const lib = this;
       const select = document.querySelector("select[name='product_category']");
-      const apiUrl = `${INTERNAL_API_PATH}/productCategories.php`;
+      const apiUrl = `${INTERNAL_PATH}/productCategories.php`;
       lib.loadJsonByXhr(apiUrl, function(categoryJson) {
         categoryJson.forEach(category => {
           const option = document.createElement("option");
