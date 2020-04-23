@@ -15,6 +15,7 @@ input.categoryFilterButton {
 
 html {
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body {
@@ -496,7 +497,7 @@ button {
 }
 
 .cart {
-  padding: 1em;
+  padding: 0 1em 1em;
   position: fixed;
   display: none;
   -webkit-box-orient: vertical;
@@ -520,12 +521,23 @@ button {
 
 @media screen and (min-width: 800px) {
   .cart {
-    top: 64px;
+    top: 63px;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .cart {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    min-width: 400px;
+    font-size: 14px;
   }
 }
 
 .cart .cart-close-btn {
   position: relative;
+  top: 15px;
   right: -50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -541,6 +553,8 @@ button {
 
 .cart h2 {
   text-align: center;
+  padding: 0;
+  margin-top: 0;
 }
 
 .cart__product-list {
@@ -554,16 +568,17 @@ button {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  max-width: 500px;
 }
 
 .cart__product {
-  margin: 30px;
   display: -ms-grid;
   display: grid;
   grid-auto-flow: column;
-  -ms-grid-columns: (minmax(50px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-auto-rows: minmax(50px, 1fr);
+  margin: 10px 1vw;
+  -ms-grid-columns: .5fr 1fr .5fr 1fr;
+      grid-template-columns: .5fr 1fr .5fr 1fr;
 }
 
 .cart__sum-area {
@@ -585,13 +600,18 @@ button {
 .cart__product-img {
   max-width: 70px !important;
   max-height: 70px !important;
+  background-size: cover;
 }
 
-.cart__product-img img {
-  -o-object-fit: fill;
-     object-fit: fill;
-  width: 100%;
-  height: 100%;
+.cart__product-price {
+  -ms-grid-column-align: right;
+      justify-self: right;
+}
+
+@media screen and (max-width: 596px) {
+  .cart__product-price {
+    margin-right: 5px;
+  }
 }
 
 .cart__product-pull-right {
@@ -601,10 +621,23 @@ button {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .cart__product-delete {
   cursor: pointer;
+}
+
+.cart .qtyBtn {
+  padding: 10px 20px;
+}
+
+@media screen and (max-width: 596px) {
+  .cart .qtyBtn {
+    padding: 6px 10px;
+  }
 }
 
 /* bp: 650px / 975px / 1280px / max: don't care anymore  */
