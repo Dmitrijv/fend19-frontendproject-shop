@@ -1,4 +1,4 @@
-shopLib = (function() {
+shopLib = (function () {
   const info = "Helper library for drawing html elements based on db data.";
 
   const version = "0.2";
@@ -7,7 +7,7 @@ shopLib = (function() {
   const INTERNAL_API_PATH = `${SHOP_URL}/api`;
 
   let shopLib = {
-    drawCategorySelectors: function() {
+    drawCategorySelectors: function () {
       const lib = this;
       const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
       //cache selectors
@@ -16,7 +16,7 @@ shopLib = (function() {
       sidebar.innerHTML = "";
       dropdown.innerHTML = "";
       // get category json from api
-      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(categoryApiUrl, function (categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
@@ -36,12 +36,12 @@ shopLib = (function() {
       });
     },
 
-    drawDefaultProductPanel: function(event) {
+    drawDefaultProductPanel: function (event) {
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
 
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
           productJson = productJson.filter(product => product.categoryId === redirectFilterId);
           lib.drawProductPanel(productJson);
@@ -52,10 +52,12 @@ shopLib = (function() {
       });
     },
 
-    drawFilteredProductPanel: function(event) {
+    drawFilteredProductPanel: function (event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
-      console.log({ allowedCategoryId });
+      console.log({
+        allowedCategoryId
+      });
       // if we are clicking category from some page other than start page go back there
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -65,7 +67,7 @@ shopLib = (function() {
       }
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
@@ -77,7 +79,7 @@ shopLib = (function() {
       event.preventDefault();
     },
 
-    drawProductPanel: function(productJson) {
+    drawProductPanel: function (productJson) {
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
       productJson.forEach(item => {
@@ -115,7 +117,7 @@ shopLib = (function() {
       addProduct(productBtn);
     },
 
-    searchProducts: function(event) {
+    searchProducts: function (event) {
       //console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
       //console.log(keyword);
@@ -140,7 +142,7 @@ shopLib = (function() {
 
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         lib.drawSearchResultList(matchingProducts);
       });
@@ -162,7 +164,7 @@ shopLib = (function() {
       }
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productApi, function (productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
@@ -198,9 +200,9 @@ shopLib = (function() {
       }
     },
 
-    loadJsonByXhr: function(url, callback) {
+    loadJsonByXhr: function (url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -209,14 +211,22 @@ shopLib = (function() {
       xhr.send();
     },
 
-    hideSidePanel: function() {
+    hideSidePanel: function () {
       document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
       document.querySelector(".sidebar").classList.remove("active");
     },
 
-    showSidePanel: function() {
+    showSidePanel: function () {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
+    },
+    getShoppingCart: function () {
+      const shoppingCart = JSON.parse(localStorage.getItem("products"));
+      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
+    },
+
+    clearShoppingCart: function () {
+      localStorage.setItem("products", JSON.stringify({}));
     }
   };
 
