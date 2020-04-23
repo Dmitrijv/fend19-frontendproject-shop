@@ -25,25 +25,50 @@
         <div class="wrapper">
             <div class="single-product">
                 <div class="p-grid-1">
-                    <div id="slideshow">
-                        <!-- If no image, can set slide0 = default image -->
-                        <!-- Amount of img-div is decided by img number -->
-                        <!-- TODO: 
-                        when hover, img should not auto-change -->
-                        <div class="slide slide1"></div>
-                        <div class="slide slide2"></div>
-                        <div class="slide slide3"></div>
-                        <div class="slide slide4"></div>
+                    <!-- Here comes structure instruction -->
+                    <!-- Images should be put inside .p-grid-1 -->
+                    <!-- div.banner for all images, use background-image: url(...) -->
+                    <!-- div.tab>span should have equivalent  amount elements as images amount. -->
+                    <!-- Now autoplay.js should be able to control auto-play according to how many pictures there are in this div. -->
+                    <div id="wrap">
+                        <div class="banner" style="opacity: 1;">
+                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1554188248-986adbb73be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
+                            </div>
+                        </div>
+
+                        <div class="banner" style="opacity: 0;">
+                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1558879787-4c4aea1fbb83?ixlib=rb-1.2.1&auto=format&fit=crop&w=932&q=80)">
+                            </div>
+                        </div>
+
+                        <div class="banner" style="opacity: 0;">
+                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1521208916306-71fce562015a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
+                            </div>
+                        </div>
+
+                        <div class="banner" style="opacity: 0;">
+                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1587491439780-f5a8885888e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80)">
+                            </div>
+                        </div>
+
+                        <!-- <div class="banner" style="opacity: 0; ">
+                            <div class="banner-img" style="background-image:url(https://images.unsplash.com/photo-1587497428247-fffc17f41f49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80)">
+                            </div>
+                        </div> -->
+
+                        <div class="tab">
+                            <span class="on"></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <!-- <span class=""></span> -->
+                        </div>
+
+                        <div class="prev"></div>
+                        <div class="next"></div>
                     </div>
-                    <!-- TODO: 
-                    Need to add function (when click dot, jump to relevant img) -->
-                    <ul class="slick-dots" role="tablist">
-                        <li id="slick-slide1" class=""><button>1</button></li>
-                        <li id="slick-slide2" class=""><button>2</button></li>
-                        <li id="slick-slide3" class="slick-active"><button>3</button></li>
-                        <li id="slick-slide4" class=""><button>4</button></li>
-                    </ul>
                 </div>
+
                 <div class="p-grid-2">
                     <article>
                         <h1 class="single-product__title">Title</h1>
@@ -73,23 +98,8 @@
 
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
     <script type="text/javascript" src="./js/cart.js"></script>
-
-    <!-- TODO: 
-    need to be rewritten -->
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     
-    <script>
-        $("#slideshow > div:gt(0)").hide();
-
-        setInterval(function() {
-            $('#slideshow > div:first')
-                .fadeOut(1000)
-                .next()
-                .fadeIn(1000)
-                .end()
-                .appendTo('#slideshow');
-        }, 3000);
-    </script>
+    <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
 </body>
 
 </html>
