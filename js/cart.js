@@ -3,15 +3,15 @@ const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
 cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ?
+    (cart.style.display = "none") :
+    (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
@@ -37,7 +37,7 @@ function fillCartList(fromClick) {
 
     product = `
       <div id="${productId}" class="cart__product">
-        <div class="cart__product-img"><img class="cart__product__img-src" src="${productImg}" alt="product name"></div>
+        <div class="cart__product-img" style="background-image: url(${productImg}); "></div>
         <div class="cart__product-text">${productName}</div>
         <div class="cart__product-price">${productPrice}</div>
         <div class="cart__product-pull-right">
@@ -63,10 +63,7 @@ function fillCartList(fromClick) {
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(
-    5,
-    -2
-  );
+  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(5, -2);
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty =
     btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
@@ -79,13 +76,15 @@ const productInfo = (btn) => {
     qty: productQty,
   };
 };
+
 function alreadyExist(getArray, productName) {
   let nameInLs;
   for (let i = 0; i < getArray.length; i++) {
     nameInLs = getArray[i].name;
-    }
+  }
   return nameInLs === productName;
 }
+
 function setLocalStorage(obj, fromClick) {
   const productName = obj.parentElement.firstElementChild.textContent;
   let getArray;
@@ -105,6 +104,7 @@ function setLocalStorage(obj, fromClick) {
     }
   }
 }
+
 function refreshCartList() {
   const getLocalStorage = JSON.parse(localStorage.getItem("products"));
   if (getLocalStorage === null) return;
@@ -112,6 +112,7 @@ function refreshCartList() {
   fillCartList(fromClick);
 }
 refreshCartList();
+
 function addProduct(productBtn) {
   productBtn.forEach((addBtn) => {
     addBtn.addEventListener("click", (e) => {
@@ -147,6 +148,7 @@ function updateSum(getLs) {
   const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
+
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
   qtyBtns.forEach((btn) => {
