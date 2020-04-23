@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Single-product - info</title>
+    <title>Frame Me - Produkt</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,9 +18,9 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
     <main id="p-main">
         <div class="wrapper">
             <div class="single-product">
@@ -86,7 +86,7 @@
     </main>
 
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- <script src="./js/ie11/sidebar.js"></script> -->
     <!-- <script src="./js/sidebar.js"></script> -->
@@ -98,7 +98,7 @@
 
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
     <script type="text/javascript" src="./js/cart.js"></script>
-    
+
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
 </body>
 
