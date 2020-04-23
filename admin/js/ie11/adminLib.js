@@ -281,14 +281,17 @@ adminLib = (function() {
       var form = event.currentTarget;
       var alertElement = document.querySelector("div#productAlert");
       var messageElement = document.querySelector("div#productAlert span.msg");
-      var productId = form.dataset.productid;
+      var productId = form.dataset.productid || form.dataset.productId;
       var existingImages = document.querySelectorAll("img.small-img-on-edit"); // build a list of image files that were removed in this update
 
       var imagesToDelete = [];
       var deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
-      deletedImages.forEach(function(image) {
+
+      for (var imgIndex = 0; imgIndex < deletedImages.length; imgIndex++) {
+        var image = deletedImages;
+        [imgIndex];
         imagesToDelete.push(image.dataset.filename);
-      }); // all existing images were deleted and no new images were added
+      } // all existing images were deleted and no new images were added
 
       if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {
         messageElement.textContent = "Input did not pass validation.";

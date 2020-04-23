@@ -299,15 +299,17 @@ adminLib = (function() {
       const alertElement = document.querySelector("div#productAlert");
       const messageElement = document.querySelector("div#productAlert span.msg");
 
-      const productId = form.dataset.productid;
+      const productId = form.dataset.productid || form.dataset.productId;
       const existingImages = document.querySelectorAll("img.small-img-on-edit");
 
       // build a list of image files that were removed in this update
       const imagesToDelete = [];
       const deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
-      deletedImages.forEach(image => {
+      for (let imgIndex = 0; imgIndex < deletedImages.length; imgIndex++) {
+        const image = deletedImages;
+        [imgIndex];
         imagesToDelete.push(image.dataset.filename);
-      });
+      }
 
       // all existing images were deleted and no new images were added
       if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {

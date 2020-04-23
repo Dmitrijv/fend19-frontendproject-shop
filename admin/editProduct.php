@@ -72,7 +72,7 @@ foreach ($allCategories as &$category) {
                     </div>
 
                     <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" > -->
-                    <form onsubmit="adminLib.updateProduct(event);" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" >
+                    <form onsubmit="adminLib.updateProduct(event);" method="POST" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" >
                         <div class="form-group">
                             <label>Add new pictures</label>
                             <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple>
@@ -111,8 +111,8 @@ foreach ($allCategories as &$category) {
 
         </main>
 
-        <!-- <script type="text/javascript" src="js/ie11/adminLib.js"></script> -->
-        <script type="text/javascript" src="js/adminLib.js"></script>
+        <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+        <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
 
     </body>
 
