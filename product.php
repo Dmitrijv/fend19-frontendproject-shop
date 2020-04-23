@@ -21,6 +21,7 @@
     <?php require_once __DIR__ . '/php/view/sidebar.php';?>
     <?php require_once __DIR__ . '/php/view/header.php';?>
     <?php require_once __DIR__ . '/php/view/cart.php';?>
+
     <main id="p-main">
         <div class="wrapper">
             <div class="single-product">
@@ -51,17 +52,11 @@
                             </div>
                         </div>
 
-                        <!-- <div class="banner" style="opacity: 0; ">
-                            <div class="banner-img" style="background-image:url(https://images.unsplash.com/photo-1587497428247-fffc17f41f49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80)">
-                            </div>
-                        </div> -->
-
                         <div class="tab">
                             <span class="on"></span>
                             <span class=""></span>
                             <span class=""></span>
                             <span class=""></span>
-                            <!-- <span class=""></span> -->
                         </div>
 
                         <div class="prev"></div>
