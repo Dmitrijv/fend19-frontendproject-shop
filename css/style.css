@@ -2178,18 +2178,6 @@ section.order-confirmation button[disabled] {
   position: relative;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
-  padding: 10px;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  max-height: 50vh;
-=======
->>>>>>> 35a0169eefc975f726ef7c26fe863d22d09eb6e2
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-1 .banner-img {
@@ -2206,7 +2194,6 @@ section.order-confirmation button[disabled] {
   height: 100%;
   opacity: 0;
   -webkit-transition: opacity 2s;
-  -o-transition: opacity 2s;
   transition: opacity 2s;
 }
 
@@ -2237,22 +2224,14 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product .p-grid-1 #wrap .prev {
   position: absolute;
-<<<<<<< HEAD
-  bottom: 0px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-=======
   left: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
   background: url(../img/svg/left-arrow.svg) center center no-repeat;
   cursor: pointer;
->>>>>>> 35a0169eefc975f726ef7c26fe863d22d09eb6e2
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-1 #wrap .prev:hover {
@@ -2264,7 +2243,6 @@ section.order-confirmation button[disabled] {
   right: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
