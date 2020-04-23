@@ -306,8 +306,7 @@ adminLib = (function() {
       const imagesToDelete = [];
       const deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
       for (let imgIndex = 0; imgIndex < deletedImages.length; imgIndex++) {
-        const image = deletedImages;
-        [imgIndex];
+        const image = deletedImages[imgIndex];
         imagesToDelete.push(image.dataset.filename);
       }
 

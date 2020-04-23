@@ -288,8 +288,7 @@ adminLib = (function() {
       var deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
 
       for (var imgIndex = 0; imgIndex < deletedImages.length; imgIndex++) {
-        var image = deletedImages;
-        [imgIndex];
+        var image = deletedImages[imgIndex];
         imagesToDelete.push(image.dataset.filename);
       } // all existing images were deleted and no new images were added
 
