@@ -6,7 +6,7 @@
         <div class="footer__bottom__wrapper__info__wrapper flex-box">
             <h5 class="footer__info__heading">Kundtjänst</h5>
             <ul class="footer__list">
-                <a href="" class="footer__list__categori">
+                <a href="contact.php" class="footer__list__categori">
                     <li>Kontakta oss</li>
                 </a>
                 <a href="" class="footer__list__categori">
