@@ -3,18 +3,18 @@ shopLib = (function() {
   var version = "0.2";
   var SHOP_URL = "".concat(location.protocol, "//").concat(location.host, "/fend19-frontendproject-shop");
   var CONTROLLER_PATH = "".concat(SHOP_URL, "/php/controller");
-  var INTERNAL_API_PATH = "".concat(SHOP_URL, "/api");
+  var INTERNAL_PATH = "".concat(SHOP_URL, "/php/internal");
   var shopLib = {
     drawCategorySelectors: function drawCategorySelectors() {
       var lib = this;
-      var categoryApiUrl = "".concat(INTERNAL_API_PATH, "/categories.php"); //cache selectors
+      var categoryInternalUrl = "".concat(INTERNAL_PATH, "/categories.php"); //cache selectors
 
       var sidebar = document.querySelector("ul#sidebarCategoryContainer");
       var dropdown = document.querySelector("form.top-nav__form");
       sidebar.innerHTML = "";
-      dropdown.innerHTML = ""; // get category json from api
+      dropdown.innerHTML = ""; // get category json from Internal
 
-      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
+      lib.loadJsonByXhr(categoryInternalUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         var defaultRow =
           "\n        <li class='sidebar__menu__list-item'>\n            <input class=\"categoryFilterButton\" type='button' id='-1' value='Visa Alla' onclick=\"shopLib.drawFilteredProductPanel(event)\" >\n        </li>";
@@ -32,9 +32,9 @@ shopLib = (function() {
     },
     drawDefaultProductPanel: function drawDefaultProductPanel(event) {
       var lib = this;
-      var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
+      var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
           productJson = productJson.filter(function(product) {
             return product.categoryId === redirectFilterId;
@@ -60,8 +60,8 @@ shopLib = (function() {
         return;
       }
 
-      var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      var productInternal = "".concat(INTERNAL_PATH, "/products.php");
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
@@ -138,8 +138,8 @@ shopLib = (function() {
       }
 
       var lib = this;
-      var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      var productInternal = "".concat(INTERNAL_PATH, "/products.php");
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
           return product.title.toLowerCase().indexOf(keyword) !== -1;
         });
@@ -162,8 +162,8 @@ shopLib = (function() {
         keywordErrMsg.classList.add("hidden");
       }
 
-      var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      var productInternal = "".concat(INTERNAL_PATH, "/products.php");
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
           return product.title.toLowerCase().indexOf(keyword) !== -1;
         }); // console.log(matchingProducts);
