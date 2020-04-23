@@ -30,7 +30,7 @@ for (var i = 0; i < bannersLength; i++) {
     spans[num].className = "on";
     banners[num].style.opacity = "1";
   }
-  nextArrow.onclick = function () { //click to show next img
+  prevArrow.onclick = function () { //click to show next img
     for (var j = 0; j < bannersLength; j++) {
       if (spans[j].className == "on") {
         spans[j].className = "";

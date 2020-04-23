@@ -1,12 +1,7 @@
 <?php
 
-// don't allow direct access through the browser
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
-    header('HTTP/1.0 403 Forbidden', true, 403);
-    die();
-}
+require_once "../php/model/db.php";
 
-require_once __DIR__ . "/../model/db.php";
 header("Content-Type: application/json; charset=UTF-8");
 
 $selectProducts = DB::run("
