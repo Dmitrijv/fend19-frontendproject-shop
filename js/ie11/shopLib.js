@@ -138,19 +138,14 @@ shopLib = (function() {
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
-          return (
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-          );
-        }); // console.log(matchingProducts);
-
+          return product.title.toLowerCase().indexOf(keyword) !== -1;
+        });
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
       event.preventDefault();
     },
     sessionStorageProductSearch: function sessionStorageProductSearch() {
-      //   console.log("sessionStorageProductSearch");
       var lib = this;
       var keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase(); // show error message if this keyword is invalid
 
@@ -167,10 +162,7 @@ shopLib = (function() {
       var productApi = "".concat(INTERNAL_API_PATH, "/products.php");
       lib.loadJsonByXhr(productApi, function(productJson) {
         var matchingProducts = productJson.filter(function(product) {
-          return (
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-          );
+          return product.title.toLowerCase().indexOf(keyword) !== -1;
         }); // console.log(matchingProducts);
 
         lib.drawSearchResultList(matchingProducts);

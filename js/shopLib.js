@@ -141,12 +141,7 @@ shopLib = (function() {
       const lib = this;
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
-        const matchingProducts = productJson.filter(
-          product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-        );
-        // console.log(matchingProducts);
+        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -154,7 +149,6 @@ shopLib = (function() {
     },
 
     sessionStorageProductSearch() {
-      //   console.log("sessionStorageProductSearch");
       const lib = this;
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
       // show error message if this keyword is invalid
@@ -169,11 +163,7 @@ shopLib = (function() {
 
       const productApi = `${INTERNAL_API_PATH}/products.php`;
       lib.loadJsonByXhr(productApi, function(productJson) {
-        const matchingProducts = productJson.filter(
-          product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-        );
+        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
