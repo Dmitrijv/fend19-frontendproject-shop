@@ -15,6 +15,7 @@
     justify-content: center;
 
     @media all and (-ms-high-contrast: none) {
+
       *::-ms-backdrop,
       .logo {
         padding-top: 10px;
@@ -103,12 +104,24 @@
 
     &__item:nth-of-type(1) {
       order: 2;
-    }
 
-    &__item:nth-of-type(2) {
-      order: 1;
-      margin: auto;
+      button.open-overlay {
+  
+        @media screen and (min-width: 800px) {
+          background-color: #f60d4d;
+          border: none;
+          border-radius: 3px;
+          color: white;
+          margin-left: 8px;
+          padding: 12px;
+        }
+      }
     }
+  }
+
+  &__item:nth-of-type(2) {
+    order: 1;
+    margin: auto;
   }
 }
 
@@ -121,7 +134,7 @@
   flex-direction: column;
   width: 2em;
   cursor: pointer;
-  z-index: 99999;
+  z-index: 12;
 
   @media (min-width: 800px) {
     display: none;
