@@ -35,13 +35,18 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
     }
 }
 
-$productId = 29;
+if (!isset($_POST['product_id'])) {
+    http_response_code(400);
+    die;
+}
+
+$productId = intval($_POST["product_id"]);
 $productTitle = trimSides($_POST["product_title"]);
 $productDescription = trimSides($_POST["product_description"]);
 $productCategoryId = intval($_POST["product_category"]);
 $productPrice = floatval($_POST["product_price"]);
 $productStock = intval($_POST["product_stock"]);
-$imagesToDelete = json_decode($_POST['imagesToDelete']);
+$imagesToDelete = json_decode($_POST['images_to_delete']);
 
 // validate form data
 if (
@@ -64,7 +69,7 @@ $newProduct['category_id'] = $productCategoryId;
 $newProduct['price'] = truncateFloat($productPrice);
 $newProduct['number_in_stock'] = $productStock;
 $newProduct['gallery'] = $gallery;
-$newProduct['imagesToDelete'] = $imagesToDelete;
+$newProduct['images_to_delete'] = $imagesToDelete;
 
 updateProduct($newProduct);
 die;

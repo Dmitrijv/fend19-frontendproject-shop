@@ -172,6 +172,21 @@ input:focus {
   border-color: #5e863a;
 }
 
+form img.small-img-on-edit {
+  width: 105px;
+  height: 65px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin-right: 9px;
+}
+
+form img.small-img-on-edit:hover {
+  border-bottom: 2px solid red;
+  cursor: pointer;
+}
+
 #back-to-top-btn {
   display: none;
   position: fixed;
@@ -711,16 +726,6 @@ form.update-category {
   display: flex;
   max-width: 330px;
   margin: 10px 0;
-}
-
-img.small-img-on-edit {
-  width: 105px;
-  height: 65px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  margin-right: 9px;
 }
 
 input.category-input {

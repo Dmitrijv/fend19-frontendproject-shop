@@ -121,6 +121,11 @@ function getProductById($productId)
 
 }
 
+function doesProductIdExist($productId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product WHERE id = ?)", [$productId])->fetchColumn();
+}
+
 function getProductIdByTitle($title)
 {
     return DB::run("SELECT id FROM product WHERE title = ?", [$title])->fetchColumn();
@@ -175,6 +180,37 @@ function doesImageExist($fileName)
     return DB::run("SELECT EXISTS(SELECT * FROM `image` WHERE `file_name` = ?)", [$fileName])->fetchColumn();
 }
 
+function updateProduct($updatedProduct)
+{
+
+    $productId = $updatedProduct['product_id'];
+
+    // update product table
+    $productSQL = "
+        UPDATE product SET title=?, description=?, category_id=?, number_in_stock=? WHERE id = ?
+    ";
+    DB::run($productSQL, [$updatedProduct['title'], $updatedProduct['description'], $updatedProduct['category_id'], $updatedProduct['number_in_stock'], $productId]);
+
+    // update price table
+    $priceSQL = "
+        UPDATE price_of_product SET amount=? WHERE product_id = ?
+    ";
+    DB::run($priceSQL, [$updatedProduct['price'], $productId]);
+
+    // register new images
+    foreach ($updatedProduct['gallery'] as &$fileName) {
+        createNewImage($fileName);
+        addImageOfProduct($productId, $fileName);
+    }
+
+    // delete removed images
+    foreach ($updatedProduct['images_to_delete'] as &$fileName) {
+        deleteImageFromDb($fileName);
+        deleteProductImageFromDisc($fileName);
+    }
+
+}
+
 function deleteProduct($productId)
 {
     // delete images of this product
@@ -186,7 +222,6 @@ function deleteProduct($productId)
 
     DB::run("DELETE FROM product WHERE id = ?", [$productId]);
     DB::run("DELETE FROM price_of_product WHERE product_id = ?", [$productId]);
-    // DB::run("DELETE FROM image_of_product WHERE product_id = ?", [$productId]);
 
 }
 
@@ -208,4 +243,5 @@ function getProductImages($productId)
 function deleteImageFromDb($fileName)
 {
     DB::run("DELETE FROM `image` WHERE `file_name` = ?", [$fileName]);
+    DB::run("DELETE FROM image_of_product WHERE `file_name` = ?", [$fileName]);
 }

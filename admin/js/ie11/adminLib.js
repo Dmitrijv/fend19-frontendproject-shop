@@ -276,6 +276,48 @@ adminLib = (function() {
       xmlhttp.send(formData);
       event.preventDefault();
     },
+    updateProduct: function updateProduct(event) {
+      var lib = this;
+      var form = event.currentTarget;
+      var alertElement = document.querySelector("div#productAlert");
+      var messageElement = document.querySelector("div#productAlert span.msg");
+      var productId = form.dataset.productid;
+      var existingImages = document.querySelectorAll("img.small-img-on-edit"); // build a list of image files that were removed in this update
+
+      var imagesToDelete = [];
+      var deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
+      deletedImages.forEach(function(image) {
+        imagesToDelete.push(image.dataset.filename);
+      }); // all existing images were deleted and no new images were added
+
+      if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {
+        messageElement.textContent = "Input did not pass validation.";
+        lib.setFailStyle(alertElement);
+        event.preventDefault();
+        return;
+      }
+
+      var formData = new FormData(form);
+      formData.append("product_id", productId);
+      formData.append("images_to_delete", JSON.stringify(imagesToDelete));
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          lib.setSuccessStyle(alertElement);
+          messageElement.textContent = "Product updated successfully.";
+          event.preventDefault(); // server validation failed
+        } else if (this.readyState == 4 && this.status == 400) {
+          messageElement.textContent = "Input did not pass validation.";
+          lib.setFailStyle(alertElement);
+          event.preventDefault();
+        }
+      };
+
+      xmlhttp.open("POST", "".concat(CONTROLLER_PATH, "/product/updateProductRequest.php"));
+      xmlhttp.send(formData);
+      event.preventDefault();
+    },
     fillProductCategoryDropdown: function fillProductCategoryDropdown() {
       var lib = this;
       var select = document.querySelector("select[name='product_category']");
@@ -323,6 +365,9 @@ adminLib = (function() {
       var elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
+    },
+    hideSelf: function hideSelf(event) {
+      event.currentTarget.classList.add("hidden");
     },
     isProductCategoryNameValid: function isProductCategoryNameValid(categoryName) {
       return (

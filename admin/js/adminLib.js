@@ -270,10 +270,8 @@ adminLib = (function() {
 
     createNewProduct: function(event) {
       const lib = this;
-
       const form = event.currentTarget;
       const formData = new FormData(form);
-
       const alertElement = document.querySelector("div#productAlert");
       const messageElement = document.querySelector("div#productAlert span.msg");
       const xmlhttp = new XMLHttpRequest();
@@ -290,10 +288,54 @@ adminLib = (function() {
           event.preventDefault();
         }
       };
-
       xmlhttp.open("POST", `${CONTROLLER_PATH}/product/createProductRequest.php`);
       xmlhttp.send(formData);
+      event.preventDefault();
+    },
 
+    updateProduct: function(event) {
+      const lib = this;
+      const form = event.currentTarget;
+      const alertElement = document.querySelector("div#productAlert");
+      const messageElement = document.querySelector("div#productAlert span.msg");
+
+      const productId = form.dataset.productid;
+      const existingImages = document.querySelectorAll("img.small-img-on-edit");
+
+      // build a list of image files that were removed in this update
+      const imagesToDelete = [];
+      const deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
+      deletedImages.forEach(image => {
+        imagesToDelete.push(image.dataset.filename);
+      });
+
+      // all existing images were deleted and no new images were added
+      if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {
+        messageElement.textContent = "Input did not pass validation.";
+        lib.setFailStyle(alertElement);
+        event.preventDefault();
+        return;
+      }
+
+      let formData = new FormData(form);
+      formData.append("product_id", productId);
+      formData.append("images_to_delete", JSON.stringify(imagesToDelete));
+
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          lib.setSuccessStyle(alertElement);
+          messageElement.textContent = "Product updated successfully.";
+          event.preventDefault();
+          // server validation failed
+        } else if (this.readyState == 4 && this.status == 400) {
+          messageElement.textContent = "Input did not pass validation.";
+          lib.setFailStyle(alertElement);
+          event.preventDefault();
+        }
+      };
+      xmlhttp.open("POST", `${CONTROLLER_PATH}/product/updateProductRequest.php`);
+      xmlhttp.send(formData);
       event.preventDefault();
     },
 
@@ -346,6 +388,10 @@ adminLib = (function() {
       const elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");
       event.preventDefault();
+    },
+
+    hideSelf: function(event) {
+      event.currentTarget.classList.add("hidden");
     },
 
     isProductCategoryNameValid: function(categoryName) {

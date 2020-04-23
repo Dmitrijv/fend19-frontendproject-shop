@@ -2,14 +2,15 @@
 
 require_once __DIR__ . "/php/controller/controller.php";
 
-$productId = $_POST['productId'];
-if (!is_numeric($productId)) {die;}
+if (!is_numeric($_POST['productId'])) {die;}
+$productId = intval($_POST['productId']);
+
 $p = getProductById($productId);
 
 $gallery = getProductImages($productId);
 $currentPicPreview = "<div class='previewPicContainer' >";
 foreach ($gallery as &$fileName) {
-    $currentPicPreview = $currentPicPreview . '<img class="small-img-on-edit hoverZoomLink" src="../img/product/' . $fileName . '" alt="post-img">';
+    $currentPicPreview = $currentPicPreview . '<img  onclick="adminLib.hideSelf(event);" class="small-img-on-edit" data-filename="' . $fileName . '" src="../img/product/' . $fileName . '" alt="post-img">';
 }
 $currentPicPreview = $currentPicPreview . '</div>';
 
@@ -70,14 +71,14 @@ foreach ($allCategories as &$category) {
                         </form>
                     </div>
 
-                    <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" > -->
-                    <form onsubmit="adminLib.updateProduct(event);" enctype="multipart/form-data" >
+                    <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" > -->
+                    <form onsubmit="adminLib.updateProduct(event);" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" >
                         <div class="form-group">
                             <label>Add new pictures</label>
                             <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple>
                         </div>
                         <div class="form-group">
-                            <label>Current pictures</label>
+                            <label>Remove current pictures</label>
                             <?php echo $currentPicPreview; ?>
                         </div>
                         <div class="form-group">
@@ -110,7 +111,8 @@ foreach ($allCategories as &$category) {
 
         </main>
 
-        <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+        <!-- <script type="text/javascript" src="js/ie11/adminLib.js"></script> -->
+        <script type="text/javascript" src="js/adminLib.js"></script>
 
     </body>
 
