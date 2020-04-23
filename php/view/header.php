@@ -7,9 +7,8 @@
                         <a href="#">
                             <p class="desktop-text">Logga in</p>
                         </a>
-                    </a></button><button class="main__header__btn cart-btn"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="">
-                    <p class="desktop-text">Varukorg</p>
                 </button>
+                <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg"><p class="desktop-text">Varukorg</p></button>
             </div>
             <div class="nav__item main__header__search">
                 <form class="nav__item main__header__search" name="searchform" onsubmit="shopLib.searchProducts(event)">
