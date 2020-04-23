@@ -25,13 +25,18 @@
         <div class="wrapper">
             <div class="single-product">
                 <div class="p-grid-1">
+                    <!-- Here comes structure instruction -->
+                    <!-- Images should be put inside .p-grid-1 -->
+                    <!-- div.banner for all images, use background-image: url(...) -->
+                    <!-- div.tab>span should have equivalent  amount elements as images amount. -->
+                    <!-- Now autoplay.js should be able to control auto-play according to how many pictures there are in this div. -->
                     <div id="wrap">
-                        <div class="banner" style="opacity: 0;">
+                        <div class="banner" style="opacity: 1;">
                             <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1554188248-986adbb73be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
                             </div>
                         </div>
 
-                        <div class="banner" style="opacity: 1;">
+                        <div class="banner" style="opacity: 0;">
                             <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1558879787-4c4aea1fbb83?ixlib=rb-1.2.1&auto=format&fit=crop&w=932&q=80)">
                             </div>
                         </div>
@@ -46,17 +51,17 @@
                             </div>
                         </div>
 
-                        <div class="banner" style="opacity: 0; ">
+                        <!-- <div class="banner" style="opacity: 0; ">
                             <div class="banner-img" style="background-image:url(https://images.unsplash.com/photo-1587497428247-fffc17f41f49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80)">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="tab">
-                            <span class=""></span>
                             <span class="on"></span>
                             <span class=""></span>
                             <span class=""></span>
                             <span class=""></span>
+                            <!-- <span class=""></span> -->
                         </div>
 
                         <div class="prev"></div>
