@@ -597,6 +597,14 @@ button {
   grid-template-columns: .5fr 1fr .5fr 1fr;
 }
 
+.cart__erase {
+  background: url("../img/svg/trash.svg") center no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 .cart__sum-area {
   display: -webkit-box;
   display: -ms-flexbox;

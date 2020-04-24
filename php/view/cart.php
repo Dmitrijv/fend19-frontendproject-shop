@@ -2,6 +2,7 @@
     <div class="cart">
         <button class="cart-close-btn close-overlay">X</button>
         <h2>Varukorg</h2>
+        <span class="cart__erase"></span>
         <div class="cart__product-list">
         </div>
         <div class="cart__sum-area">
