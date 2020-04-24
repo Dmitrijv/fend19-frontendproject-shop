@@ -105,9 +105,9 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
     </script>
 
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
-    <script type="text/javascript" src="./js/cart.js"></script>
-    <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
 
+    <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
+    <script type="text/javascript" src="./js/cart.js"></script>
 </body>
 
 </html>

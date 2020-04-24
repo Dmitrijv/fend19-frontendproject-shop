@@ -6,6 +6,7 @@ const totalSum = document.querySelector(".total-sum");
 clearBtn.addEventListener("click", clearCart);
 
 cartBtn.addEventListener("click", (e) => {
+
   cart.style.display === "flex"
     ? (cart.style.display = "none")
     : (cart.style.display = "flex");
@@ -66,7 +67,6 @@ function fillCartList(fromClick) {
   updateSum(getLs);
   changeQty(getLs);
 }
-
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card

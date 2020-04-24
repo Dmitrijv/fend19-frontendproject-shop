@@ -13,6 +13,3 @@
 
     </div>
 </section>
-<?php
-
-?>
