@@ -282,7 +282,20 @@ adminLib = (function() {
       var alertElement = document.querySelector("div#productAlert");
       var messageElement = document.querySelector("div#productAlert span.msg");
       var productId = form.dataset.productid || form.dataset.productId;
-      var existingImages = document.querySelectorAll("img.small-img-on-edit"); // build a list of image files that were removed in this update
+      var existingImages = document.querySelectorAll("img.small-img-on-edit"); // if user uploaded new files check if they have valid names
+
+      if (form.files) {
+        for (var i = 0; i < form.files.length; i++) {
+          var fileName = form.files[i].name;
+
+          if (!isFileNameValid(fileName)) {
+            messageElement.textContent = "Input did not pass validation.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+            return;
+          }
+        }
+      } // build a list of image files that were removed in this update
 
       var imagesToDelete = [];
       var deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
@@ -378,6 +391,18 @@ adminLib = (function() {
           categoryName.length <= 20 &&
           /<\/?[a-z][\s\S]*/i.test(categoryName) == false) ||
         false
+      );
+    },
+    isFileNameValid: function isFileNameValid(fileName) {
+      return (
+        fileName &&
+        fileName.indexOf("/") === -1 &&
+        fileName.indexOf(":") === -1 &&
+        fileName.indexOf("|") === -1 &&
+        fileName.indexOf("?") === -1 &&
+        fileName.indexOf("*") === -1 &&
+        fileName.indexOf("<") === -1 &&
+        fileName.indexOf(">") === -1
       );
     },
     loadJsonByXhr: function loadJsonByXhr(url, callback) {

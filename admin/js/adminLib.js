@@ -302,6 +302,19 @@ adminLib = (function() {
       const productId = form.dataset.productid || form.dataset.productId;
       const existingImages = document.querySelectorAll("img.small-img-on-edit");
 
+      // if user uploaded new files check if they have valid names
+      if (form.files) {
+        for (let i = 0; i < form.files.length; i++) {
+          const fileName = form.files[i].name;
+          if (!isFileNameValid(fileName)) {
+            messageElement.textContent = "Input did not pass validation.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+            return;
+          }
+        }
+      }
+
       // build a list of image files that were removed in this update
       const imagesToDelete = [];
       const deletedImages = document.querySelectorAll("img.small-img-on-edit.hidden");
@@ -405,16 +418,16 @@ adminLib = (function() {
       );
     },
 
-    isFileNameValid: function(categoryName) {
+    isFileNameValid: function(fileName) {
       return (
-        categoryName &&
-        categoryName.indexOf("/") === -1 &&
-        categoryName.indexOf(":") === -1 &&
-        categoryName.indexOf("|") === -1 &&
-        categoryName.indexOf("?") === -1 &&
-        categoryName.indexOf("*") === -1 &&
-        categoryName.indexOf("<") === -1 &&
-        categoryName.indexOf(">") === -1
+        fileName &&
+        fileName.indexOf("/") === -1 &&
+        fileName.indexOf(":") === -1 &&
+        fileName.indexOf("|") === -1 &&
+        fileName.indexOf("?") === -1 &&
+        fileName.indexOf("*") === -1 &&
+        fileName.indexOf("<") === -1 &&
+        fileName.indexOf(">") === -1
       );
     },
 

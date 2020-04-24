@@ -37,9 +37,6 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
     ) {
         array_push($gallery, $fileName);
         move_uploaded_file($_FILES["product_attatched_image"]["tmp_name"][$i], $target_file);
-    } else {
-        http_response_code(400);
-        die;
     }
 }
 
