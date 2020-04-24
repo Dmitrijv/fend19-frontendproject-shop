@@ -3,7 +3,7 @@ $name =""; //Senders name
 $email =""; //Senders email
 $phone =""; //Senders phone 
 $message =""; //Senders message
-$nameError = $emailError = $phoneError = $messageError ="";
+$nameError = $emailError = $phoneError = $messageError = $messageSuccess = "";
 
 
 if(isset($_POST['submit'])){
@@ -12,10 +12,19 @@ if(isset($_POST['submit'])){
         $nameError = "Namn är obligatoriskt";
     } else {
         $name = test_input($_POST["name"]); // check name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/",$name))
-        {
+        $nameLength = strlen($name);
+        echo $nameLength;
+        if (strlen($name) < 2) {
+            $nameError = "Namnet är för kort";
+        } 
+        if (strlen($name) > 20) {
+            $nameError = "Namnet är för långt";
+        } 
+           
+        if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
         $nameError = "Bara bokstäver och mellanslag är tillåtna";
         }
+
     }
 
     if (empty($_POST["email"])) {
@@ -48,29 +57,16 @@ if(isset($_POST['submit'])){
     }
 
     if ($nameError == '' && $emailError == '' && $phoneError == '' &&$messageError == '' ) {
-        echo "hej";
+        $messageSuccess = "Tack för sitt meddelande, vi svarar på det så fort vi kan!";
+        $name = $email = $phone = $message ="";
     }
 
-    // header('Location: https://formspree.io/mgelgykq');
 }
-
 
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}
-
-function validationPhone($phone) {
-    
-    if(preg_match('/^[0-9]{10}+$/', $phone)) {
-        $phoneError = "Valid phone";
-    } else{
-        $phoneError = "Invalid phone";
-    }
-        
-//     $valid_number = filter_var($phone, FILTER_SANITIZE_NUMBER_INT);
-//     echo $valid_number;
 }
 ?>
