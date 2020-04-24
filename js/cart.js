@@ -19,6 +19,7 @@ cartCloseBtn.addEventListener("click", (e) => {
 function clearCart() {
   localStorage.clear();
   clearBtn.nextElementSibling.innerHTML = "";
+  totalSum.textContent = "";
 }
 function fillCartList(fromClick) {
   let productName, productImg, productPrice, productQty;
@@ -147,8 +148,8 @@ function deleteProduct(getJSON) {
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
-      if(totalSum.textContent === '0') {
-          totalSum.textContent = '';
+      if (totalSum.textContent === "0") {
+        clearCart();
       }
     });
   });
