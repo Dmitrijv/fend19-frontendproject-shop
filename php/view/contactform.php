@@ -55,9 +55,15 @@ if (isset($_POST['submit'])) {
         $message = test_input($_POST["msg"]);
     }
 
+<<<<<<< HEAD
     if ($nameError == '' && $emailError == '' && $phoneError == '' && $messageError == '') {
         $messageSuccess = "Tack för ditt meddelande, vi svarar på det så fort vi kan!";
         $name = $email = $phone = $message = "";
+=======
+    if ($nameError == '' && $emailError == '' && $phoneError == '' &&$messageError == '' ) {
+        $messageSuccess = "Tack för ditt meddelande, vi svarar på det så fort vi kan!";
+        $name = $email = $phone = $message ="";
+>>>>>>> 38a6b85c5939517e92c74887b72924ae5fce4f30
     }
 
 }
