@@ -29,12 +29,21 @@
 
         <div class="checkout-form">
 
-        <h1 class="checkout-form__h1">Fyll i kunduppgifter</h1>
-
+        <div class="checkout-form__cart-contents">
+        <h2 class="checkout-form__cart-contents__h2">Min varukorg</h2>
+        <div class="cart__product-list"></div>
+        <div class="cart__sum-area">
+        <span class="pull-left">2 artiklar</span>
+        <span class="pull-right total-sum">500 SEK</span>
+    </div>
+        </div>
+        
+        
         <section class="checkout-form__email-section">
             <h2 class="checkout-form__h2">Emailadress</h2>
+            
             <input class="checkout-form__input--email" id="email" type="text"><br>
-            <button class="checkout-form__btn">Lägg till emailadress</button>
+            <button class="checkout-form__addBtn">Lägg till emailadress</button>
         </section>
 
 
@@ -59,12 +68,14 @@
             <label class="checkout-form__label" for="">Ort</label><br>
             <input class="checkout-form__input" id="city" type="text"><br>
 
-            <button class="checkout-form__btn2">Leverera till denna adress</button>
+            
+
+            <button class="checkout-form__deliveryBtn">Leverera till denna adress</button>
         </section>
 
         </div>
 
-        <form action="order.php" class="checkout-form__hidden">
+        <form action="order.php" class="checkout-form--hidden">
 
             <input id="email-hidden" name="email" type="hidden">
             <input id="fname-hidden" name="fname" type="hidden">
@@ -73,9 +84,9 @@
             <input id="adress-hidden" name="adress" type="hidden">
             <input id="pcode-hidden" name="pcode" type="hidden">
             <input id="city-hidden" name="city" type="hidden">
-
-            <button style="margin-left: 5.5em" class="btn btn-info goback-Btn"> &lt; Tillbaka</button>
-            <button type="submit" class="btn btn-success confirm-order-button">Genomför köp</button>
+            <div class="checkout-form--hidden__total-price">Totalt att betala: 568 SEK</div>
+            <!-- <button style="margin-left: 5.5em" class="btn btn-info goback-Btn"> &lt; Tillbaka</button> -->
+            <button type="submit" class="checkout-form--hidden__checkoutBtn__dim">Genomför köp</button>
 
         </form>
 

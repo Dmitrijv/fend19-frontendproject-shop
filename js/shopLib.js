@@ -55,7 +55,7 @@ shopLib = (function() {
     drawFilteredProductPanel: function(event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
-      console.log({ allowedCategoryId });
+
       // if we are clicking category from some page other than start page go back there
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -85,8 +85,9 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
-            </div>
+            <a href='product.php?productId=${item.id}'>
+                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
+            </a>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
@@ -95,7 +96,7 @@ shopLib = (function() {
                     <p class='product__count'>${item.numberInStock}</p>
                     <button class='product__count-btn'>+</button>
                 </div>
-                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>Lägg i varukorgen</button>
+                <button class='product__add-btn'>Lägg i varukorgen</button>
             </div>
         </div>`;
       });
@@ -178,8 +179,9 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
-            </div>
+            <a href='product.php?productId=${item.id}'>
+                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
+            </a>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
@@ -217,6 +219,14 @@ shopLib = (function() {
     showSidePanel: function() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
+    },
+    getShoppingCart: function() {
+      const shoppingCart = JSON.parse(localStorage.getItem("products"));
+      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
+    },
+
+    clearShoppingCart: function() {
+      localStorage.setItem("products", JSON.stringify({}));
     }
   };
 

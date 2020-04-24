@@ -4,10 +4,10 @@
   margin-top: 110px;
 
   @media screen and (min-width: 800px) {
-    margin-top: 80px;
+    // margin-top: 80px;
   }
 
-  @supports(display: grid) {
+  @supports (display: grid) {
     // margin-top: 350px;
 
     @media screen and (min-width: 800px) {
@@ -16,7 +16,7 @@
   }
 }
 
-@media all and (-ms-high-contrast:none) {
+@media all and (-ms-high-contrast: none) {
 
   /* IE11 */
   *::-ms-backdrop,
@@ -37,7 +37,6 @@
 
 .single-product-page__body {
   font-family: "Lato", sans-serif;
-  // height: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -75,16 +74,29 @@
       scrollbar-color: transparent transparent;
       display: grid;
       top: 15px;
-      -ms-grid-rows: 300px 275px;
+      // -ms-grid-rows: 300px 275px;
+      -ms-grid-rows: 40vh 275px;
       -ms-grid-columns: 1fr;
+      // grid-template-rows: 300px 1fr;
+      grid-template-rows: 40vh 1fr;
+      min-width: 80vw;
       max-width: 1000px;
-      grid-template-rows: 300px 1fr;
 
       @media screen and (min-width: 800px) {
+        min-width: 70vw;
+        max-width: 1200px;
+
         // grid-template-rows: 635px 1fr;
-        grid-template-rows: 635px 275px;
-        -ms-grid-rows: 635px 275px;
+        // grid-template-rows: 435px 275px;
+        grid-template-rows: 435px min-content;
+        // -ms-grid-rows: 435px 275px;
+        -ms-grid-rows: 435px min-content;
         -ms-grid-columns: 1fr;
+      }
+
+      @media screen and (min-width: 1200px) {
+        -ms-grid-rows: 55vh min-content;
+        grid-template-rows: 55vh min-content;
       }
 
       .p-grid-1 {
@@ -152,7 +164,6 @@
 
         #wrap .prev:hover {
           background: url(../img/svg/left-arrow.svg) center center no-repeat;
-
         }
 
         #wrap .next {
@@ -169,7 +180,6 @@
         #wrap .next:hover {
           background: url(../img/svg/right-arrow.svg) center center no-repeat;
         }
-
       }
 
       .p-grid-2 {
@@ -185,20 +195,32 @@
       }
 
       &__title {
-        font-family: 'Lato', sans-serif;
+        font-family: "Lato", sans-serif;
         margin: 0 0 1rem 0;
-        font-size: 2rem;
+        font-size: calc(24px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
         color: inherit;
         transition: all 0.2s;
         text-align: center;
       }
 
       &__text {
-        font-family: 'Lato', sans-serif;
+        font-family: "Lato", sans-serif;
         margin: 0;
         transition: all 0.2s;
         font-size: 18px;
         text-align: justify;
+      }
+
+      &__price {
+        transition: all 0.2s;
+        margin: 0;
+        text-align: center;
+        color: black;
+        font-size: 22px;
+
+        @media screen and (min-width: 800px) {
+          margin-top: 2rem;
+        }
       }
 
       &__storage-count {
@@ -215,7 +237,8 @@
 
       @media (min-width: 480px) {
         .single-product__title {
-          font-size: 2.4rem;
+          // Fluid font-size added
+          font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
         }
 
         .single-product__text,

@@ -13,28 +13,43 @@
     font-family: "Lato", sans-serif !important;
   }
 }
-.checkout-form {
+.checkout-form,
+.checkout-form--hidden {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+
+  &__cart-contents {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgb(226, 225, 221);
+    &__img {
+      width: 100px;
+
+      padding: 10px;
+      border-radius: 3px;
+    }
+  }
+
   &__email-section {
     width: 280px;
     margin: 10px;
     padding: 10px;
+    border-radius: 3px;
     background: rgb(226, 225, 221);
   }
+
   &__delivery-section {
-    width: 280px;
-    margin: 10px;
-    padding: 10px;
-    background: rgb(226, 225, 221);
+    @extend .checkout-form__delivery-section--click;
     opacity: 0.4;
   }
   &__delivery-section--click {
     width: 280px;
     margin: 10px;
     padding: 10px;
+    border-radius: 3px;
     background: rgb(226, 225, 221);
   }
 
@@ -47,5 +62,32 @@
     height: 30px;
     width: 260px;
     margin-bottom: 20px;
+  }
+
+  &__addBtn,
+  &__deliveryBtn {
+    font-weight: bold;
+    background-color: $red;
+    border: none;
+    border-radius: 3px;
+    color: white;
+  }
+  &--hidden__checkoutBtn__dim {
+    @extend .checkout-form--hidden__checkoutBtn;
+    opacity: 0.4;
+  }
+  &--hidden__checkoutBtn {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: $darkgreen;
+    border: none;
+    border-radius: 3px;
+    color: white;
+  }
+  &--hidden__total-price {
+    text-align: center;
   }
 }
