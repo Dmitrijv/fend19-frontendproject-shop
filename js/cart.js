@@ -1,11 +1,10 @@
 const cartBtn = document.querySelector(".open-overlay");
 const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
-const clearCart = document.querySelector(".cart__erase");
-clearCart.addEventListener("click", function () {
-  localStorage.clear();
-  clearCart.nextElementSibling.innerHTML = "";
-});
+const clearBtn = document.querySelector(".cart__erase");
+const totalSum = document.querySelector(".total-sum");
+clearBtn.addEventListener("click", clearCart);
+
 cartBtn.addEventListener("click", (e) => {
   cart.style.display === "flex"
     ? (cart.style.display = "none")
@@ -17,7 +16,11 @@ cartCloseBtn.addEventListener("click", (e) => {
     ? (cart.style.display = "none")
     : (cart.style.display = "flex");
 });
-
+function clearCart() {
+  localStorage.clear();
+  clearBtn.nextElementSibling.innerHTML = "";
+  totalSum.textContent = "";
+}
 function fillCartList(fromClick) {
   let productName, productImg, productPrice, productQty;
   let product;
@@ -67,7 +70,7 @@ function fillCartList(fromClick) {
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
     5,
     -2
   );
@@ -144,6 +147,10 @@ function deleteProduct(getJSON) {
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
+
+      if (totalSum.textContent === "0") {
+        clearCart();
+      }
     });
   });
 }
@@ -156,7 +163,6 @@ function updateSum(getLs) {
     var res = str.replace(/\D/g, "");
     sum += +res * getLs[i].qty;
   }
-  const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
 
