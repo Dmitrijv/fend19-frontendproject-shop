@@ -1,11 +1,19 @@
 <?php
 
-if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {die;}
+if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
+    header("Location: error.php");
+    die;
+}
 
 require_once __DIR__ . "/php/controller/controller.php";
 
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
+
+if (!isset($product['title'])) {
+    header("Location: error.php");
+    die;
+}
 
 // build gallery html
 $gallery = getProductImages($productId);
