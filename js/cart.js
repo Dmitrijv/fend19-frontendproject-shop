@@ -2,16 +2,12 @@ const cartBtn = document.querySelector(".open-overlay");
 const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
-cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
+cartBtn.addEventListener("click", e => {
+  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
 });
 
-cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex" ?
-    (cart.style.display = "none") :
-    (cart.style.display = "flex");
+cartCloseBtn.addEventListener("click", e => {
+  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
 });
 
 function fillCartList(fromClick) {
@@ -60,20 +56,19 @@ function fillCartList(fromClick) {
   changeQty(getLs);
 }
 
-const productInfo = (btn) => {
+const productInfo = btn => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
   productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(5, -2);
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty =
-    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
-  productId = btn.parentElement.parentElement.id;
+  productQty = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productId = btn.parentElement.parentElement.id; //t
   return {
     id: productId,
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty,
+    qty: productQty
   };
 };
 
@@ -114,8 +109,8 @@ function refreshCartList() {
 refreshCartList();
 
 function addProduct(productBtn) {
-  productBtn.forEach((addBtn) => {
-    addBtn.addEventListener("click", (e) => {
+  productBtn.forEach(addBtn => {
+    addBtn.addEventListener("click", e => {
       let fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
@@ -124,9 +119,9 @@ function addProduct(productBtn) {
 
 function deleteProduct(getJSON) {
   const deleteBtn = document.querySelectorAll(".cart__product-delete");
-  deleteBtn.forEach((delBtn) => {
-    delBtn.addEventListener("click", (e) => {
-      const index = getJSON.findIndex((prod) => {
+  deleteBtn.forEach(delBtn => {
+    delBtn.addEventListener("click", e => {
+      const index = getJSON.findIndex(prod => {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
       getJSON.splice(index, 1);
@@ -151,17 +146,16 @@ function updateSum(getLs) {
 
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
-  qtyBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const index = getJSON.findIndex((prod) => {
+  qtyBtns.forEach(btn => {
+    btn.addEventListener("click", function() {
+      const index = getJSON.findIndex(prod => {
         return prod.id == btn.parentElement.parentElement.parentElement.id;
       });
 
       if (btn.innerHTML === "+") {
         getJSON[index].qty -= 1; //???
         getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent =
-          getJSON[index].qty;
+        btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
       } else {
         if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
         btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
