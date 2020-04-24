@@ -1,22 +1,22 @@
-shopLib = (function() {
+shopLib = (function () {
   const info = "Helper library for drawing html elements based on db data.";
 
   const version = "0.2";
   const SHOP_URL = `${location.protocol}//${location.host}/fend19-frontendproject-shop`;
   const CONTROLLER_PATH = `${SHOP_URL}/php/controller`;
-  const INTERNAL_API_PATH = `${SHOP_URL}/api`;
+  const INTERNAL_PATH = `${SHOP_URL}/php/internal`;
 
   let shopLib = {
-    drawCategorySelectors: function() {
+    drawCategorySelectors: function () {
       const lib = this;
-      const categoryApiUrl = `${INTERNAL_API_PATH}/categories.php`;
+      const categoryInternalUrl = `${INTERNAL_PATH}/categories.php`;
       //cache selectors
       const sidebar = document.querySelector("ul#sidebarCategoryContainer");
       const dropdown = document.querySelector("form.top-nav__form");
       sidebar.innerHTML = "";
       dropdown.innerHTML = "";
-      // get category json from api
-      lib.loadJsonByXhr(categoryApiUrl, function(categoryJson) {
+      // get category json from Internal
+      lib.loadJsonByXhr(categoryInternalUrl, function(categoryJson) {
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
@@ -36,26 +36,28 @@ shopLib = (function() {
       });
     },
 
-    drawDefaultProductPanel: function(event) {
+    drawDefaultProductPanel: function (event) {
       const lib = this;
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
+      const productInternal = `${INTERNAL_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
 
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
           productJson = productJson.filter(product => product.categoryId === redirectFilterId);
           lib.drawProductPanel(productJson);
-          sessionStorage.setItem("categoryFilterId", "");
+          sessionStorage.setItem("categoryFilterId", -1);
         } else {
           lib.drawProductPanel(productJson);
         }
       });
     },
 
-    drawFilteredProductPanel: function(event) {
+    drawFilteredProductPanel: function (event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
-
+      console.log({
+        allowedCategoryId
+      });
       // if we are clicking category from some page other than start page go back there
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -64,20 +66,20 @@ shopLib = (function() {
         return;
       }
 
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
         if (allowedCategoryId === -1) {
           lib.drawProductPanel(productJson);
         } else {
-          productJson = productJson.filter(product => product.categoryId === allowedCategoryId);
-          lib.drawProductPanel(productJson);
+          const newList = productJson.filter(product => product.categoryId == allowedCategoryId);
+          lib.drawProductPanel(newList);
         }
       });
       lib.hideSidePanel();
       event.preventDefault();
     },
 
-    drawProductPanel: function(productJson) {
+    drawProductPanel: function (productJson) {
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
       productJson.forEach(item => {
@@ -115,7 +117,7 @@ shopLib = (function() {
       addProduct(productBtn);
     },
 
-    searchProducts: function(event) {
+    searchProducts: function (event) {
       //console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
       //console.log(keyword);
@@ -139,14 +141,9 @@ shopLib = (function() {
       }
 
       const lib = this;
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
-        const matchingProducts = productJson.filter(
-          product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-        );
-        // console.log(matchingProducts);
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
+        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         lib.drawSearchResultList(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
@@ -154,7 +151,6 @@ shopLib = (function() {
     },
 
     sessionStorageProductSearch() {
-      //   console.log("sessionStorageProductSearch");
       const lib = this;
       const keyword = sessionStorage.getItem("searchKeyword").toLocaleLowerCase();
       // show error message if this keyword is invalid
@@ -167,13 +163,9 @@ shopLib = (function() {
         keywordErrMsg.classList.add("hidden");
       }
 
-      const productApi = `${INTERNAL_API_PATH}/products.php`;
-      lib.loadJsonByXhr(productApi, function(productJson) {
-        const matchingProducts = productJson.filter(
-          product =>
-            product.title.toLowerCase().indexOf(keyword) !== -1 ||
-            product.description.toLowerCase().indexOf(keyword) !== -1
-        );
+      const productInternal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(productInternal, function(productJson) {
+        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
         // console.log(matchingProducts);
         lib.drawSearchResultList(matchingProducts);
       });
@@ -208,9 +200,9 @@ shopLib = (function() {
       }
     },
 
-    loadJsonByXhr: function(url, callback) {
+    loadJsonByXhr: function (url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -219,14 +211,22 @@ shopLib = (function() {
       xhr.send();
     },
 
-    hideSidePanel: function() {
+    hideSidePanel: function () {
       document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
       document.querySelector(".sidebar").classList.remove("active");
     },
 
-    showSidePanel: function() {
+    showSidePanel: function () {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
+    },
+    getShoppingCart: function () {
+      const shoppingCart = JSON.parse(localStorage.getItem("products"));
+      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
+    },
+
+    clearShoppingCart: function () {
+      localStorage.setItem("products", JSON.stringify({}));
     }
   };
 

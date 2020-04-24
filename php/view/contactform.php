@@ -51,6 +51,7 @@ if(isset($_POST['submit'])){
         echo "hej";
     }
 
+    // header('Location: https://formspree.io/mgelgykq');
 }
 
 
