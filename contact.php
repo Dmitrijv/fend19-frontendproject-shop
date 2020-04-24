@@ -1,4 +1,10 @@
+<<<<<<< HEAD
+<?php 
+include __DIR__ . '/php/view/contactform.php';
+?>
+=======
 <?php include __DIR__ . '/php/view/contactform.php';?>
+>>>>>>> 797b563a89fcc653cd40194fa0eee4a2b6f0ab4d
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +26,17 @@
     </span>
 
     <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+<<<<<<< HEAD
+    <?php
+     require_once __DIR__ . '/php/view/header.php';?>
+=======
     <?php require_once __DIR__ . '/php/view/header.php';?>
+>>>>>>> 797b563a89fcc653cd40194fa0eee4a2b6f0ab4d
     <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main>
         <div class="content_contact">
-        <form action="phpmailer.php" method="POST" class="contact__form">
+        <form action="https://formspree.io/mgelgykq" method="POST" class="contact__form">
             <h1 class="contact__form__heading">Kontakta oss</h1>
             <span class="error"><?php echo $nameError; ?></span>
             <input type="text" class="contact__form__name" name="name" placeholder="Namn" value="<?=$name;?>">

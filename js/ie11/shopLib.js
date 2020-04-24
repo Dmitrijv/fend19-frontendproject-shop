@@ -30,16 +30,17 @@ shopLib = (function() {
         });
       });
     },
-    drawDefaultProductPanel: function drawDefaultProductPanel(event) {
+    drawDefaultProductPanel: function drawDefaultProductPanel() {
       var lib = this;
       var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
+      console.log(redirectFilterId);
       lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
-          productJson = productJson.filter(function(product) {
+          var filteredList = productJson.filter(function(product) {
             return product.categoryId === redirectFilterId;
           });
-          lib.drawProductPanel(productJson);
+          lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
         } else {
           lib.drawProductPanel(productJson);
@@ -95,7 +96,7 @@ shopLib = (function() {
           )
           .concat(
             item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
+            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
           );
       });
       productPanel.innerHTML = "";
