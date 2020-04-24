@@ -1,36 +1,47 @@
-let elements = document.getElementsByClassName("checkout-form__input")
-for (let i = 0; i < elements.length; i++) {
-  elements[i].disabled = true
+const inputElements = document.getElementsByClassName("checkout-form__input")
+for (let i = 0; i < inputElements.length; i++) {
+  inputElements[i].disabled = true
 }
+
+const checkoutBtn = document.querySelector(
+  ".checkout-form--hidden__checkoutBtn__dim"
+)
 
 const deliverySection = document.querySelector(
   ".checkout-form__delivery-section"
 )
-const addEmailBtn = document.querySelector(".checkout-form__btn")
+
+const addDeliveryBtn = document.querySelector(".checkout-form__deliveryBtn")
+const addEmailBtn = document.querySelector(".checkout-form__addBtn")
 const email = document.getElementById("email")
 const emailP = document.createElement("p")
 const hiddenEmail = document.getElementById("email-hidden")
+
+addDeliveryBtn.disabled = true
+checkoutBtn.disabled = true
 
 addEmailBtn.addEventListener("click", (e) => {
   if (addEmailBtn.textContent == "Lägg till emailadress") {
     email.parentNode.replaceChild(emailP, email)
     emailP.textContent = email.value
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].disabled = false
+    for (let i = 0; i < inputElements.length; i++) {
+      inputElements[i].disabled = false
     }
-
+    addDeliveryBtn.disabled = false
     deliverySection.className = "checkout-form__delivery-section--click"
     addEmailBtn.textContent = "Ändra"
   } else {
     email.value = ""
     emailP.parentNode.replaceChild(email, emailP)
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].disabled = true
+
+    for (let i = 0; i < inputElements.length; i++) {
+      inputElements[i].disabled = true
     }
+    addDeliveryBtn.disabled = true
     deliverySection.className = "checkout-form__delivery-section"
     addEmailBtn.textContent = "Lägg till emailadress"
+    // to do put cursor back in inputfield
   }
-
   hiddenEmail.value = emailP.textContent
 })
 
@@ -55,8 +66,6 @@ const hiddenAdress = document.getElementById("adress-hidden")
 const hiddenPcode = document.getElementById("pcode-hidden")
 const hiddenCity = document.getElementById("city-hidden")
 
-const addDeliveryBtn = document.querySelector(".checkout-form__btn2")
-
 addDeliveryBtn.addEventListener("click", (e) => {
   if (addDeliveryBtn.textContent == "Leverera till denna adress") {
     fname.parentNode.replaceChild(fnameP, fname)
@@ -71,8 +80,9 @@ addDeliveryBtn.addEventListener("click", (e) => {
     pcodeP.textContent = pcode.value
     city.parentNode.replaceChild(cityP, city)
     cityP.textContent = city.value
-
+    checkoutBtn.disabled = false
     addDeliveryBtn.textContent = "Ändra"
+    checkoutBtn.className = "checkout-form--hidden__checkoutBtn"
   } else {
     fnameP.parentNode.replaceChild(fname, fnameP)
     lnameP.parentNode.replaceChild(lname, lnameP)
@@ -80,14 +90,15 @@ addDeliveryBtn.addEventListener("click", (e) => {
     adressP.parentNode.replaceChild(adress, adressP)
     pcodeP.parentNode.replaceChild(pcode, pcodeP)
     cityP.parentNode.replaceChild(city, cityP)
-
+    checkoutBtn.disabled = true
     addDeliveryBtn.textContent = "Leverera till denna adress"
+    checkoutBtn.className = "checkout-form--hidden__checkoutBtn__dim"
   }
 
-  hiddenFname.value = fname.textContent
-  hiddenLname.value = lname.textContent
-  hiddenTel.value = tel.textContent
-  hiddenAdress.value = adress.textContent
-  hiddenPcode.value = pcode.textContent
-  hiddenCity.value = city.textContent
+  hiddenFname.value = fnameP.textContent
+  hiddenLname.value = lnameP.textContent
+  hiddenTel.value = telP.textContent
+  hiddenAdress.value = adressP.textContent
+  hiddenPcode.value = pcodeP.textContent
+  hiddenCity.value = cityP.textContent
 })
