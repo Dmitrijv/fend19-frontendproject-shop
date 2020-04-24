@@ -68,7 +68,13 @@
     -ms-grid-columns: 0.5fr 10px 1fr 10px 0.5fr 10px 1fr; //for IE 11
     grid-template-columns: .5fr 1fr .5fr 1fr;
   }
-
+  &__erase {
+     background: url('../img/svg/trash.svg') center no-repeat;
+     background-size: contain;
+     width: 20px;
+     height: 20px;
+     cursor: pointer;
+  }
   &__sum-area {
     display: flex;
     justify-content: space-between;
