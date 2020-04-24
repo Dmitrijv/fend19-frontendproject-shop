@@ -14,6 +14,7 @@ button.product__add-btn {
   color: white;
   font-weight: bold;
   -webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+  -o-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
   letter-spacing: 0.5px;
   border: 0px;
@@ -84,7 +85,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   input {
     border: none;
   }
@@ -170,7 +171,7 @@ button {
   width: 100%;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .main__header__top .logo a {
     height: 100%;
   }
@@ -326,6 +327,7 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -338,6 +340,7 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -355,11 +358,13 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -542,6 +547,7 @@ button {
   top: 88px;
   left: 50%;
   -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
@@ -555,6 +561,7 @@ button {
   .cart {
     left: 50%;
     -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
     min-width: 400px;
     font-size: 14px;
@@ -723,6 +730,7 @@ button {
   .overlay > div {
     left: 50%;
     -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
     margin-top: 0;
     margin: auto;
@@ -794,7 +802,7 @@ main {
   overflow: hidden;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   main {
     overflow: unset;
   }
@@ -812,7 +820,7 @@ main {
   margin-bottom: 20px;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .product-container .grid-box {
     margin-bottom: 0;
   }
@@ -1372,7 +1380,7 @@ main {
 
 /* IE part ends here, but legend continues. */
 /* Here comes code for other browsers */
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .product-container {
     display: -ms-grid;
     display: grid;
@@ -1496,7 +1504,7 @@ div.product > div:nth-child(2) > button:nth-child(4) {
   background-color: #d1d39a;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -1577,6 +1585,7 @@ div.product > div > button:nth-child(4) {
 [class*="fx-"],
 [class*="fx-"]:hover {
   -webkit-transition: color 0.5s ease-in-out;
+  -o-transition: color 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
 }
 
@@ -1584,6 +1593,7 @@ div.product > div > button:nth-child(4) {
   position: relative;
   z-index: 1;
   -webkit-transition-delay: 0.2s !important;
+       -o-transition-delay: 0.2s !important;
           transition-delay: 0.2s !important;
   overflow: hidden;
 }
@@ -1598,6 +1608,7 @@ div.product > div > button:nth-child(4) {
 
 [class*="fx-bubble"]::after {
   -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1610,6 +1621,7 @@ div.product > div > button:nth-child(4) {
 [class*="fx-bubble"]:hover::after,
 [class*="fx-bubble"].active::after {
   -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   height: 300%;
 }
@@ -1620,6 +1632,7 @@ div.product > div > button:nth-child(4) {
 
 .fx-sliderIn::after {
   -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1631,6 +1644,7 @@ div.product > div > button:nth-child(4) {
 .fx-sliderIn:hover::after,
 .fx-sliderIn.active::after {
   -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   width: 100%;
 }
@@ -1662,6 +1676,7 @@ div.product > div > button:nth-child(4) {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
@@ -2018,7 +2033,7 @@ div.product > div > button:nth-child(4) {
   grid-template-rows: 250px 100px;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .searchContent .grid-box .grid-2 {
     height: 50px;
   }
@@ -2172,6 +2187,7 @@ section.order-confirmation .btn {
   border-radius: .25rem;
   -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+  -o-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
   font-family: 'Lato', sans-serif;
@@ -2269,12 +2285,11 @@ section.order-confirmation button[disabled] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 93%;
   margin: 0 auto;
   max-width: 88vw;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .single-product-page__body .wrapper {
     max-width: 1200px;
   }
@@ -2343,6 +2358,7 @@ section.order-confirmation button[disabled] {
   height: 100%;
   opacity: 0;
   -webkit-transition: opacity 2s;
+  -o-transition: opacity 2s;
   transition: opacity 2s;
 }
 
@@ -2376,6 +2392,7 @@ section.order-confirmation button[disabled] {
   left: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
@@ -2392,6 +2409,7 @@ section.order-confirmation button[disabled] {
   right: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
@@ -2426,6 +2444,7 @@ section.order-confirmation button[disabled] {
   font-size: calc(24px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   color: inherit;
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   text-align: center;
 }
@@ -2434,6 +2453,7 @@ section.order-confirmation button[disabled] {
   font-family: "Lato", sans-serif;
   margin: 0;
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 18px;
   text-align: justify;
@@ -2441,6 +2461,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product__price {
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   margin: 0;
   text-align: center;
@@ -2456,6 +2477,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product__storage-count {
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   margin: 0;
   text-align: center;
