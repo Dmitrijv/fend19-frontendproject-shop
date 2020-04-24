@@ -34,8 +34,8 @@
     <script src="./js/ie11/sidebar.js"></script>
     <!-- <script src="./js/sidebar.js"></script> -->
 
-    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
-    <script type="text/javascript" src="./js/shopLib.js"></script>
+    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
+    <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
     <script type="text/javascript">
         shopLib.drawCategorySelectors();
     </script>
