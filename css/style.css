@@ -2399,7 +2399,7 @@ section.order-confirmation button[disabled] {
 }
 
 .single-product-page__body .wrapper .single-product__title {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0 0 1rem 0;
   font-size: 2rem;
   color: inherit;
@@ -2409,12 +2409,27 @@ section.order-confirmation button[disabled] {
 }
 
 .single-product-page__body .wrapper .single-product__text {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 18px;
   text-align: justify;
+}
+
+.single-product-page__body .wrapper .single-product__price {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  margin: 0;
+  text-align: center;
+  color: black;
+  font-size: 22px;
+}
+
+@media screen and (min-width: 800px) {
+  .single-product-page__body .wrapper .single-product__price {
+    margin-top: 2rem;
+  }
 }
 
 .single-product-page__body .wrapper .single-product__storage-count {

@@ -48,10 +48,7 @@ shopLib = (function() {
     },
     drawFilteredProductPanel: function drawFilteredProductPanel(event) {
       var lib = this;
-      var allowedCategoryId = Number(event.currentTarget.id);
-      console.log({
-        allowedCategoryId: allowedCategoryId
-      }); // if we are clicking category from some page other than start page go back there
+      var allowedCategoryId = Number(event.currentTarget.id); // if we are clicking category from some page other than start page go back there
 
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -81,13 +78,14 @@ shopLib = (function() {
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += "\n        <div id='"
+          .concat(item.id, "' class='product grid-box'>\n            <a href='product.php?productId=")
           .concat(
             item.id,
-            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3' style=\"background-image: url("
+            "'>\n                <div class='product__img-wrapper grid-3' style=\"background-image: url("
           )
           .concat(
             coverImage,
-            ")\">\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
+            ")\"></div>\n            </a>\n            <div class='grid-2'>\n                <p class='product__title'>"
           )
           .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")
@@ -97,7 +95,7 @@ shopLib = (function() {
           )
           .concat(
             item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
+            " st</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
           );
       });
       productPanel.innerHTML = "";
@@ -221,6 +219,13 @@ shopLib = (function() {
     showSidePanel: function showSidePanel() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
+    },
+    getShoppingCart: function getShoppingCart() {
+      var shoppingCart = JSON.parse(localStorage.getItem("products"));
+      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
+    },
+    clearShoppingCart: function clearShoppingCart() {
+      localStorage.setItem("products", JSON.stringify({}));
     }
   };
   return shopLib;
