@@ -6,6 +6,7 @@ function isProductCategoryNameValid($name)
     if (!isset($name)) {return false;}
     // name contains html code
     if (strpos($name, '<') !== false) {return false;}
+    if (strpos($name, '*') !== false) {return false;}
     // name contains nullbyte character(s)
     if (strpos($name, chr(0)) !== false) {return false;}
     // fewer than one characters
@@ -35,6 +36,7 @@ function isValidProductString($string)
     if (!isset($string)) {return false;}
     // string contains html code
     if (strpos($string, '<') !== false) {return false;}
+    if (strpos($string, '*') !== false) {return false;}
     // string contains nullbyte character(s)
     if (strpos($string, chr(0)) !== false) {return false;}
     // string consists of spaces or nullbyte characters
@@ -48,6 +50,7 @@ function isValidFileName($string)
     if (strpos($string, '<') !== false) {return false;}
     if (strpos($string, '>') !== false) {return false;}
     if (strpos($string, '*') !== false) {return false;}
+    if (strpos($string, '"') !== false) {return false;}
     if (strpos($string, '?') !== false) {return false;}
     if (strpos($string, '|') !== false) {return false;}
     if (strpos($string, ':') !== false) {return false;}
