@@ -30,16 +30,16 @@ shopLib = (function() {
         });
       });
     },
-    drawDefaultProductPanel: function drawDefaultProductPanel(event) {
+    drawDefaultProductPanel: function drawDefaultProductPanel() {
       var lib = this;
       var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
       lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
-          productJson = productJson.filter(function(product) {
-            return product.categoryId === redirectFilterId;
+          var filteredList = productJson.filter(function(product) {
+            return Number(product.categoryId) === redirectFilterId;
           });
-          lib.drawProductPanel(productJson);
+          lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
         } else {
           lib.drawProductPanel(productJson);
