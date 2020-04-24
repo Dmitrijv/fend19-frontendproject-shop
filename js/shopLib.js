@@ -40,10 +40,9 @@ shopLib = (function() {
       const lib = this;
       const productInternal = `${INTERNAL_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
-      console.log(redirectFilterId);
       lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
-          let filteredList = productJson.filter(product => product.categoryId === redirectFilterId);
+          let filteredList = productJson.filter(product => Number(product.categoryId) === redirectFilterId);
           lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
         } else {

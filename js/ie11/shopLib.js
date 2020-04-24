@@ -34,11 +34,10 @@ shopLib = (function() {
       var lib = this;
       var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
-      console.log(redirectFilterId);
       lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
           var filteredList = productJson.filter(function(product) {
-            return product.categoryId === redirectFilterId;
+            return Number(product.categoryId) === redirectFilterId;
           });
           lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
