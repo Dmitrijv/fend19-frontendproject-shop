@@ -405,6 +405,19 @@ adminLib = (function() {
       );
     },
 
+    isFileNameValid: function(categoryName) {
+      return (
+        categoryName &&
+        categoryName.indexOf("/") === -1 &&
+        categoryName.indexOf(":") === -1 &&
+        categoryName.indexOf("|") === -1 &&
+        categoryName.indexOf("?") === -1 &&
+        categoryName.indexOf("*") === -1 &&
+        categoryName.indexOf("<") === -1 &&
+        categoryName.indexOf(">") === -1
+      );
+    },
+
     loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
