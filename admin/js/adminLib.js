@@ -296,6 +296,7 @@ adminLib = (function() {
     updateProduct: function(event) {
       const lib = this;
       const form = event.currentTarget;
+      const files = form.product_attatched_image.files;
       const alertElement = document.querySelector("div#productAlert");
       const messageElement = document.querySelector("div#productAlert span.msg");
 
@@ -303,11 +304,11 @@ adminLib = (function() {
       const existingImages = document.querySelectorAll("img.small-img-on-edit");
 
       // if user uploaded new files check if they have valid names
-      if (form.files) {
-        for (let i = 0; i < form.files.length; i++) {
-          const fileName = form.files[i].name;
-          if (!isFileNameValid(fileName)) {
-            messageElement.textContent = "Input did not pass validation.";
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const fileName = files[i].name;
+          if (!lib.isFileNameValid(fileName)) {
+            messageElement.textContent = "Added image has invalid name.";
             lib.setFailStyle(alertElement);
             event.preventDefault();
             return;
@@ -324,8 +325,8 @@ adminLib = (function() {
       }
 
       // all existing images were deleted and no new images were added
-      if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {
-        messageElement.textContent = "Input did not pass validation.";
+      if (deletedImages.length === existingImages.length && (!files || files.length === 0)) {
+        messageElement.textContent = "Product must have at least one image";
         lib.setFailStyle(alertElement);
         event.preventDefault();
         return;

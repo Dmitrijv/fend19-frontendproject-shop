@@ -289,7 +289,7 @@ adminLib = (function() {
           var fileName = form.files[i].name;
 
           if (!isFileNameValid(fileName)) {
-            messageElement.textContent = "Input did not pass validation.";
+            messageElement.textContent = "Added image has invalid name.";
             lib.setFailStyle(alertElement);
             event.preventDefault();
             return;
@@ -306,7 +306,7 @@ adminLib = (function() {
       } // all existing images were deleted and no new images were added
 
       if (deletedImages.length === existingImages.length && (!form.files || form.files.length === 0)) {
-        messageElement.textContent = "Input did not pass validation.";
+        messageElement.textContent = "Product must have at least one image";
         lib.setFailStyle(alertElement);
         event.preventDefault();
         return;
