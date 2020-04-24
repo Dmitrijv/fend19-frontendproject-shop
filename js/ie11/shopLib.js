@@ -177,13 +177,14 @@ shopLib = (function() {
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += "\n        <div id='"
+          .concat(item.id, "' class='product grid-box'>\n            <a href='product.php?productId=")
           .concat(
             item.id,
-            "' class='product grid-box'>\n            <div class='product__img-wrapper grid-3' style=\"background-image: url("
+            "'>\n                <div class='product__img-wrapper grid-3' style=\"background-image: url("
           )
           .concat(
             coverImage,
-            ")\">\n            </div>\n            <div class='grid-2'>\n                <p class='product__title'>"
+            ")\"></div>\n            </a>\n            <div class='grid-2'>\n                <p class='product__title'>"
           )
           .concat(item.title, "</p>\n                <div class='product__price'>")
           .concat(item.price, " ")
