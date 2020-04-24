@@ -93,7 +93,7 @@ shopLib = (function() {
                 <div class='product__price'>${item.price} ${item.currency}</div>
                 <div class='product__count-container'>
                     <button class='product__count-btn'>-</button>
-                    <p class='product__count'>${item.numberInStock} st</p>
+                    <p class='product__count'>${item.numberInStock}</p>
                     <button class='product__count-btn'>+</button>
                 </div>
                 <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>Lägg i varukorgen</button>

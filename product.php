@@ -8,13 +8,21 @@ $productId = intval($_GET['productId']);
 $product = getProductById($productId);
 
 // build gallery html
-$galleryHtml = '';
 $gallery = getProductImages($productId);
+$galleryHtml = '';
+
 foreach ($gallery as &$fileName) {
     $galleryHtml = $galleryHtml . '
         <div class="banner" style="opacity: 0;">
             <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
         </div>
+    ';
+}
+
+$tabHtml = '<span class="on"></span>';
+for ($i = 0; $i <= count($gallery) - 1; $i++) {
+    $tabHtml = tabHtml . '
+       <span class=""></span>
     ';
 }
 
@@ -60,10 +68,7 @@ foreach ($gallery as &$fileName) {
                         <?php echo $galleryHtml; ?>
 
                         <div class="tab">
-                            <span class="on"></span>
-                            <span class=""></span>
-                            <span class=""></span>
-                            <span class=""></span>
+                            <?php echo $tabHtml; ?>
                         </div>
 
                         <div class="prev"></div>
