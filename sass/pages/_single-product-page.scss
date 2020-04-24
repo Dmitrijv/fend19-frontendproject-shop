@@ -17,7 +17,6 @@
 }
 
 @media all and (-ms-high-contrast: none) {
-
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -112,7 +111,7 @@
 
         .banner-img {
           background-size: cover;
-          background-position: center;
+          background-position: 20% 25%;
           display: block;
           height: 100%;
         }

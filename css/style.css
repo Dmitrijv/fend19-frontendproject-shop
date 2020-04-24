@@ -2331,7 +2331,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product .p-grid-1 .banner-img {
   background-size: cover;
-  background-position: center;
+  background-position: 20% 25%;
   display: block;
   height: 100%;
 }
