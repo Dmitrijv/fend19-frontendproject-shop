@@ -1757,6 +1757,23 @@ div.product > div > button:nth-child(4) {
   margin-bottom: 2em;
 }
 
+@media all and (-ms-high-contrast: none) {
+  .contact__form {
+    /* IE11 */
+  }
+  .contact__form *::-ms-backdrop,
+  .contact__form input,
+  .contact__form textarea {
+    background-color: rgba(246, 14, 76, 0.16);
+  }
+  .contact__form textarea {
+    -ms-overflow-style: none;
+  }
+  .contact__form input {
+    border: none;
+  }
+}
+
 .error {
   color: red;
 }
