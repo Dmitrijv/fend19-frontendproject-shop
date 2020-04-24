@@ -83,11 +83,11 @@ foreach ($allCategories as &$category) {
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input name="product_title" type="text" class="form-control" value="<?php echo $p['title']; ?>" required>
+                            <input name="product_title" type="text" class="form-control" value="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="product_description" class="form-control" required><?php echo $p['description']; ?></textarea>
+                            <textarea name="product_description" class="form-control" required><?php echo htmlspecialchars($p['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Category</label>
@@ -97,11 +97,11 @@ foreach ($allCategories as &$category) {
                         </div>
                         <div class="form-group">
                             <label>Price (SEK)</label>
-                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" value='<?php echo $p['price']; ?>' required>
+                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" value='<?php echo htmlspecialchars($p['price'], ENT_QUOTES, 'UTF-8'); ?>' required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product_stock" type="number" min=0 step='1' class="form-control" value='<?php echo $p['number_in_stock']; ?>' pattern="\d{1,100}" required>
+                            <input name="product_stock" type="number" min=0 step='1' class="form-control" value='<?php echo htmlspecialchars($p['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>' pattern="\d{1,100}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>
