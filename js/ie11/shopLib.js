@@ -34,15 +34,18 @@ shopLib = (function() {
       var lib = this;
       var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
+      console.log(redirectFilterId);
       lib.loadJsonByXhr(productInternal, function(productJson) {
         if (redirectFilterId && redirectFilterId !== -1) {
-          productJson = productJson.filter(function(product) {
+          var filteredList = productJson.filter(function(product) {
             return product.categoryId === redirectFilterId;
           });
-          lib.drawProductPanel(productJson);
+          lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
+          event.preventDefault();
         } else {
           lib.drawProductPanel(productJson);
+          event.preventDefault();
         }
       });
     },
