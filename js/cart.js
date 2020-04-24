@@ -70,7 +70,7 @@ function fillCartList(fromClick) {
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.style.backgroundImage.slice(
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
     5,
     -2
   );
