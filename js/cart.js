@@ -1,11 +1,10 @@
 const cartBtn = document.querySelector(".open-overlay");
 const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
-const clearCart = document.querySelector(".cart__erase");
-clearCart.addEventListener("click", function () {
-  localStorage.clear();
-  clearCart.nextElementSibling.innerHTML = "";
-});
+const clearBtn = document.querySelector(".cart__erase");
+const totalSum = document.querySelector(".total-sum");
+clearBtn.addEventListener("click", clearCart);
+
 cartBtn.addEventListener("click", (e) => {
   cart.style.display === "flex"
     ? (cart.style.display = "none")
@@ -17,7 +16,10 @@ cartCloseBtn.addEventListener("click", (e) => {
     ? (cart.style.display = "none")
     : (cart.style.display = "flex");
 });
-
+function clearCart() {
+  localStorage.clear();
+  clearBtn.nextElementSibling.innerHTML = "";
+}
 function fillCartList(fromClick) {
   let productName, productImg, productPrice, productQty;
   let product;
@@ -144,6 +146,10 @@ function deleteProduct(getJSON) {
       delBtn.parentElement.parentElement.remove();
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
+
+      if(totalSum.textContent === '0') {
+          totalSum.textContent = '';
+      }
     });
   });
 }
@@ -156,7 +162,6 @@ function updateSum(getLs) {
     var res = str.replace(/\D/g, "");
     sum += +res * getLs[i].qty;
   }
-  const totalSum = document.querySelector(".total-sum");
   totalSum.textContent = sum;
 }
 
