@@ -1,4 +1,4 @@
-shopLib = (function () {
+shopLib = (function() {
   const info = "Helper library for drawing html elements based on db data.";
 
   const version = "0.2";
@@ -7,7 +7,7 @@ shopLib = (function () {
   const INTERNAL_PATH = `${SHOP_URL}/php/internal`;
 
   let shopLib = {
-    drawCategorySelectors: function () {
+    drawCategorySelectors: function() {
       const lib = this;
       const categoryInternalUrl = `${INTERNAL_PATH}/categories.php`;
       //cache selectors
@@ -36,7 +36,7 @@ shopLib = (function () {
       });
     },
 
-    drawDefaultProductPanel: function (event) {
+    drawDefaultProductPanel: function(event) {
       const lib = this;
       const productInternal = `${INTERNAL_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
@@ -52,12 +52,10 @@ shopLib = (function () {
       });
     },
 
-    drawFilteredProductPanel: function (event) {
+    drawFilteredProductPanel: function(event) {
       const lib = this;
       const allowedCategoryId = Number(event.currentTarget.id);
-      console.log({
-        allowedCategoryId
-      });
+
       // if we are clicking category from some page other than start page go back there
       if (location.pathname !== "/fend19-frontendproject-shop/index.php") {
         sessionStorage.setItem("categoryFilterId", allowedCategoryId);
@@ -79,7 +77,7 @@ shopLib = (function () {
       event.preventDefault();
     },
 
-    drawProductPanel: function (productJson) {
+    drawProductPanel: function(productJson) {
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
       productJson.forEach(item => {
@@ -87,8 +85,9 @@ shopLib = (function () {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
-            </div>
+            <a href='product.php?productId=${item.id}'>
+                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
+            </a>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
@@ -117,7 +116,7 @@ shopLib = (function () {
       addProduct(productBtn);
     },
 
-    searchProducts: function (event) {
+    searchProducts: function(event) {
       //console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
       //console.log(keyword);
@@ -180,8 +179,9 @@ shopLib = (function () {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
         <div id='${item.id}' class='product grid-box'>
-            <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})">
-            </div>
+            <a href='product.php?productId=${item.id}'>
+                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
+            </a>
             <div class='grid-2'>
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
@@ -200,9 +200,9 @@ shopLib = (function () {
       }
     },
 
-    loadJsonByXhr: function (url, callback) {
+    loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           callback(JSON.parse(this.responseText));
         }
@@ -211,21 +211,21 @@ shopLib = (function () {
       xhr.send();
     },
 
-    hideSidePanel: function () {
+    hideSidePanel: function() {
       document.querySelector(".hamburger__bar-wrapper").classList.remove("active");
       document.querySelector(".sidebar").classList.remove("active");
     },
 
-    showSidePanel: function () {
+    showSidePanel: function() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
     },
-    getShoppingCart: function () {
+    getShoppingCart: function() {
       const shoppingCart = JSON.parse(localStorage.getItem("products"));
       return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
     },
 
-    clearShoppingCart: function () {
+    clearShoppingCart: function() {
       localStorage.setItem("products", JSON.stringify({}));
     }
   };
