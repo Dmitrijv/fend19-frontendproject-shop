@@ -57,7 +57,7 @@ if(isset($_POST['submit'])){
     }
 
     if ($nameError == '' && $emailError == '' && $phoneError == '' &&$messageError == '' ) {
-        $messageSuccess = "Tack för sitt meddelande, vi svarar på det så fort vi kan!";
+        $messageSuccess = "Tack för ditt meddelande, vi svarar på det så fort vi kan!";
         $name = $email = $phone = $message ="";
     }
 
