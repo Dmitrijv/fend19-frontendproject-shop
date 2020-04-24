@@ -1693,6 +1693,8 @@ div.product > div > button:nth-child(4) {
 
 .sidebar.active {
   left: 0;
+  position: fixed;
+  top: 0;
 }
 
 .sidebar.active ul li input {
