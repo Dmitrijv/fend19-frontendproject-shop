@@ -1,4 +1,4 @@
-const cartBtn = document.querySelector(".cart-btn");
+const cartBtn = document.querySelector(".open-overlay");
 const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 
