@@ -76,17 +76,17 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                 <div class="p-grid-2">
                     <article>
                         <h1 class="single-product__title">
-                        <?php echo $product['title']; ?>
+                            <?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>
                         </h1>
                         <p class="single-product__text">
-                            <?php echo $product['description']; ?>
+                            <?php echo htmlspecialchars($product['description'], ENT_QUOTES, 'UTF-8'); ?>
                         </p>
                     </article>
                     <p class="single-product__price">
-                        <?php echo $product['price']; ?> kr
+                        <?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr
                     </p>
                     <p class="single-product__storage-count">
-                        <?php echo $product['number_in_stock']; ?> st i lager
+                        <?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?> st i lager
                     </p>
                 </div>
             </div>
