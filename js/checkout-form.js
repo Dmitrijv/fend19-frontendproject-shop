@@ -20,7 +20,7 @@ const hiddenEmail = document.getElementById("email-hidden")
 addDeliveryBtn.disabled = true
 checkoutBtn.disabled = true
 
-addEmailBtn.addEventListener("click", (e) => {
+addEmailBtn.addEventListener("click", function () {
   if (addEmailBtn.textContent == "Lägg till emailadress") {
     email.parentNode.replaceChild(emailP, email)
     emailP.textContent = email.value
@@ -66,7 +66,7 @@ const hiddenAdress = document.getElementById("adress-hidden")
 const hiddenPcode = document.getElementById("pcode-hidden")
 const hiddenCity = document.getElementById("city-hidden")
 
-addDeliveryBtn.addEventListener("click", (e) => {
+addDeliveryBtn.addEventListener("click", function () {
   if (addDeliveryBtn.textContent == "Leverera till denna adress") {
     fname.parentNode.replaceChild(fnameP, fname)
     fnameP.textContent = fname.value
