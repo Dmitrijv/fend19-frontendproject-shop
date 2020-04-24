@@ -2203,12 +2203,6 @@ section.order-confirmation button[disabled] {
   margin-top: 110px;
 }
 
-@media screen and (min-width: 800px) {
-  #p-main {
-    margin-top: 80px;
-  }
-}
-
 @media all and (-ms-high-contrast: none) {
   /* IE11 */
   *::-ms-backdrop,
@@ -2282,15 +2276,16 @@ section.order-confirmation button[disabled] {
   top: 15px;
   -ms-grid-rows: 300px 275px;
   -ms-grid-columns: 1fr;
-  max-width: 1000px;
   -ms-grid-rows: 300px 1fr;
       grid-template-rows: 300px 1fr;
+  max-width: 1000px;
 }
 
 @media screen and (min-width: 800px) {
   .single-product-page__body .wrapper .single-product {
-    grid-template-rows: 635px 275px;
-    -ms-grid-rows: 635px 275px;
+    min-width: 800px;
+    grid-template-rows: 435px 275px;
+    -ms-grid-rows: 435px 275px;
     -ms-grid-columns: 1fr;
   }
 }

@@ -13,17 +13,15 @@ $galleryHtml = '';
 
 foreach ($gallery as &$fileName) {
     $galleryHtml = $galleryHtml . '
-        <div class="banner" style="opacity: 0;">
+        <div class="banner" style="opacity: 1;">
             <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
         </div>
     ';
 }
 
-$tabHtml = '<span class="on"></span>';
-for ($i = 0; $i <= count($gallery) - 1; $i++) {
-    $tabHtml = tabHtml . '
-       <span class=""></span>
-    ';
+$gallerySelectors = '<span class="on"></span>';
+for ($i = 0; $i < count($gallery) - 1; $i++) {
+    $gallerySelectors = $gallerySelectors . '<span class=""></span>';
 }
 
 ?>
@@ -68,7 +66,7 @@ for ($i = 0; $i <= count($gallery) - 1; $i++) {
                         <?php echo $galleryHtml; ?>
 
                         <div class="tab">
-                            <?php echo $tabHtml; ?>
+                            <?php echo $gallerySelectors; ?>
                         </div>
 
                         <div class="prev"></div>
@@ -100,8 +98,11 @@ for ($i = 0; $i <= count($gallery) - 1; $i++) {
     <script src="./js/ie11/sidebar.js"></script>
     <!-- <script src="./js/sidebar.js"></script> -->
 
-    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
+    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
     <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
+    <script type="text/javascript">
+        shopLib.drawCategorySelectors();
+    </script>
 
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
     <script type="text/javascript" src="./js/cart.js"></script>

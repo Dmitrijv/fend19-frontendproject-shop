@@ -4,7 +4,7 @@
   margin-top: 110px;
 
   @media screen and (min-width: 800px) {
-    margin-top: 80px;
+    // margin-top: 80px;
   }
 
   @supports (display: grid) {
@@ -75,13 +75,15 @@
       top: 15px;
       -ms-grid-rows: 300px 275px;
       -ms-grid-columns: 1fr;
-      max-width: 1000px;
       grid-template-rows: 300px 1fr;
+      max-width: 1000px;
 
       @media screen and (min-width: 800px) {
+        min-width: 800px;
+
         // grid-template-rows: 635px 1fr;
-        grid-template-rows: 635px 275px;
-        -ms-grid-rows: 635px 275px;
+        grid-template-rows: 435px 275px;
+        -ms-grid-rows: 435px 275px;
         -ms-grid-columns: 1fr;
       }
 
