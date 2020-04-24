@@ -17,7 +17,6 @@
 
   @media screen and (min-width: 800px) {
     top: 63px;
-
   }
 
   @media screen and (max-width: 596px) {
@@ -66,14 +65,14 @@
     grid-auto-rows: minmax(50px, 1fr);
     margin: 10px 1vw;
     -ms-grid-columns: 0.5fr 10px 1fr 10px 0.5fr 10px 1fr; //for IE 11
-    grid-template-columns: .5fr 1fr .5fr 1fr;
+    grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
   }
   &__erase {
-     background: url('../img/svg/trash.svg') center no-repeat;
-     background-size: contain;
-     width: 20px;
-     height: 20px;
-     cursor: pointer;
+    background: url("../img/svg/trash.svg") center no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
   }
   &__sum-area {
     display: flex;
@@ -82,6 +81,7 @@
   }
 
   &__order {
+    z-index: 999999999;
     button {
       display: block;
       margin-left: auto;
@@ -135,7 +135,6 @@
   }
 }
 
-
 /* to the body element */
 .noscroll {
   overflow: hidden;
@@ -159,11 +158,9 @@
   display: block;
 }
 
-
-
 /* this code is not strictly necessary: just to make this demo a bit pleasant */
 
-.overlay>div {
+.overlay > div {
   width: 80%;
   max-width: 650px;
   padding-top: 25px;
@@ -179,9 +176,8 @@
   }
 }
 
-
 .overlay {
-  background: rgba(40, 40, 40, .75);
+  background: rgba(40, 40, 40, 0.75);
   word-wrap: break-word;
   z-index: 300;
 }
