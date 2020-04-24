@@ -42,6 +42,20 @@ function isValidProductString($string)
     return true;
 }
 
+function isValidFileName($string)
+{
+    // string contains html code
+    if (strpos($string, '<') !== false) {return false;}
+    if (strpos($string, '>') !== false) {return false;}
+    if (strpos($string, '*') !== false) {return false;}
+    if (strpos($string, '?') !== false) {return false;}
+    if (strpos($string, '|') !== false) {return false;}
+    if (strpos($string, ':') !== false) {return false;}
+    if (strpos($string, '/') !== false) {return false;}
+    if (strpos($string, '\/') !== false) {return false;}
+    return true;
+}
+
 function trimSides($string)
 {
     $string = ltrim($string);

@@ -26,11 +26,16 @@ function isAttatchedImageValid($target_file, $i)
 $numberOfFiles = sizeof($_FILES['product_attatched_image']["name"]);
 $gallery = [];
 for ($i = 0; $i < $numberOfFiles; $i++) {
+    $fileName = $_FILES["product_attatched_image"]["name"][$i];
     $img_target_dir = __DIR__ . "../../../../../img/product/";
-    $target_file = $img_target_dir . basename($_FILES["product_attatched_image"]["name"][$i]);
+    $target_file = $img_target_dir . basename($fileName);
     // if it's a valid file save it to disk
-    if (isAttatchedImageValid($target_file, $i) === true && !doesImageExist($_FILES["product_attatched_image"]["name"][$i])) {
-        array_push($gallery, $_FILES["product_attatched_image"]["name"][$i]);
+    if (
+        isValidFileName($fileName) === true
+        && isAttatchedImageValid($target_file, $i) === true
+        && !doesImageExist($fileName)
+    ) {
+        array_push($gallery, $fileName);
         move_uploaded_file($_FILES["product_attatched_image"]["tmp_name"][$i], $target_file);
     }
 }
