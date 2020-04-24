@@ -96,7 +96,7 @@ shopLib = (function() {
                     <p class='product__count'>${item.numberInStock}</p>
                     <button class='product__count-btn'>+</button>
                 </div>
-                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>Lägg i varukorgen</button>
+                <button class='product__add-btn'>Lägg i varukorgen</button>
             </div>
         </div>`;
       });

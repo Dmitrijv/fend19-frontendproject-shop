@@ -95,7 +95,7 @@ shopLib = (function() {
           )
           .concat(
             item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn ctrl-standard typ-subhed fx-bubbleUp'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
+            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
           );
       });
       productPanel.innerHTML = "";
