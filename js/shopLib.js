@@ -36,7 +36,7 @@ shopLib = (function() {
       });
     },
 
-    drawDefaultProductPanel: function(event) {
+    drawDefaultProductPanel: function() {
       const lib = this;
       const productInternal = `${INTERNAL_PATH}/products.php`;
       const redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
@@ -46,10 +46,8 @@ shopLib = (function() {
           let filteredList = productJson.filter(product => product.categoryId === redirectFilterId);
           lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
-          event.preventDefault();
         } else {
           lib.drawProductPanel(productJson);
-          event.preventDefault();
         }
       });
     },

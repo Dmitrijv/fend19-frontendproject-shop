@@ -30,7 +30,7 @@ shopLib = (function() {
         });
       });
     },
-    drawDefaultProductPanel: function drawDefaultProductPanel(event) {
+    drawDefaultProductPanel: function drawDefaultProductPanel() {
       var lib = this;
       var productInternal = "".concat(INTERNAL_PATH, "/products.php");
       var redirectFilterId = Number(sessionStorage.getItem("categoryFilterId"));
@@ -42,10 +42,8 @@ shopLib = (function() {
           });
           lib.drawProductPanel(filteredList);
           sessionStorage.setItem("categoryFilterId", -1);
-          event.preventDefault();
         } else {
           lib.drawProductPanel(productJson);
-          event.preventDefault();
         }
       });
     },
