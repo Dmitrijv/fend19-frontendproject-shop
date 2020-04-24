@@ -1,5 +1,7 @@
 .main__header {
-  position: fixed;
+  // position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: white;
   box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
@@ -52,6 +54,7 @@
     border-radius: 3px;
     color: white;
     margin-left: 8px;
+    padding: 12px;
 
     a {
       color: white;
@@ -106,7 +109,7 @@
       order: 2;
 
       button.open-overlay {
-  
+
         @media screen and (min-width: 800px) {
           background-color: #f60d4d;
           border: none;
@@ -193,13 +196,15 @@
 
 .img-cart,
 .img-search,
-.img-login {
+.img-login,
+.img-lastchance {
   max-width: 20px;
   max-height: 20px;
 }
 
 .img-cart,
-.img-login {
+.img-login,
+.img-lastchance {
   @media (min-width: 800px) {
     display: none;
   }
@@ -240,6 +245,23 @@
   }
 }
 
+/* For sista minut lightning svg */
+.lastchance-btn {
+  position: absolute;
+  top: 2vh;
+  right: 10vw;
+  padding: 13px;
+  max-width: 20px;
+  max-height: 20px;
+
+  @media screen and (min-width: 800px) {
+    position: static;
+    padding: 12px;
+    max-width: unset;
+    max-height: unset;
+  }
+}
+
 /* This is for dropdown menu */
 /* It should be visible only for width > 800px */
 .dropbtn,
@@ -274,7 +296,7 @@
     border-radius: 3px;
     color: white;
     margin-left: 8px;
-    padding: 10px;
+    padding: 12px;
   }
 
   .dropdown {

@@ -14,6 +14,7 @@ button.product__add-btn {
   color: white;
   font-weight: bold;
   -webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+  -o-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
   letter-spacing: 0.5px;
   border: 0px;
@@ -84,7 +85,7 @@ input {
   background-color: #f60d4d20;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   input {
     border: none;
   }
@@ -125,7 +126,9 @@ button {
 }
 
 .main__header {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: white;
   -webkit-box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
@@ -170,7 +173,7 @@ button {
   width: 100%;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .main__header__top .logo a {
     height: 100%;
   }
@@ -200,6 +203,7 @@ button {
   border-radius: 3px;
   color: white;
   margin-left: 8px;
+  padding: 12px;
 }
 
 .main__header__btn a {
@@ -326,6 +330,7 @@ button {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
+  -o-transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
@@ -338,6 +343,7 @@ button {
   z-index: 999999;
   opacity: 0.9;
   -webkit-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
@@ -355,11 +361,13 @@ button {
 .hamburger__bar-wrapper.active span:nth-child(1) {
   top: 11px;
   -webkit-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
 
 .hamburger__bar-wrapper.active span:nth-child(2) {
   -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
           transform: rotate(135deg);
   top: 1px;
 }
@@ -381,14 +389,16 @@ button {
 
 .img-cart,
 .img-search,
-.img-login {
+.img-login,
+.img-lastchance {
   max-width: 20px;
   max-height: 20px;
 }
 
 @media (min-width: 800px) {
   .img-cart,
-  .img-login {
+  .img-login,
+  .img-lastchance {
     display: none;
   }
 }
@@ -433,6 +443,25 @@ button {
   }
 }
 
+/* For sista minut lightning svg */
+.lastchance-btn {
+  position: absolute;
+  top: 2vh;
+  right: 10vw;
+  padding: 13px;
+  max-width: 20px;
+  max-height: 20px;
+}
+
+@media screen and (min-width: 800px) {
+  .lastchance-btn {
+    position: static;
+    padding: 12px;
+    max-width: unset;
+    max-height: unset;
+  }
+}
+
 /* This is for dropdown menu */
 /* It should be visible only for width > 800px */
 .dropbtn,
@@ -463,7 +492,7 @@ button {
     border-radius: 3px;
     color: white;
     margin-left: 8px;
-    padding: 10px;
+    padding: 12px;
   }
   .dropdown {
     position: relative;
@@ -542,6 +571,7 @@ button {
   top: 88px;
   left: 50%;
   -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
@@ -555,6 +585,7 @@ button {
   .cart {
     left: 50%;
     -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
     min-width: 400px;
     font-size: 14px;
@@ -727,6 +758,7 @@ button {
   .overlay > div {
     left: 50%;
     -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
     margin-top: 0;
     margin: auto;
@@ -748,13 +780,15 @@ button {
   border: none;
   border-radius: 3px;
   color: white;
-  margin-left: 8px;
   padding: 4px;
-  margin-top: 1em;
-  margin-right: 1em;
-  position: absolute;
-  top: 0;
-  right: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .open-overlay {
+    position: absolute;
+    right: 2vw;
+    top: 2vh;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -775,7 +809,6 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 80px;
   padding-top: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -798,7 +831,7 @@ main {
   overflow: hidden;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   main {
     overflow: unset;
   }
@@ -816,7 +849,7 @@ main {
   margin-bottom: 20px;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .product-container .grid-box {
     margin-bottom: 0;
   }
@@ -1376,7 +1409,7 @@ main {
 
 /* IE part ends here, but legend continues. */
 /* Here comes code for other browsers */
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .product-container {
     display: -ms-grid;
     display: grid;
@@ -1500,7 +1533,7 @@ div.product > div:nth-child(2) > button:nth-child(4) {
   background-color: #d1d39a;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .grid-box .grid-2 {
     display: -ms-grid;
     display: grid;
@@ -1581,6 +1614,7 @@ div.product > div > button:nth-child(4) {
 [class*="fx-"],
 [class*="fx-"]:hover {
   -webkit-transition: color 0.5s ease-in-out;
+  -o-transition: color 0.5s ease-in-out;
   transition: color 0.5s ease-in-out;
 }
 
@@ -1588,6 +1622,7 @@ div.product > div > button:nth-child(4) {
   position: relative;
   z-index: 1;
   -webkit-transition-delay: 0.2s !important;
+       -o-transition-delay: 0.2s !important;
           transition-delay: 0.2s !important;
   overflow: hidden;
 }
@@ -1602,6 +1637,7 @@ div.product > div > button:nth-child(4) {
 
 [class*="fx-bubble"]::after {
   -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1614,6 +1650,7 @@ div.product > div > button:nth-child(4) {
 [class*="fx-bubble"]:hover::after,
 [class*="fx-bubble"].active::after {
   -webkit-transition: height 0.5s ease-in-out;
+  -o-transition: height 0.5s ease-in-out;
   transition: height 0.5s ease-in-out;
   height: 300%;
 }
@@ -1624,6 +1661,7 @@ div.product > div > button:nth-child(4) {
 
 .fx-sliderIn::after {
   -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   top: 0;
   right: 0;
@@ -1635,6 +1673,7 @@ div.product > div > button:nth-child(4) {
 .fx-sliderIn:hover::after,
 .fx-sliderIn.active::after {
   -webkit-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
   width: 100%;
 }
@@ -1666,6 +1705,7 @@ div.product > div > button:nth-child(4) {
   z-index: 5555;
   width: 100%;
   -webkit-transition: left 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
 }
 
@@ -2039,7 +2079,7 @@ div.product > div > button:nth-child(4) {
   grid-template-rows: 250px 100px;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .searchContent .grid-box .grid-2 {
     height: 50px;
   }
@@ -2193,6 +2233,7 @@ section.order-confirmation .btn {
   border-radius: 0.25rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   font-family: "Lato", sans-serif;
@@ -2241,7 +2282,7 @@ section.order-confirmation button[disabled] {
 #p-main {
   overflow: visible;
   /* mobile */
-  margin-top: 110px;
+  margin-top: 2em;
 }
 
 @media all and (-ms-high-contrast: none) {
@@ -2298,7 +2339,7 @@ section.order-confirmation button[disabled] {
   max-width: 88vw;
 }
 
-@supports (display: grid) {
+@supports ((display: -ms-grid) or (display: grid)) {
   .single-product-page__body .wrapper {
     max-width: 1200px;
   }
@@ -2367,6 +2408,7 @@ section.order-confirmation button[disabled] {
   height: 100%;
   opacity: 0;
   -webkit-transition: opacity 2s;
+  -o-transition: opacity 2s;
   transition: opacity 2s;
 }
 
@@ -2400,6 +2442,7 @@ section.order-confirmation button[disabled] {
   left: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
@@ -2416,6 +2459,7 @@ section.order-confirmation button[disabled] {
   right: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 41px;
   height: 70px;
@@ -2450,6 +2494,7 @@ section.order-confirmation button[disabled] {
   font-size: calc(24px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   color: inherit;
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   text-align: center;
 }
@@ -2458,6 +2503,7 @@ section.order-confirmation button[disabled] {
   font-family: "Lato", sans-serif;
   margin: 0;
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   font-size: 18px;
   text-align: justify;
@@ -2465,6 +2511,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product__price {
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   margin: 0;
   text-align: center;
@@ -2480,6 +2527,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product__storage-count {
   -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   margin: 0;
   text-align: center;
@@ -2614,5 +2662,22 @@ section.order-confirmation button[disabled] {
 .checkout-form--hidden__total-price,
 .checkout-form--hidden--hidden__total-price {
   text-align: center;
+}
+
+#last-chance-main .content .product-container {
+  margin-top: 0;
+}
+
+#last-chance-main .content .product-container .product {
+  border: 1px solid #f60d4d;
+}
+
+#last-chance-main .discount-price {
+  color: #f60d4d;
+}
+
+#last-chance-main .discount-price::before {
+  content: "REA";
+  margin-right: 10px;
 }
 /*# sourceMappingURL=style.css.map */
