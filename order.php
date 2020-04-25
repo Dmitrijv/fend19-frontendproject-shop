@@ -71,25 +71,8 @@
                     </tr>
                 </thead>
                 <tbody class="order-list">
-                    <tr>
-                        <td class="item-image">
-                            <img class="product-cover-small" src="./img/product/4-cover.jpg" alt="Abstrakt Oljemplning - Sailor">
-                        </td>
-                        <td class="item-name">Sailor</td>
-                        <td class="item-qty">1</td>
-                        <td class="item-price">800 kr</td>
-                        <td class="item-total">800 kr</td>
-                    </tr>
-                    <tr>
-                        <td class="item-image">
-                            <img class="product-cover-small" src="./img/product/2-cover.jpg" alt="Tavla - Spike">
-                        </td>
-                        <td class="item-name">
-                            Tavla - Spike</td>
-                        <td class="item-qty">1</td>
-                        <td class="item-price">700 kr</td>
-                        <td class="item-total">700 kr</td>
-                    </tr>
+                    <!--
+                    example
                     <tr>
                         <td class="item-image">
                             <img class="product-cover-small" src="./img/product/5-cover.jpg" alt="Abstrakt Oljemålning - Dimensional Shift">
@@ -105,7 +88,7 @@
                         <td class="products-amount">3</td>
                         <td></td>
                         <td class="item-total">195 kr</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
             <a href="index.php"><button class="btn btn-info goback-Btn"> &lt; Till Startsidan</button></a>
@@ -115,17 +98,14 @@
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <!-- <script src="./js/ie11/sidebar.js"></script> -->
-    <!-- <script src="./js/sidebar.js"></script> -->
+    <script src="./js/ie11/sidebar.js"></script>
 
     <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
     <script type="text/javascript" src="./js/shopLib.js"></script>
-    <!-- <script type="text/javascript"> shopLib.drawCategorySelectors(); </script> -->
-    <!-- <script type="text/javascript"> shopLib.drawDefaultProductPanel(); </script> -->
+    <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
 
-    <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./js/cart.js"></script>
+    <script type="text/javascript" src="./js/ie11/cart.js"></script>
+
     <script type="text/javascript" src="./js/order.js"></script>
 
 </body>
