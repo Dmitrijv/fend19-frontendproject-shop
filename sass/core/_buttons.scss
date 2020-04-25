@@ -13,7 +13,14 @@ button.product__add-btn {
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
   letter-spacing: 0.5px;
   border: 0px;
+
   &:hover {
     background: #71bb0b;
+  }
+}
+
+.lastchance-btn {
+  &>a {
+    z-index: 20;
   }
 }

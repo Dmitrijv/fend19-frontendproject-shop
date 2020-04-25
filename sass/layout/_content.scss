@@ -9,8 +9,16 @@
 /* Keep product-content in center */
 .content {
   align-items: center;
-  margin-top: 80px;
   padding-top: 2em;
+
+  @media screen and (min-width:800px) {
+    padding-top: 0;
+  }
+
+  @supports (display: grid) {
+    padding-top: 2em;
+  }
+
   display: flex;
   flex-direction: column;
   min-height: 70vh;
@@ -45,6 +53,8 @@ main {
       margin-bottom: 0;
     }
 
+    /* In the beginning, the plan is to set these two grids template-rows as 3fr 2fr
+    But something changes later, however these names kept, so please don't get too confused */
     .grid-3 {
       background-size: cover;
       height: 250px;

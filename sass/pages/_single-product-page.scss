@@ -1,19 +1,8 @@
 #p-main {
   overflow: visible;
   /* mobile */
-  margin-top: 110px;
-
-  @media screen and (min-width: 800px) {
-    // margin-top: 80px;
-  }
-
-  @supports (display: grid) {
-    // margin-top: 350px;
-
-    @media screen and (min-width: 800px) {
-      // margin-top: 400px;
-    }
-  }
+  // margin-top: 110px;
+  margin-top: 2em;
 }
 
 @media all and (-ms-high-contrast: none) {
@@ -22,6 +11,7 @@
   *::-ms-backdrop,
   #p-main {
     margin-bottom: 100px;
+    margin-top: 100px;
   }
 
   .wrapper {
@@ -31,7 +21,16 @@
   // Hide scroll bar on x-axis, just for IE
   .single-product-page__body {
     -ms-overflow-x: hidden;
-    -ms-overflow-style: none;
+    // -ms-overflow-style: none;//TODO: Don't know how it will look like if tooo many items in cart.
+  }
+}
+
+@media all and (-ms-high-contrast: none) and (min-width:800px) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  #p-main {
+    margin-top: 80px;
   }
 }
 
@@ -55,15 +54,14 @@
 
   .wrapper {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    width: 93%;
     margin: 0 auto;
     max-width: 88vw;
-    // margin-bottom: 50px;
 
     @supports (display: grid) {
       max-width: 1200px;
-      // margin: 44vh auto 0;
     }
 
     .single-product {
@@ -74,22 +72,22 @@
       scrollbar-color: transparent transparent;
       display: grid;
       top: 15px;
-      // -ms-grid-rows: 300px 275px;
       -ms-grid-rows: 40vh 275px;
       -ms-grid-columns: 1fr;
-      // grid-template-rows: 300px 1fr;
       grid-template-rows: 40vh 1fr;
       min-width: 80vw;
       max-width: 1000px;
+      width: 80%; //for IE
+
+      @supports (display: grid) {
+        width: 100%;
+      }
+
 
       @media screen and (min-width: 800px) {
         min-width: 70vw;
         max-width: 1200px;
-
-        // grid-template-rows: 635px 1fr;
-        // grid-template-rows: 435px 275px;
         grid-template-rows: 435px min-content;
-        // -ms-grid-rows: 435px 275px;
         -ms-grid-rows: 435px min-content;
         -ms-grid-columns: 1fr;
       }
@@ -112,7 +110,7 @@
 
         .banner-img {
           background-size: cover;
-          background-position: center;
+          background-position: 20% 25%;
           display: block;
           height: 100%;
         }
@@ -183,13 +181,15 @@
       }
 
       .p-grid-2 {
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
         -ms-grid-row: 2;
+        &>*:not(:last-child){
+          padding: 10px 0;
+        }
       }
 
-      article {
+      .wrapper {
+        display: flex;
+        justify-content: center;
         width: 93%;
         margin: 20px auto;
       }
@@ -209,6 +209,13 @@
         transition: all 0.2s;
         font-size: 18px;
         text-align: justify;
+        /* IE setting */
+        padding: 10px 30px;
+
+        /* Reset */
+        @supports (display: grid) {
+          // padding: 0;
+        }
       }
 
       &__price {
@@ -230,20 +237,16 @@
         color: $green;
         font-size: 16px;
 
-        @media screen and (min-width: 800px) {
-          margin-top: 2rem;
-        }
-      }
-
-      @media (min-width: 480px) {
-        .single-product__title {
-          // Fluid font-size added
-          font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+        @supports (display: grid) {
+          max-width: 1200px;
+          // margin: 44vh auto 0;
         }
 
-        .single-product__text,
-        .single-product__storage-count {
-          font-size: 1.4rem;
+        @media (min-width: 480px) {
+          .single-product__title {
+            // Fluid font-size added
+            font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+          }
         }
       }
     }
