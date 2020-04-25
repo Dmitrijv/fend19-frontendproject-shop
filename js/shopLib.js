@@ -76,6 +76,8 @@ shopLib = (function() {
     },
 
     drawProductPanel: function(productJson) {
+      const lib = this;
+      productJson = lib.shuffle(productJson);
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
       productJson.forEach(item => {
@@ -318,6 +320,10 @@ shopLib = (function() {
           errmsg.classList.add("hidden");
         }
       });
+    },
+
+    shuffle: function(array) {
+      return array.sort(() => Math.random() - 0.5);
     }
   };
 

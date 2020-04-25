@@ -72,6 +72,8 @@ shopLib = (function() {
       event.preventDefault();
     },
     drawProductPanel: function drawProductPanel(productJson) {
+      var lib = this;
+      productJson = lib.shuffle(productJson);
       var productPanel = document.querySelector("div#productPanel");
       var cardHtml = "";
       productJson.forEach(function(item) {
@@ -324,6 +326,11 @@ shopLib = (function() {
         } else {
           errmsg.classList.add("hidden");
         }
+      });
+    },
+    shuffle: function shuffle(array) {
+      return array.sort(function() {
+        return Math.random() - 0.5;
       });
     }
   };
