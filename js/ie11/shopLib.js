@@ -271,11 +271,11 @@ shopLib = (function() {
             .concat(item.price, " ")
             .concat(
               item.currency,
-              "</div>\n                <div class='product__count-container'>\n                  <button class='product__count-btn'>-</button>\n                  <p class='product__count'>"
+              "</div>\n                <div class='product__count-container'>\n                  <button class='hidden product__count-btn'>-</button>\n                  <p class='product__count'>"
             )
             .concat(
               item.numberInStock,
-              "</p>\n                  <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n              </div>\n            </div>"
+              "</p>\n                  <button class='hidden product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n              </div>\n            </div>"
             );
         });
         lastChancePanel.innerHTML += cardHtml;
@@ -317,11 +317,11 @@ shopLib = (function() {
             .concat(item.price, " ")
             .concat(
               item.currency,
-              "</div>\n                  <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
+              "</div>\n                  <div class='product__count-container'>\n                    <button class='hidden product__count-btn'>-</button>\n                    <p class='product__count'>"
             )
             .concat(
               item.numberInStock,
-              "</p>\n                    <button class='product__count-btn'>+</button>\n                  </div>\n                  <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                </div>\n              </div>"
+              "</p>\n                    <button class='hidden product__count-btn'>+</button>\n                  </div>\n                  <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                </div>\n              </div>"
             );
         });
         latestProductsPanel.innerHTML += cardHtml;

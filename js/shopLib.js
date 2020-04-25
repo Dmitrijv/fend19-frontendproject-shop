@@ -265,9 +265,9 @@ shopLib = (function() {
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price discount-price'>${item.price} ${item.currency}</div>
                 <div class='product__count-container'>
-                  <button class='product__count-btn'>-</button>
+                  <button class='hidden product__count-btn'>-</button>
                   <p class='product__count'>${item.numberInStock}</p>
-                  <button class='product__count-btn'>+</button>
+                  <button class='hidden product__count-btn'>+</button>
                 </div>
                 <button class='product__add-btn'>Lägg i varukorgen</button>
               </div>
@@ -308,9 +308,9 @@ shopLib = (function() {
                   <p class='product__title'>${item.title}</p>
                   <div class='product__price special-price'>${item.price} ${item.currency}</div>
                   <div class='product__count-container'>
-                    <button class='product__count-btn'>-</button>
+                    <button class='hidden product__count-btn'>-</button>
                     <p class='product__count'>${item.numberInStock}</p>
-                    <button class='product__count-btn'>+</button>
+                    <button class='hidden product__count-btn'>+</button>
                   </div>
                   <button class='product__add-btn'>Lägg i varukorgen</button>
                 </div>

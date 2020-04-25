@@ -2646,7 +2646,7 @@ section.order-confirmation button[disabled] {
 }
 
 #latest-products-main .special-price {
-  color: #1eeaac;
+  color: green;
 }
 
 #latest-products-main .special-price::before {
