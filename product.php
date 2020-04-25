@@ -1,3 +1,39 @@
+<?php
+
+if (!isset($_GET['productId']) || !is_numeric($_GET['productId'])) {
+    header("Location: error.php");
+    die;
+}
+
+require_once __DIR__ . "/php/controller/controller.php";
+
+$productId = intval($_GET['productId']);
+$product = getProductById($productId);
+
+if (!isset($product['title'])) {
+    header("Location: error.php");
+    die;
+}
+
+// build gallery html
+$gallery = getProductImages($productId);
+$galleryHtml = '';
+
+foreach ($gallery as &$fileName) {
+    $galleryHtml = $galleryHtml . '
+        <div class="banner" style="opacity: 1;">
+            <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
+        </div>
+    ';
+}
+
+$gallerySelectors = '<span class="on"></span>';
+for ($i = 0; $i < count($gallery) - 1; $i++) {
+    $gallerySelectors = $gallerySelectors . '<span class=""></span>';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +59,9 @@
     <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="p-main">
+
         <div class="wrapper">
+
             <div class="single-product">
                 <div class="p-grid-1">
                     <!-- Here comes structure instruction -->
@@ -32,69 +70,52 @@
                     <!-- div.tab>span should have equivalent  amount elements as images amount. -->
                     <!-- Now autoplay.js should be able to control auto-play according to how many pictures there are in this div. -->
                     <div id="wrap">
-                        <div class="banner" style="opacity: 1;">
-                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1554188248-986adbb73be4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
-                            </div>
-                        </div>
 
-                        <div class="banner" style="opacity: 0;">
-                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1558879787-4c4aea1fbb83?ixlib=rb-1.2.1&auto=format&fit=crop&w=932&q=80)">
-                            </div>
-                        </div>
-
-                        <div class="banner" style="opacity: 0;">
-                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1521208916306-71fce562015a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)">
-                            </div>
-                        </div>
-
-                        <div class="banner" style="opacity: 0;">
-                            <div class="banner-img" style="background-image: url(https://images.unsplash.com/photo-1587491439780-f5a8885888e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80)">
-                            </div>
-                        </div>
+                        <?php echo $galleryHtml; ?>
 
                         <div class="tab">
-                            <span class="on"></span>
-                            <span class=""></span>
-                            <span class=""></span>
-                            <span class=""></span>
+                            <?php echo $gallerySelectors; ?>
                         </div>
 
                         <div class="prev"></div>
                         <div class="next"></div>
                     </div>
                 </div>
-
                 <div class="p-grid-2">
                     <article>
-                        <h1 class="single-product__title">Title</h1>
+                        <h1 class="single-product__title">
+                            <?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>
+                        </h1>
                         <p class="single-product__text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Animi nemo eos odit voluptates veritatis, et voluptatum.
-                            Qui culpa excepturi mollitia, ducimus consequatur a
-                            animi sunt vitae suscipit? Aut, deserunt tempora.
+                            <?php echo htmlspecialchars($product['description'], ENT_QUOTES, 'UTF-8'); ?>
                         </p>
                     </article>
-                    <p class="single-product__storage-count">Storage-count</p>
+                    <p class="single-product__price">
+                        <?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr
+                    </p>
+                    <p class="single-product__storage-count">
+                        <?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?> st i lager
+                    </p>
                 </div>
             </div>
         </div>
     </main>
 
-
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <!-- <script src="./js/ie11/sidebar.js"></script> -->
+    <script src="./js/ie11/sidebar.js"></script>
     <!-- <script src="./js/sidebar.js"></script> -->
 
-    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
+    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
     <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
-    <!-- <script type="text/javascript"> shopLib.drawCategorySelectors(); </script> -->
-    <!-- <script type="text/javascript"> shopLib.drawDefaultProductPanel(); </script> -->
+    <script type="text/javascript">
+        shopLib.drawCategorySelectors();
+    </script>
 
     <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
     <script type="text/javascript" src="./js/cart.js"></script>
-
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
+    <script type="text/javascript" src="./js/ie11/cartOverlay.js"></script>
 </body>
 
 </html>

@@ -3,11 +3,12 @@
         <div class="logo"><a href="index.php"><img src="img/svg/Logo_SVG.svg" alt="Logo Image"></a></div>
         <nav class="nav">
             <div class="nav__item">
-                <button class="main__header__btn login-btn"><a href=""><img class="img-login" src="./img/svg/login-mob.svg" alt="">
+                <!-- <button class="main__header__btn login-btn"><a href=""><img class="img-login" src="./img/svg/login-mob.svg" alt="">
                         <a href="#">
                             <p class="desktop-text">Logga in</p>
                         </a>
-                </button>
+                </button> -->
+                <button class="main__header__btn lastchance-btn"><a href="lastChance.php"><img class="img-lastchance" src="./img/svg/lightning.svg" alt="A lightning svg"></a><a href="lastChance.php"><p class="desktop-text"> Sista Chansen</p></a></button>
                 <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg"><p class="desktop-text">Varukorg</p></button>
             </div>
             <div class="nav__item main__header__search">

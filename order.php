@@ -18,9 +18,9 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="order-main">
         <div class='emptyOrderMessage hidden'>Du har inte beställt ändå!</div>
@@ -43,25 +43,21 @@
                     <dt>Phone</dt>
                     <dd>123 123 123</dd>
                     <dt>Postal address</dt>
-                    <dd>Tomtebodavägen 3A, 171 65 Solna</dd>
+                    <dd>Tomtebodavägen 3A, </br> 171 65 Solna</dd>
                     <dt>Beställningsnummer:</dt>
                     <dd>100713104</dd>
                     <dt>Beställningsdatum:</dt>
                     <dd class="dateToday">2020/4/22 19:57:20</dd>
-                    <dt>Totalpris:</dt>
-                    <dd class="totalPrice">195.85 kr</dd>
                 </dl>
-                <p>Kontrollera att dina uppgifter ovan stämmer.</p>
             </div>
 
             <table>
                 <thead class="font-bold">
                     <tr>
                         <th>
-                            Image
+                            Produkt
                         </th>
                         <th>
-                            Produkt
                         </th>
                         <th>
                             Antal
@@ -79,11 +75,10 @@
                         <td class="item-image">
                             <img class="product-cover-small" src="./img/product/4-cover.jpg" alt="Abstrakt Oljemplning - Sailor">
                         </td>
-                        <td class="item-name">
-                            Abstrakt Oljemplning - Sailor</td>
+                        <td class="item-name">Sailor</td>
                         <td class="item-qty">1</td>
                         <td class="item-price">800 kr</td>
-                        <td class="item-total">800.00 kr</td>
+                        <td class="item-total">800 kr</td>
                     </tr>
                     <tr>
                         <td class="item-image">
@@ -93,34 +88,32 @@
                             Tavla - Spike</td>
                         <td class="item-qty">1</td>
                         <td class="item-price">700 kr</td>
-                        <td class="item-total">700.00 kr</td>
+                        <td class="item-total">700 kr</td>
                     </tr>
                     <tr>
                         <td class="item-image">
                             <img class="product-cover-small" src="./img/product/5-cover.jpg" alt="Abstrakt Oljemålning - Dimensional Shift">
                         </td>
-                        <td class="item-name">
-                            Abstrakt Oljemålning - Dimensional Shift</td>
+                        <td class="item-name">Dimensional Shift</td>
                         <td class="item-qty">1</td>
                         <td class="item-price">750 kr</td>
-                        <td class="item-total">750.00 kr</td>
+                        <td class="item-total">750 kr</td>
                     </tr>
                     <tr class="font-bold">
                         <td>Totalt:</td>
                         <td></td>
                         <td class="products-amount">3</td>
                         <td></td>
-                        <td class="item-total">195.85 kr</td>
+                        <td class="item-total">195 kr</td>
                     </tr>
                 </tbody>
             </table>
+            <a href="index.php"><button class="btn btn-info goback-Btn"> &lt; Till Startsidan</button></a>
 
-            <button class="btn btn-info goback-Btn"> &lt; Tillbaka</button>
-            <button class="btn btn-success confirm-order-button">Bekräfta order</button>
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- <script src="./js/ie11/sidebar.js"></script> -->
     <!-- <script src="./js/sidebar.js"></script> -->
