@@ -22,7 +22,7 @@ $selectProducts = DB::run("
     WHERE product.category_id = product_category.id
     AND product.id = price_of_product.product_id
     AND currency.id = price_of_product.currency_id
-    ORDER BY id ASC
+    ORDER BY id DESC
     LIMIT 4
 ");
 
