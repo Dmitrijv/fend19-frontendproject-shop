@@ -3,19 +3,14 @@ const cart = document.querySelector(".cart");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 const clearBtn = document.querySelector(".cart__erase");
 const totalSum = document.querySelector(".total-sum");
+const overlayClick = document.querySelector(".overlay");
 clearBtn.addEventListener("click", clearCart);
+cartBtn.addEventListener("click", toggleCart);
+cartCloseBtn.addEventListener("click", toggleCart);
 
-cartBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
-});
-
-cartCloseBtn.addEventListener("click", (e) => {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
-});
+function toggleCart() {
+  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
+}
 function clearCart() {
   localStorage.clear();
   clearBtn.nextElementSibling.innerHTML = "";
@@ -66,7 +61,6 @@ function fillCartList(fromClick) {
   updateSum(getLs);
   changeQty(getLs);
 }
-
 const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card

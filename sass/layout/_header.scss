@@ -1,5 +1,17 @@
+@media all and (-ms-high-contrast: none) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  .main__header {
+    position: fixed;
+  }
+
+  main {
+    margin-top: 100px; //mobile
+  }
+}
+
 .main__header {
-  // position: fixed;
   position: sticky;
   top: 0;
   width: 100%;
@@ -18,10 +30,10 @@
 
     @media all and (-ms-high-contrast: none) {
 
+      /* IE11 */
       *::-ms-backdrop,
       .logo {
         padding-top: 10px;
-        /* IE11 */
       }
     }
 
@@ -202,6 +214,12 @@
   max-height: 20px;
 }
 
+.img-lastchance {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+}
+
 .img-cart,
 .img-login,
 .img-lastchance {
@@ -251,8 +269,11 @@
   top: 2vh;
   right: 10vw;
   padding: 13px;
-  max-width: 20px;
-  max-height: 20px;
+
+  @supports(display: grid) {
+    max-width: 20px;
+    max-height: 20px;
+  }
 
   @media screen and (min-width: 800px) {
     position: static;

@@ -8,8 +8,8 @@
                             <p class="desktop-text">Logga in</p>
                         </a>
                 </button> -->
-                <button class="main__header__btn latestproducts-btn"><a href="latestProducts.php"><img class="img-latestproducts" src="./img/svg/lightning.svg" alt="A lightning svg"></a><a href="latestProducts.php"><p class="desktop-text">Senaste Produkter</p></a></button>
-                <button class="main__header__btn lastchance-btn"><a href="lastChance.php"><img class="img-lastchance" src="./img/svg/lightning.svg" alt="A lightning svg"></a><a href="lastChance.php"><p class="desktop-text"> Sista Chansen</p></a></button>
+                <button class="main__header__btn latestproducts-btn"><a href="latestProducts.php"><img class="img-latestproducts" src="" alt=""></a><a href="latestProducts.php"><p class="desktop-text">Senaste Produkter</p></a></button>
+                <button class="main__header__btn lastchance-btn"><a href="lastChance.php"><img class="img-lastchance" src="./img/svg/bolt.png" alt="A lightning svg"></a><a href="lastChance.php"><p class="desktop-text"> Sista Chansen</p></a></button>
                 <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg"><p class="desktop-text">Varukorg</p></button>
             </div>
             <div class="nav__item main__header__search">
