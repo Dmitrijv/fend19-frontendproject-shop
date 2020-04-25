@@ -2525,20 +2525,20 @@ section.order-confirmation button[disabled] {
   }
 }
 
-#last-chance-main .content .product-container {
+#latest-products-main .content .product-container {
   margin-top: 0;
 }
 
-#last-chance-main .content .product-container .product {
-  border: 1px solid #f60d4d;
+#latest-products-main .content .product-container .product {
+  border: 3px solid #1eeaac;
 }
 
-#last-chance-main .discount-price {
-  color: #f60d4d;
+#latest-products-main .special-price {
+  color: #1eeaac;
 }
 
-#last-chance-main .discount-price::before {
-  content: "REA";
+#latest-products-main .special-price::before {
+  content: "NYTT";
   margin-right: 10px;
 }
 

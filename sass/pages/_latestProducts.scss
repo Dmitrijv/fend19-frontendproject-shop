@@ -4,16 +4,16 @@
             margin-top: 0;
 
             .product {
-                border: 1px solid $red;
+                border: 3px solid #1eeaac;
             }
         }
     }
 
-    .discount-price {
-        color: $red;
+    .special-price {
+        color: #1eeaac;
 
         &::before {
-            content: "REA";
+            content: "NYTT";
             margin-right: 10px;
         }
     }

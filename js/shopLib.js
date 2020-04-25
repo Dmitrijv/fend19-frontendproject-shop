@@ -346,7 +346,7 @@ shopLib = (function () {
                 </a>
                 <div class='grid-2'>
                   <p class='product__title'>${item.title}</p>
-                  <div class='product__price discount-price'>${item.price} ${item.currency}</div>
+                  <div class='product__price special-price'>${item.price} ${item.currency}</div>
                   <div class='product__count-container'>
                     <button class='product__count-btn'>-</button>
                     <p class='product__count'>${item.numberInStock}</p>
