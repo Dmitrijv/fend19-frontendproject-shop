@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 
     @media all and (-ms-high-contrast: none) {
 
@@ -86,18 +87,14 @@
       padding-left: 8px;
     }
 
-    @media (min-width: 800px) {
-      margin-top: 0;
+    input {
 
-      input {
-        // min-width: 260px;
-        min-width: 200px;
+      @media screen and (max-width:781px) and (min-width:800px) {
+        min-width: 20vw;
       }
-    }
 
-    @media (min-width: 930px) {
-      input {
-        min-width: 260px;
+      @media (min-width: 930px) {
+        min-width: 220px;
       }
     }
   }
@@ -107,6 +104,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width:935px) and (min-width:800px) {
+    button {
+      padding: 9px !important;
+    }
+  }
+
+  .nav-item {
+    display: flex;
+  }
 
   @media (min-width: 800px) {
     margin-top: 1.5em;
@@ -209,6 +216,7 @@
 .img-cart,
 .img-search,
 .img-login,
+.img-latestproducts,
 .img-lastchance {
   max-width: 20px;
   max-height: 20px;
@@ -222,6 +230,7 @@
 
 .img-cart,
 .img-login,
+.img-latestproducts,
 .img-lastchance {
   @media (min-width: 800px) {
     display: none;
@@ -263,7 +272,31 @@
   }
 }
 
-/* For sista minut lightning svg */
+/* For lastest products svg */
+.latestproducts-btn {
+  position: absolute;
+  top: 2vh;
+  right: 18vw;
+  padding: 13px;
+  width: 12px;
+  height: 12px;
+
+  @supports(display: grid) {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  @media screen and (min-width: 800px) {
+    position: static;
+    padding: 12px;
+    max-width: unset;
+    max-height: unset;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* For sista minut (last minute) lightning svg */
 .lastchance-btn {
   position: absolute;
   top: 2vh;
