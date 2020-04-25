@@ -21,4 +21,12 @@
 
 .product.oldProduct {
   border: 1px solid $oldItemBorder !important;
+  .product__title::before {
+    content: "REA";
+    margin-right: 10px;
+    color: $oldItemBorder;
+    content: "REA";
+    font-weight: bold;
+    margin-right: 10px;
+  }
 }

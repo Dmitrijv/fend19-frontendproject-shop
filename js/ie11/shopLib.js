@@ -78,6 +78,12 @@ shopLib = (function() {
       var cardHtml = "";
       productJson.forEach(function(item) {
         var classString = item.new == true ? "newProduct" : item.old == true ? "oldProduct" : "";
+        var price = Number(item.price);
+
+        if (item.old) {
+          price = Math.floor(price * 0.9);
+        }
+
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += "\n                <div id='"
@@ -92,14 +98,14 @@ shopLib = (function() {
             ")\"></div>\n                    </a>\n                    <div class='grid-2'>\n                        <p class='product__title'>"
           )
           .concat(item.title, "</p>\n                        <div class='product__price'>")
-          .concat(item.price, " ")
+          .concat(price, " ")
           .concat(
             item.currency,
-            "</div>\n                        <div class='product__count-container'>\n                            <button class='product__count-btn'>-</button>\n                            <p class='product__count'>"
+            "</div>\n                        <div class='product__count-container'>\n                            <button class='hidden product__count-btn'>-</button>\n                            <p class='product__count'>"
           )
           .concat(
             item.numberInStock,
-            "</p>\n                            <button class='product__count-btn'>+</button>\n                        </div>\n                        <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                    </div>\n                </div>"
+            "</p>\n                            <button class='hidden product__count-btn'>+</button>\n                        </div>\n                        <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                    </div>\n                </div>"
           );
       });
       productPanel.innerHTML = "";
