@@ -43,7 +43,7 @@ main {
 .product-container {
   display: -ms-grid;
   -ms-grid-columns: 300px;
-  margin: auto;
+  margin: 0 auto;
   overflow: hidden;
 
   .grid-box {
@@ -94,7 +94,7 @@ $elements: 12;
 @media screen and (max-width: 975px) and (min-width: 650px) {
   .product-container {
     -ms-grid-columns: 300px 2em 300px;
-    margin: auto;
+    margin: 0 auto;
   }
 
   $elements: 12;
@@ -116,7 +116,7 @@ $elements: 12;
 @media screen and (max-width: 1360px) and (min-width: 976px) {
   .product-container {
     -ms-grid-columns: 300px 2rem 300px 2rem 300px;
-    margin: auto;
+    margin: 0 auto;
   }
 
   $elements: 12;
@@ -147,7 +147,7 @@ $elements: 12;
 @media screen and (min-width: 1360px) {
   .product-container {
     -ms-grid-columns: 300px 3rem 300px 3rem 300px 3rem 300px; //control max-width of each card
-    margin: auto;
+    margin: 0 auto;
   }
 
   $elements: 12;
