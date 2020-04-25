@@ -21,7 +21,7 @@
   // Hide scroll bar on x-axis, just for IE
   .single-product-page__body {
     -ms-overflow-x: hidden;
-    -ms-overflow-style: none;
+    // -ms-overflow-style: none;//TODO: Don't know how it will look like if tooo many items in cart.
   }
 }
 

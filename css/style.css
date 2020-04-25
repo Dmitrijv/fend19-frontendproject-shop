@@ -462,8 +462,13 @@ button {
   top: 2vh;
   right: 10vw;
   padding: 13px;
-  max-width: 20px;
-  max-height: 20px;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
+  .lastchance-btn {
+    max-width: 20px;
+    max-height: 20px;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -872,6 +877,8 @@ main {
 
 .product-container .grid-box {
   margin-bottom: 20px;
+  /* In the beginning, the plan is to set these two grids template-rows as 3fr 2fr
+    But something changes later, however these names kept, so please don't get too confused */
 }
 
 @supports ((display: -ms-grid) or (display: grid)) {
@@ -2322,7 +2329,6 @@ section.order-confirmation button[disabled] {
   }
   .single-product-page__body {
     -ms-overflow-x: hidden;
-    -ms-overflow-style: none;
   }
 }
 
