@@ -26,7 +26,7 @@
 
 
     <main id="checkout-main">
-    <h1 class="checkout-main__h1">Kunduppgifter</h1>
+    <h1 class="checkout-main__h1">Kassa</h1>
 
         <form action="order.php" class="checkout-form">
 

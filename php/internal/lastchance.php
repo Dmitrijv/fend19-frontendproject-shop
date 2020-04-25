@@ -1,6 +1,6 @@
 <?php
 
-// don't allow direct access through the browser
+// don't allow get requests
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
     header('HTTP/1.0 403 Forbidden', true, 403);
     die();
@@ -23,7 +23,7 @@ $selectProducts = DB::run("
     AND product.id = price_of_product.product_id
     AND currency.id = price_of_product.currency_id
     ORDER BY id ASC
-    LIMIT 4
+    LIMIT 2
 ");
 
 $response = [];
