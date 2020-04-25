@@ -2638,7 +2638,7 @@ section.order-confirmation button[disabled] {
 }
 
 #latest-products-main .content .product-container .product {
-  border: 2px solid #218838;
+  border: 1px solid #218838;
 }
 
 #latest-products-main .special-price {
@@ -2651,7 +2651,7 @@ section.order-confirmation button[disabled] {
 }
 
 .product.newProduct {
-  border: 2px solid #218838 !important;
+  border: 1px solid #218838 !important;
 }
 
 #checkout-main {
@@ -2834,7 +2834,7 @@ section.order-confirmation button[disabled] {
 }
 
 #last-chance-main .content .product-container .product {
-  border: 2px solid #f60d4d;
+  border: 1px solid #f60d4d;
 }
 
 #last-chance-main .discount-price {
@@ -2847,6 +2847,6 @@ section.order-confirmation button[disabled] {
 }
 
 .product.oldProduct {
-  border: 2px solid red !important;
+  border: 1px solid red !important;
 }
 /*# sourceMappingURL=style.css.map */

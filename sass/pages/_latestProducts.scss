@@ -4,7 +4,7 @@
       margin-top: 0;
 
       .product {
-        border: 2px solid $newItemBorder;
+        border: 1px solid $newItemBorder;
       }
     }
   }
@@ -20,5 +20,5 @@
 }
 
 .product.newProduct {
-  border: 2px solid $newItemBorder !important;
+  border: 1px solid $newItemBorder !important;
 }
