@@ -75,27 +75,29 @@ shopLib = (function() {
       var productPanel = document.querySelector("div#productPanel");
       var cardHtml = "";
       productJson.forEach(function(item) {
+        var classString = item.new == true ? "newProduct" : item.old == true ? "oldProduct" : "";
         var coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-        cardHtml += "\n        <div id='"
-          .concat(item.id, "' class='product grid-box'>\n            <a href='product.php?productId=")
+        cardHtml += "\n                <div id='"
+          .concat(item.id, "' class='product grid-box ")
+          .concat(classString, "'>\n                    <a href='product.php?productId=")
           .concat(
             item.id,
-            "'>\n                <div class='product__img-wrapper grid-3' style=\"background-image: url("
+            "'>\n                        <div class='product__img-wrapper grid-3' style=\"background-image: url("
           )
           .concat(
             coverImage,
-            ")\"></div>\n            </a>\n            <div class='grid-2'>\n                <p class='product__title'>"
+            ")\"></div>\n                    </a>\n                    <div class='grid-2'>\n                        <p class='product__title'>"
           )
-          .concat(item.title, "</p>\n                <div class='product__price'>")
+          .concat(item.title, "</p>\n                        <div class='product__price'>")
           .concat(item.price, " ")
           .concat(
             item.currency,
-            "</div>\n                <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
+            "</div>\n                        <div class='product__count-container'>\n                            <button class='product__count-btn'>-</button>\n                            <p class='product__count'>"
           )
           .concat(
             item.numberInStock,
-            "</p>\n                    <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n            </div>\n        </div>"
+            "</p>\n                            <button class='product__count-btn'>+</button>\n                        </div>\n                        <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                    </div>\n                </div>"
           );
       });
       productPanel.innerHTML = "";
@@ -227,6 +229,102 @@ shopLib = (function() {
     },
     clearShoppingCart: function clearShoppingCart() {
       localStorage.setItem("products", JSON.stringify({}));
+    },
+    testPrint: function testPrint() {
+      var lib = this;
+      console.log("hi");
+    },
+    // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------
+    drawLastChancePanel: function drawLastChancePanel() {
+      var lib = this;
+      var lastChanceInternalUrl = "".concat(INTERNAL_PATH, "/lastchance.php"); //cache selectors
+
+      var lastChancePanel = document.querySelector("#lastChancePanel");
+      var cardHtml = "";
+      lastChancePanel.innerHTML = "";
+      console.log("hi"); // get category json from Internal
+
+      lib.loadJsonByXhr(lastChanceInternalUrl, function(lastChanceJson) {
+        // iterate over all categories
+        lastChanceJson.forEach(function(item) {
+          var coverImage =
+            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
+          cardHtml += "\n            <div id='"
+            .concat(item.id, "' class='product grid-box'>\n              <a href='product.php?productId=")
+            .concat(
+              item.id,
+              "'>\n                <div class='product__img-wrapper grid-3' style=\"background-image: url("
+            )
+            .concat(
+              coverImage,
+              ")\"></div>\n              </a>\n              <div class='grid-2'>\n                <p class='product__title'>"
+            )
+            .concat(item.title, "</p>\n                <div class='product__price discount-price'>")
+            .concat(item.price, " ")
+            .concat(
+              item.currency,
+              "</div>\n                <div class='product__count-container'>\n                  <button class='product__count-btn'>-</button>\n                  <p class='product__count'>"
+            )
+            .concat(
+              item.numberInStock,
+              "</p>\n                  <button class='product__count-btn'>+</button>\n                </div>\n                <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n              </div>\n            </div>"
+            );
+        });
+        lastChancePanel.innerHTML += cardHtml;
+        var errmsg = document.querySelector(".emptyLastChanceMessage");
+
+        if (cardHtml.length === 0) {
+          errmsg.classList.remove("hidden");
+        } else {
+          errmsg.classList.add("hidden");
+        }
+      });
+    },
+    // Draw Latest Products Panel -------------------------------------------------------------------------------------------------------------
+    drawLatestProductsPanel: function drawLatestProductsPanel() {
+      var lib = this;
+      var latestProductsInternalUrl = "".concat(INTERNAL_PATH, "/latestproducts.php"); //cache selectors
+
+      var latestProductsPanel = document.querySelector("#latestProductsPanel");
+      var cardHtml = "";
+      latestProductsPanel.innerHTML = "";
+      console.log("hi"); // get category json from Internal
+
+      lib.loadJsonByXhr(latestProductsInternalUrl, function(latestProductsJson) {
+        // iterate over all categories
+        latestProductsJson.forEach(function(item) {
+          var coverImage =
+            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
+          cardHtml += "\n              <div id='"
+            .concat(item.id, "' class='product grid-box'>\n                <a href='product.php?productId=")
+            .concat(
+              item.id,
+              "'>\n                  <div class='product__img-wrapper grid-3' style=\"background-image: url("
+            )
+            .concat(
+              coverImage,
+              ")\"></div>\n                </a>\n                <div class='grid-2'>\n                  <p class='product__title'>"
+            )
+            .concat(item.title, "</p>\n                  <div class='product__price special-price'>")
+            .concat(item.price, " ")
+            .concat(
+              item.currency,
+              "</div>\n                  <div class='product__count-container'>\n                    <button class='product__count-btn'>-</button>\n                    <p class='product__count'>"
+            )
+            .concat(
+              item.numberInStock,
+              "</p>\n                    <button class='product__count-btn'>+</button>\n                  </div>\n                  <button class='product__add-btn'>L\xE4gg i varukorgen</button>\n                </div>\n              </div>"
+            );
+        });
+        latestProductsPanel.innerHTML += cardHtml;
+        var errmsg = document.querySelector(".emptyLatestProductsMessage");
+
+        if (cardHtml.length === 0) {
+          errmsg.classList.remove("hidden");
+        } else {
+          errmsg.classList.add("hidden");
+        }
+      });
     }
   };
   return shopLib;

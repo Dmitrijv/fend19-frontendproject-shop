@@ -19,8 +19,11 @@ a {
 }
 
 $red: #f60d4d; // for red btn
-$green:  #9fa255; // primary green
+$green: #9fa255; // primary green
 $green-light: #d1d39a; // become lighter when hover
 $darkgreen: #218838;
 $lightgrey: #3c3c3c; //for dropdown menu item hover
 $black: #333;
+
+$oldItemBorder: red;
+$newItemBorder: $darkgreen;

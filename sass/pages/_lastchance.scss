@@ -4,8 +4,7 @@
       margin-top: 0;
 
       .product {
-        border: 1px solid $red;
-
+        border: 2px solid $red;
       }
     }
   }
@@ -18,4 +17,8 @@
       margin-right: 10px;
     }
   }
+}
+
+.product.oldProduct {
+  border: 2px solid $oldItemBorder !important;
 }

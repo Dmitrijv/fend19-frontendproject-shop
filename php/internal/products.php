@@ -9,6 +9,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERV
 require_once __DIR__ . "/../model/db.php";
 header("Content-Type: application/json; charset=UTF-8");
 
+// get ids of new products
+$newIds = [];
+$newIdsSql = DB::run("
+    SELECT id
+    FROM product
+    ORDER BY id DESC
+    LIMIT 2
+");
+while ($tableRow = $newIdsSql->fetch(PDO::FETCH_LAZY)) {
+    $newIds[$tableRow['id']] = true;
+}
+
+// get ids of old product
+$oldIds = [];
+$oldIdsSql = DB::run("
+    SELECT id
+    FROM product
+    ORDER BY id ASC
+    LIMIT 2
+");
+while ($tableRow = $oldIdsSql->fetch(PDO::FETCH_LAZY)) {
+    $oldIds[$tableRow['id']] = true;
+}
+
+// get product info
 $selectProducts = DB::run("
     SELECT product.id,
     product.title,
@@ -38,6 +63,10 @@ while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY)) {
         "currency" => $tableRow['currency'],
         "numberInStock" => $tableRow['number_in_stock'],
     ];
+
+    $pid = strval($tableRow['id']);
+    if (isset($newIds[$pid])) {$product['new'] = true;}
+    if (isset($oldIds[$pid])) {$product['old'] = true;}
 
     $imgSql = "
         SELECT file_name

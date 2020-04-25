@@ -1,20 +1,24 @@
 #latest-products-main {
-    .content {
-        .product-container {
-            margin-top: 0;
+  .content {
+    .product-container {
+      margin-top: 0;
 
-            .product {
-                border: 3px solid #1eeaac;
-            }
-        }
+      .product {
+        border: 2px solid $newItemBorder;
+      }
     }
+  }
 
-    .special-price {
-        color: #1eeaac;
+  .special-price {
+    color: #1eeaac;
 
-        &::before {
-            content: "NYTT";
-            margin-right: 10px;
-        }
+    &::before {
+      content: "NYTT";
+      margin-right: 10px;
     }
+  }
+}
+
+.product.newProduct {
+  border: 2px solid $newItemBorder !important;
 }
