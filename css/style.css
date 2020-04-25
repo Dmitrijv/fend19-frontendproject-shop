@@ -24,6 +24,10 @@ button.product__add-btn:hover {
   background: #71bb0b;
 }
 
+.lastchance-btn > a {
+  z-index: 20;
+}
+
 * {
   font-family: "Playfair Display", serif;
 }
@@ -406,6 +410,12 @@ button {
 .img-lastchance {
   max-width: 20px;
   max-height: 20px;
+}
+
+.img-lastchance {
+  position: absolute;
+  left: 4px;
+  top: 4px;
 }
 
 @media (min-width: 800px) {
