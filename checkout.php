@@ -18,9 +18,9 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
 
 
@@ -29,7 +29,7 @@
     <h1 class="checkout-main__h1">Kunduppgifter</h1>
 
         <form action="order.php" class="checkout-form">
-        
+
 
 <div class="checkout-form__container-1">
     <section class="checkout-form__cart-section">
@@ -43,11 +43,11 @@
         </div>
         </section>
         </div>
-        
+
         <div class="checkout-form__container-2">
         <section class="checkout-form__email-section">
             <h2 class="checkout-form__h2">Emailadress</h2>
-            
+
             <input class="checkout-form__input--email" id="email" type="text"><br>
             <input id="email-hidden" name="email" type="hidden">
             <button type="button" class="checkout-form__addBtn">Lägg till emailadress</button>
@@ -80,13 +80,13 @@
             <label class="checkout-form__label" for="">Ort</label><br>
             <input class="checkout-form__input" id="city" type="text"><br>
             <input id="city-hidden" name="city" type="hidden">
-            
+
 
             <button type="button" class="checkout-form__deliveryBtn">Leverera till denna adress</button>
-            
 
 
-        
+
+
         <div class="checkout-form--hidden__total-price">Totalt att betala: 568 SEK</div>
         <button type="submit" class="checkout-form--hidden__checkoutBtn__dim">Genomför köp</button>
         </section>
@@ -95,18 +95,17 @@
 
 </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <!-- <script src="./js/ie11/sidebar.js"></script> -->
+    <script src="./js/ie11/sidebar.js"></script>
     <!-- <script src="./js/sidebar.js"></script> -->
 
-    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
+    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
     <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
-    <!-- <script type="text/javascript"> shopLib.drawCategorySelectors(); </script> -->
-    <!-- <script type="text/javascript"> shopLib.drawDefaultProductPanel(); </script> -->
+    <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
 
-    <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
-    <script type="text/javascript" src="./js/cart.js"></script>
+    <script type="text/javascript" src="./js/ie11/cart.js"></script>
+    <!-- <script type="text/javascript" src="./js/cart.js"></script> -->
     <script type="text/javascript" src="./js/checkout-form.js"></script>
 
 </body>
