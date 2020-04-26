@@ -226,18 +226,8 @@ shopLib = (function() {
       document.querySelector(".sidebar").classList.add("active");
     },
 
-    getShoppingCart: function() {
-      const shoppingCart = JSON.parse(localStorage.getItem("products"));
-      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
-    },
-
     clearShoppingCart: function() {
       localStorage.setItem("products", JSON.stringify({}));
-    },
-
-    testPrint: function() {
-      const lib = this;
-      console.log("hi");
     },
 
     // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------

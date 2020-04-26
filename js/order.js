@@ -1,4 +1,4 @@
-const shoppingCart = shopLib.getShoppingCart();
+const shoppingCart = JSON.parse(localStorage.getItem("products"));
 
 let subTotal = 0;
 let itemsCountTotal = 0;
@@ -53,20 +53,4 @@ myBtn2.addEventListener("click", function() {
   location.href = "/fend19-frontendproject-shop/index.php";
 });
 
-const confirmButton = document.querySelector(".confirm-order-button");
-if (itemsCountTotal === 0 || itemsCountTotal === null) {
-  confirmButton.setAttribute("disabled", "");
-} else {
-  confirmButton.removeAttribute("disabled");
-}
-
-confirmButton.addEventListener("click", onOrderConfirmedClick);
-
-function onOrderConfirmedClick(event) {
-  if (confirm("Vill du bekräfta din order?")) {
-    shopLib.clearShoppingCart();
-    location.href = "/fend19-frontendproject-shop/index.php";
-  } else {
-    event.preventDefault();
-  }
-}
+shopLib.clearShoppingCart();
