@@ -423,12 +423,6 @@ button {
   max-height: 20px;
 }
 
-.img-lastchance {
-  position: absolute;
-  left: 4px;
-  top: 4px;
-}
-
 @media (min-width: 800px) {
   .img-cart,
   .img-login,
@@ -438,6 +432,7 @@ button {
   }
 }
 
+.img-lastchance,
 .img-latestproducts {
   position: absolute;
   top: 50%;
