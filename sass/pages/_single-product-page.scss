@@ -6,7 +6,6 @@
 }
 
 @media all and (-ms-high-contrast: none) {
-
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -25,8 +24,7 @@
   }
 }
 
-@media all and (-ms-high-contrast: none) and (min-width:800px) {
-
+@media all and (-ms-high-contrast: none) and (min-width: 800px) {
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -82,7 +80,6 @@
       @supports (display: grid) {
         width: 100%;
       }
-
 
       @media screen and (min-width: 800px) {
         min-width: 70vw;
@@ -182,7 +179,7 @@
 
       .p-grid-2 {
         -ms-grid-row: 2;
-        &>*:not(:last-child){
+        & > *:not(:last-child) {
           padding: 10px 0;
         }
       }
@@ -192,6 +189,7 @@
         justify-content: center;
         width: 93%;
         margin: 20px auto;
+        max-width: 800px;
       }
 
       &__title {
