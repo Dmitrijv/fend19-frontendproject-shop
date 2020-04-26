@@ -1,5 +1,13 @@
+#order-body {
+  min-height: 100vh;
+
+  .footer {
+    margin-top: auto;
+  }
+}
+
 #order-main {
-  margin: 40px auto 0;
+  margin: 0 auto;
 
   p,
   tr,
@@ -28,18 +36,37 @@
   // margin: 0 auto;
 }
 
+@media all and (-ms-high-contrast: none) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  #order-main {
+    margin: 60px auto 0; //mobile
+  }
+}
+
+/* when it come to big screen, fix footer in case there is too little content, check the case if too many content
+Failed, no better solution for now. 
+Maybe SCSS funtion if will work for this, to be done later.*/
+// @media all and (-ms-high-contrast: none) and (min-width: 800px) {
+//   #order-body>.footer {
+//     position: absolute;
+//     bottom: 0;
+//   }
+// }
+
 section.order-confirmation {
   overflow: hidden;
   font-size: 16px;
-  margin: 12vh 40px 35px;
+  margin: 5vh 40px;
 
-  @media screen and (min-width: 800px) {
-    margin: 10vh 40px 35px;
-  }
+  // @media screen and (min-width: 800px) {
+  //   margin: 10vh 40px 35px;
+  // }
 
-  @media screen and (min-width: 1280px) {
-    margin: 10vh auto 35px;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   margin: 10vh auto 35px;
+  // }
 
   .panel-heading {
     text-align: center;
@@ -116,7 +143,7 @@ section.order-confirmation {
       text-align: left;
     }
 
-    tr + tr {
+    tr+tr {
       border-top: 1px dashed grey;
     }
 

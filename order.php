@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body id="order-body">
 
     <span class="hamburger__bar-wrapper">
         <span class="hamburger__bar"></span>
