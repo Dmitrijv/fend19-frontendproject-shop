@@ -2754,22 +2754,19 @@ section.order-confirmation button[disabled] {
 
 #checkout-main {
   margin: 0 auto;
-  padding: 90px 0px 90px 0px;
-  font-family: "Lato", sans-serif;
+  padding: 90px 0px;
+  font-family: "Lato", sans-serif;
+}
+
+@supports ((display: -ms-grid) or (display: grid)) {
+  #checkout-main {
+    padding: 0;
+  }
 }
 
 #checkout-main h1 {
   text-align: center;
   padding-bottom: 10px;
-}
-
-#checkout-main p,
-#checkout-main tr,
-#checkout-main td,
-#checkout-main th,
-#checkout-main dt,
-#checkout-main dd {
-  font-family: "Lato", sans-serif !important;
 }
 
 .checkout-form,
