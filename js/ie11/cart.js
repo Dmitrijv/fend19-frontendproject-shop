@@ -9,7 +9,9 @@ cartBtn.addEventListener("click", toggleCart);
 cartCloseBtn.addEventListener("click", toggleCart);
 
 function toggleCart() {
-  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
 }
 
 function clearCart() {
@@ -45,7 +47,10 @@ function fillCartList(fromClick) {
         productId,
         '" class="cart__product">\n        <div class="cart__product-img" style="background-image: url('
       )
-      .concat(productImg, '); "></div>\n        <div class="cart__product-text">')
+      .concat(
+        productImg,
+        '); "></div>\n        <div class="cart__product-text">'
+      )
       .concat(productName, '</div>\n        <div class="cart__product-price">')
       .concat(
         productPrice,
@@ -73,9 +78,13 @@ function fillCartList(fromClick) {
 var productInfo = function productInfo(btn) {
   productName = btn.parentElement.firstElementChild.textContent; //get url from product card
 
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(5, -2);
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
+    5,
+    -2
+  );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productQty =
+    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
 
   return {
@@ -83,7 +92,7 @@ var productInfo = function productInfo(btn) {
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty
+    qty: productQty,
   };
 };
 
@@ -135,7 +144,7 @@ refreshCartList();
 function addProduct(productBtn) {
   var _loop = function _loop(i) {
     var addBtn = productBtn[i];
-    addBtn.addEventListener("click", function(e) {
+    addBtn.addEventListener("click", function (e) {
       var fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
@@ -151,12 +160,19 @@ function deleteProduct(getJSON) {
 
   var _loop2 = function _loop2(i) {
     var delBtn = deleteBtn[i];
-    delBtn.addEventListener("click", function(e) {
-      var index = getJSON.findIndex(function(prod) {
-        return prod.id == delBtn.parentElement.parentElement.id;
+    delBtn.addEventListener("click", function (e) {
+      //   const index = getJSON.findIndex(prod => {
+      //     return prod.id == delBtn.parentElement.parentElement.id;
+      //   });
+      var findIndex = -1;
+      getJSON.some(function (prod, i) {
+        if (prod.id == delBtn.parentElement.parentElement.id) {
+          findIndex = i;
+          return true;
+        }
       });
-      getJSON.splice(index, 1);
-      delBtn.parentElement.parentElement.remove();
+      getJSON.splice(findIndex, 1);
+      delBtn.parentElement.parentElement.innerHTML = "";
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
@@ -187,20 +203,28 @@ function changeQty(getJSON) {
   var qtyBtns = document.querySelectorAll(".qtyBtn");
 
   var _loop3 = function _loop3(i) {
-    var btn = qtyBtns[i];
-    btn.addEventListener("click", function() {
-      var index = getJSON.findIndex(function(prod) {
-        return prod.id == btn.parentElement.parentElement.parentElement.id;
-      });
+    var qtyBtn = qtyBtns[i];
+    qtyBtn.addEventListener("click", function () {
+      var findQtyIndex = -1;
 
-      if (btn.innerHTML === "+") {
-        getJSON[index].qty -= 1; //???
+      for (var i = 0; i < getJSON.length; ++i) {
+        if (
+          getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id
+        ) {
+          findQtyIndex = i;
+        }
+      }
 
-        getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
+      if (qtyBtn.innerHTML === "+") {
+        getJSON[findQtyIndex].qty -= 1; //???
+
+        getJSON[findQtyIndex].qty += 2;
+        qtyBtn.parentElement.previousElementSibling.textContent =
+          getJSON[findQtyIndex].qty;
       } else {
-        if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
-        btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+        if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
+        qtyBtn.parentElement.nextElementSibling.textContent =
+          getJSON[findQtyIndex].qty;
       }
 
       localStorage.setItem("products", JSON.stringify(getJSON));

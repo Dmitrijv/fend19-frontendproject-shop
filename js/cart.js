@@ -9,7 +9,9 @@ cartBtn.addEventListener("click", toggleCart);
 cartCloseBtn.addEventListener("click", toggleCart);
 
 function toggleCart() {
-  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
+  cart.style.display === "flex"
+    ? (cart.style.display = "none")
+    : (cart.style.display = "flex");
 }
 function clearCart() {
   localStorage.clear();
@@ -61,19 +63,23 @@ function fillCartList(fromClick) {
   updateSum(getLs);
   changeQty(getLs);
 }
-const productInfo = btn => {
+const productInfo = (btn) => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(5, -2);
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
+    5,
+    -2
+  );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productQty =
+    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
   return {
     id: productId,
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty
+    qty: productQty,
   };
 };
 
@@ -120,7 +126,7 @@ refreshCartList();
 function addProduct(productBtn) {
   for (let i = 0; i < productBtn.length; ++i) {
     const addBtn = productBtn[i];
-    addBtn.addEventListener("click", e => {
+    addBtn.addEventListener("click", (e) => {
       let fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
@@ -131,12 +137,19 @@ function deleteProduct(getJSON) {
   const deleteBtn = document.querySelectorAll(".cart__product-delete");
   for (let i = 0; i < deleteBtn.length; ++i) {
     const delBtn = deleteBtn[i];
-    delBtn.addEventListener("click", e => {
-      const index = getJSON.findIndex(prod => {
-        return prod.id == delBtn.parentElement.parentElement.id;
+    delBtn.addEventListener("click", (e) => {
+      //   const index = getJSON.findIndex(prod => {
+      //     return prod.id == delBtn.parentElement.parentElement.id;
+      //   });
+      var findIndex = -1;
+      getJSON.some(function (prod, i) {
+        if (prod.id == delBtn.parentElement.parentElement.id) {
+          findIndex = i;
+          return true;
+        }
       });
-      getJSON.splice(index, 1);
-      delBtn.parentElement.parentElement.remove();
+      getJSON.splice(findIndex, 1);
+      delBtn.parentElement.parentElement.innerHTML = "";
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
@@ -161,19 +174,26 @@ function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
 
   for (let i = 0; i < qtyBtns.length; ++i) {
-    const btn = qtyBtns[i];
-    btn.addEventListener("click", function() {
-      const index = getJSON.findIndex(prod => {
-        return prod.id == btn.parentElement.parentElement.parentElement.id;
-      });
+    const qtyBtn = qtyBtns[i];
+    qtyBtn.addEventListener("click", function () {
+      var findQtyIndex = -1;
+      for (var i = 0; i < getJSON.length; ++i) {
+        if (
+          getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id
+        ) {
+          findQtyIndex = i;
+        }
+      }
 
-      if (btn.innerHTML === "+") {
-        getJSON[index].qty -= 1; //???
-        getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
+      if (qtyBtn.innerHTML === "+") {
+        getJSON[findQtyIndex].qty -= 1; //???
+        getJSON[findQtyIndex].qty += 2;
+        qtyBtn.parentElement.previousElementSibling.textContent =
+          getJSON[findQtyIndex].qty;
       } else {
-        if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
-        btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+        if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
+        qtyBtn.parentElement.nextElementSibling.textContent =
+          getJSON[findQtyIndex].qty;
       }
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
