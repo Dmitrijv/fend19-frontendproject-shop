@@ -2440,7 +2440,7 @@ section.order-confirmation button[disabled] {
 
 @supports (display: grid) {
   .single-product-page__body .wrapper {
-    max-width: 1200px;
+    max-width: 800px;
   }
 }
 
@@ -2472,7 +2472,7 @@ section.order-confirmation button[disabled] {
 @media screen and (min-width: 800px) {
   .single-product-page__body .wrapper .single-product {
     min-width: 70vw;
-    max-width: 1200px;
+    max-width: 800px;
     grid-template-rows: 435px -webkit-min-content;
     grid-template-rows: 435px min-content;
     -ms-grid-rows: 435px min-content;

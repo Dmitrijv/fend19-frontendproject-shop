@@ -59,7 +59,7 @@
     max-width: 88vw;
 
     @supports (display: grid) {
-      max-width: 1200px;
+      max-width: 800px;
     }
 
     .single-product {
@@ -83,7 +83,7 @@
 
       @media screen and (min-width: 800px) {
         min-width: 70vw;
-        max-width: 1200px;
+        max-width: 800px;
         grid-template-rows: 435px min-content;
         -ms-grid-rows: 435px min-content;
         -ms-grid-columns: 1fr;
