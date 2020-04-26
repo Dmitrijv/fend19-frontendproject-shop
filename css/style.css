@@ -2212,6 +2212,10 @@ div.product > div > button:nth-child(4) {
   *::-ms-backdrop,
   #order-main {
     margin: 60px auto 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
   }
 }
 

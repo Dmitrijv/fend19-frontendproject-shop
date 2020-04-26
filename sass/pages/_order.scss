@@ -42,6 +42,8 @@
   *::-ms-backdrop,
   #order-main {
     margin: 60px auto 0; //mobile
+    display: flex;
+    justify-content: center;
   }
 }
 
