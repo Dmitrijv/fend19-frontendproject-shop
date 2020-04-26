@@ -99,7 +99,9 @@
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <?php require __DIR__ . '/php/view/jscore.php';?>
-    <script type="text/javascript" src="./js/order.js"></script>
+
+    <!-- <script type="text/javascript" src="./js/order.js"></script> -->
+    <script type="text/javascript" src="./js/ie11/order.js"></script>
 
 </body>
 
