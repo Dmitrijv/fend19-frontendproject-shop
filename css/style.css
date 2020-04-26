@@ -663,7 +663,6 @@ button {
   border: 1px solid #a89e9e;
   left: 100%;
   -webkit-transform: translateX(-130%);
-      -ms-transform: translateX(-130%);
           transform: translateX(-130%);
   padding: 5px 10px;
 }
@@ -723,6 +722,7 @@ button {
   width: 20px;
   height: 20px;
   cursor: pointer;
+  margin: 6px 0;
 }
 
 .cart__sum-area {
