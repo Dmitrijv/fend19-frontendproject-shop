@@ -438,6 +438,15 @@ button {
   }
 }
 
+.img-latestproducts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .login-btn,
 .cart-btn {
   padding: 4px;
@@ -848,7 +857,7 @@ button {
   border: none;
   border-radius: 3px;
   color: white;
-  padding: 4px;
+  padding: 3.5px 3px;
 }
 
 @media screen and (max-width: 800px) {

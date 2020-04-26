@@ -9,18 +9,20 @@
                         </a>
                 </button> -->
                 <a href="latestProducts.php">
-                <button class="main__header__btn latestproducts-btn">
-                <img class="img-latestproducts" src="" alt="">
-                <p class="desktop-text">Senaste Produkter</p>
-                </button>
+                    <button class="main__header__btn latestproducts-btn">
+                        <img class="img-latestproducts" src="./img/svg/clock.svg" alt="">
+                        <p class="desktop-text">Senaste Produkter</p>
+                    </button>
                 </a>
                 <a href="lastChance.php">
-                <button class="main__header__btn lastchance-btn">
-                <img class="img-lastchance" src="./img/svg/bolt.png" alt="A lightning svg">
-                <p class="desktop-text"> Sista Chansen</p>
-                </button>
+                    <button class="main__header__btn lastchance-btn">
+                        <img class="img-lastchance" src="./img/svg/bolt.png" alt="A lightning svg">
+                        <p class="desktop-text"> Sista Chansen</p>
+                    </button>
                 </a>
-                <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg"><p class="desktop-text">Varukorg</p></button>
+                <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg">
+                    <p class="desktop-text">Varukorg</p>
+                </button>
             </div>
             <div class="nav__item main__header__search">
                 <form class="nav__item main__header__search" name="searchform" onsubmit="shopLib.searchProducts(event)">
