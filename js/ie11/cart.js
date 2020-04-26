@@ -1,3 +1,5 @@
+
+
 var cartBtn = document.querySelector(".open-overlay");
 var cart = document.querySelector(".cart");
 var cartCloseBtn = document.querySelector(".cart-close-btn");
@@ -9,9 +11,7 @@ cartBtn.addEventListener("click", toggleCart);
 cartCloseBtn.addEventListener("click", toggleCart);
 
 function toggleCart() {
-  cart.style.display === "flex"
-    ? (cart.style.display = "none")
-    : (cart.style.display = "flex");
+  cart.style.display === "flex" ? cart.style.display = "none" : cart.style.display = "flex";
 }
 
 function clearCart() {
@@ -42,24 +42,7 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = '\n      <div id="'
-      .concat(
-        productId,
-        '" class="cart__product">\n        <div class="cart__product-img" style="background-image: url('
-      )
-      .concat(
-        productImg,
-        '); "></div>\n        <div class="cart__product-text">'
-      )
-      .concat(productName, '</div>\n        <div class="cart__product-price">')
-      .concat(
-        productPrice,
-        '</div>\n        <div class="cart__product-pull-right">\n          <span><button class="qtyBtn minusQty">-</button></span>\n          <div class="cart__product-qty">'
-      )
-      .concat(
-        productQty,
-        '</div>\n          <span><button class="qtyBtn plusQty">+</button></span>\n          <div class="cart__product-delete"><img src="./img/svg/close.svg"></div>\n        </div>\n      </div>'
-      );
+    product = "\n      <div id=\"".concat(productId, "\" class=\"cart__product\">\n        <div class=\"cart__product-img\" style=\"background-image: url(").concat(productImg, "); \"></div>\n        <div class=\"cart__product-text\">").concat(productName, "</div>\n        <div class=\"cart__product-price\">").concat(productPrice, "</div>\n        <div class=\"cart__product-pull-right\">\n          <span><button class=\"qtyBtn minusQty\">-</button></span>\n          <div class=\"cart__product-qty\">").concat(productQty, "</div>\n          <span><button class=\"qtyBtn plusQty\">+</button></span>\n          <div class=\"cart__product-delete\"><img src=\"./img/svg/close.svg\"></div>\n        </div>\n      </div>");
 
     if (fromClick === false) {
       cartList.innerHTML += product;
@@ -78,13 +61,9 @@ function fillCartList(fromClick) {
 var productInfo = function productInfo(btn) {
   productName = btn.parentElement.firstElementChild.textContent; //get url from product card
 
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
-    5,
-    -2
-  );
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(5, -2);
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty =
-    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productQty = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
 
   return {
@@ -92,7 +71,7 @@ var productInfo = function productInfo(btn) {
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty,
+    qty: productQty
   };
 };
 
@@ -172,7 +151,8 @@ function deleteProduct(getJSON) {
         }
       });
       getJSON.splice(findIndex, 1);
-      delBtn.parentElement.parentElement.innerHTML = "";
+      delBtn.parentElement.parentElement.outerHTML = "";
+      console.log();
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
@@ -208,9 +188,7 @@ function changeQty(getJSON) {
       var findQtyIndex = -1;
 
       for (var i = 0; i < getJSON.length; ++i) {
-        if (
-          getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id
-        ) {
+        if (getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id) {
           findQtyIndex = i;
         }
       }
@@ -219,12 +197,10 @@ function changeQty(getJSON) {
         getJSON[findQtyIndex].qty -= 1; //???
 
         getJSON[findQtyIndex].qty += 2;
-        qtyBtn.parentElement.previousElementSibling.textContent =
-          getJSON[findQtyIndex].qty;
+        qtyBtn.parentElement.previousElementSibling.textContent = getJSON[findQtyIndex].qty;
       } else {
         if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
-        qtyBtn.parentElement.nextElementSibling.textContent =
-          getJSON[findQtyIndex].qty;
+        qtyBtn.parentElement.nextElementSibling.textContent = getJSON[findQtyIndex].qty;
       }
 
       localStorage.setItem("products", JSON.stringify(getJSON));
