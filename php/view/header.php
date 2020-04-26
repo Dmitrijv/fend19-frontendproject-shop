@@ -10,7 +10,7 @@
                 </button> -->
                 <a href="latestProducts.php">
                     <button class="main__header__btn latestproducts-btn">
-                        <img class="img-latestproducts" src="./img/svg/clock.svg" alt="">
+                        <img class="img-latestproducts" src="./img/svg/clock.svg" alt="clock svg for latest product">
                         <p class="desktop-text">Senaste Produkter</p>
                     </button>
                 </a>

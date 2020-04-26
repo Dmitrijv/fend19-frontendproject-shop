@@ -1,35 +1,38 @@
 #checkout-main {
   margin: 0 auto;
-  padding: 90px 0px 90px 0px;
-  font-family: "Lato", sans-serif;
+  padding: 90px 0px;
+
+  @supports (display: grid) {
+    padding: 0;
+  }
+
+  font-family: "Lato",
+  sans-serif;
+
   h1 {
     text-align: center;
     padding-bottom: 10px;
   }
-  p,
-  tr,
-  td,
-  th,
-  dt,
-  dd {
-    font-family: "Lato", sans-serif !important;
-  }
 }
+
 .checkout-form,
 .checkout-form--hidden {
   display: flex;
   //flex-flow: column wrap;
   flex-direction: column;
   justify-content: center;
+
   @media (min-width: 800px) {
     display: flex;
     //flex-flow: row wrap;
     flex-direction: row;
   }
+
   &__h1 {
     display: flex;
     flex-direction: column;
   }
+
   &__container-1 {
     @media (min-width: 800px) {
       display: flex;
@@ -39,6 +42,7 @@
       order: 1;
     }
   }
+
   &__container-2 {
     @media (min-width: 800px) {
       display: flex;
@@ -47,6 +51,7 @@
       //   margin-right: 10px;
     }
   }
+
   &__cart-section {
     min-width: 300px;
 
@@ -54,6 +59,7 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
+
     @media (min-width: 800px) {
       position: sticky;
       top: 90px;
@@ -61,11 +67,11 @@
       min-height: 500px;
     }
   }
+
   &__cart-contents {
-    @media (min-width: 800px) {
-    }
-    &__img {
-    }
+    @media (min-width: 800px) {}
+
+    &__img {}
   }
 
   &__email-section {
@@ -74,14 +80,15 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
-    @media (min-width: 800px) {
-    }
+
+    @media (min-width: 800px) {}
   }
 
   &__delivery-section {
     @extend .checkout-form__delivery-section--click;
     opacity: 0.4;
   }
+
   &__delivery-section--click {
     min-width: 300px;
     margin: 10px;
@@ -90,8 +97,8 @@
     background: rgb(226, 225, 221);
   }
 
-  &__label {
-  }
+  &__label {}
+
   &__input,
   &__input--email {
     background: rgb(255, 255, 255);
@@ -109,10 +116,12 @@
     border-radius: 3px;
     color: white;
   }
+
   &--hidden__checkoutBtn__dim {
     @extend .checkout-form--hidden__checkoutBtn;
     opacity: 0.4;
   }
+
   &--hidden__checkoutBtn {
     min-width: 300px;
     margin: 10px;
@@ -124,6 +133,7 @@
     border-radius: 3px;
     color: white;
   }
+
   &--hidden__total-price {
     text-align: center;
   }
