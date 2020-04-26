@@ -6,7 +6,6 @@
 }
 
 @media all and (-ms-high-contrast: none) {
-
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -25,8 +24,7 @@
   }
 }
 
-@media all and (-ms-high-contrast: none) and (min-width:800px) {
-
+@media all and (-ms-high-contrast: none) and (min-width: 800px) {
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -61,7 +59,6 @@
     max-width: 88vw;
 
     @supports (display: grid) {
-      // max-width: 1200px;
       max-width: 800px;
     }
 
@@ -84,10 +81,9 @@
         width: 100%;
       }
 
-
       @media screen and (min-width: 800px) {
         min-width: 70vw;
-        max-width: 1200px;
+        max-width: 800px;
         grid-template-rows: 435px min-content;
         -ms-grid-rows: 435px min-content;
         -ms-grid-columns: 1fr;
@@ -183,7 +179,7 @@
 
       .p-grid-2 {
         -ms-grid-row: 2;
-        &>*:not(:last-child){
+        & > *:not(:last-child) {
           padding: 10px 0;
         }
       }
@@ -193,6 +189,7 @@
         justify-content: center;
         width: 93%;
         margin: 20px auto;
+        max-width: 800px;
       }
 
       &__title {
