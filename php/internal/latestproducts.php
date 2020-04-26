@@ -15,7 +15,7 @@ $selectProducts = DB::run("
     product_category.name as category,
     product_category.id as categoryId,
     product.description,
-    ROUND(price_of_product.amount * 0.9) as price,
+    price_of_product.amount as price,
     currency.shorthand as currency,
     product.number_in_stock
     FROM product, product_category, price_of_product, currency
