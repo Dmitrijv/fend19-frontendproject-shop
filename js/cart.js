@@ -46,7 +46,7 @@ function fillCartList(fromClick) {
           <span><button class="qtyBtn minusQty">-</button></span>
           <div class="cart__product-qty">${productQty}</div>
           <span><button class="qtyBtn plusQty">+</button></span>
-          <div class="cart__product-delete">X</div>
+          <div class="cart__product-delete"><img src="./img/svg/close.svg"></div>
         </div>
       </div>`;
 

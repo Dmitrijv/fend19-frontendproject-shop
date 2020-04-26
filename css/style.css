@@ -640,7 +640,7 @@ button {
   min-width: 300px;
   min-height: 300px;
   border-radius: 8px;
-  top: 88px;
+  top: 38px;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
@@ -659,22 +659,33 @@ button {
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
             transform: translateX(-50%);
-    min-width: 400px;
+    min-width: 320px;
     font-size: 14px;
   }
 }
 
 .cart .cart-close-btn {
   position: absolute;
-  top: 35px;
+  top: 1vh;
   border-radius: 5px;
   border: 1px solid #a89e9e;
-  left: 80%;
+  left: 100%;
+  -webkit-transform: translateX(-130%);
+      -ms-transform: translateX(-130%);
+          transform: translateX(-130%);
+  padding: 5px 10px;
+}
+
+@media screen and (min-width: 670px) {
+  .cart .cart-close-btn {
+    padding: 10px 30px;
+    top: 20px;
+  }
 }
 
 @media screen and (min-width: 800px) {
   .cart .cart-close-btn {
-    left: 87%;
+    left: 100%;
   }
 }
 
@@ -710,7 +721,7 @@ button {
   grid-auto-flow: column;
   grid-auto-rows: minmax(50px, 1fr);
   margin: 10px 1vw;
-  -ms-grid-columns: 0.5fr 10px 1fr 10px 0.5fr 10px 1fr;
+  -ms-grid-columns: 0.5fr 10px 1fr 10px 0.6fr 10px 1fr;
   grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
 }
 
@@ -729,17 +740,34 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 100%;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px 1vw 30px;
 }
 
 .cart__order {
   z-index: 999999999;
+  max-width: 532px;
 }
 
 .cart__order button {
   display: block;
-  margin-left: auto;
-  margin-right: 5vw;
+  background: mediumseagreen;
+  color: white;
+  border: 1px solid green;
+  border-radius: 3px;
+  margin: auto;
+  padding: 15px 100px;
+  font-size: 18px;
+  font-family: "Lato", serif;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 596px) {
+  .cart__order button {
+    font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
 }
 
 .cart__product-text, .cart__product-price, .cart__product-pull-right {
@@ -749,8 +777,8 @@ button {
 }
 
 .cart__product-img {
-  max-width: 70px !important;
-  max-height: 70px !important;
+  max-width: 70px;
+  max-height: 70px;
   background-size: cover;
   -ms-grid-column: 1;
 }
@@ -780,15 +808,40 @@ button {
 
 .cart__product-delete {
   cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
 }
 
 .cart .qtyBtn {
-  padding: 10px 20px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid gray;
 }
 
 @media screen and (max-width: 596px) {
   .cart .qtyBtn {
-    padding: 6px 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid gray;
+  }
+}
+
+.plusQty:hover {
+  background-color: #e55039;
+}
+
+/* some setting for IE 11, to keep each row's content vertically in the middle */
+@media all and (-ms-high-contrast: none) {
+  /* IE11 */
+  *::-ms-backdrop,
+  .cart__product-text,
+  .cart__product-price,
+  .cart__product-pull-right {
+    -ms-grid-row-align: center;
+  }
+  .cart__product-pull-right > *:not(:last-child) {
+    margin-right: 5px;
   }
 }
 
@@ -839,12 +892,12 @@ button {
 
 .overlay {
   background: rgba(40, 40, 40, 0.75);
-  word-wrap: break-word;
   z-index: 300;
 }
 
 .cart__product-list {
   margin: auto;
+  width: 100%;
 }
 
 .open-overlay {
@@ -2457,7 +2510,7 @@ section.order-confirmation button[disabled] {
 
 @supports ((display: -ms-grid) or (display: grid)) {
   .single-product-page__body .wrapper {
-    max-width: 1200px;
+    max-width: 800px;
   }
 }
 

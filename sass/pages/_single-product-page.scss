@@ -61,7 +61,8 @@
     max-width: 88vw;
 
     @supports (display: grid) {
-      max-width: 1200px;
+      // max-width: 1200px;
+      max-width: 800px;
     }
 
     .single-product {
