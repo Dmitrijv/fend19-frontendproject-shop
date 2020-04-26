@@ -31,15 +31,8 @@
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <script src="./js/ie11/sidebar.js"></script>
-
-    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
-    <script type="text/javascript">
-        shopLib.drawCategorySelectors();
-    </script>
-
-    <script type="text/javascript" src="./js/cart.js"></script>
-    <script type="text/javascript" src="./js/ie11/cartOverlay.js"></script>
+    <!-- js scripts go here -->
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
 
 </body>
 

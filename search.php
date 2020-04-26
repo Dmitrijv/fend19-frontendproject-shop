@@ -33,17 +33,9 @@
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <script src="./js/ie11/sidebar.js"></script>
-    <!-- <script src="./js/sidebar.js"></script> -->
-
-    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
-    <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
-    <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
-
-    <script type="text/javascript" src="./js/cart.js"></script>
-
+    <?php require __DIR__ . '/php/view/jscore.php';?>
     <script type="text/javascript">
-        if (sessionStorage.getItem("searchKeyword")) {
+         if (sessionStorage.getItem("searchKeyword")) {
             shopLib.sessionStorageProductSearch();
         }
     </script>

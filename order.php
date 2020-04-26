@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body id="order-body">
 
     <span class="hamburger__bar-wrapper">
         <span class="hamburger__bar"></span>
@@ -43,7 +43,7 @@
                     <dt>Phone</dt>
                     <dd>123 123 123</dd>
                     <dt>Postal address</dt>
-                    <dd>Tomtebodavägen 3A, </br> 171 65 Solna</dd>
+                    <dd>Tomtebodavägen 3A, 171 65 Solna</dd>
                     <dt>Beställningsnummer:</dt>
                     <dd>100713104</dd>
                     <dt>Beställningsdatum:</dt>
@@ -98,14 +98,7 @@
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <script src="./js/ie11/sidebar.js"></script>
-
-    <!-- <script type="text/javascript" src="./js/ie11/shopLib.js"></script> -->
-    <script type="text/javascript" src="./js/shopLib.js"></script>
-    <script type="text/javascript"> shopLib.drawCategorySelectors(); </script>
-
-    <script type="text/javascript" src="./js/ie11/cart.js"></script>
-
+    <?php require __DIR__ . '/php/view/jscore.php';?>
     <script type="text/javascript" src="./js/order.js"></script>
 
 </body>

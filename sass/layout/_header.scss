@@ -222,12 +222,6 @@
   max-height: 20px;
 }
 
-.img-lastchance {
-  position: absolute;
-  left: 4px;
-  top: 4px;
-}
-
 .img-cart,
 .img-login,
 .img-latestproducts,
@@ -235,6 +229,14 @@
   @media (min-width: 800px) {
     display: none;
   }
+}
+
+.img-lastchance,
+.img-latestproducts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .login-btn,
