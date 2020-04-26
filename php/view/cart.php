@@ -9,6 +9,6 @@
             <span class="pull-left">Summa:</span>
             <span class="pull-right total-sum"></span>
         </div>
-        <div class="cart__order"><button><a href="checkout.php">Till Kassan</a></button></div>
+        <div class="cart__order"><a href="checkout.php"><button>Till Kassan</button></a></div>
     </div>
 </section>
