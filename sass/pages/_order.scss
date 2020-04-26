@@ -102,15 +102,19 @@ section.order-confirmation {
       max-width: 500px;
     }
 
+    dl>* {
+      margin-left: 0;
+    }
+
     dt {
       font-weight: 600;
-      float: left;
-      clear: left;
-      text-align: left;
+      // float: left;
+      // clear: left;
+      // text-align: left;
     }
 
     dd {
-      text-align: right;
+      // text-align: right;
       margin-bottom: 0.5rem;
     }
   }

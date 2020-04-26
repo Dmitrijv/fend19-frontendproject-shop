@@ -2261,15 +2261,15 @@ section.order-confirmation .order-description dl {
   max-width: 500px;
 }
 
+section.order-confirmation .order-description dl > * {
+  margin-left: 0;
+}
+
 section.order-confirmation .order-description dt {
   font-weight: 600;
-  float: left;
-  clear: left;
-  text-align: left;
 }
 
 section.order-confirmation .order-description dd {
-  text-align: right;
   margin-bottom: 0.5rem;
 }
 

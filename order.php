@@ -43,7 +43,7 @@
                     <dt>Phone</dt>
                     <dd>123 123 123</dd>
                     <dt>Postal address</dt>
-                    <dd>Tomtebodavägen 3A, </br> 171 65 Solna</dd>
+                    <dd>Tomtebodavägen 3A, 171 65 Solna</dd>
                     <dt>Beställningsnummer:</dt>
                     <dd>100713104</dd>
                     <dt>Beställningsdatum:</dt>
