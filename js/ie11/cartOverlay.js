@@ -22,10 +22,10 @@ var body = document.body,
   }, false);
 });
 
-var activeOverlay = document.querySelector(['aria-hidden' == 'false']);
-overlay.addEventListener('click', function () {
-  var overlayOpen = this.className === 'open-overlay';
-  var cart = document.querySelector('.cart')
-  overlay.setAttribute('aria-hidden', !overlayOpen);
-  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
-})
+// var activeOverlay = document.querySelector(['aria-hidden' == 'false']);
+// overlay.addEventListener('click', function () {
+//   var overlayOpen = this.className === 'open-overlay';
+//   var cart = document.querySelector('.cart')
+//   overlay.setAttribute('aria-hidden', !overlayOpen);
+//   cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
+// })
