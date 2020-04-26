@@ -34,10 +34,8 @@ subTotal = subTotal; //remove toFixed(2)
 orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td></td><td class=\"item-total\" >").concat(subTotal, " kr</td></tr></tbody>");
 
 
-orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td></td><td class=\"item-total\" >").concat(subTotal, " kr</td></tr></tbody>");
 productsAmount = itemsCountTotal;
 totalPrice = subTotal + ' kr';
-console.log(typeof (subTotal + ' kr'));
 
 var year = new Date().getFullYear();
 var month = new Date().getMonth() + 1;
@@ -48,7 +46,6 @@ m > 9 ?  m : (m = "0" + m) ;
 var s = new Date().getUTCSeconds();
 s > 9 ?  s : (s = "0" + s) ;
 var date = year + '/' + month + '/' + day + '  ' + h + ':' + m + ':' + s;
-console.log(date);
 dateOfToday.textContent = date;
 
 /* button part */
