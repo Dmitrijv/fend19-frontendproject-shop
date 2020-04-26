@@ -2216,7 +2216,8 @@ div.product > div > button:nth-child(4) {
 }
 
 /* when it come to big screen, fix footer in case there is too little content, check the case if too many content
-Failed, no better solution for now. */
+Failed, no better solution for now. 
+Maybe SCSS funtion if will work for this, to be done later.*/
 section.order-confirmation {
   overflow: hidden;
   font-size: 16px;
@@ -2652,12 +2653,6 @@ section.order-confirmation button[disabled] {
   text-align: center;
   color: #9fa255;
   font-size: 16px;
-}
-
-@supports ((display: -ms-grid) or (display: grid)) {
-  .single-product-page__body .wrapper .single-product__storage-count {
-    max-width: 1200px;
-  }
 }
 
 @media (min-width: 480px) {
