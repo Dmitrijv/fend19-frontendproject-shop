@@ -103,19 +103,10 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
 
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <script src="./js/ie11/sidebar.js"></script>
-    <!-- <script src="./js/sidebar.js"></script> -->
-
-    <script type="text/javascript" src="./js/ie11/shopLib.js"></script>
-    <!-- <script type="text/javascript" src="./js/shopLib.js"></script> -->
-    <script type="text/javascript">
-        shopLib.drawCategorySelectors();
-    </script>
-
-    <!-- <script type="text/javascript" src="./js/ie11/cart.js"></script> -->
-    <script type="text/javascript" src="./js/cart.js"></script>
+    <!-- js scripts go here -->
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-    <script type="text/javascript" src="./js/ie11/cartOverlay.js"></script>
+
 </body>
 
 </html>

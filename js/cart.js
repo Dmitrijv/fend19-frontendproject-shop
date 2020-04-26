@@ -61,23 +61,19 @@ function fillCartList(fromClick) {
   updateSum(getLs);
   changeQty(getLs);
 }
-const productInfo = (btn) => {
+const productInfo = btn => {
   productName = btn.parentElement.firstElementChild.textContent;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
-    5,
-    -2
-  );
+  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(5, -2);
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty =
-    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productQty = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
   return {
     id: productId,
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty,
+    qty: productQty
   };
 };
 
@@ -122,19 +118,21 @@ function refreshCartList() {
 refreshCartList();
 
 function addProduct(productBtn) {
-  productBtn.forEach((addBtn) => {
-    addBtn.addEventListener("click", (e) => {
+  for (let i = 0; i < productBtn.length; ++i) {
+    const addBtn = productBtn[i];
+    addBtn.addEventListener("click", e => {
       let fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
-  });
+  }
 }
 
 function deleteProduct(getJSON) {
   const deleteBtn = document.querySelectorAll(".cart__product-delete");
-  deleteBtn.forEach((delBtn) => {
-    delBtn.addEventListener("click", (e) => {
-      const index = getJSON.findIndex((prod) => {
+  for (let i = 0; i < deleteBtn.length; ++i) {
+    const delBtn = deleteBtn[i];
+    delBtn.addEventListener("click", e => {
+      const index = getJSON.findIndex(prod => {
         return prod.id == delBtn.parentElement.parentElement.id;
       });
       getJSON.splice(index, 1);
@@ -146,33 +144,33 @@ function deleteProduct(getJSON) {
         clearCart();
       }
     });
-  });
+  }
 }
 
 function updateSum(getLs) {
   let sum = 0;
-
   for (let i = 0; i < getLs.length; i++) {
     var str = getLs[i].price;
     var res = str.replace(/\D/g, "");
     sum += +res * getLs[i].qty;
   }
-  totalSum.textContent = sum;
+  totalSum.textContent = sum + " kr";
 }
 
 function changeQty(getJSON) {
   const qtyBtns = document.querySelectorAll(".qtyBtn");
-  qtyBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const index = getJSON.findIndex((prod) => {
+
+  for (let i = 0; i < qtyBtns.length; ++i) {
+    const btn = qtyBtns[i];
+    btn.addEventListener("click", function() {
+      const index = getJSON.findIndex(prod => {
         return prod.id == btn.parentElement.parentElement.parentElement.id;
       });
 
       if (btn.innerHTML === "+") {
         getJSON[index].qty -= 1; //???
         getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent =
-          getJSON[index].qty;
+        btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
       } else {
         if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
         btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
@@ -180,5 +178,5 @@ function changeQty(getJSON) {
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
     });
-  });
+  }
 }
