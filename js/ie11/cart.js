@@ -1,3 +1,5 @@
+
+
 var cartBtn = document.querySelector(".open-overlay");
 var cart = document.querySelector(".cart");
 var cartCloseBtn = document.querySelector(".cart-close-btn");
@@ -9,7 +11,7 @@ cartBtn.addEventListener("click", toggleCart);
 cartCloseBtn.addEventListener("click", toggleCart);
 
 function toggleCart() {
-  cart.style.display === "flex" ? (cart.style.display = "none") : (cart.style.display = "flex");
+  cart.style.display === "flex" ? cart.style.display = "none" : cart.style.display = "flex";
 }
 
 function clearCart() {
@@ -40,21 +42,7 @@ function fillCartList(fromClick) {
       productQty = getLs[i].qty;
     }
 
-    product = '\n      <div id="'
-      .concat(
-        productId,
-        '" class="cart__product">\n        <div class="cart__product-img" style="background-image: url('
-      )
-      .concat(productImg, '); "></div>\n        <div class="cart__product-text">')
-      .concat(productName, '</div>\n        <div class="cart__product-price">')
-      .concat(
-        productPrice,
-        '</div>\n        <div class="cart__product-pull-right">\n          <span><button class="qtyBtn minusQty">-</button></span>\n          <div class="cart__product-qty">'
-      )
-      .concat(
-        productQty,
-        '</div>\n          <span><button class="qtyBtn plusQty">+</button></span>\n          <div class="cart__product-delete"><img src="./img/svg/close.svg"></div>\n        </div>\n      </div>'
-      );
+    product = "\n      <div id=\"".concat(productId, "\" class=\"cart__product\">\n        <div class=\"cart__product-img\" style=\"background-image: url(").concat(productImg, "); \"></div>\n        <div class=\"cart__product-text\">").concat(productName, "</div>\n        <div class=\"cart__product-price\">").concat(productPrice, "</div>\n        <div class=\"cart__product-pull-right\">\n          <span><button class=\"qtyBtn minusQty\">-</button></span>\n          <div class=\"cart__product-qty\">").concat(productQty, "</div>\n          <span><button class=\"qtyBtn plusQty\">+</button></span>\n          <div class=\"cart__product-delete\"><img src=\"./img/svg/close.svg\"></div>\n        </div>\n      </div>");
 
     if (fromClick === false) {
       cartList.innerHTML += product;
@@ -135,7 +123,7 @@ refreshCartList();
 function addProduct(productBtn) {
   var _loop = function _loop(i) {
     var addBtn = productBtn[i];
-    addBtn.addEventListener("click", function(e) {
+    addBtn.addEventListener("click", function (e) {
       var fromClick = true;
       setLocalStorage(addBtn, fromClick);
     });
@@ -151,12 +139,20 @@ function deleteProduct(getJSON) {
 
   var _loop2 = function _loop2(i) {
     var delBtn = deleteBtn[i];
-    delBtn.addEventListener("click", function(e) {
-      var index = getJSON.findIndex(function(prod) {
-        return prod.id == delBtn.parentElement.parentElement.id;
+    delBtn.addEventListener("click", function (e) {
+      //   const index = getJSON.findIndex(prod => {
+      //     return prod.id == delBtn.parentElement.parentElement.id;
+      //   });
+      var findIndex = -1;
+      getJSON.some(function (prod, i) {
+        if (prod.id == delBtn.parentElement.parentElement.id) {
+          findIndex = i;
+          return true;
+        }
       });
-      getJSON.splice(index, 1);
-      delBtn.parentElement.parentElement.remove();
+      getJSON.splice(findIndex, 1);
+      delBtn.parentElement.parentElement.outerHTML = "";
+      console.log();
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
@@ -187,20 +183,24 @@ function changeQty(getJSON) {
   var qtyBtns = document.querySelectorAll(".qtyBtn");
 
   var _loop3 = function _loop3(i) {
-    var btn = qtyBtns[i];
-    btn.addEventListener("click", function() {
-      var index = getJSON.findIndex(function(prod) {
-        return prod.id == btn.parentElement.parentElement.parentElement.id;
-      });
+    var qtyBtn = qtyBtns[i];
+    qtyBtn.addEventListener("click", function () {
+      var findQtyIndex = -1;
 
-      if (btn.innerHTML === "+") {
-        getJSON[index].qty -= 1; //???
+      for (var i = 0; i < getJSON.length; ++i) {
+        if (getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id) {
+          findQtyIndex = i;
+        }
+      }
 
-        getJSON[index].qty += 2;
-        btn.parentElement.previousElementSibling.textContent = getJSON[index].qty;
+      if (qtyBtn.innerHTML === "+") {
+        getJSON[findQtyIndex].qty -= 1; //???
+
+        getJSON[findQtyIndex].qty += 2;
+        qtyBtn.parentElement.previousElementSibling.textContent = getJSON[findQtyIndex].qty;
       } else {
-        if (getJSON[index].qty > 1) getJSON[index].qty -= 1;
-        btn.parentElement.nextElementSibling.textContent = getJSON[index].qty;
+        if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
+        qtyBtn.parentElement.nextElementSibling.textContent = getJSON[findQtyIndex].qty;
       }
 
       localStorage.setItem("products", JSON.stringify(getJSON));
