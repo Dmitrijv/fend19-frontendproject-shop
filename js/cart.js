@@ -150,6 +150,7 @@ function deleteProduct(getJSON) {
       });
       getJSON.splice(findIndex, 1);
       delBtn.parentElement.parentElement.outerHTML = "";
+
       console.log();
       
       localStorage.setItem("products", JSON.stringify(getJSON));

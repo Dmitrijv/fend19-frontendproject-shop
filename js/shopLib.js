@@ -281,6 +281,8 @@ shopLib = (function() {
           errmsg.classList.add("hidden");
         }
       });
+      var productBtn = document.querySelectorAll(".product__add-btn");
+      addProduct(productBtn);
     },
 
     // Draw Latest Products Panel -------------------------------------------------------------------------------------------------------------
@@ -323,6 +325,8 @@ shopLib = (function() {
         } else {
           errmsg.classList.add("hidden");
         }
+        var productBtn = document.querySelectorAll(".product__add-btn");
+        addProduct(productBtn);
       });
     },
 
