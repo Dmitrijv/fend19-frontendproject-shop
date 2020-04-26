@@ -41,10 +41,10 @@
         <div class="footer__wrapper flex-box">
             <h6 class="footer__icon__heading">Följ oss</h6>
             <div class="icon-wrapper">
-                <a class="footer-icon" href="#"><img src="img/svg/footer/facebook.svg" alt="Facebook Icon" class="footer__icons"></a>
-                <a class="footer-icon" href="#"><img src="img/svg/footer/instagram.svg" alt="Instagram Icon" class="footer__icons"></a>
-                <a class="footer-icon" href="#"><img src="img/svg/footer/twitter.svg" alt="Twitter Icon" class="footer__icons"></a>
-                <a class="footer-icon" href="#"><img src="img/svg/footer/youtube.svg" alt="Youtube Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="https://www.facebook.com/mi.frame.169"><img src="img/svg/footer/facebook.svg" alt="Facebook Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="https://www.instagram.com/frame_me_sthlm/"><img src="img/svg/footer/instagram.svg" alt="Instagram Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="https://twitter.com/FrameMe63544450/status/1253337314215882754"><img src="img/svg/footer/twitter.svg" alt="Twitter Icon" class="footer__icons"></a>
+                <a class="footer-icon" href="https://www.youtube.com/channel/UCq3SaN58f6MzG6opNU_LEfA/"><img src="img/svg/footer/youtube.svg" alt="Youtube Icon" class="footer__icons"></a>
             </div>
         </div>
     </div>
