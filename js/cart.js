@@ -71,15 +71,16 @@ const productInfo = (btn) => {
     -2
   );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
-  productQty =
-    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productQty = 1;
+  productNumberInStock = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
   return {
     id: productId,
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: 1,
+    qty: productQty,
+    productNumberInStock: productNumberInStock,
   };
 };
 
@@ -189,15 +190,18 @@ function changeQty(getJSON) {
       }
 
       if (qtyBtn.innerHTML === "+") {
+        if(getJSON[findQtyIndex].qty < getJSON[findQtyIndex].productNumberInStock) {
         getJSON[findQtyIndex].qty -= 1; //???
         getJSON[findQtyIndex].qty += 2;
         qtyBtn.parentElement.previousElementSibling.textContent =
           getJSON[findQtyIndex].qty;
+        }
       } else {
-        if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
+        if (getJSON[findQtyIndex].qty > 1) 
+        getJSON[findQtyIndex].qty -= 1;
         qtyBtn.parentElement.nextElementSibling.textContent =
           getJSON[findQtyIndex].qty;
-      }
+    }
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
     });
