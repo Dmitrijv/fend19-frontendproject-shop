@@ -57,20 +57,11 @@
             <table>
                 <thead class="font-bold">
                     <tr>
-                        <th>
-                            Produkt
-                        </th>
-                        <th>
-                        </th>
-                        <th>
-                            Antal
-                        </th>
-                        <th>
-                            Pris
-                        </th>
-                        <th class="item-total">
-                            Totalt
-                        </th>
+                        <th></th>
+                        <th>Produkt</th>
+                        <th>Antal</th>
+                        <th>Pris</th>
+                        <th class="item-total">Totalt</th>
                     </tr>
                 </thead>
                 <tbody class="order-list">

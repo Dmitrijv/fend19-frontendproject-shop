@@ -2903,14 +2903,61 @@ section.order-confirmation button[disabled] {
   margin: 20px 5px;
 }
 
+.checkout-form__cart-section {
+  min-width: unset;
+}
+
+.checkout-form__cart-section__sum-area {
+  margin: 0 7px 0 auto;
+}
+
 @media screen and (min-width: 800px) {
   .checkout-form__cart-section {
     width: 50%;
   }
 }
 
-.checkout-form__cart-section__sum-area {
-  margin: 0 7px 0 auto;
+.checkout-form__delivery-section label {
+  display: block;
+}
+
+.checkout-form__delivery-section input {
+  margin: 10px auto;
+}
+
+.checkout-form__delivery-section__deliveryBtn {
+  margin: 10px 0;
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .checkout-form__delivery-section__deliveryBtn {
+    margin: 10px 0;
+  }
+}
+
+.checkout-form__delivery-section__checkoutBtn--dim {
+  font-size: 20px;
+  margin: 10px 0 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .checkout-form__delivery-section {
+    padding: 10px 2vw 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .checkout-form__delivery-section label {
+    margin: unset;
+  }
+  .checkout-form__delivery-section input {
+    margin: 10px 0;
+  }
 }
 
 #last-chance-main .content .product-container {
