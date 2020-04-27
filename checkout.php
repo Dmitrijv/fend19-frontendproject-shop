@@ -66,10 +66,13 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="checkout-form__cart-section__sum-area">
+                    <p class="deliveryFeeRow">Frakt: <span class="deliveryFeeText hidden">50 kr</span></p>
                     <span class="pull-left products-amount"></span>
                     <span class="pull-right totalPrice"></span>
                 </div>
+                <!-- <button class="btn btn-success confirm-order-button ">Bekräfta order</button> -->
             </section>
 
 
@@ -100,7 +103,7 @@
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
                 <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div>
-                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim">Genomför köp</button>
+                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
 
             </section>
 
