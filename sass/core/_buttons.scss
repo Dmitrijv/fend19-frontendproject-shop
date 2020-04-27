@@ -24,3 +24,10 @@ button.product__add-btn {
     z-index: 20;
   }
 }
+.single-product {
+    .p-grid-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
