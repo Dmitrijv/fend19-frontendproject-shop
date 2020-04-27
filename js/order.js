@@ -51,6 +51,7 @@ document.querySelector(".dateToday").textContent = new Date().toLocaleString();
 const myBtn2 = document.querySelector(".goback-Btn");
 myBtn2.addEventListener("click", function() {
   // shopLib.clearShoppingCart();
-  localStorage.clear();
+  // localStorage.clear();
+  localStorage.removeItem("products");
   location.href = "/fend19-frontendproject-shop/index.php";
 });

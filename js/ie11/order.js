@@ -51,5 +51,7 @@ dateOfToday.textContent = date;
 /* button part */
 var myBtn2 = document.querySelector(".goback-Btn");
 myBtn2.addEventListener("click", function () {
-  localStorage.clear();
+  // localStorage.clear();
+  localStorage.removeItem("products");
+
 });

@@ -102,3 +102,5 @@ addDeliveryBtn.addEventListener("click", function () {
   hiddenPcode.value = pcodeP.textContent
   hiddenCity.value = cityP.textContent
 })
+
+/* Validation */
