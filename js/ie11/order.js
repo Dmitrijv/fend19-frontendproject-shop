@@ -51,7 +51,5 @@ dateOfToday.textContent = date;
 /* button part */
 var myBtn2 = document.querySelector(".goback-Btn");
 myBtn2.addEventListener("click", function () {
-  location.href = "/fend19-frontendproject-shop/index.php";
+  localStorage.clear();
 });
-
-shopLib.clearShoppingCart();

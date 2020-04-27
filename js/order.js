@@ -1,4 +1,4 @@
-const shoppingCart = JSON.parse(localStorage.getItem("products"));
+const shoppingCart = shopLib.getShoppingCart();
 
 let subTotal = 0;
 let itemsCountTotal = 0;
@@ -50,7 +50,7 @@ document.querySelector(".dateToday").textContent = new Date().toLocaleString();
 
 const myBtn2 = document.querySelector(".goback-Btn");
 myBtn2.addEventListener("click", function() {
+  // shopLib.clearShoppingCart();
+  localStorage.clear();
   location.href = "/fend19-frontendproject-shop/index.php";
 });
-
-shopLib.clearShoppingCart();

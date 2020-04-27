@@ -34,9 +34,7 @@
     <!-- js scripts go here -->
     <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <script type="text/javascript"> shopLib.drawDefaultProductPanel(); </script>
-    <!-- <script type="text/javascript" src="./js/order.js"></script> -->
-    <script type="text/javascript" src="./js/ie11/order.js"></script>
-
+ 
 </body>
 
 </html>
