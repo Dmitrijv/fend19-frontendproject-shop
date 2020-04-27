@@ -2733,7 +2733,7 @@ section.order-confirmation button[disabled] {
   font-family: "Lato", sans-serif;
 }
 
-@supports ((display: -ms-grid) or (display: grid)) {
+@supports (display: grid) {
   #checkout-main {
     padding: 0;
   }

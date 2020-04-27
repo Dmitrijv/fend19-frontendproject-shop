@@ -79,7 +79,7 @@ const productInfo = (btn) => {
     name: productName,
     img: productImg,
     price: productPrice,
-    qty: productQty,
+    qty: 1,
   };
 };
 
