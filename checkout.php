@@ -1,3 +1,5 @@
+<!-- TODO -->
+<!-- Separate the function for drawing order table -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,15 +34,56 @@
             <section class="checkout-form__cart-section">
 
                 <h2 class="checkout-form__cart-section__h2">Min varukorg</h2>
-                <div class="checkout-form__cart-section__product-list"></div>
+                <div class="checkout-form__cart-section__product-list">
+                    <table id="checkout-table">
+                        <thead class="font-bold">
+                            <tr>
+                                <th>
+                                    Produkt
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                    Antal
+                                </th>
+                                <th>
+                                    Pris
+                                </th>
+                                <th class="item-total">
+                                    Totalt
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="order-list">
+                            <!-- example -->
+                            <!-- <tr>
+                                <td class="item-image">
+                                    <img class="product-cover-small" src="./img/product/5-cover.jpg" alt="Abstrakt Oljemålning - Dimensional Shift">
+                                </td>
+                                <td class="item-name">Dimensional Shift</td>
+                                <td class="item-qty">1</td>
+                                <td class="item-price">750 kr</td>
+                                <td class="item-total">750 kr</td>
+                            </tr>
+                            <tr class="font-bold">
+                                <td>Totalt:</td>
+                                <td></td>
+                                <td class="products-amount">3</td>
+                                <td></td>
+                                <td class="item-total">195 kr</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
                 <div class="checkout-form__cart-section__sum-area">
-                    <span class="pull-left">2 artiklar</span>
-                    <span class="pull-right total-sum">500 SEK</span>
+                    <span class="pull-left products-amount"></span>
+                    <span class="pull-right totalPrice"></span>
+                </div>
             </section>
 
 
             <section class="checkout-form__delivery-section">
-
+                <div class="err-tips"></div>
                 <label class="checkout-form__delivery-section__label" for="">Email Adress</label><br>
                 <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com"><br>
 
@@ -72,7 +115,7 @@
 
                 <div class="checkout-form__price">Totalt att betala: 568 SEK</div>
                 <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim">Genomför köp</button>
-                <div class="err-tips"></div>
+
             </section>
 
         </form>
