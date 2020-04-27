@@ -34,10 +34,7 @@ for (var a = 0; a < length; a++) {
   subTotal += itemTotalPrice;
   itemsCountTotal += itemCount;
   orderList.innerHTML += "<tr><td class=\"item-image\"><img class=\"product-cover-small\" src=\"".concat(itemImage, "\" alt=\"").concat(itemName, "\"></td><td class=\"item-name\">  ").concat(itemName, "</td><td class=\"item-qty\">").concat(itemCount, "</td><td class=\"item-price\">").concat(itemPrice, "</td><td class=\"item-total\">").concat(itemTotalPrice, " kr</td></tr>");
-
 }
-
-subTotal = subTotal; //remove toFixed(2)
 
 var text = itemsCountTotal > 1 ? 'Artiklar' : 'Artikel';
 productsAmount.textContent = itemsCountTotal + ' ' + text;
