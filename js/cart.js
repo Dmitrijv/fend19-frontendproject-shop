@@ -72,7 +72,8 @@ const productInfo = (btn) => {
   );
   productPrice = btn.previousElementSibling.previousElementSibling.textContent;
   productQty = 1;
-  productNumberInStock = btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
+  productNumberInStock =
+    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
   productId = btn.parentElement.parentElement.id; //t
   return {
     id: productId,
@@ -84,17 +85,17 @@ const productInfo = (btn) => {
   };
 };
 
-function alreadyExist(getArray, productName) {
-  let nameInLs;
-  for (let i = 0; i < getArray.length; i++) {
-    nameInLs = getArray[i].name;
-  }
-  return nameInLs === productName;
-}
+// function alreadyExist(getArray, productName) {
+//   let nameInLs;
+//   for (let i = 0; i < getArray.length; i++) {
+//     nameInLs = getArray[i].name;
+//   }
+//   return nameInLs === productName;
+// }
 
 function setLocalStorage(obj, fromClick) {
   const productName = obj.parentElement.firstElementChild.textContent;
-  let alreadyExst = false;
+  let alreadyExists = false;
   let getArray;
   if (localStorage.getItem("products") === null) {
     let prodArray = [];
@@ -102,16 +103,20 @@ function setLocalStorage(obj, fromClick) {
     localStorage.setItem("products", JSON.stringify(prodArray));
   } else {
     getArray = JSON.parse(localStorage.getItem("products"));
+    for (let i = 0; i < getArray.length; i++) {
+      if (getArray[i].name === productName) {
+        alreadyExists = true;
+      }
+    }
 
-    if (alreadyExist(getArray, productName)) {
-      alert("Produkten finns redan i varukorgen!");
-      alreadyExst = true;
+    if (alreadyExists) {
+      alert("You already have this item in your cart.");
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
     }
   }
-  if (alreadyExst === false) {
+  if (alreadyExists === false) {
     fillCartList(fromClick);
   }
 }
@@ -152,8 +157,6 @@ function deleteProduct(getJSON) {
       getJSON.splice(findIndex, 1);
       delBtn.parentElement.parentElement.outerHTML = "";
 
-      console.log();
-      
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
 
@@ -190,18 +193,19 @@ function changeQty(getJSON) {
       }
 
       if (qtyBtn.innerHTML === "+") {
-        if(getJSON[findQtyIndex].qty < getJSON[findQtyIndex].productNumberInStock) {
-        getJSON[findQtyIndex].qty -= 1; //???
-        getJSON[findQtyIndex].qty += 2;
-        qtyBtn.parentElement.previousElementSibling.textContent =
-          getJSON[findQtyIndex].qty;
+        if (
+          getJSON[findQtyIndex].qty < getJSON[findQtyIndex].productNumberInStock
+        ) {
+          getJSON[findQtyIndex].qty -= 1; //???
+          getJSON[findQtyIndex].qty += 2;
+          qtyBtn.parentElement.previousElementSibling.textContent =
+            getJSON[findQtyIndex].qty;
         }
       } else {
-        if (getJSON[findQtyIndex].qty > 1) 
-        getJSON[findQtyIndex].qty -= 1;
+        if (getJSON[findQtyIndex].qty > 1) getJSON[findQtyIndex].qty -= 1;
         qtyBtn.parentElement.nextElementSibling.textContent =
           getJSON[findQtyIndex].qty;
-    }
+      }
       localStorage.setItem("products", JSON.stringify(getJSON));
       updateSum(getJSON);
     });
