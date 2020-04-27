@@ -2730,7 +2730,7 @@ section.order-confirmation button[disabled] {
 #checkout-main {
   margin: 0 auto;
   padding: 90px 0px;
-  font-family: "Lato", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 @supports (display: grid) {
@@ -2744,8 +2744,7 @@ section.order-confirmation button[disabled] {
   padding-bottom: 10px;
 }
 
-.checkout-form,
-.checkout-form--hidden {
+.checkout-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2759,8 +2758,7 @@ section.order-confirmation button[disabled] {
 }
 
 @media (min-width: 800px) {
-  .checkout-form,
-  .checkout-form--hidden {
+  .checkout-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2771,8 +2769,7 @@ section.order-confirmation button[disabled] {
   }
 }
 
-.checkout-form__h1,
-.checkout-form--hidden__h1 {
+.checkout-form__h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2782,9 +2779,16 @@ section.order-confirmation button[disabled] {
           flex-direction: column;
 }
 
+.checkout-form__cart-section {
+  min-width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  background: #e2e1dd;
+}
+
 @media (min-width: 800px) {
-  .checkout-form__container-1,
-  .checkout-form--hidden__container-1 {
+  .checkout-form__cart-section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2795,12 +2799,24 @@ section.order-confirmation button[disabled] {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 90px;
+    min-width: 450px;
+    min-height: 500px;
   }
 }
 
+.checkout-form__delivery-section {
+  min-width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  background: #e2e1dd;
+}
+
 @media (min-width: 800px) {
-  .checkout-form__container-2,
-  .checkout-form--hidden__container-2 {
+  .checkout-form__delivery-section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2811,53 +2827,7 @@ section.order-confirmation button[disabled] {
   }
 }
 
-.checkout-form__cart-section,
-.checkout-form--hidden__cart-section {
-  min-width: 300px;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 3px;
-  background: #e2e1dd;
-}
-
-@media (min-width: 800px) {
-  .checkout-form__cart-section,
-  .checkout-form--hidden__cart-section {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 90px;
-    min-width: 450px;
-    min-height: 500px;
-  }
-}
-
-.checkout-form__email-section,
-.checkout-form--hidden__email-section {
-  min-width: 300px;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 3px;
-  background: #e2e1dd;
-}
-
-.checkout-form__delivery-section,
-.checkout-form--hidden__delivery-section {
-  opacity: 0.4;
-}
-
-.checkout-form__delivery-section--click, .checkout-form__delivery-section,
-.checkout-form--hidden__delivery-section,
-.checkout-form--hidden__delivery-section--click {
-  min-width: 300px;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 3px;
-  background: #e2e1dd;
-}
-
-.checkout-form__input, .checkout-form__input--email,
-.checkout-form--hidden__input,
-.checkout-form--hidden__input--email {
+.checkout-form__delivery-section__input {
   background: white;
   border: 1px solid #f60d4d;
   height: 30px;
@@ -2865,9 +2835,7 @@ section.order-confirmation button[disabled] {
   margin-bottom: 20px;
 }
 
-.checkout-form__addBtn, .checkout-form__deliveryBtn,
-.checkout-form--hidden__addBtn,
-.checkout-form--hidden__deliveryBtn {
+.checkout-form__delivery-section__deliveryBtn {
   font-weight: bold;
   background-color: #f60d4d;
   border: none;
@@ -2875,14 +2843,7 @@ section.order-confirmation button[disabled] {
   color: white;
 }
 
-.checkout-form--hidden__checkoutBtn__dim,
-.checkout-form--hidden--hidden__checkoutBtn__dim {
-  opacity: 0.4;
-}
-
-.checkout-form--hidden__checkoutBtn, .checkout-form--hidden__checkoutBtn__dim,
-.checkout-form--hidden--hidden__checkoutBtn__dim,
-.checkout-form--hidden--hidden__checkoutBtn {
+.checkout-form__delivery-section__checkoutBtn--dim {
   min-width: 300px;
   margin: 10px;
   padding: 10px;
@@ -2892,11 +2853,6 @@ section.order-confirmation button[disabled] {
   border: none;
   border-radius: 3px;
   color: white;
-}
-
-.checkout-form--hidden__total-price,
-.checkout-form--hidden--hidden__total-price {
-  text-align: center;
 }
 
 #last-chance-main .content .product-container {
