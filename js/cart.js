@@ -38,7 +38,6 @@ function fillCartList(fromClick) {
       productPrice = getLs[i].price;
       productQty = getLs[i].qty;
     }
-
     product = `
       <div id="${productId}" class="cart__product">
         <div class="cart__product-img" style="background-image: url(${productImg}); "></div>
