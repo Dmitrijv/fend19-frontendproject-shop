@@ -103,7 +103,14 @@ shopLib = (function() {
                         </div>
                         <button class='product__add-btn'>Lägg i varukorgen</button>
                     </div>
-                </div>`;
+                    <div style="display: none;" class='hiddenInputItems'>
+                    <input type="hidden" name="productId" value="${item.id}">
+                    <input type="hidden" name="productImage" value="${coverImage}">
+                    <input type="hidden" name="productTitle" value="${item.title}">
+                    <input type="hidden" name="productPrice" value="${item.price}">
+                    <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
+                    </div>
+                  </div>`;
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
@@ -191,7 +198,14 @@ shopLib = (function() {
                 <p class='product__title'>${item.title}</p>
                 <div class='product__price'>${item.price} ${item.currency}</div>
             </div>
-        </div>`;
+            <div style="display: none;" class='hiddenInputItems'>
+            <input type="hidden" name="productId" value="${item.id}">
+            <input type="hidden" name="productImage" value="${coverImage}">
+            <input type="hidden" name="productTitle" value="${item.title}">
+            <input type="hidden" name="productPrice" value="${item.price}">
+            <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
+            </div>
+          </div>`;
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
@@ -262,6 +276,13 @@ shopLib = (function() {
                 </div>
                 <button class='product__add-btn'>Lägg i varukorgen</button>
               </div>
+              <div style="display: none;" class='hiddenInputItems'>
+              <input type="hidden" name="productId" value="${item.id}">
+              <input type="hidden" name="productImage" value="${coverImage}">
+              <input type="hidden" name="productTitle" value="${item.title}">
+              <input type="hidden" name="productPrice" value="${item.price}">
+              <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
+              </div>
             </div>`;
         });
         lastChancePanel.innerHTML += cardHtml;
@@ -306,6 +327,13 @@ shopLib = (function() {
                     <button class='hidden product__count-btn'>+</button>
                   </div>
                   <button class='product__add-btn'>Lägg i varukorgen</button>
+                </div>
+                <div style="display: none;" class='hiddenInputItems'>
+                <input type="hidden" name="productId" value="${item.id}">
+                <input type="hidden" name="productImage" value="${coverImage}">
+                <input type="hidden" name="productTitle" value="${item.title}">
+                <input type="hidden" name="productPrice" value="${item.price}">
+                <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
                 </div>
               </div>`;
         });

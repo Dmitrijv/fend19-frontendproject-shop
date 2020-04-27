@@ -96,7 +96,15 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                     <p class="single-product__storage-count">
                         <?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?> st i lager
                     </p>
+                    <button class='product__add-btn'>Lägg i varukorgen</button>
                 </div>
+              <div style="display: none;" class='hiddenInputItems'>
+              <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+              <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName ?>">
+              <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
+              <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+              <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
+              </div>
             </div>
         </div>
     </main>
@@ -104,9 +112,12 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
     <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- js scripts go here -->
-    <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
+    <script>
+        var productBtn = document.querySelectorAll(".product__add-btn");
+        addProduct(productBtn);
+        </script>
 </body>
 
 </html>

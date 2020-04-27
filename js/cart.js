@@ -64,17 +64,15 @@ function fillCartList(fromClick) {
   changeQty(getLs);
 }
 const productInfo = (btn) => {
-  productName = btn.parentElement.firstElementChild.textContent;
+  productId = btn.parentElement.nextElementSibling.firstElementChild.value; //id
+  productImg = btn.parentElement.nextElementSibling.firstElementChild.nextElementSibling.value;
+  productName = btn.parentElement.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.value;
   //get url from product card
-  productImg = btn.parentElement.previousElementSibling.firstElementChild.style.backgroundImage.slice(
-    5,
-    -2
-  );
-  productPrice = btn.previousElementSibling.previousElementSibling.textContent;
+  productPrice = btn.parentElement.nextElementSibling.lastElementChild.previousElementSibling.value;
   productQty = 1;
   productNumberInStock =
-    btn.previousElementSibling.firstElementChild.nextElementSibling.textContent;
-  productId = btn.parentElement.parentElement.id; //t
+  btn.parentElement.nextElementSibling.lastElementChild.value;
+
   return {
     id: productId,
     name: productName,
@@ -94,7 +92,7 @@ const productInfo = (btn) => {
 // }
 
 function setLocalStorage(obj, fromClick) {
-  const productName = obj.parentElement.firstElementChild.textContent;
+  const productName = obj.parentElement.nextElementSibling.firstElementChild.nextElementSibling.nextElementSibling.value;
   let alreadyExists = false;
   let getArray;
   if (localStorage.getItem("products") === null) {
