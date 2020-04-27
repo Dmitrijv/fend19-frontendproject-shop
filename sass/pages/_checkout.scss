@@ -6,13 +6,19 @@
     padding: 0;
   }
 
-  font-family: "Lato", sans-serif;
+  font-family: "Lato",
+  sans-serif;
 
   h1 {
     text-align: center;
     padding-bottom: 10px;
   }
+
+  .err-tips {
+    color: $red;
+  }
 }
+
 
 // .checkout-form,
 // .checkout-form--hidden {
@@ -141,10 +147,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
   }
+
   &__h1 {
     display: flex;
     flex-direction: column;
@@ -156,6 +164,7 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
+
     @media (min-width: 800px) {
       display: flex;
       flex-direction: column;
@@ -165,12 +174,12 @@
       min-width: 450px;
       min-height: 500px;
     }
-    &__h2 {
-    }
-    &__product-list {
-    }
-    &__sum-area {
-    }
+
+    &__h2 {}
+
+    &__product-list {}
+
+    &__sum-area {}
   }
 
   &__delivery-section {
@@ -179,14 +188,16 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
+
     @media (min-width: 800px) {
       display: flex;
       flex-direction: column;
     }
-    &__h2 {
-    }
-    &__label {
-    }
+
+    &__h2 {}
+
+    &__label {}
+
     &__input {
       background: rgb(255, 255, 255);
       border: 1px solid $red;
@@ -194,6 +205,7 @@
       min-width: 300px;
       margin-bottom: 20px;
     }
+
     &__deliveryBtn {
       font-weight: bold;
       background-color: $red;
@@ -201,8 +213,9 @@
       border-radius: 3px;
       color: white;
     }
-    &__price {
-    }
+
+    &__price {}
+
     &__checkoutBtn--dim {
       min-width: 300px;
       margin: 10px;
@@ -214,7 +227,23 @@
       border-radius: 3px;
       color: white;
     }
-    &__checkoutBtn {
-    }
+
+    &__checkoutBtn {}
   }
+}
+
+
+/* new added */
+#checkout-table {
+  margin: 20px 5px;
+}
+
+.checkout-form__cart-section {
+  @media screen and (min-width: 800px) {
+    width: 50%;
+  }
+}
+
+.checkout-form__cart-section__sum-area {
+  margin: 0 7px 0 auto;
 }
