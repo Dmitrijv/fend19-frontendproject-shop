@@ -231,17 +231,12 @@ shopLib = (function() {
       document.querySelector(".hamburger__bar-wrapper").classList.add("active");
       document.querySelector(".sidebar").classList.add("active");
     },
-    getShoppingCart: function getShoppingCart() {
-      var shoppingCart = JSON.parse(localStorage.getItem("products"));
-      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
+
+    getShoppingCart: function() {
+      const shoppingCart = JSON.parse(localStorage.getItem("products"));
+      return !shoppingCart || Object.keys(products).length === 0 ? {} : shoppingCart;
     },
-    clearShoppingCart: function clearShoppingCart() {
-      localStorage.setItem("products", JSON.stringify({}));
-    },
-    testPrint: function testPrint() {
-      var lib = this;
-      console.log("hi");
-    },
+
     // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------
     drawLastChancePanel: function drawLastChancePanel() {
       var lib = this;
