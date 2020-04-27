@@ -17,6 +17,10 @@
   .err-tips {
     color: $red;
   }
+
+  :disabled {
+    background: grey;
+  }
 }
 
 .checkout-form {

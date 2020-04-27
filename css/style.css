@@ -2787,6 +2787,10 @@ section.order-confirmation button[disabled] {
   color: #f60d4d;
 }
 
+#checkout-main :disabled {
+  background: grey;
+}
+
 .checkout-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2898,7 +2902,7 @@ section.order-confirmation button[disabled] {
   color: white;
 }
 
-/* new added */
+/* new added styling*/
 #checkout-table {
   margin: 20px 5px;
 }
