@@ -6,8 +6,7 @@
     padding: 0;
   }
 
-  font-family: "Lato",
-  sans-serif;
+  font-family: "Lato", sans-serif;
 
   h1 {
     text-align: center;
@@ -27,77 +26,118 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  padding-bottom: 60px;
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
   }
-
   &__h1 {
     display: flex;
     flex-direction: column;
   }
 
   &__cart-section {
-    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    // min-width: 300px;
+    max-width: 320px;
+    height: min-content;
     margin: 10px;
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
-
     @media (min-width: 800px) {
-      display: flex;
-      flex-direction: column;
-      order: 1;
       position: sticky;
-      top: 90px;
-      min-width: 450px;
-      min-height: 500px;
+      order: 1;
+      right: -100px;
+      max-width: 580px;
+
+      //   min-height: 500px;
     }
 
-    &__h2 {}
+    &__product-list {
+      @media (min-width: 800px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        // flex: 1 0 calc(25% - 10px);
 
-    &__product-list {}
+        padding: 20px;
+        justify-content: flex-start;
+      }
+    }
+    &__product-container {
+      text-align: center;
 
-    &__sum-area {}
-  }
-
-  &__delivery-section {
-    min-width: 300px;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 3px;
-    background: rgb(226, 225, 221);
-
-    @media (min-width: 800px) {
+      width: 170px;
+    }
+    &__img-container {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+
+      &--img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    &__h2 {
+      text-align: center;
+    }
+    &__item-qty {
+    }
+    &__item-price {
+    }
+    &__totalsum {
+      text-align: center;
     }
 
-    &__h2 {}
-
-    &__label {}
-
-    &__input {
-      background: rgb(255, 255, 255);
-      border: 1px solid $red;
-      height: 30px;
-      min-width: 300px;
-      margin-bottom: 20px;
-    }
-
-    &__deliveryBtn {
+    &__keep-shopping-btn {
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
       font-weight: bold;
+      font-size: 20px;
       background-color: $red;
       border: none;
       border-radius: 3px;
       color: white;
     }
+  }
 
-    &__price {}
-
-    &__checkoutBtn--dim {
+  &__delivery-section {
+    max-width: 320px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgb(226, 225, 221);
+    @media (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+    &__h2 {
+      text-align: center;
+    }
+    &__label {
+    }
+    &__input {
+      padding-left: 10px;
+      background: rgb(255, 255, 255);
+      border: 0.9px solid $red;
+      height: 30px;
       min-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    &__price {
+    }
+    &__checkoutBtn--dim {
+      @extend .checkout-form__delivery-section__checkoutBtn;
+      //   opacity: 0.4;
+    }
+    &__checkoutBtn {
+      min-width: 280px;
       margin: 10px;
       padding: 10px;
       font-weight: bold;
@@ -107,66 +147,62 @@
       border-radius: 3px;
       color: white;
     }
-
-    &__checkoutBtn {}
   }
 }
-
 
 /* new added styling*/
-#checkout-table {
-  margin: 20px 5px;
-}
+// #checkout-table {
+//   margin: 20px 5px;
+// }
 
-.checkout-form {
-  &__cart-section {
-    min-width: unset;
+// .checkout-form {
+//   &__cart-section {
+//     min-width: unset;
 
-    &__sum-area {
-      margin: 0 7px 0 auto;
-    }
+//     &__sum-area {
+//       margin: 0 7px 0 auto;
+//     }
 
-    @media screen and (min-width: 800px) {
-      width: 50%;
-    }
-  }
+//     @media screen and (min-width: 800px) {
+//       width: 50%;
+//     }
+//   }
 
-  &__delivery-section {
+//   &__delivery-section {
+//     label {
+//       display: block;
+//     }
 
-    label {
-      display: block;
-    }
+//     input {
+//       margin: 10px auto;
+//     }
 
-    input {
-      margin: 10px auto;
-    }
+//     &__deliveryBtn {
+//       margin: 10px 0;
+//       display: block;
 
-    &__deliveryBtn {
-      margin: 10px 0;
-      display: block;
+//       @media screen and (max-width: 800px) {
+//         margin: 10px 0;
+//       }
+//     }
 
-      @media screen and (max-width:800px) {
-        margin: 10px 0;
-      }
-    }
+//     &__checkoutBtn--dim {
+//       font-size: 20px;
+//       margin: 10px 0 20px;
+//     }
 
-    &__checkoutBtn--dim {
-      font-size: 20px;
-      margin: 10px 0 20px;
-    }
+//     @media screen and (max-width: 800px) {
+//       padding: 10px 2vw 0;
+//       display: flex;
+//       flex-direction: column;
 
-    @media screen and (max-width:800px) {
-      padding: 10px 2vw 0;
-      display: flex;
-      flex-direction: column;
+//       label {
+//         margin: unset;
+//       }
 
-      label {
-        margin: unset;
-      }
-
-      input {
-        margin: 10px 0;
-      }
-    }
-  }
-}
+//       input {
+//         margin: 10px 0;
+//       }
+//     }
+//   }
+// }
