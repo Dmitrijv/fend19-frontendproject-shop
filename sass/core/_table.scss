@@ -1,0 +1,44 @@
+table {
+  margin: 2rem 5vw;
+  border-collapse: collapse;
+
+  th:first-child,
+  td:first-child {
+    width: 10%;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 40%;
+  }
+
+  th:last-child,
+  td:last-child {
+    width: 15%;
+  }
+
+  .item-total {
+    text-align: right;
+  }
+
+  tr,
+  td,
+  th {
+    width: 90vw;
+    text-align: left;
+  }
+
+  tr+tr {
+    border-top: 1px dashed grey;
+  }
+
+  td {
+    height: 45px;
+
+    .product-cover-small {
+      width: 30px;
+      margin-right: 5px;
+      display: inline;
+    }
+  }
+}
