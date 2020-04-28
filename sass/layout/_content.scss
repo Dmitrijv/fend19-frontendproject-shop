@@ -89,7 +89,7 @@ main {
 $elements: 12;
 
 @for $i from 1 to $elements {
-  .product-container > :nth-child(#{$i }) {
+  .product-container> :nth-child(#{$i }) {
     -ms-grid-row: $i + $i -1 !important;
   }
 }
@@ -104,12 +104,12 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 1 to $elements {
-    .product-container > :nth-child(#{$i*2 - 1}) {
+    .product-container> :nth-child(#{$i*2 - 1}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*2}) {
+    .product-container> :nth-child(#{$i*2}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 3 !important;
     }
@@ -126,20 +126,21 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
+
     /* 1/4/7/10/.. */
-    .product-container > :nth-child(#{$i*3 + 1}) {
+    .product-container> :nth-child(#{$i*3 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
     /* 2/5/8/11/... */
-    .product-container > :nth-child(#{$i*3 + 2}) {
+    .product-container> :nth-child(#{$i*3 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
     /* 3/6/9/12/... */
-    .product-container > :nth-child(#{$i*3 + 3}) {
+    .product-container> :nth-child(#{$i*3 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
@@ -156,22 +157,22 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
-    .product-container > :nth-child(#{$i*4 + 1}) {
+    .product-container> :nth-child(#{$i*4 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 2}) {
+    .product-container> :nth-child(#{$i*4 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 3}) {
+    .product-container> :nth-child(#{$i*4 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 4}) {
+    .product-container> :nth-child(#{$i*4 + 4}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 7 !important;
     }
@@ -205,7 +206,7 @@ $elements: 12;
   }
 }
 
-div.product > div:nth-child(2) > button:nth-child(4) {
+div.product>div:nth-child(2)>button:nth-child(4) {
   z-index: 0 !important;
 }
 
@@ -303,7 +304,7 @@ div.product > div:nth-child(2) > button:nth-child(4) {
   }
 }
 
-div.product > div > button:nth-child(4) {
+div.product>div>button:nth-child(4) {
   padding: 5px 15px;
 }
 
@@ -405,7 +406,29 @@ div.product > div > button:nth-child(4) {
   width: 100%;
 }
 
-:checked + .fx-sliderIn::after,
+:checked+.fx-sliderIn::after,
 .fx-sliderIn.active::after {
   width: 300%;
+}
+
+/* Testing code, for adding status indicator */
+.product {
+  position: relative;
+
+  &::before {
+    content: url('../img/svg/cart.svg');
+    position: absolute;
+    width: 12%;
+    top: 88%;
+    left: 8%;
+  }
+
+  &.oldProduct::before {
+    content: url('../img/svg/price-tag.svg');
+    position: absolute;
+    width: 16%;
+    top: 0;
+    left: 0;
+    rotate: -85deg;
+  }
 }

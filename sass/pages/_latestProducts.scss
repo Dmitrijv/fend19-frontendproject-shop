@@ -20,7 +20,8 @@
 }
 
 .product.newProduct {
-  border: 1px solid $newItemBorder !important;
+
+  // border: 1px solid $newItemBorder !important;
   .product__title::before {
     color: green;
     content: "NYTT";

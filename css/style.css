@@ -1885,6 +1885,28 @@ div.product > div > button:nth-child(4) {
   width: 300%;
 }
 
+/* Testing code, for adding status indicator */
+.product {
+  position: relative;
+}
+
+.product::before {
+  content: url("../img/svg/cart.svg");
+  position: absolute;
+  width: 12%;
+  top: 88%;
+  left: 8%;
+}
+
+.product.oldProduct::before {
+  content: url("../img/svg/price-tag.svg");
+  position: absolute;
+  width: 16%;
+  top: 0;
+  left: 0;
+  rotate: -85deg;
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2756,10 +2778,6 @@ section.order-confirmation button[disabled] {
   margin-right: 10px;
 }
 
-.product.newProduct {
-  border: 1px solid #218838 !important;
-}
-
 .product.newProduct .product__title::before {
   color: green;
   content: "NYTT";
@@ -3043,15 +3061,10 @@ section.order-confirmation button[disabled] {
   margin-right: 10px;
 }
 
-.product.oldProduct {
-  border: 1px solid red !important;
-}
-
 .product.oldProduct .product__title::before {
   content: "REA";
   margin-right: 10px;
   color: red;
-  content: "REA";
   font-weight: bold;
   margin-right: 10px;
 }
