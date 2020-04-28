@@ -6,7 +6,8 @@
     padding: 0;
   }
 
-  font-family: "Lato", sans-serif;
+  font-family: "Lato",
+  sans-serif;
 
   h1 {
     text-align: center;
@@ -27,10 +28,12 @@
   flex-direction: column;
   justify-content: center;
   padding-bottom: 60px;
+
   @media (min-width: 800px) {
     display: flex;
     flex-direction: row;
   }
+
   &__h1 {
     display: flex;
     flex-direction: column;
@@ -48,6 +51,7 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
+
     @media (min-width: 800px) {
       position: sticky;
       order: 1;
@@ -68,11 +72,13 @@
         justify-content: flex-start;
       }
     }
+
     &__product-container {
       text-align: center;
 
       width: 170px;
     }
+
     &__img-container {
       display: flex;
       justify-content: center;
@@ -82,13 +88,15 @@
         height: 150px;
       }
     }
+
     &__h2 {
       text-align: center;
     }
-    &__item-qty {
-    }
-    &__item-price {
-    }
+
+    &__item-qty {}
+
+    &__item-price {}
+
     &__totalsum {
       text-align: center;
     }
@@ -112,15 +120,18 @@
     padding: 10px;
     border-radius: 3px;
     background: rgb(226, 225, 221);
+
     @media (min-width: 800px) {
       display: flex;
       flex-direction: column;
     }
+
     &__h2 {
       text-align: center;
     }
-    &__label {
-    }
+
+    &__label {}
+
     &__input {
       padding-left: 10px;
       background: rgb(255, 255, 255);
@@ -130,12 +141,13 @@
       margin-bottom: 20px;
     }
 
-    &__price {
-    }
+    &__price {}
+
     &__checkoutBtn--dim {
       @extend .checkout-form__delivery-section__checkoutBtn;
       //   opacity: 0.4;
     }
+
     &__checkoutBtn {
       min-width: 280px;
       margin: 10px;
@@ -151,58 +163,63 @@
 }
 
 /* new added styling*/
-// #checkout-table {
-//   margin: 20px 5px;
-// }
+#checkout-table {
+  margin: 20px 5px;
+}
 
-// .checkout-form {
-//   &__cart-section {
-//     min-width: unset;
+.checkout-form {
+  // &__cart-section {
+  //   min-width: unset;
 
-//     &__sum-area {
-//       margin: 0 7px 0 auto;
-//     }
+  //   &__sum-area {
+  //     margin: 0 7px 0 auto;
+  //   }
 
-//     @media screen and (min-width: 800px) {
-//       width: 50%;
-//     }
-//   }
+  //   @media screen and (min-width: 800px) {
+  //     width: 50%;
+  //   }
+  // }
 
-//   &__delivery-section {
-//     label {
-//       display: block;
-//     }
+  &__delivery-section {
+    label {
+      display: block;
+    }
 
-//     input {
-//       margin: 10px auto;
-//     }
+    input {
+      margin: 10px auto;
+    }
 
-//     &__deliveryBtn {
-//       margin: 10px 0;
-//       display: block;
+    &__deliveryBtn {
+      margin: 10px 0;
+      display: block;
+      background-color: $red;
+      border: none;
+      color: white;
+      border-radius: 3px;
+      font-size: 15px;
 
-//       @media screen and (max-width: 800px) {
-//         margin: 10px 0;
-//       }
-//     }
+      @media screen and (max-width: 800px) {
+        margin: 10px 0;
+      }
+    }
 
-//     &__checkoutBtn--dim {
-//       font-size: 20px;
-//       margin: 10px 0 20px;
-//     }
+    &__checkoutBtn--dim {
+      font-size: 20px;
+      margin: 10px 0 20px;
+    }
 
-//     @media screen and (max-width: 800px) {
-//       padding: 10px 2vw 0;
-//       display: flex;
-//       flex-direction: column;
+    @media screen and (max-width: 800px) {
+      padding: 10px 2vw 0;
+      display: flex;
+      flex-direction: column;
 
-//       label {
-//         margin: unset;
-//       }
+      label {
+        margin: unset;
+      }
 
-//       input {
-//         margin: 10px 0;
-//       }
-//     }
-//   }
-// }
+      input {
+        margin: 10px 0;
+      }
+    }
+  }
+}
