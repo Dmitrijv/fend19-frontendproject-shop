@@ -79,6 +79,9 @@ shopLib = (function() {
 
     drawProductPanel: function(productJson) {
       const lib = this;
+      // only show products that are in stock
+      productJson = productJson.filter(product => Number(product.numberInStock) > 0);
+      // randomize order of products
       productJson = lib.shuffle(productJson);
       const productPanel = document.querySelector("div#productPanel");
       let cardHtml = "";
