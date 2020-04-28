@@ -6,6 +6,7 @@ const customerInfo = JSON.parse(localStorage.getItem('customer'));
 document.querySelector('#fullname').textContent = customerInfo.name;
 document.querySelector('#phone').textContent = customerInfo.phone;
 document.querySelector('#address').textContent = customerInfo.fullAddress;
+const finalPrice = customerInfo.totalPrice;
 
 var subTotal = 0;
 var itemsCountTotal = 0;
@@ -35,10 +36,12 @@ for (var a = 0; a < length; a++) {
 }
 /* Above works */
 
-subTotal = subTotal; //remove toFixed(2)
+if(subTotal !== finalPrice){
+  orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td>Frakt + 50 kr</td><td class=\"item-total\" >").concat(finalPrice, " kr</td></tr></tbody>");
 
-orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td></td><td class=\"item-total\" >").concat(subTotal, " kr</td></tr></tbody>");
-
+} else{
+  orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td></td><td class=\"item-total\" >").concat(finalPrice, " kr</td></tr></tbody>");
+}
 
 productsAmount = itemsCountTotal;
 totalPrice = subTotal + ' kr';

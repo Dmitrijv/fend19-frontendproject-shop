@@ -19,7 +19,7 @@
 const listArea = document.querySelector('.checkout-form__cart-section__product-list');
 const confirmBtn = document.querySelector('.checkout-form__delivery-section__deliveryBtn');
 const shoppingCart = JSON.parse(localStorage.getItem("products"));
-
+let realTotalPrice = 0;
 let subTotal = 0;
 let itemsCountTotal = 0;
 
@@ -329,16 +329,18 @@ confirmBtn.onclick = function (event) {
   /* To check delivery fee */
   const deliveryFeeTextArea = document.querySelector('.deliveryFeeText');
   const zipcode = document.querySelector('#pcode');
-  let realTotalPrice = document.querySelector('.item-total');
+  let realTotalPriceArea = document.querySelector('.item-total');
   if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || (subTotal > 500)) {
     // free delivery 
     deliveryFeeTextArea.classList.remove('hidden');
     deliveryFeeTextArea.textContent = '0';
-    realTotalPrice.innerHTML = `Totalt: ${subTotal} kr`;
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
+    realTotalPrice = subTotal;
   } else {
     // add 50 kr
     deliveryFeeTextArea.classList.remove('hidden');
-    realTotalPrice.innerHTML = `Totalt: ${subTotal + 50} kr`;
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
+    realTotalPrice = subTotal + 50;
   }
 
   //remove input border's color
@@ -354,10 +356,12 @@ confirmBtn.onclick = function (event) {
   const pcode = document.querySelector('#pcode').value;
   const city = document.querySelector('#city').value;
   const fullAddress = address + " " + pcode + " " + city;
+
   const detail = {
     name: name,
     phone: phone,
-    fullAddress: fullAddress
+    fullAddress: fullAddress,
+    totalPrice: realTotalPrice
   };
   /* customer number: Random or what..
     customer name: Forename + aftername
