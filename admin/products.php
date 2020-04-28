@@ -54,7 +54,7 @@
         <!-- CONTENT area ends -->
     </main>
 
-    <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+    <?php require_once __DIR__ . '/php/view/adminjscore.php';?>
     <script type="text/javascript"> adminLib.drawProductTable(); </script>
 
 </body>

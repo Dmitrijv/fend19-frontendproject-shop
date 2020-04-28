@@ -55,8 +55,7 @@
 
     </main>
 
-    <!-- <script type="text/javascript" src="js/adminLib.js"></script> -->
-    <script type="text/javascript" src="js/ie11/adminLib.js"></script>
+    <?php require_once __DIR__ . '/php/view/adminjscore.php';?>
     <script type="text/javascript"> adminLib.drawCategoryTable(); </script>
 
 </body>

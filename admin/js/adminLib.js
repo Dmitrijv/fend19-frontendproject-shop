@@ -21,13 +21,14 @@ adminLib = (function() {
         </tr>
         `;
         categoryJson.forEach(category => {
+          const categoryName = lib.escapeHtml(category.name);
           tableContent += `
             <tr data-categoryId='${category.id}'>
                 <td>${category.id}</td>
                 <td>
-                    <span id='${category.id}-nameLabel' >${category.name}</span>
+                    <span id='${category.id}-nameLabel' >${categoryName}</span>
                     <form id='${category.id}-updateForm' class="update-category clearfix hidden" onsubmit='adminLib.updateCategory(event);' data-categoryid='${category.id}'>
-                        <input name="updateCategoryNameField" class="category-input input-left float-left" type="text" placeholder="${category.name}">
+                        <input name="updateCategoryNameField" class="category-input input-left float-left" type="text" placeholder="${categoryName}">
                         <input class="btn btn-right create-btn float-right" type="submit" value="Update">
                     </form>
                   </td>
@@ -430,6 +431,15 @@ adminLib = (function() {
         fileName.indexOf("<") === -1 &&
         fileName.indexOf(">") === -1
       );
+    },
+
+    escapeHtml: function(string) {
+      return string
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     },
 
     loadJsonByXhr: function(url, callback) {
