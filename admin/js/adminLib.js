@@ -125,7 +125,7 @@ adminLib = (function() {
 
     updateCategory: function(event) {
       const lib = this;
-      const input = event.currentTarget.elements.updateCategoryNameField;
+      const input = lib.escapeHtml(event.currentTarget.elements.updateCategoryNameField);
 
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
