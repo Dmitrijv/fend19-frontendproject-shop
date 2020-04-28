@@ -342,6 +342,7 @@ confirmBtn.onclick = function (event) {
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
+    turnWhite();//remove input red border
   }
 
   /* To check delivery fee */
@@ -372,7 +373,6 @@ confirmBtn.onclick = function (event) {
   const city = capitalizeFirstLetter(document.querySelector('#city').value);
   const fullAddress = address + ", " + pcode + ", " + city;
   redrawCustomerInfoTable();
-  turnWhite();
 
   const detail = {
     name: name,
