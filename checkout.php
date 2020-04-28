@@ -27,44 +27,12 @@
 
     <main id="checkout-main">
 
-    
-
         <form action="order.php" class="checkout-form">
-
-            <!-- <section class="checkout-form__cart-section"> -->
-
-                <!-- <h2 class="checkout-form__cart-section__h2">Min varukorg</h2>
+            <!-- Right side: cart section -->
+            <section class="checkout-form__cart-section">
+                <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
                 <div class="checkout-form__cart-section__product-list">
-                    <table id="checkout-table">
-                        <thead class="font-bold">
-                            <tr>
-                                <th></th>
-                                <th>Produkt</th>
-                                <th>Antal</th>
-                                <th>Pris</th>
-                                <th class="item-total">Totalt</th>
-                            </tr>
-                        </thead>
-                        <tbody class="order-list"> -->
-                            <!-- example -->
-                            <!-- <tr>
-                                <td class="item-image">
-                                    <img class="product-cover-small" src="./img/product/5-cover.jpg" alt="Abstrakt Oljemålning - Dimensional Shift">
-                                </td>
-                                <td class="item-name">Dimensional Shift</td>
-                                <td class="item-qty">1</td>
-                                <td class="item-price">750 kr</td>
-                                <td class="item-total">750 kr</td>
-                            </tr>
-                            <tr class="font-bold">
-                                <td>Totalt:</td>
-                                <td></td>
-                                <td class="products-amount">3</td>
-                                <td></td>
-                                <td class="item-total">195 kr</td>
-                            </tr> -->
-                        <!-- </tbody>
-                    </table>
+                    <!-- Use Martin's pattern here -->
                 </div>
 
                 <div class="checkout-form__cart-section__sum-area">
@@ -72,10 +40,12 @@
                     <span class="pull-left products-amount"></span>
                     <span class="pull-right totalPrice"></span>
                 </div>
-                <button class="btn btn-success confirm-order-button ">Bekräfta order</button>
-            </section> -->
+                <div class="checkout-form__cart-section__totalsum"></div>
+                <button action="index.php" type="button" class="checkout-form__cart-section__keep-shopping-btn">Fortsätt handla</button>
+            </section>
 
-            <!-- <section class="checkout-form__delivery-section">
+            <!-- Left side, delivery section -->
+            <section class="checkout-form__delivery-section">
                 <div class="err-tips"></div>
                 <h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
                 <label class="checkout-form__delivery-section__label" for="">Email Adress</label>
@@ -105,47 +75,7 @@
                 <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div>
                 <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
 
-            </section> -->
-
-            <section class="checkout-form__cart-section">
-    <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
-    <div class="checkout-form__cart-section__product-list"></div>
-    <div class="checkout-form__cart-section__totalsum"></div>
-    <button action="index.php" type="button" class="checkout-form__cart-section__keep-shopping-btn">Fortsätt handla</button>
-
-</section>
-        
-        
-
-<section class="checkout-form__delivery-section">
-<h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
-
-    <label class="checkout-form__delivery-section__label" for="">Emailadress</label>
-    <input class="checkout-form__delivery-section__input" id="email" type="text">
-    
-    <label class="checkout-form__delivery-section__label" for="">Förnamn</label>
-    <input class="checkout-form__delivery-section__input" id="fname" type="text">
-    
-    <label class="checkout-form__delivery-section__label" for="">Efternamn</label>
-    <input class="checkout-form__delivery-section__input" id="lname" type="text">
-    
-    <label class="checkout-form__delivery-section__label" for="">Telefonnummer</label>
-    <input class="checkout-form__delivery-section__input" id="tel" type="text">
-    
-    <label class="checkout-form__delivery-section__label" for="">Gatuadress</label>
-    <input class="checkout-form__delivery-section__input" id="adress" type="text">
-    
-    <label class="checkout-form__delivery-section__label" for="">Postnummer</label>
-    <input class="checkout-form__delivery-section__input" id="pcode"type="text">
-
-    <label class="checkout-form__delivery-section__label" for="">Ort</label>
-    <input class="checkout-form__delivery-section__input" id="city" type="text">
-      
-    <div class="checkout-form__price"></div>
-    <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim">Genomför köp</button>
-</section>
-
-
+            </section>
         </form>
 
     </main>
@@ -154,12 +84,10 @@
 
     <!-- js scripts go here -->
     <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
-    <script type="text/javascript" src="./js/checkout-form.js"></script>
+    <!-- <script type="text/javascript" src="./js/checkout-form.js"></script> -->
 
-
-    <!-- validation js & draw order -->
-    <script type="text/javascript" src="./js/ie11/checkout.js"></script>
-
+    <!-- Validation for Checkout -->
+    <script type="text/javascript" src="./js/checkout.js"></script>
 
 </body>
 
