@@ -125,12 +125,12 @@ adminLib = (function() {
 
     updateCategory: function(event) {
       const lib = this;
-      const input = lib.escapeHtml(event.currentTarget.elements.updateCategoryNameField);
+      let input = event.currentTarget.elements.updateCategoryNameField;
 
       const alertElement = document.querySelector("div#categoryAlert");
       const messageElement = document.querySelector("div#categoryAlert span.msg");
 
-      const newName = input.value;
+      const newName = lib.escapeHtml(input.value);
       const categoryId = event.currentTarget.dataset.categoryid;
 
       // validate input locally before submitting to server
