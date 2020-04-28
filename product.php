@@ -16,9 +16,8 @@ if (!isset($product['title'])) {
 }
 
 // build gallery html
-$gallery = getProductImages($productId);
+$gallery = $product['gallery'];
 $galleryHtml = '';
-
 foreach ($gallery as &$fileName) {
     $galleryHtml = $galleryHtml . '
         <div class="banner" style="opacity: 1;">
