@@ -49,9 +49,10 @@ document.querySelector(".products-amount").innerHTML = itemsCountTotal;
 document.querySelector(".dateToday").textContent = new Date().toLocaleString();
 
 const myBtn2 = document.querySelector(".goback-Btn");
-myBtn2.addEventListener("click", function() {
+myBtn2.addEventListener("click", function () {
   // shopLib.clearShoppingCart();
   // localStorage.clear();
   localStorage.removeItem("products");
+  // localStorage.removeItem("customer");
   location.href = "/fend19-frontendproject-shop/index.php";
 });
