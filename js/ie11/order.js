@@ -1,5 +1,9 @@
 var shoppingCart = JSON.parse(localStorage.getItem("products"));
 
+const customerInfo = JSON.parse(localStorage.getItem('customer'));
+document.querySelector('#fullname').textContent = customerInfo.name;
+document.querySelector('#phone').textContent = customerInfo.phone;
+document.querySelector('#address').textContent = customerInfo.fullAddress;
 
 var subTotal = 0;
 var itemsCountTotal = 0;
@@ -42,9 +46,9 @@ var month = new Date().getMonth() + 1;
 var day = new Date().getDate();
 var h = new Date().getUTCHours() + 2;
 var m = new Date().getMinutes();
-m > 9 ?  m : (m = "0" + m) ;
+m > 9 ? m : (m = "0" + m);
 var s = new Date().getUTCSeconds();
-s > 9 ?  s : (s = "0" + s) ;
+s > 9 ? s : (s = "0" + s);
 var date = year + '/' + month + '/' + day + '  ' + h + ':' + m + ':' + s;
 dateOfToday.textContent = date;
 
@@ -53,5 +57,5 @@ var myBtn2 = document.querySelector(".goback-Btn");
 myBtn2.addEventListener("click", function () {
   // localStorage.clear();
   localStorage.removeItem("products");
-
+  localStorage.removeItem("customer");
 });

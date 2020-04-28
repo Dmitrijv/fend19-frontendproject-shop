@@ -356,22 +356,16 @@ confirmBtn.onclick = function (event) {
   const pcode = document.querySelector('#pcode').value;
   const city = document.querySelector('#city').value;
   const fullAddress = address + " " + pcode + " " + city;
-  // const orderInfo = []
   const detail = {
-    name: "",
-    phone: "",
-    fullAddress: ""
+    name: name,
+    phone: phone,
+    fullAddress: fullAddress
   };
-  detail['name'] = name;
-  detail['phone'] = phone;
-  detail['fullAddress'] = fullAddress;
-  console.log(name, phone, fullAddress)
   /* customer number: Random or what..
     customer name: Forename + aftername
     phone number: phone
     address: Gatuadress + zipcode + Ort
     order number: Random
     date */
-  // orderInfo.push(detail);
   localStorage.setItem('customer', JSON.stringify(detail));
 }

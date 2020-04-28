@@ -40,15 +40,15 @@
                 <p>Tack för din beställning!</p>
                 <dl>
                     <dt>Kundnummer:</dt>
-                    <dd>1323823</dd>
+                    <dd id="customerId">1323823</dd>
                     <dt>Kundnamn</dt>
-                    <dd>Jane Doe</dd>
+                    <dd id="fullname">Jane Doe</dd>
                     <dt>Phone</dt>
-                    <dd>123 123 123</dd>
+                    <dd id="phone">123 123 123</dd>
                     <dt>Postal address</dt>
-                    <dd>Tomtebodavägen 3A, 171 65 Solna</dd>
+                    <dd id="address">Tomtebodavägen 3A, 171 65 Solna</dd>
                     <dt>Beställningsnummer:</dt>
-                    <dd>100713104</dd>
+                    <dd id="orderNumber">100713104</dd>
                     <dt>Beställningsdatum:</dt>
                     <dd class="dateToday">2020/4/22 19:57:20</dd>
                 </dl>

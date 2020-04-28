@@ -1,4 +1,8 @@
 const shoppingCart = shopLib.getShoppingCart();
+const customerInfo = JSON.parse(localStorage.getItem('customer'));
+document.querySelector('#fullname').textContent = customerInfo.name;
+document.querySelector('#phone').textContent = customerInfo.phone;
+document.querySelector('#address').textContent = customerInfo.fullAddress;
 
 let subTotal = 0;
 let itemsCountTotal = 0;
