@@ -87,10 +87,6 @@ shopLib = (function() {
       let cardHtml = "";
       productJson.forEach(item => {
         let classString = item.new == true ? "newProduct" : item.old == true ? "oldProduct" : "";
-        let price = Number(item.price);
-        if (item.old) {
-          price = Math.floor(price * 0.9);
-        }
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
@@ -100,7 +96,7 @@ shopLib = (function() {
                     </a>
                     <div class='grid-2'>
                         <p class='product__title'>${item.title}</p>
-                        <div class='product__price'>${price} ${item.currency}</div>
+                        <div class='product__price'>${item.price} ${item.currency}</div>
                         <div class='product__count-container'>
                             <button class='hidden product__count-btn'>-</button>
                             <p class='product__count'>${item.numberInStock}</p>
@@ -112,7 +108,7 @@ shopLib = (function() {
                     <input type="hidden" name="productId" value="${item.id}">
                     <input type="hidden" name="productImage" value="${coverImage}">
                     <input type="hidden" name="productTitle" value="${item.title}">
-                    <input type="hidden" name="productPrice" value="${price} ${item.currency}">
+                    <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
                     <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
                     </div>
                   </div>`;

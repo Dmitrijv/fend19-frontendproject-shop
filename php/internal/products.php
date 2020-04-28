@@ -66,7 +66,10 @@ while ($tableRow = $selectProducts->fetch(PDO::FETCH_LAZY)) {
 
     $pid = strval($tableRow['id']);
     if (isset($newIds[$pid])) {$product['new'] = true;}
-    if (isset($oldIds[$pid])) {$product['old'] = true;}
+    if (isset($oldIds[$pid])) {
+        $product['old'] = true;
+        $product['price'] = round(intval($product['price']) * 0.9, 2);
+    }
 
     $imgSql = "
         SELECT file_name

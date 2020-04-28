@@ -15,6 +15,8 @@ if (!isset($product['title'])) {
     die;
 }
 
+var_dump($product);
+
 // build gallery html
 $gallery = getProductImages($productId);
 $galleryHtml = '';
@@ -100,7 +102,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                 </div>
               <div style="display: none;" class='hiddenInputItems'>
               <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
-              <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName ?>">
+              <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>">
               <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
               <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
               <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
