@@ -15,8 +15,6 @@ if (!isset($product['title'])) {
     die;
 }
 
-var_dump($product);
-
 // build gallery html
 $gallery = getProductImages($productId);
 $galleryHtml = '';
