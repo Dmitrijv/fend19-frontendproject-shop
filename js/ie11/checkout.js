@@ -1,3 +1,5 @@
+/* TODO: change input bordercolor after validation is finised */
+
 /* name: 2-20
    E-mail:
    Telephone: Swedish ? 
@@ -8,6 +10,36 @@ Sven Nilsson (First, and last name)
 Roslagsgatan 10 (Street, and number)
 113 51  STOCKHOLM (Postcode, and geographic location) */
 
+
+/* Generate order list */
+var listArea = document.querySelector('.checkout-form__cart-section__product-list');
+
+var shoppingCart = JSON.parse(localStorage.getItem("products"));
+
+var subTotal = 0;
+var itemsCountTotal = 0;
+var orderList = document.querySelector(".order-list");
+var totalPrice = document.querySelector(".totalPrice");
+var productsAmount = document.querySelector(".products-amount");
+
+/* object structure: id | name | img | price | qty */
+var length = shoppingCart.length;
+for (var a = 0; a < length; a++) {
+  var item = shoppingCart[a];
+  var itemName = item.name;
+  var itemCount = item.qty * 1;
+  var itemPrice = item.price.slice(0, -3);
+  var itemImage = item.img;
+  var itemTotalPrice = Math.ceil((1 * itemCount) * (1 * itemPrice));
+  subTotal += itemTotalPrice;
+  itemsCountTotal += itemCount;
+  orderList.innerHTML += "<tr><td class=\"item-image\"><img class=\"product-cover-small\" src=\"".concat(itemImage, "\" alt=\"").concat(itemName, "\"></td><td class=\"item-name\">  ").concat(itemName, "</td><td class=\"item-qty\">").concat(itemCount, "</td><td class=\"item-price\">").concat(itemPrice, "</td><td class=\"item-total\">").concat(itemTotalPrice, " kr</td></tr>");
+}
+
+var text = itemsCountTotal > 1 ? 'Artiklar' : 'Artikel';
+productsAmount.textContent = itemsCountTotal + ' ' + text;
+
+/* Validation related part, Strategy mode is implemented here. */
 var _validator = (function () {
   return function (ruleList) {
     return {
@@ -47,12 +79,17 @@ var _validator = (function () {
   }
 })()
 
-
 /* rule-list */
 var _rules = (function () {
   var rulelist = {
     isBlank: function (value, errorMsg) {
       if (value === '') {
+        return errorMsg;
+      };
+    },
+
+    isName: function (value, errorMsg) {
+      if (!/^[A-ZÅÖÄ].*/.test(value)) {
         return errorMsg;
       };
     },
@@ -98,7 +135,7 @@ var _rules = (function () {
       Öästervägen 10a
       Öästervägen 10A
       Öästergatan 10A */
-      var reg1 = /^[A-ZÖÄÅ][a-zöäå]+(gatan|vägen)\s\d\d([A-Z]|[a-z])*$/
+      var reg1 = /^[A-ZÖÄÅ][a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
       if (!reg1.test(value)) {
         return errorMsg;
       }
@@ -106,7 +143,7 @@ var _rules = (function () {
 
     isPcode: function (value, errorMsg) {
       /* very rough way, not accurate enough */
-      if (!/^\d*3\s\d*2$/.test(value)) {
+      if (!/^\d{3}\s\d{2}$/.test(value)) {
         return errorMsg;
       };
     },
@@ -123,27 +160,12 @@ var _rules = (function () {
 })()
 
 
-/* do validation */
+/* Do validation */
 var validator = _validator(_rules.rulelist);
 
 var forms = document.querySelector('.checkout-form')
 
-/* add method */
-
-// validator.add(forms.adress, [{
-//         strategy: 'isBlank',
-//         msg: 'Address cannot be empty'
-//     },
-//     {
-//         strategy: 'isAdress',
-//         msg: 'Wrong format of address'
-//     },
-//     {
-//         strategy: 'isSpace',
-//         msg: 'Please input valid text'
-//     }
-// ])
-
+/* Add method */
 validator.add(forms.email, [{
     strategy: 'isBlank',
     msg: 'You need to input email-address'
@@ -167,6 +189,10 @@ validator.add(forms.fname, [{
     msg: 'Please input valid text'
   },
   {
+    strategy: 'isName',
+    msg: 'First name should be capitalized'
+  },
+  {
     strategy: 'minLength:2',
     msg: 'Forename cannot be less than 2'
   }, {
@@ -182,6 +208,10 @@ validator.add(forms.lname, [{
   {
     strategy: 'isSpace',
     msg: 'Please input valid text'
+  },
+  {
+    strategy: 'isName',
+    msg: 'Last name should be capitalized'
   },
   {
     strategy: 'minLength:2',
@@ -206,6 +236,19 @@ validator.add(forms.phone, [{
   }
 ])
 
+validator.add(forms.adress, [{
+    strategy: 'isBlank',
+    msg: 'Address cannot be empty'
+  },
+  {
+    strategy: 'isAdress',
+    msg: 'Wrong format of address'
+  },
+  {
+    strategy: 'isSpace',
+    msg: 'Please input valid text'
+  }
+])
 
 validator.add(forms.pcode, [{
     strategy: 'isBlank',
@@ -236,71 +279,33 @@ validator.add(forms.county, [{
 ])
 
 
-// validator.add(forms.adress, [{
-//         strategy: 'isBlank',
-//         msg: 'Address cannot be empty'
-//     },
-//     {
-//         strategy: 'isAdress',
-//         msg: 'Wrong format of address'
-//     }
-// ])
-
-
-// validation
-document.querySelector('.checkout-form__delivery-section__checkoutBtn--dim').onclick = function (event) {
-
+// Call validation
+// confirm pay btn should be disabled until finish validation and judge delivery fee.
+document.querySelector('.checkout-form__delivery-section__deliveryBtn').onclick = function (event) {
   // call errormsg
+  var confirmBtn = document.querySelector('.checkout-form__delivery-section__checkoutBtn--dim');
   var errMsg = validator.start(),
     errTips = document.querySelector('.err-tips');
-  event.preventDefault();
 
   if (errMsg) {
     console.log(errMsg)
     errTips.innerHTML = errMsg;
-    event.preventDefault();
   } else {
-    errTips.innerHTML = 'successfully paid';
-    event.preventDefault();
+    errTips.innerHTML = '';
+    confirmBtn.disabled = "";
+    confirmBtn.style.backgroundcolor = "#218838";
+  }
+
+  /* To check delivery fee */
+  var deliveryFeeTextArea = document.querySelector('.deliveryFeeText');
+  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || (subTotal > 500)) {
+    // free delivery 
+    deliveryFeeTextArea.classList.remove('hidden');
+    deliveryFeeTextArea.textContent = '0';
+    totalPrice.innerHTML = subTotal + ' kr';
+  } else {
+    // add 50 kr
+    deliveryFeeTextArea.classList.remove('hidden');
+    totalPrice.innerHTML = (subTotal + 50) + ' kr';
   }
 }
-
-
-/* Generate order list */
-var listArea = document.querySelector('.checkout-form__cart-section__product-list');
-
-var shoppingCart = JSON.parse(localStorage.getItem("products"));
-
-var subTotal = 0;
-var itemsCountTotal = 0;
-var orderList = document.querySelector(".order-list");
-var totalPrice = document.querySelector(".totalPrice");
-var productsAmount = document.querySelector(".products-amount");
-/* object structure
-        id
-        name
-        img
-        price
-        qty
-   */
-var length = shoppingCart.length;
-for (var a = 0; a < length; a++) {
-  var item = shoppingCart[a];
-  var itemName = item.name;
-  var itemCount = item.qty * 1;
-  var itemPrice = item.price.slice(0, -3);
-  var itemImage = item.img;
-  var itemTotalPrice = Math.ceil((1 * itemCount) * (1 * itemPrice));
-  subTotal += itemTotalPrice;
-  itemsCountTotal += itemCount;
-  orderList.innerHTML += "<tr><td class=\"item-image\"><img class=\"product-cover-small\" src=\"".concat(itemImage, "\" alt=\"").concat(itemName, "\"></td><td class=\"item-name\">  ").concat(itemName, "</td><td class=\"item-qty\">").concat(itemCount, "</td><td class=\"item-price\">").concat(itemPrice, "</td><td class=\"item-total\">").concat(itemTotalPrice, " kr</td></tr>");
-
-}
-
-subTotal = subTotal; //remove toFixed(2)
-
-// orderList.innerHTML += "<tr class=\"font-bold\"><td>Totalt:</td><td></td><td class=\"products-amount\">".concat(itemsCountTotal, "</td><td></td><td class=\"item-total\" >").concat(subTotal, " kr</td></tr></tbody>");
-
-var text = itemsCountTotal > 1 ? 'Artiklar' : 'Artikel';
-productsAmount.textContent = itemsCountTotal + ' ' + text;
-totalPrice.innerHTML = subTotal + ' kr';

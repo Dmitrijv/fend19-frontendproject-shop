@@ -17,6 +17,8 @@ shopLib = (function() {
       dropdown.innerHTML = "";
       // get category json from Internal
       lib.loadJsonByXhr(categoryInternalUrl, function(categoryJson) {
+        // only display categories that actually have items
+        categoryJson = categoryJson.filter(category => Number(category.relatedProducts) !== 0);
         // add a default row to the dropdown menu that shows products of all categories
         const defaultRow = `
         <li class='sidebar__menu__list-item'>
