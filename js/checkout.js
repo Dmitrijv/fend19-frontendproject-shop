@@ -1,7 +1,6 @@
 /* TODO: 
   1. Change input bordercolor after validation is finised - test 1/ fail
-  2. Remove postnumber's demand of space 
-  3. Fail to store orderInfo into localstorage*/
+  2. Remove postnumber's demand of space */
 
 /* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
@@ -312,7 +311,7 @@ validator.add(forms.county, [{
 // confirm pay btn should be disabled until finish validation and judge delivery fee.
 confirmBtn.onclick = function (event) {
   // call errormsg
-  const confirmBtn = document.querySelector('.checkout-form__delivery-section__checkoutBtn--dim');
+  const goToOrderBtn = document.querySelector('.checkout-form__delivery-section__checkoutBtn--dim');
   const errMsg = validator.start(),
     errTips = document.querySelector('.err-tips');
 
@@ -321,8 +320,8 @@ confirmBtn.onclick = function (event) {
     errTips.innerHTML = errMsg;
   } else {
     errTips.innerHTML = '';
-    confirmBtn.disabled = "";
-    confirmBtn.style.backgroundcolor = "#218838";
+    goToOrderBtn.disabled = "";
+    goToOrderBtn.style.backgroundcolor = "#218838";
     keepShoppingBtn.disabled = true; //disable buyMoreBtn
     document.querySelector('.open-overlay').removeEventListener('click', openCart); //disable cartBtn
   }
@@ -343,20 +342,21 @@ confirmBtn.onclick = function (event) {
     realTotalPrice.innerHTML = `Totalt: ${subTotal + 50} kr`;
     // localStorage.setItem("fee", "50");
   }
+
   //remove input border's color
   /* Failed again */
   // document.querySelector('input').style.borderColor = '#fff';
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  const forename = document.querySelector('#fname').textContent;
-  const aftername = document.querySelector('#lname').textContent;
+  const forename = document.querySelector('#fname').value;
+  const aftername = document.querySelector('#lname').value;
   const name = forename + " " + aftername;
-  const phone = document.querySelector('#tel').textContent;
-  const address = document.querySelector('#adress').textContent;
-  const pcode = document.querySelector('#pcode').textContent;
-  const city = document.querySelector('#city').textContent;
+  const phone = document.querySelector('#tel').value;
+  const address = document.querySelector('#adress').value;
+  const pcode = document.querySelector('#pcode').value;
+  const city = document.querySelector('#city').value;
   const fullAddress = address + " " + pcode + " " + city;
-  const orderInfo = []
+  // const orderInfo = []
   const detail = {
     name: "",
     phone: "",
@@ -365,12 +365,13 @@ confirmBtn.onclick = function (event) {
   detail['name'] = name;
   detail['phone'] = phone;
   detail['fullAddress'] = fullAddress;
+  console.log(name, phone, fullAddress)
   /* customer number: Random or what..
     customer name: Forename + aftername
     phone number: phone
     address: Gatuadress + zipcode + Ort
     order number: Random
     date */
-  orderInfo.push(detail);
-  localStorage.setItem('customer', JSON.stringify(orderInfo));
+  // orderInfo.push(detail);
+  localStorage.setItem('customer', JSON.stringify(detail));
 }
