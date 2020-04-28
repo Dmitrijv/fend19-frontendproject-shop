@@ -1,6 +1,3 @@
-/* TODO: 
-  1. Change input bordercolor after validation is finised - test 1/ fail */
-
 /* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
@@ -364,12 +361,8 @@ confirmBtn.onclick = function (event) {
     realTotalPrice = subTotal + 50;
   }
 
-  //remove input border's color
-  /* Failed again */
-  // document.querySelector('input').style.borderColor = '#fff';
-
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  const email = document.querySelector("#email").value;
+  let email = document.querySelector("#email").value;
   const forename = capitalizeFirstLetter(document.querySelector('#fname').value);
   const aftername = capitalizeFirstLetter(document.querySelector('#lname').value);
   const name = forename + " " + aftername;
@@ -379,6 +372,7 @@ confirmBtn.onclick = function (event) {
   const city = capitalizeFirstLetter(document.querySelector('#city').value);
   const fullAddress = address + ", " + pcode + ", " + city;
   redrawCustomerInfoTable();
+  turnWhite();
 
   const detail = {
     name: name,
@@ -407,6 +401,7 @@ confirmBtn.onclick = function (event) {
   }
 
   function redrawCustomerInfoTable() {
+    // email = email;
     document.querySelector('#fname').value = forename;
     document.querySelector('#lname').value = aftername;
     document.querySelector('#tel').value = phone;
@@ -415,4 +410,11 @@ confirmBtn.onclick = function (event) {
     document.querySelector('#city').value = city;
   }
 
+  //remove input border's color
+  function turnWhite() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.classList.add('toWhite');
+    });
+  }
 }

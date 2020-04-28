@@ -3022,6 +3022,10 @@ section.order-confirmation button[disabled] {
   margin-bottom: 0;
 }
 
+.toWhite {
+  border: 1px solid white;
+}
+
 #last-chance-main .content .product-container {
   margin-top: 0;
 }
