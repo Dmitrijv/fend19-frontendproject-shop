@@ -272,6 +272,8 @@ shopLib = (function() {
 
       // get category json from Internal
       lib.loadJsonByXhr(lastChanceInternalUrl, function(lastChanceJson) {
+        // only show products that are in stock
+        lastChanceJson = lastChanceJson.filter(product => Number(product.numberInStock) > 0);
         // iterate over all categories
         lastChanceJson.forEach(item => {
           const coverImage =
@@ -320,10 +322,12 @@ shopLib = (function() {
       const latestProductsPanel = document.querySelector("#latestProductsPanel");
       let cardHtml = "";
       latestProductsPanel.innerHTML = "";
-      console.log("hi");
 
       // get category json from Internal
       lib.loadJsonByXhr(latestProductsInternalUrl, function(latestProductsJson) {
+        // only show products that are in stock
+        latestProductsJson = latestProductsJson.filter(product => Number(product.numberInStock) > 0);
+
         // iterate over all categories
         latestProductsJson.forEach(item => {
           const coverImage =
