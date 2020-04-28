@@ -3,13 +3,8 @@ const shoppingCart = shopLib.getShoppingCart();
 let subTotal = 0;
 let itemsCountTotal = 0;
 let orderList = document.querySelector(".order-list");
-/* object structure
-        id
-        name
-        img
-        price
-        qty
-   */
+
+/* object structure: id | name | img | price | qty */
 for (item of shoppingCart) {
   const itemName = item.name;
   const itemCount = Number(item.qty);

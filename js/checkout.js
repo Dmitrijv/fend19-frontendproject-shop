@@ -120,6 +120,7 @@ const _rules = (function () {
     },
 
     isName: function (value, errorMsg) {
+      // Don't care if capitalized
       if (!/^([A-ZÅÖÄ]|[a-zåöä])*$/.test(value)) {
         return errorMsg;
       };
