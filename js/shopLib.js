@@ -112,7 +112,7 @@ shopLib = (function() {
                     <input type="hidden" name="productId" value="${item.id}">
                     <input type="hidden" name="productImage" value="${coverImage}">
                     <input type="hidden" name="productTitle" value="${item.title}">
-                    <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
+                    <input type="hidden" name="productPrice" value="${price} ${item.currency}">
                     <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
                     </div>
                   </div>`;
