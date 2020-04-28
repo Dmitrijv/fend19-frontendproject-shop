@@ -20,14 +20,14 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
 
     <main id="checkout-main">
 
-        <form action="order.php" class="checkout-form">
+        <form onsubmit="shopLib.submitNewOrderRequest(event)" method="POST" class="checkout-form">
             <!-- Right side: cart section -->
             <section class="checkout-form__cart-section">
                 <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
@@ -80,10 +80,10 @@
 
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- js scripts go here -->
-    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <!-- <script type="text/javascript" src="./js/checkout-form.js"></script> -->
 
     <!-- Validation & draw cart-section for Checkout -->

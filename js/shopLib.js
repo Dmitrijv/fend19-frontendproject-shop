@@ -230,6 +230,28 @@ shopLib = (function() {
       addProduct(productBtn);
     },
 
+    submitNewOrderRequest(event) {
+      const lib = this;
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+
+      const shoppingCart = lib.getShoppingCart();
+      formData.append("shoppingCart", JSON.stringify(shoppingCart));
+
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          form.reset();
+          event.preventDefault();
+        } else if (this.readyState == 4 && this.status == 400) {
+          event.preventDefault();
+        }
+      };
+      xmlhttp.open("POST", `${CONTROLLER_PATH}/order/createOrderRequest.php`);
+      xmlhttp.send(formData);
+      event.preventDefault();
+    },
+
     loadJsonByXhr: function(url, callback) {
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -253,7 +275,7 @@ shopLib = (function() {
 
     getShoppingCart: function() {
       const shoppingCart = JSON.parse(localStorage.getItem("products"));
-      return !shoppingCart || Object.keys(products).length === 0 ? {} : shoppingCart;
+      return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
     },
 
     // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------
