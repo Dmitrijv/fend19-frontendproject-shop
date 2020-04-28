@@ -86,7 +86,8 @@
     <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
     <!-- <script type="text/javascript" src="./js/checkout-form.js"></script> -->
 
-    <!-- Validation for Checkout -->
+    <!-- Validation & draw cart-section for Checkout -->
+    <!-- checkout-form.js is original version for draw cart-section -->
     <script type="text/javascript" src="./js/checkout.js"></script>
 
 </body>
