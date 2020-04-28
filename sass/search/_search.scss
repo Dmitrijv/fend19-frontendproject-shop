@@ -10,12 +10,13 @@
   }
 
   .grid-box {
-    -ms-grid-rows: 250px 100px !important;
-    grid-template-rows: 250px 100px;
+    //-ms-grid-rows: 250px 100px !important;
+    grid-template-rows: 250px auto;
 
     .grid-2 {
       @supports(display: grid) {
-        height: 50px;
+        padding: 10px 0;
+        height: auto;
       }
     }
   }
