@@ -178,8 +178,8 @@ const _rules = (function () {
     },
 
     isAdress: function (value, errorMsg) {
-      /* Pattern: (just for test, meaningless): Öästervägen 10a | Öästervägen 10A | Öästergatan 10A */
-      const reg1 = /^[A-ZÖÄÅ][a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
+      /* Pattern: now not require first letter be capitalized (just for test, meaningless): Öästervägen 10a | Öästervägen 10A | Öästergatan 10A */
+      const reg1 = /^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -193,7 +193,8 @@ const _rules = (function () {
     },
 
     isCounty: function (value, errorMsg) {
-      if (!/^[A-ZÖÄÅ][a-zöäå]+/.test(value)) {
+      // first letter no longer required to be capitalized
+      if (!/^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+/.test(value)) {
         return errorMsg
       }
     },
@@ -368,14 +369,16 @@ confirmBtn.onclick = function (event) {
   // document.querySelector('input').style.borderColor = '#fff';
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  const forename = document.querySelector('#fname').value;
-  const aftername = document.querySelector('#lname').value;
+  const email = document.querySelector("#email").value;
+  const forename = capitalizeFirstLetter(document.querySelector('#fname').value);
+  const aftername = capitalizeFirstLetter(document.querySelector('#lname').value);
   const name = forename + " " + aftername;
-  const phone = document.querySelector('#tel').value;
-  const address = document.querySelector('#adress').value;
-  const pcode = document.querySelector('#pcode').value;
-  const city = document.querySelector('#city').value;
-  const fullAddress = address + " " + pcode + " " + city;
+  const phone = removeSpace(document.querySelector('#tel').value);
+  const address = capitalizeFirstLetter(document.querySelector('#adress').value);
+  const pcode = formatZipcode(document.querySelector('#pcode').value);
+  const city = capitalizeFirstLetter(document.querySelector('#city').value);
+  const fullAddress = address + ", " + pcode + ", " + city;
+  redrawCustomerInfoTable();
 
   const detail = {
     name: name,
@@ -390,4 +393,26 @@ confirmBtn.onclick = function (event) {
     order number: Random
     date */
   localStorage.setItem("customer", JSON.stringify(detail))
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  function removeSpace(string) {
+    return string.replace(/\s/g, '');
+  }
+
+  function formatZipcode(string) {
+    return string.replace(/\s/g, '').split(/(\d{3})/).join(' ').trim()
+  }
+
+  function redrawCustomerInfoTable() {
+    document.querySelector('#fname').value = forename;
+    document.querySelector('#lname').value = aftername;
+    document.querySelector('#tel').value = phone;
+    document.querySelector('#adress').value = address;
+    document.querySelector('#pcode').value = pcode;
+    document.querySelector('#city').value = city;
+  }
+
 }
