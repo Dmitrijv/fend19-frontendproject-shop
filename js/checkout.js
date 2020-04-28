@@ -1,6 +1,5 @@
 /* TODO: 
-  1. Change input bordercolor after validation is finised - test 1/ fail
-  2. Remove postnumber's demand of space */
+  1. Change input bordercolor after validation is finised - test 1/ fail */
 
 /* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
@@ -30,9 +29,7 @@ let totalSumCart = document.querySelector(
   ".checkout-form__cart-section__totalsum"
 ) //delivery fee check is in the bottom
 let totalSumForm = document.querySelector(".checkout-form__price")
-const keepShoppingBtn = document.querySelector(
-  ".checkout-form__cart-section__keep-shopping-btn"
-)
+const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn")
 keepShoppingBtn.addEventListener("click", function () {
   location.href = "/fend19-frontendproject-shop/index.php"
 })
@@ -90,7 +87,8 @@ const _validator = (function () {
       add: function (dom, rules) {
         let that = this
         for (let i = 0, len = rules.length; i < len; i++) {
-          ;(function (i) {
+          ;
+          (function (i) {
             that.strategyFn.push(function () {
               let info = []
               let method = rules[i].strategy.split(":"),
@@ -211,8 +209,7 @@ const validator = _validator(_rules.rulelist)
 const forms = document.querySelector(".checkout-form")
 
 /* Add method */
-validator.add(forms.email, [
-  {
+validator.add(forms.email, [{
     strategy: "isBlank",
     msg: "Var god ange en email-address",
   },
@@ -226,8 +223,7 @@ validator.add(forms.email, [
   },
 ])
 
-validator.add(forms.fname, [
-  {
+validator.add(forms.fname, [{
     strategy: "isBlank",
     msg: "Var god ange ett förnamn",
   },
@@ -249,8 +245,7 @@ validator.add(forms.fname, [
   },
 ])
 
-validator.add(forms.lname, [
-  {
+validator.add(forms.lname, [{
     strategy: "isBlank",
     msg: "Ange efternamn",
   },
@@ -272,8 +267,7 @@ validator.add(forms.lname, [
   },
 ])
 
-validator.add(forms.adress, [
-  {
+validator.add(forms.adress, [{
     strategy: "isBlank",
     msg: "Ange en adress",
   },
@@ -287,8 +281,7 @@ validator.add(forms.adress, [
   },
 ])
 
-validator.add(forms.phone, [
-  {
+validator.add(forms.phone, [{
     strategy: "isBlank",
     msg: "Ange ett telefonnummer",
   },
@@ -302,8 +295,7 @@ validator.add(forms.phone, [
   },
 ])
 
-validator.add(forms.pcode, [
-  {
+validator.add(forms.pcode, [{
     strategy: "isBlank",
     msg: "Ange ett postnummer",
   },
@@ -317,8 +309,7 @@ validator.add(forms.pcode, [
   },
 ])
 
-validator.add(forms.county, [
-  {
+validator.add(forms.county, [{
     strategy: "isBlank",
     msg: "Ange stad",
   },
