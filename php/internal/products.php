@@ -7,31 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERV
 }
 
 require_once __DIR__ . "/../model/db.php";
+require_once __DIR__ . "/../controller/controller.php";
+
 header("Content-Type: application/json; charset=UTF-8");
 
-// get ids of new products
-$newIds = [];
-$newIdsSql = DB::run("
-    SELECT id
-    FROM product
-    ORDER BY id DESC
-    LIMIT 2
-");
-while ($tableRow = $newIdsSql->fetch(PDO::FETCH_LAZY)) {
-    $newIds[$tableRow['id']] = true;
-}
-
-// get ids of old product
-$oldIds = [];
-$oldIdsSql = DB::run("
-    SELECT id
-    FROM product
-    ORDER BY id ASC
-    LIMIT 2
-");
-while ($tableRow = $oldIdsSql->fetch(PDO::FETCH_LAZY)) {
-    $oldIds[$tableRow['id']] = true;
-}
+$newIds = getNewlyInStockProductIds();
+$oldIds = getLastChanceProductIds();
 
 // get product info
 $selectProducts = DB::run("

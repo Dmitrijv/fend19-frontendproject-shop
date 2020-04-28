@@ -66,8 +66,9 @@ function getNewlyInStockProductIds()
     $newIdsSql = DB::run("
         SELECT id
         FROM product
+        WHERE number_in_stock > 0
         ORDER BY id DESC
-        LIMIT 2
+        LIMIT 4
     ");
     while ($tableRow = $newIdsSql->fetch(PDO::FETCH_LAZY)) {
         $newIds[$tableRow['id']] = true;
@@ -82,8 +83,9 @@ function getLastChanceProductIds()
     $oldIdsSql = DB::run("
         SELECT id
         FROM product
+        WHERE number_in_stock > 0
         ORDER BY id ASC
-        LIMIT 2
+        LIMIT 4
     ");
     while ($tableRow = $oldIdsSql->fetch(PDO::FETCH_LAZY)) {
         $oldIds[$tableRow['id']] = true;
