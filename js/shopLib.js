@@ -191,6 +191,8 @@ shopLib = (function() {
     drawSearchResultList(productJson) {
       const productPanel = document.querySelector("div.searchResults");
       let cardHtml = "";
+      // only show products that are in stock
+      productJson = productJson.filter(product => Number(product.numberInStock) > 0);
       productJson.forEach(item => {
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
@@ -229,7 +231,7 @@ shopLib = (function() {
         errorMsg.classList.add("hidden");
       }
       var productBtn = document.querySelectorAll(".product__add-btn");
-      addProduct(productBtn);   
+      addProduct(productBtn);
     },
 
     loadJsonByXhr: function(url, callback) {
