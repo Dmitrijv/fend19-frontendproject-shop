@@ -1,3 +1,5 @@
+document.querySelector('.open-overlay').removeEventListener('click', openCart);
+
 var shoppingCart = JSON.parse(localStorage.getItem("products"));
 
 const customerInfo = JSON.parse(localStorage.getItem('customer'));

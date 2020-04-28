@@ -335,12 +335,10 @@ confirmBtn.onclick = function (event) {
     deliveryFeeTextArea.classList.remove('hidden');
     deliveryFeeTextArea.textContent = '0';
     realTotalPrice.innerHTML = `Totalt: ${subTotal} kr`;
-    // localStorage.setItem("fee", "0");
   } else {
     // add 50 kr
     deliveryFeeTextArea.classList.remove('hidden');
     realTotalPrice.innerHTML = `Totalt: ${subTotal + 50} kr`;
-    // localStorage.setItem("fee", "50");
   }
 
   //remove input border's color
