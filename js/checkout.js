@@ -3,7 +3,7 @@
   2. Remove postnumber's demand of space 
   3. Fail to store orderInfo into localstorage*/
 
-/* Name: 2-20
+/* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
   Address: Swedish address, ends with gatu/vägen... with 1~several number and/or several char
@@ -120,7 +120,7 @@ const _rules = (function () {
     },
 
     isName: function (value, errorMsg) {
-      if (!/^[A-ZÅÖÄ][a-zåöä]*$/.test(value)) {
+      if (!/^([A-ZÅÖÄ]|[a-zåöä])*$/.test(value)) {
         return errorMsg;
       };
     },
@@ -322,21 +322,24 @@ confirmBtn.onclick = function (event) {
     errTips.innerHTML = '';
     confirmBtn.disabled = "";
     confirmBtn.style.backgroundcolor = "#218838";
+    keepShoppingBtn.disabled = true; //disable buyMoreBtn
+    document.querySelector('.open-overlay').removeEventListener('click', openCart); //disable cartBtn
   }
 
   /* To check delivery fee */
   const deliveryFeeTextArea = document.querySelector('.deliveryFeeText');
   const zipcode = document.querySelector('#pcode');
+  let realTotalPrice = document.querySelector('.item-total');
   if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || (subTotal > 500)) {
     // free delivery 
     deliveryFeeTextArea.classList.remove('hidden');
     deliveryFeeTextArea.textContent = '0';
-    totalSumCart.innerHTML = subTotal + ' kr';
+    realTotalPrice.innerHTML = `Totalt: ${subTotal} kr`;
     // localStorage.setItem("fee", "0");
   } else {
     // add 50 kr
     deliveryFeeTextArea.classList.remove('hidden');
-    totalSumCart.innerHTML = (subTotal + 50) + ' kr';
+    realTotalPrice.innerHTML = `Totalt: ${subTotal + 50} kr`;
     // localStorage.setItem("fee", "50");
   }
   //remove input border's color
