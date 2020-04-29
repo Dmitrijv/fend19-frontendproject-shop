@@ -23,7 +23,7 @@ $selectProducts = DB::run("
     AND product.id = price_of_product.product_id
     AND currency.id = price_of_product.currency_id
     ORDER BY id DESC
-    LIMIT 2
+    LIMIT 4
 ");
 
 $response = [];
