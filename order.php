@@ -104,13 +104,13 @@ foreach ($shoppingCart as &$cartItem) {
 
     $productListHtml = $productListHtml . '
         <tr>
-        <td class="item-image">
-            <img class="product-cover-small" src="img/product/' . $coverImage . '" alt="' . $product["title"] . '">
-        </td>
-        <td class="item-name">' . $product['title'] . '</td>
-        <td class="item-qty">' . $orderedQuantity . '</td>
-        <td class="item-price">' . $product['price'] . '</td>
-        <td class="item-total">' . $itemTotalPrice . ' kr</td>
+            <td class="item-image">
+                <img class="product-cover-small" src="img/product/' . $coverImage . '" alt="' . $product["title"] . '">
+            </td>
+            <td class="item-name">' . $product['title'] . '</td>
+            <td class="item-qty">' . $orderedQuantity . '</td>
+            <td class="item-price">' . $product['price'] . '</td>
+            <td class="item-total">' . $itemTotalPrice . ' kr</td>
         </tr>';
 }
 
@@ -141,9 +141,7 @@ foreach ($shoppingCart as &$cartItem) {
     <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="order-main">
-        <div class='emptyOrderMessage hidden'>Du har inte beställt ändå!</div>
 
-        <!-- write your code here -->
         <section class="order-confirmation white-panel">
             <div class="panel-heading">Order bekräftelse</div>
 
@@ -155,13 +153,13 @@ foreach ($shoppingCart as &$cartItem) {
                 <p>Tack för din beställning!</p>
                 <dl>
                     <dt>Kund ID:</dt>
-                    <dd id="customerId"><?php echo $customerDataId; ?></dd>
+                    <dd id="customerId"><?php echo htmlspecialchars($customerDataId, ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Kundnamn</dt>
-                    <dd id="fullname"><?php echo $customerData['first_name'] . " " . $customerData['last_name']; ?></dd>
+                    <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Phone</dt>
-                    <dd id="phone"><?php echo $customerData['phone']; ?></dd>
+                    <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Postal address</dt>
-                    <dd id="address"><?php echo $customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number']; ?></dd>
+                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Beställningsnummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
