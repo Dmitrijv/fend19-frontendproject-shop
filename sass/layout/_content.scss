@@ -423,6 +423,10 @@ div.product > div > button:nth-child(4) {
   //     left: 8%;
   //   }
 
+  &.inCart {
+    border: 1px solid #7aaa39;
+  }
+
   &.oldProduct::before {
     // content: url('../img/svg/price-tag.svg');
     // top: 0;

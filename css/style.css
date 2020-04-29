@@ -1875,6 +1875,10 @@ div.product > div > button:nth-child(4) {
   position: relative;
 }
 
+.product.inCart {
+  border: 1px solid #7aaa39;
+}
+
 .product.oldProduct::before {
   position: absolute;
   width: 16%;
@@ -2752,10 +2756,6 @@ section.order-confirmation button[disabled] {
   margin-top: 0;
 }
 
-#latest-products-main .content .product-container .product {
-  border: 1px solid #218838;
-}
-
 #latest-products-main .special-price {
   color: green;
 }
@@ -3072,10 +3072,6 @@ section.order-confirmation button[disabled] {
 
 #last-chance-main .content .product-container {
   margin-top: 0;
-}
-
-#last-chance-main .content .product-container .product {
-  border: 1px solid #f60d4d;
 }
 
 #last-chance-main .discount-price {

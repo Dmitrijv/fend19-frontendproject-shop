@@ -79,39 +79,43 @@ shopLib = (function() {
 
     drawProductPanel: function(productJson) {
       const lib = this;
-      // only show products that are in stock
       productJson = productJson.filter(product => Number(product.numberInStock) > 0);
-      // randomize order of products
       productJson = lib.shuffle(productJson);
+
+      const shoppingCart = lib.getShoppingCart();
       const productPanel = document.querySelector("div#productPanel");
+
       let cardHtml = "";
       productJson.forEach(item => {
         let classString = item.new == true ? "newProduct" : item.old == true ? "oldProduct" : "";
+        if (shoppingCart.find) {
+          classString = shoppingCart.find(cartItem => cartItem.id == item.id) ? classString + " inCart" : classString;
+        }
         const coverImage =
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
-                <div id='${item.id}' class='product grid-box ${classString}'>
-                    <a href='product.php?productId=${item.id}'>
-                        <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-                    </a>
-                    <div class='grid-2'>
-                        <p class='product__title'>${item.title}</p>
-                        <div class='product__price'>${item.price} ${item.currency}</div>
-                        <div class='product__count-container'>
-                            <button class='hidden product__count-btn'>-</button>
-                            <p class='product__count'>${item.numberInStock}</p>
-                            <button class='hidden product__count-btn'>+</button>
-                        </div>
-                        <button class='product__add-btn'>Lägg i varukorgen</button>
+            <div id='${item.id}' class='product grid-box ${classString}'>
+                <a href='product.php?productId=${item.id}'>
+                    <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
+                </a>
+                <div class='grid-2'>
+                    <p class='product__title'>${item.title}</p>
+                    <div class='product__price'>${item.price} ${item.currency}</div>
+                    <div class='product__count-container'>
+                        <button class='hidden product__count-btn'>-</button>
+                        <p class='product__count'>${item.numberInStock}</p>
+                        <button class='hidden product__count-btn'>+</button>
                     </div>
-                    <div style="display: none;" class='hiddenInputItems'>
-                    <input type="hidden" name="productId" value="${item.id}">
-                    <input type="hidden" name="productImage" value="${coverImage}">
-                    <input type="hidden" name="productTitle" value="${item.title}">
-                    <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-                    <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-                    </div>
-                  </div>`;
+                    <button class='product__add-btn' data-productId='${item.id}'>Lägg i varukorgen</button>
+                </div>
+                <div style="display: none;" class='hiddenInputItems'>
+                <input type="hidden" name="productId" value="${item.id}">
+                <input type="hidden" name="productImage" value="${coverImage}">
+                <input type="hidden" name="productTitle" value="${item.title}">
+                <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
+                <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
+                </div>
+            </div>`;
       });
       productPanel.innerHTML = "";
       productPanel.innerHTML += cardHtml;
@@ -205,7 +209,7 @@ shopLib = (function() {
                     <p class='product__count'>${item.numberInStock}</p>
                     <button class='hidden product__count-btn'>+</button>
                 </div>
-                <button class='product__add-btn'>Lägg i varukorgen</button>
+                <button class='product__add-btn' data-productId='${item.id}'>Lägg i varukorgen</button>
             </div>
             <div style="display: none;" class='hiddenInputItems'>
                 <input type="hidden" name="productId" value="${item.id}">
