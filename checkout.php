@@ -27,7 +27,7 @@
 
     <main id="checkout-main">
 
-        <form onsubmit="shopLib.submitNewOrderRequest(event)" method="POST" class="checkout-form">
+        <form action="order.php" method="POST" class="checkout-form">
             <!-- Right side: cart section -->
             <section class="checkout-form__cart-section">
                 <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
@@ -70,6 +70,8 @@
 
                 <label class="checkout-form__delivery-section__label" for="">Ort</label>
                 <input class="checkout-form__delivery-section__input" id="city" type="text" name="county">
+
+                <input type="hidden" name="cart" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
 
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 

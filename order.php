@@ -1,6 +1,11 @@
-<!-- TODO -->
-<!-- When mouse over image, show a big image, like some magnifying effect -->
-<!-- When it comes to a mobile version, maybe hide column antal, keep image / price / totalsumma -->
+<?php
+
+ob_start();
+var_dump($_POST);
+error_log(ob_get_clean());
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +26,9 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="order-main">
         <div class='emptyOrderMessage hidden'>Du har inte beställt ändå!</div>
@@ -90,9 +95,9 @@
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <?php require __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require __DIR__ . '/php/view/jscore.php';?>
 
     <!-- <script type="text/javascript" src="./js/order.js"></script> -->
     <script type="text/javascript" src="./js/ie11/order.js"></script>
