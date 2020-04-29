@@ -27,7 +27,7 @@
 
     <main id="checkout-main">
 
-        <form action="order.php" method="POST" class="checkout-form">
+        <form action="order.php" onsubmit="clearCart()" method="POST" class="checkout-form">
             <!-- Right side: cart section -->
             <section class="checkout-form__cart-section">
                 <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
@@ -79,7 +79,7 @@
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
                 <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
-                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" onclick="window.location.href='/fend19-frontendproject-shop/order.php'" disabled="disabled">Genomför köp</button>
+                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
 
             </section>
         </form>

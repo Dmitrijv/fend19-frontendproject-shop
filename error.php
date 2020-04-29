@@ -1,3 +1,12 @@
+<?php
+
+$errorMessage = "Sidan existerar inte.";
+if (isset($_GET['errorMessage'])) {
+    $errorMessage = $_GET['errorMessage'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +33,7 @@
 
     <main>
         <div class="content">
-            <div class='emptyCategoryMessage'>Sidan existerar inte.</div>
+            <div class='emptyCategoryMessage'> <?php echo $errorMessage; ?> </div>
             <div class="product-container" id="productPanel"> </div>
         </div>
     </main>

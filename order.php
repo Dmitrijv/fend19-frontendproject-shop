@@ -1,7 +1,111 @@
 <?php
 
+// don't allow GET requests
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['shoppingCart'])) {
+    die();
+}
+
+require_once __DIR__ . "/php/controller/controller.php";
+require_once __DIR__ . "/php/model/utils.php";
+
 ob_start();
-var_dump($_POST);
+
+$shoppingCart = json_decode($_POST['shoppingCart'], true);
+// trying to order an empty cart
+if (count($shoppingCart) === 0) {
+    header("Location: index.php");
+    die;
+}
+
+// check if ordered products exist and are in stock
+foreach ($shoppingCart as &$cartItem) {
+    // var_dump($cartItem);
+    $productId = intval($cartItem['id']);
+    if (doesProductIdExist($productId) === false) {
+        header("Location: error.php?errorMessage=Den beställda produkten existerar inte.");
+        die;
+    }
+    $product = getProductById($productId);
+    // var_dump($product);
+    $orderedQuantity = intval($cartItem['qty']);
+    if ($product['number_in_stock'] < $orderedQuantity) {
+        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.");
+        die;
+    }
+}
+
+$customerData = [
+    "email" => trimSides($_POST['email']),
+    "first_name" => trimSides($_POST['fname']),
+    "last_name" => trimSides($_POST['lname']),
+    "phone" => trimSides($_POST['phone']),
+    "street" => trimSides($_POST['adress']),
+    "postal_number" => trimSides($_POST['pcode']),
+    "county" => trimSides($_POST['county']),
+];
+
+$customerDataId = md5(
+    $customerData['email'] .
+    $customerData['first_name'] .
+    $customerData['first_name'] .
+    $customerData['last_name'] .
+    $customerData['phone'] .
+    $customerData['street'] .
+    $customerData['postal_number'] .
+    $customerData['county']
+);
+
+// save customer data if it doesn't already exist in db
+if (doesCustomerDataIdExist($customerDataId) == false) {
+    saveCustomerDataToDb($customerDataId, $customerData);
+}
+
+// register cart items as ordered in db
+
+// create a new db entry for this order
+$date_ordered_at = date('Y-m-d H:i:s', time());
+$order = [
+    "date_ordered_at" => $date_ordered_at,
+    "status" => 1,
+    "customer_data_id" => $customerDataId,
+    "free_shipping" => false,
+];
+createNewOrder($order);
+
+$orderId = getOrderIdByTimeAndUser($date_ordered_at, $customerDataId);
+var_dump($orderId);
+
+$productListHtml = '';
+// register products as belonging to this order
+foreach ($shoppingCart as &$cartItem) {
+
+    $productId = intval($cartItem['id']);
+    $orderedQuantity = intval($cartItem['qty']);
+
+    $product = getProductById($productId);
+    createOrderedProduct($orderId, $product, $orderedQuantity);
+
+    $coverImage = "placeholder.png";
+    if (count($product["gallery"]) != 0) {
+        $coverImage = $product['gallery'][0];
+    }
+
+    $itemTotalPrice = intval($product['price'] * $orderedQuantity);
+
+    $productListHtml = $productListHtml . '
+        <tr>
+        <td class="item-image">
+            <img class="product-cover-small" src="img/product/' . $coverImage . '" alt="' . $product["title"] . '">
+        </td>
+        <td class="item-name">' . $product['title'] . '</td>
+        <td class="item-qty">' . $orderedQuantity . '</td>
+        <td class="item-price">' . $product['price'] . '</td>
+        <td class="item-total">' . $itemTotalPrice . ' kr</td>
+        </tr>';
+}
+
+var_dump($productListHtml);
+
 error_log(ob_get_clean());
 
 ?>
@@ -44,18 +148,18 @@ error_log(ob_get_clean());
             <div class="order-description">
                 <p>Tack för din beställning!</p>
                 <dl>
-                    <dt>Kundnummer:</dt>
-                    <dd id="customerId">1323823</dd>
+                    <dt>Kund ID:</dt>
+                    <dd id="customerId"><?php echo $customerDataId; ?></dd>
                     <dt>Kundnamn</dt>
-                    <dd id="fullname">Jane Doe</dd>
+                    <dd id="fullname"><?php echo $customerData['first_name'] . " " . $customerData['last_name']; ?></dd>
                     <dt>Phone</dt>
-                    <dd id="phone">123 123 123</dd>
+                    <dd id="phone"><?php echo $customerData['phone']; ?></dd>
                     <dt>Postal address</dt>
-                    <dd id="address">Tomtebodavägen 3A, 171 65 Solna</dd>
+                    <dd id="address"><?php echo $customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number']; ?></dd>
                     <dt>Beställningsnummer:</dt>
-                    <dd id="orderNumber">100713104</dd>
+                    <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
-                    <dd class="dateToday">2020/4/22 19:57:20</dd>
+                    <dd class="dateToday"><?php echo $date_ordered_at; ?></dd>
                 </dl>
             </div>
 
@@ -70,24 +174,7 @@ error_log(ob_get_clean());
                     </tr>
                 </thead>
                 <tbody class="order-list">
-                    <!--
-                    example
-                    <tr>
-                        <td class="item-image">
-                            <img class="product-cover-small" src="./img/product/5-cover.jpg" alt="Abstrakt Oljemålning - Dimensional Shift">
-                        </td>
-                        <td class="item-name">Dimensional Shift</td>
-                        <td class="item-qty">1</td>
-                        <td class="item-price">750 kr</td>
-                        <td class="item-total">750 kr</td>
-                    </tr>
-                    <tr class="font-bold">
-                        <td>Totalt:</td>
-                        <td></td>
-                        <td class="products-amount">3</td>
-                        <td></td>
-                        <td class="item-total">195 kr</td>
-                    </tr> -->
+                    <?php echo $productListHtml; ?>
                 </tbody>
             </table>
             <a href="index.php"><button class="btn btn-info goback-Btn"> &lt; Till Startsidan</button></a>
@@ -99,8 +186,6 @@ error_log(ob_get_clean());
 
     <?php require __DIR__ . '/php/view/jscore.php';?>
 
-    <!-- <script type="text/javascript" src="./js/order.js"></script> -->
-    <script type="text/javascript" src="./js/ie11/order.js"></script>
 </body>
 
 </html>
