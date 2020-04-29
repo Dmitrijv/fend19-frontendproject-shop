@@ -410,7 +410,7 @@ confirmBtn.onclick = function(event) {
 
   //remove input border's color
   function turnWhite() {
-    const inputs = document.querySelectorAll("input");
+    const inputs = document.querySelectorAll(".checkout-form__delivery-section__input");
     inputs.forEach(input => {
       input.classList.add("toWhite");
     });
