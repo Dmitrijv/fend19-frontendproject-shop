@@ -36,6 +36,7 @@
                 </div>
 
                 <div class="checkout-form__cart-section__sum-area">
+                    <p class="small-font-size"><strong>Fri frakt!</strong>&nbsp;&nbsp;När du handlar för över 500 kr eller bor du i Stockholm.</p>
                     <p class="deliveryFeeRow">Frakt: <span class="deliveryFeeText hidden">50 kr</span></p>
                     <span class="pull-left products-amount"></span>
                     <span class="pull-right totalPrice"></span>
