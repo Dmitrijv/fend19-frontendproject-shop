@@ -325,14 +325,6 @@ adminLib = (function() {
         imagesToDelete.push(image.dataset.filename);
       }
 
-      // all existing images were deleted and no new images were added
-      if (deletedImages.length === existingImages.length && (!files || files.length === 0)) {
-        messageElement.textContent = "Product must have at least one image";
-        lib.setFailStyle(alertElement);
-        event.preventDefault();
-        return;
-      }
-
       let formData = new FormData(form);
       formData.append("product_id", productId);
       formData.append("images_to_delete", JSON.stringify(imagesToDelete));
