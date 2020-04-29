@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['shoppingCart'])) {
 require_once __DIR__ . "/php/controller/controller.php";
 require_once __DIR__ . "/php/model/utils.php";
 
-ob_start();
+// ob_start();
 
 $shoppingCart = json_decode($_POST['shoppingCart'], true);
 // trying to order an empty cart
@@ -17,6 +17,7 @@ if (count($shoppingCart) === 0) {
     die;
 }
 
+$orderTotalPrice = 0;
 // check if ordered products exist and are in stock
 foreach ($shoppingCart as &$cartItem) {
     // var_dump($cartItem);
@@ -32,6 +33,7 @@ foreach ($shoppingCart as &$cartItem) {
         header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.");
         die;
     }
+    $orderTotalPrice = $orderTotalPrice + intval($product['price']);
 }
 
 $customerData = [
@@ -60,7 +62,11 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
     saveCustomerDataToDb($customerDataId, $customerData);
 }
 
-// register cart items as ordered in db
+// check if this order qualifies for free shipping
+$free_shipping = false;
+if ($orderTotalPrice >= 500) {
+    $free_shipping = true;
+}
 
 // create a new db entry for this order
 $date_ordered_at = date('Y-m-d H:i:s', time());
@@ -68,7 +74,7 @@ $order = [
     "date_ordered_at" => $date_ordered_at,
     "status" => 1,
     "customer_data_id" => $customerDataId,
-    "free_shipping" => false,
+    "free_shipping" => $free_shipping,
 ];
 createNewOrder($order);
 
