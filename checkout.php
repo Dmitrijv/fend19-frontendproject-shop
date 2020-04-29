@@ -47,11 +47,13 @@
 
             <!-- Left side, delivery section -->
             <section class="checkout-form__delivery-section">
+
                 <div class="err-tips"></div>
+
                 <h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
+
                 <label class="checkout-form__delivery-section__label" for="">Email Adress</label>
                 <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com">
-
 
                 <label class="checkout-form__delivery-section__label" for="">Förnamn</label>
                 <input class="checkout-form__delivery-section__input" id="fname" type="text" name="fname">
@@ -66,12 +68,13 @@
                 <input class="checkout-form__delivery-section__input" id="adress" type="text" name="adress" placeholder="Gustafvägen 10D">
 
                 <label class="checkout-form__delivery-section__label" for="">Postnummer</label>
-                <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 12">
+                <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 45">
 
                 <label class="checkout-form__delivery-section__label" for="">Ort</label>
                 <input class="checkout-form__delivery-section__input" id="city" type="text" name="county">
 
-                <input type="hidden" name="cart" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
+                <!-- this is filled from local storage with js -->
+                <input type="hidden" name="shoppingCart" value="">
 
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
