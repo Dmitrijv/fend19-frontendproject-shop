@@ -1,7 +1,3 @@
-<!-- FEATURES ATTENTION! -->
-<!-- .ellipsis (kept in ad-table.scss) and now it works only when screen's width < 860px
-    structure: wrapped description with span, and put same text in span's title
-    effect: description will become ellipsis, and whole text will show up when user hover it -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +28,7 @@
                     <li><a href="../index.php">Store</a></li>
                     <li><a href="index.php">Categories</a></li>
                     <li><a class="active">Products</a></li>
-                    <li><a href="">Orders</a></li>
+                    <li><a href="orders.php">Orders</a></li>
                 </ul>
             </nav>
         </section>

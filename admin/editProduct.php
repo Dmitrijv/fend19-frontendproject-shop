@@ -55,7 +55,7 @@ foreach ($allCategories as &$category) {
                         <li><a href="../index.php">Store</a></li>
                         <li><a href="index.php">Categories</a></li>
                         <li><a href="products.php" class="active">Products</a></li>
-                        <li><a href="">Orders</a></li>
+                        <li><a href="orders.php">Orders</a></li>
                     </ul>
                 </nav>
             </section>
