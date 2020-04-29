@@ -52,6 +52,7 @@ main {
 
   .grid-box {
     margin-bottom: 20px;
+    overflow: hidden;
 
     @supports (display: grid) {
       margin-bottom: 0;
@@ -431,8 +432,8 @@ div.product>div>button:nth-child(4) {
     position: absolute;
     width: 16%;
     top: 15px;
-    left: 12px;
-    content: "SALE";
+    left: 84%;
+    content: "-10%";
     border: 1px solid red;
     text-align: center;
     background-color: #ff0000c4;
@@ -445,7 +446,7 @@ div.product>div>button:nth-child(4) {
     position: absolute;
     width: 16%;
     top: 15px;
-    left: 79%;
+    left: 84%;
     content: "NYTT";
     border: 1px solid $green;
     text-align: center;

@@ -1047,6 +1047,7 @@ main {
 
 .product-container .grid-box {
   margin-bottom: 20px;
+  overflow: hidden;
   /* In the beginning, the plan is to set these two grids template-rows as 3fr 2fr
     But something changes later, however these names kept, so please don't get too confused */
 }
@@ -1902,8 +1903,8 @@ div.product > div > button:nth-child(4) {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 12px;
-  content: "SALE";
+  left: 84%;
+  content: "-10%";
   border: 1px solid red;
   text-align: center;
   background-color: #ff0000c4;
@@ -1916,7 +1917,7 @@ div.product > div > button:nth-child(4) {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 79%;
+  left: 84%;
   content: "NYTT";
   border: 1px solid #9fa255;
   text-align: center;
