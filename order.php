@@ -79,7 +79,10 @@ $order = [
 createNewOrder($order);
 
 $orderId = getOrderIdByTimeAndUser($date_ordered_at, $customerDataId);
-var_dump($orderId);
+// var_dump($orderId);
+
+// var_dump($productListHtml);
+// error_log(ob_get_clean());
 
 $productListHtml = '';
 // register products as belonging to this order
@@ -109,10 +112,6 @@ foreach ($shoppingCart as &$cartItem) {
         <td class="item-total">' . $itemTotalPrice . ' kr</td>
         </tr>';
 }
-
-var_dump($productListHtml);
-
-error_log(ob_get_clean());
 
 ?>
 
