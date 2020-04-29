@@ -37,7 +37,7 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
 
 // no cover image was uploaded
 if (count($gallery) === 0) {
-    $gallery = "placeholder.png";
+    //$gallery = "placeholder.png";
     /*http_response_code(400);
     die;*/
 } 
