@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 10:46 PM
+-- Generation Time: Apr 29, 2020 at 07:28 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -25,6 +25,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `active_order_of_products`
+--
+
+CREATE TABLE `active_order_of_products` (
+  `id` int(11) NOT NULL,
+  `date_ordered_at` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `customer_data_id` varchar(32) NOT NULL,
+  `free_shipping` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `active_order_of_products`
+--
+
+INSERT INTO `active_order_of_products` (`id`, `date_ordered_at`, `status`, `customer_data_id`, `free_shipping`) VALUES
+(11, '2020-04-29 19:18:10', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
+(12, '2020-04-29 19:19:53', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
+(13, '2020-04-29 19:21:06', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
+(14, '2020-04-29 19:23:22', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
+(15, '2020-04-29 19:24:09', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `completed_order_of_products`
+--
+
+CREATE TABLE `completed_order_of_products` (
+  `id` int(11) NOT NULL,
+  `date_ordered_at` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `customer_data_id` varchar(32) NOT NULL,
+  `free_shipping` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `currency`
 --
 
@@ -39,6 +78,30 @@ CREATE TABLE `currency` (
 
 INSERT INTO `currency` (`id`, `shorthand`) VALUES
 ('SEK', 'kr');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_data`
+--
+
+CREATE TABLE `customer_data` (
+  `id` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `phone` int(32) NOT NULL,
+  `first_name` varchar(128) NOT NULL,
+  `last_name` varchar(128) NOT NULL,
+  `street` varchar(128) NOT NULL,
+  `postal_number` varchar(64) NOT NULL,
+  `county` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer_data`
+--
+
+INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, `street`, `postal_number`, `county`) VALUES
+('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', 734434305, 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
 
 -- --------------------------------------------------------
 
@@ -63,10 +126,14 @@ INSERT INTO `image` (`file_name`) VALUES
 ('5cm_wallpaper_03.png'),
 ('7-cover.jpg'),
 ('8-cover.jpg'),
-('obl.jpg'),
+('NI5WG.jpg'),
+('ocean-at-dusk.jpg'),
+('QVPJFOKh.jpg'),
+('River_Valley.jpg'),
 ('spike2.jpg'),
 ('spike3.jpg'),
-('tumblr_lz6o21vKYj1rpqeqto1_400.jpg');
+('t4jCl6fh.jpg'),
+('tumblr_m3vkektsiV1qguk6mo1_400.jpg');
 
 -- --------------------------------------------------------
 
@@ -94,8 +161,12 @@ INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
 (34, '5B1vlLe.jpg'),
 (35, '5cm_wallpaper_03.png'),
 (37, '4-cover.jpg'),
-(41, 'obl.jpg'),
-(42, 'tumblr_lz6o21vKYj1rpqeqto1_400.jpg');
+(49, 'NI5WG.jpg'),
+(50, 'ocean-at-dusk.jpg'),
+(51, 'QVPJFOKh.jpg'),
+(52, 'River_Valley.jpg'),
+(53, 't4jCl6fh.jpg'),
+(54, 'tumblr_m3vkektsiV1qguk6mo1_400.jpg');
 
 -- --------------------------------------------------------
 
@@ -107,25 +178,27 @@ CREATE TABLE `ordered_product` (
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `price` double NOT NULL,
+  `quantity` int(11) NOT NULL,
   `currency_id` char(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `order_of_products`
+-- Dumping data for table `ordered_product`
 --
 
-CREATE TABLE `order_of_products` (
-  `id` int(11) NOT NULL,
-  `date_ordered_at` datetime NOT NULL,
-  `status` int(11) NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `email` text NOT NULL,
-  `phone` text NOT NULL,
-  `deliveryadress` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `ordered_product` (`product_id`, `order_id`, `price`, `quantity`, `currency_id`) VALUES
+(32, 11, 999.99, 1, 'SEK'),
+(31, 11, 1350, 1, 'SEK'),
+(37, 11, 100, 1, 'SEK'),
+(34, 12, 800, 1, 'SEK'),
+(31, 12, 1350, 1, 'SEK'),
+(35, 13, 8000, 1, 'SEK'),
+(34, 13, 800, 1, 'SEK'),
+(31, 13, 1350, 1, 'SEK'),
+(31, 14, 1350, 1, 'SEK'),
+(32, 14, 999.99, 1, 'SEK'),
+(29, 15, 900, 1, 'SEK'),
+(34, 15, 800, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -172,8 +245,12 @@ INSERT INTO `price_of_product` (`product_id`, `currency_id`, `amount`) VALUES
 (34, 'SEK', 800),
 (35, 'SEK', 8000),
 (37, 'SEK', 100),
-(41, 'SEK', 22),
-(42, 'SEK', 999);
+(49, 'SEK', 100),
+(50, 'SEK', 222),
+(51, 'SEK', 333),
+(52, 'SEK', 3332),
+(53, 'SEK', 333),
+(54, 'SEK', 333);
 
 -- --------------------------------------------------------
 
@@ -194,16 +271,20 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(29, 'Spike', 'this is a desert spike yo', 1, 5),
-(30, 'Pastell Förälskelse', 'elephants in love', 1, 1),
-(31, 'Dimensional Shift', 'it\'s a shift hue hue', 6, 12),
-(32, 'Tales of the Past', 'some tales of bullshit', 6, 3),
-(33, 'Horse', 'here comes horsy', 1, 3),
+(29, 'Spike', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!', 1, 5),
+(30, 'Pastell Förälskelse', 'elephants in love', 4, 0),
+(31, 'Dimensional Shift', 'it\'s a shift hue hue', 1, 12),
+(32, 'Tales of the Past', 'some tales of bullshit', 1, 3),
+(33, 'Horse', 'here comes horsy', 4, 0),
 (34, 'Horde Baloon', 'smh over here', 1, 2),
-(35, 'Clouds', 'lalala clouds yo', 1, 1),
+(35, 'Clouds', 'lalala clouds yo', 4, 1),
 (37, 'Some Nonsense', 'it\'s a nonsense not gona lie', 1, 3),
-(41, 'Oblivion', '123123', 1, 11),
-(42, 'Nice', 'brrrrrrrrrrrrr', 1, 1);
+(49, 'Hello1', 'awdawdawaw', 1, 1),
+(50, 'hello2', 'dadwadaw', 1, 1),
+(51, 'hello3', 'dawdawdwad', 1, 1),
+(52, 'hello4', 'dawdawdawd', 1, 1),
+(53, 'hello5', 'dawdawdawadw', 1, 1),
+(54, 'stuff', '112dawdawd', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -222,18 +303,40 @@ CREATE TABLE `product_category` (
 
 INSERT INTO `product_category` (`id`, `name`) VALUES
 (1, 'Diverse'),
-(4, 'Naturmotiv'),
-(5, 'Djur Tavlor'),
-(6, 'Abstrakt');
+(4, 'Darts'),
+(32, 'Strange'),
+(34, 'Books');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `active_order_of_products`
+--
+ALTER TABLE `active_order_of_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`),
+  ADD KEY `customer_data` (`customer_data_id`);
+
+--
+-- Indexes for table `completed_order_of_products`
+--
+ALTER TABLE `completed_order_of_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`),
+  ADD KEY `customer_data` (`customer_data_id`);
+
+--
 -- Indexes for table `currency`
 --
 ALTER TABLE `currency`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer_data`
+--
+ALTER TABLE `customer_data`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -256,13 +359,6 @@ ALTER TABLE `ordered_product`
   ADD KEY `product_id` (`product_id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `currency` (`currency_id`);
-
---
--- Indexes for table `order_of_products`
---
-ALTER TABLE `order_of_products`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `status` (`status`);
 
 --
 -- Indexes for table `order_status`
@@ -295,9 +391,15 @@ ALTER TABLE `product_category`
 --
 
 --
--- AUTO_INCREMENT for table `order_of_products`
+-- AUTO_INCREMENT for table `active_order_of_products`
 --
-ALTER TABLE `order_of_products`
+ALTER TABLE `active_order_of_products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `completed_order_of_products`
+--
+ALTER TABLE `completed_order_of_products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -310,17 +412,31 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `active_order_of_products`
+--
+ALTER TABLE `active_order_of_products`
+  ADD CONSTRAINT `active_order_of_products_ibfk_1` FOREIGN KEY (`customer_data_id`) REFERENCES `customer_data` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `ordstatusfkey` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `completed_order_of_products`
+--
+ALTER TABLE `completed_order_of_products`
+  ADD CONSTRAINT `completed_order_of_products_ibfk_1` FOREIGN KEY (`customer_data_id`) REFERENCES `customer_data` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `completed_order_of_products_ibfk_2` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `image_of_product`
@@ -334,14 +450,8 @@ ALTER TABLE `image_of_product`
 --
 ALTER TABLE `ordered_product`
   ADD CONSTRAINT `currencykey` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `orderkey` FOREIGN KEY (`order_id`) REFERENCES `order_of_products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderkey` FOREIGN KEY (`order_id`) REFERENCES `active_order_of_products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `productkey` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `order_of_products`
---
-ALTER TABLE `order_of_products`
-  ADD CONSTRAINT `ordstatusfkey` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `price_of_product`
