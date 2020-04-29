@@ -75,7 +75,7 @@ foreach ($allCategories as &$category) {
                     <form onsubmit="adminLib.updateProduct(event);" method="POST" enctype="multipart/form-data" data-productid="<?php echo $productId; ?>" >
                         <div class="form-group">
                             <label>Add new pictures</label>
-                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif">
+                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple>
                         </div>
                         <div class="form-group">
                             <label>Remove current pictures</label>
