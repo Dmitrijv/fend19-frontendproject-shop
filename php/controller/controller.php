@@ -134,9 +134,22 @@ function doesCustomerDataIdExist($id)
 
 function createOrderedProduct($orderId, $product, $quantity)
 {
+
+    $productId = intval($product['id']);
+
     $sql = "
         INSERT INTO ordered_product (product_id, order_id, price, quantity, currency_id)
         VALUES (?, ?, ?, ?, ?)
     ";
-    DB::run($sql, [intval($product['id']), $orderId, $product['price'], $quantity, "SEK"]);
+    DB::run($sql, [$productId, $orderId, $product['price'], $quantity, "SEK"]);
+
+    $newNumberInStock = intval($product['number_in_stock']) - $quantity;
+    // this should never happen in theory because order process doesn't let you order more than there is in stock
+    if ($newNumberInStock < 0) {
+        $newNumberInStock = 0;
+    }
+
+    // remove ordered items from stoc
+    DB::run("UPDATE product SET number_in_stock = ? WHERE id = ?", [$newNumberInStock, $productId]);
+
 }
