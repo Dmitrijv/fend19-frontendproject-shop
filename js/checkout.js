@@ -265,20 +265,6 @@ validator.add(forms.lname, [{
   },
 ])
 
-validator.add(forms.adress, [{
-    strategy: "isBlank",
-    msg: "Ange en adress",
-  },
-  {
-    strategy: "isAdress",
-    msg: "felaktig adress, ange en giltig adress",
-  },
-  {
-    strategy: "isSpace",
-    msg: "Please input valid text",
-  },
-])
-
 validator.add(forms.phone, [{
     strategy: "isBlank",
     msg: "Ange ett telefonnummer",
@@ -290,6 +276,20 @@ validator.add(forms.phone, [{
   {
     strategy: "isPhone",
     msg: "Ange ett giltigt telefonnummer",
+  },
+])
+
+validator.add(forms.adress, [{
+    strategy: "isBlank",
+    msg: "Ange en adress",
+  },
+  {
+    strategy: "isAdress",
+    msg: "felaktig adress, ange en giltig adress",
+  },
+  {
+    strategy: "isSpace",
+    msg: "Please input valid text",
   },
 ])
 
@@ -342,7 +342,7 @@ confirmBtn.onclick = function (event) {
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
-    turnWhite();//remove input red border
+    turnWhite(); //remove input red border
   }
 
   /* To check delivery fee */

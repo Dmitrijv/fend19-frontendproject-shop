@@ -74,7 +74,7 @@
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
                 <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
-                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
+                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" onclick="window.location.href='/fend19-frontendproject-shop/order.php'" disabled="disabled">Genomför köp</button>
 
             </section>
         </form>
