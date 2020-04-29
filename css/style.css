@@ -1883,12 +1883,31 @@ div.product > div > button:nth-child(4) {
 }
 
 .product.oldProduct::before {
-  content: url("../img/svg/price-tag.svg");
   position: absolute;
   width: 16%;
-  top: 0;
-  left: 0;
-  rotate: -85deg;
+  top: 15px;
+  left: 12px;
+  content: "SALE";
+  border: 1px solid red;
+  text-align: center;
+  background-color: #ff0000c4;
+  color: white;
+  border-radius: 2px;
+  font-size: 15px;
+}
+
+.product.newProduct::before {
+  position: absolute;
+  width: 16%;
+  top: 15px;
+  left: 79%;
+  content: "NYTT";
+  border: 1px solid #9fa255;
+  text-align: center;
+  background-color: #9fa255;
+  color: white;
+  border-radius: 2px;
+  font-size: 15px;
 }
 
 .sidebar {
@@ -3013,10 +3032,16 @@ section.order-confirmation button[disabled] {
 
 .deliveryFeeRow {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .toWhite {
   border: 1px solid white;
+}
+
+.small-font-size {
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
 }
 
 #last-chance-main .content .product-container {

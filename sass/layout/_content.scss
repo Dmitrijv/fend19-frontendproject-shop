@@ -424,11 +424,34 @@ div.product>div>button:nth-child(4) {
   }
 
   &.oldProduct::before {
-    content: url('../img/svg/price-tag.svg');
+    // content: url('../img/svg/price-tag.svg');
+    // top: 0;
+    // left: 0;
+    // rotate: -85deg;
     position: absolute;
     width: 16%;
-    top: 0;
-    left: 0;
-    rotate: -85deg;
+    top: 15px;
+    left: 12px;
+    content: "SALE";
+    border: 1px solid red;
+    text-align: center;
+    background-color: #ff0000c4;
+    color: white;
+    border-radius: 2px;
+    font-size: 15px;
+  }
+
+  &.newProduct::before{
+    position: absolute;
+    width: 16%;
+    top: 15px;
+    left: 79%;
+    content: "NYTT";
+    border: 1px solid $green;
+    text-align: center;
+    background-color: $green;
+    color: white;
+    border-radius: 2px;
+    font-size: 15px;
   }
 }
