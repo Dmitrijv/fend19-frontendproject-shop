@@ -36,11 +36,11 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
 }
 
 // no cover image was uploaded
-if (count($gallery) === 0) {
+/*if (count($gallery) === 0) {
     //$gallery = "placeholder.png";
-    /*http_response_code(400);
-    die;*/
-} 
+    http_response_code(400);
+    die;
+} */
 
 $productTitle = trimSides($_POST["product_title"]);
 $productDescription = trimSides($_POST["product_description"]);
