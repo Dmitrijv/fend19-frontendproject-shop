@@ -11,36 +11,46 @@
   113 51  STOCKHOLM (Postcode, and geographic location) */
 
 /* Generate order list */
-const listArea = document.querySelector(".checkout-form__cart-section__product-list");
-const confirmBtn = document.querySelector(".checkout-form__delivery-section__deliveryBtn");
-const shoppingCart = JSON.parse(localStorage.getItem("products"));
-let realTotalPrice = 0;
-let subTotal = 0;
-let itemsCountTotal = 0;
+const listArea = document.querySelector(
+  ".checkout-form__cart-section__product-list"
+)
+const confirmBtn = document.querySelector(
+  ".checkout-form__delivery-section__deliveryBtn"
+)
+const shoppingCart = JSON.parse(localStorage.getItem("products"))
+let realTotalPrice = 0
+let subTotal = 0
+let itemsCountTotal = 0
 
 /* from Martin */
-let productList = document.querySelector(".checkout-form__cart-section__product-list");
-let totalSumCart = document.querySelector(".checkout-form__cart-section__totalsum"); //delivery fee check is in the bottom
-let totalSumForm = document.querySelector(".checkout-form__price");
-const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn");
-keepShoppingBtn.addEventListener("click", function() {
-  location.href = "/fend19-frontendproject-shop/index.php";
-});
+let productList = document.querySelector(
+  ".checkout-form__cart-section__product-list"
+)
+let totalSumCart = document.querySelector(
+  ".checkout-form__cart-section__totalsum"
+) //delivery fee check is in the bottom
+let totalSumForm = document.querySelector(".checkout-form__price")
+const keepShoppingBtn = document.querySelector(
+  ".checkout-form__cart-section__keep-shopping-btn"
+)
+keepShoppingBtn.addEventListener("click", function () {
+  location.href = "/fend19-frontendproject-shop/index.php"
+})
 
 /* object structure: id | name | img | price | qty */
 /* Sorry about this part, so tired of correcting every ES5 pieces back to its old way. */
 if (localStorage.hasOwnProperty("products")) {
-  var length = shoppingCart.length;
+  var length = shoppingCart.length
   for (var a = 0; a < length; a++) {
-    var item = shoppingCart[a];
-    var itemName = item.name;
-    var name = itemName.split("-").pop(); //new
-    var itemCount = item.qty * 1;
-    var itemPrice = item.price.slice(0, -3);
-    var itemImage = item.img;
-    var itemTotalPrice = Math.ceil(1 * itemCount * (1 * itemPrice));
-    subTotal += itemTotalPrice;
-    itemsCountTotal += itemCount;
+    var item = shoppingCart[a]
+    var itemName = item.name
+    var name = itemName.split("-").pop() //new
+    var itemCount = item.qty * 1
+    var itemPrice = item.price.slice(0, -3)
+    var itemImage = item.img
+    var itemTotalPrice = Math.ceil(1 * itemCount * (1 * itemPrice))
+    subTotal += itemTotalPrice
+    itemsCountTotal += itemCount
 
     productList.innerHTML += `
     <div class="checkout-form__cart-section__product-container">
@@ -50,344 +60,354 @@ if (localStorage.hasOwnProperty("products")) {
       <p class="item-name">"${name}"</p>
       <p class="checkout-form__cart-section__item-qty"></p>
       <p class="checkout-form__cart-section__item-price">${itemCount} st, ${itemPrice} kr</p>
-    </div>`;
+    </div>`
   }
 
   if (itemsCountTotal === 1) {
     totalSumCart.innerHTML += "<p>"
       .concat(itemsCountTotal, ' st Artikel</p><p class="item-total" >Totalt: ')
-      .concat(subTotal, " kr</p>");
+      .concat(subTotal, " kr</p>")
   } else {
     totalSumCart.innerHTML += "<p>"
-      .concat(itemsCountTotal, ' st Artiklar</p><p class="item-total" >Totalt: ')
-      .concat(subTotal, " kr</p>");
+      .concat(
+        itemsCountTotal,
+        ' st Artiklar</p><p class="item-total" >Totalt: '
+      )
+      .concat(subTotal, " kr</p>")
   }
 } else {
-  confirmBtn.disabled = true;
-  productList.innerHTML += '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>';
+  confirmBtn.disabled = true
+  productList.innerHTML +=
+    '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
 }
 
 /* Validation related part, Strategy mode is implemented here. */
-const _validator = (function() {
-  return function(ruleList) {
+const _validator = (function () {
+  return function (ruleList) {
     return {
       strategyFn: [],
       ruleList: ruleList,
-      add: function(dom, rules) {
-        let that = this;
+      add: function (dom, rules) {
+        let that = this
         for (let i = 0, len = rules.length; i < len; i++) {
-          (function(i) {
-            that.strategyFn.push(function() {
-              let info = [];
+          ;(function (i) {
+            that.strategyFn.push(function () {
+              let info = []
               let method = rules[i].strategy.split(":"),
                 methodName = method[0],
                 errMsg = rules[i].msg,
-                val = dom.value;
-              info.push(val);
+                val = dom.value
+              info.push(val)
               if (method[1]) {
-                info.push(method[1]);
+                info.push(method[1])
               }
-              info.push(errMsg);
-              return that.ruleList[methodName].apply(dom, info);
-            });
-          })(i);
+              info.push(errMsg)
+              return that.ruleList[methodName].apply(dom, info)
+            })
+          })(i)
         }
       },
-      start: function() {
+      start: function () {
         for (i in this.strategyFn) {
           if (this.strategyFn.hasOwnProperty(i)) {
-            let msg = this.strategyFn[i]();
+            let msg = this.strategyFn[i]()
             if (msg) {
-              return msg;
+              return msg
             }
           }
         }
-      }
-    };
-  };
-})();
+      },
+    }
+  }
+})()
 
 /* rule-list */
-const _rules = (function() {
+const _rules = (function () {
   const rulelist = {
-    isBlank: function(value, errorMsg) {
+    isBlank: function (value, errorMsg) {
       if (value === "") {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isName: function(value, errorMsg) {
+    isName: function (value, errorMsg) {
       // Don't care if capitalized
       if (!/^([A-ZÅÖÄ]|[a-zåöä])*$/.test(value)) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    minLength: function(value, length, errorMsg) {
+    minLength: function (value, length, errorMsg) {
       if (value.length < length) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    maxLength: function(value, length, errorMsg) {
+    maxLength: function (value, length, errorMsg) {
       if (value.length > length) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isPhone: function(value, errorMsg) {
-      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}/;
+    isPhone: function (value, errorMsg) {
+      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}/
       /* Matches 0798789678 */
-      const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/;
+      const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/
       /* Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 */
       if (!reg1.test(value) && !reg2.test(value)) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isEmail: function(value, errorMsg) {
+    isEmail: function (value, errorMsg) {
       if (
         !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
           value
         )
       ) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isSpace: function(value, errorMsg) {
+    isSpace: function (value, errorMsg) {
       if (
-        [...value].every(item => {
-          return item === " ";
+        [...value].every((item) => {
+          return item === " "
         })
       ) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isAdress: function(value, errorMsg) {
+    isAdress: function (value, errorMsg) {
       /* Pattern: now not require first letter be capitalized (just for test, meaningless): Öästervägen 10a | Öästervägen 10A | Öästergatan 10A */
-      const reg1 = /^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/;
+      const reg1 = /^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
       if (!reg1.test(value)) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isPcode: function(value, errorMsg) {
+    isPcode: function (value, errorMsg) {
       /* very rough way, not accurate enough */
       if (!/^\d{3}\s*\d{2}$/.test(value)) {
-        return errorMsg;
+        return errorMsg
       }
     },
 
-    isCounty: function(value, errorMsg) {
+    isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
       if (!/^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+/.test(value)) {
-        return errorMsg;
+        return errorMsg
       }
-    }
-  };
+    },
+  }
   return {
-    rulelist: rulelist
-  };
-})();
+    rulelist: rulelist,
+  }
+})()
 
 /* Do validation */
-const validator = _validator(_rules.rulelist);
+const validator = _validator(_rules.rulelist)
 
-const forms = document.querySelector(".checkout-form");
+const forms = document.querySelector(".checkout-form")
 
 /* Add method */
 validator.add(forms.email, [
   {
     strategy: "isBlank",
-    msg: "Var god ange en email-address"
+    msg: "Var god ange en email-address",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isEmail",
-    msg: "Ange en giltig email-address"
-  }
-]);
+    msg: "Ange en giltig email-address",
+  },
+])
 
 validator.add(forms.fname, [
   {
     strategy: "isBlank",
-    msg: "Var god ange ett förnamn"
+    msg: "Var god ange ett förnamn",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isName",
-    msg: "Ange namn med stor bokstav, använd endast bokstäver"
+    msg: "Ange namn med stor bokstav, använd endast bokstäver",
   },
   {
     strategy: "minLength:2",
-    msg: "Ange minst 2 bokstäver"
+    msg: "Ange minst 2 bokstäver",
   },
   {
     strategy: "maxLength:20",
-    msg: "Förnamn får ej vara längre än 20 tecken"
-  }
-]);
+    msg: "Förnamn får ej vara längre än 20 tecken",
+  },
+])
 
 validator.add(forms.lname, [
   {
     strategy: "isBlank",
-    msg: "Ange efternamn"
+    msg: "Ange efternamn",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isName",
-    msg: "Ange namn med stor bokstav, använd endast bokstäver"
+    msg: "Ange namn med stor bokstav, använd endast bokstäver",
   },
   {
     strategy: "minLength:2",
-    msg: "Ange minst 2 bokstäver"
+    msg: "Ange minst 2 bokstäver",
   },
   {
     strategy: "maxLength:20",
-    msg: "Förnamn får ej vara längre än 20 tecken"
-  }
-]);
+    msg: "Förnamn får ej vara längre än 20 tecken",
+  },
+])
 
 validator.add(forms.phone, [
   {
     strategy: "isBlank",
-    msg: "Ange ett telefonnummer"
+    msg: "Ange ett telefonnummer",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isPhone",
-    msg: "Ange ett giltigt telefonnummer"
-  }
-]);
+    msg: "Ange ett giltigt telefonnummer",
+  },
+])
 
 validator.add(forms.adress, [
   {
     strategy: "isBlank",
-    msg: "Ange en adress"
+    msg: "Ange en adress",
   },
   {
     strategy: "isAdress",
-    msg: "felaktig adress, ange en giltig adress"
+    msg: "felaktig adress, ange en giltig adress",
   },
   {
     strategy: "isSpace",
-    msg: "Please input valid text"
-  }
-]);
+    msg: "Please input valid text",
+  },
+])
 
 validator.add(forms.pcode, [
   {
     strategy: "isBlank",
-    msg: "Ange ett postnummer"
+    msg: "Ange ett postnummer",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isPcode",
-    msg: "Ange ett giltigt postnummer"
-  }
-]);
+    msg: "Ange ett giltigt postnummer",
+  },
+])
 
 validator.add(forms.county, [
   {
     strategy: "isBlank",
-    msg: "Ange stad"
+    msg: "Ange stad",
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Var god fyll i uppgiftsfälten",
   },
   {
     strategy: "isCounty",
-    msg: "Ange en giltig stad"
-  }
-]);
+    msg: "Ange en giltig stad",
+  },
+])
 
 // Call validation
 // confirm pay btn should be disabled until finish validation and judge delivery fee.
-confirmBtn.onclick = function(event) {
+confirmBtn.onclick = function (event) {
   // call errormsg
-  const goToOrderBtn = document.querySelector(".checkout-form__delivery-section__checkoutBtn--dim");
+  const goToOrderBtn = document.querySelector(
+    ".checkout-form__btn-section__checkoutBtn--dim"
+  )
   const errMsg = validator.start(),
-    errTips = document.querySelector(".err-tips");
+    errTips = document.querySelector(".err-tips")
 
   if (errMsg) {
     // console.log(errMsg);
-    errTips.innerHTML = errMsg;
+    errTips.innerHTML = errMsg
   } else {
-    errTips.innerHTML = "";
-    goToOrderBtn.disabled = "";
-    goToOrderBtn.style.backgroundcolor = "#218838";
-    keepShoppingBtn.disabled = true; //disable buyMoreBtn
-    document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
-    turnWhite(); //remove input red border
+    errTips.innerHTML = ""
+    goToOrderBtn.disabled = ""
+    goToOrderBtn.style.backgroundcolor = "#218838"
+    keepShoppingBtn.disabled = true //disable buyMoreBtn
+    document
+      .querySelector(".open-overlay")
+      .removeEventListener("click", openCart) //disable cartBtn
+    turnWhite() //remove input red border
   }
 
   /* To check delivery fee */
-  const deliveryFeeTextArea = document.querySelector(".deliveryFeeText");
-  const zipcode = document.querySelector("#pcode");
-  let realTotalPriceArea = document.querySelector(".item-total");
+  const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
+  const zipcode = document.querySelector("#pcode")
+  let realTotalPriceArea = document.querySelector(".item-total")
   if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal > 500) {
     // free delivery
-    deliveryFeeTextArea.classList.remove("hidden");
-    deliveryFeeTextArea.textContent = "0";
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
-    realTotalPrice = subTotal;
+    deliveryFeeTextArea.classList.remove("hidden")
+    deliveryFeeTextArea.textContent = "0"
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
+    realTotalPrice = subTotal
   } else {
     // add 50 kr
-    deliveryFeeTextArea.classList.remove("hidden");
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
-    realTotalPrice = subTotal + 50;
+    deliveryFeeTextArea.classList.remove("hidden")
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
+    realTotalPrice = subTotal + 50
   }
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  let email = document.querySelector("#email").value;
-  const forename = capitalizeFirstLetter(document.querySelector("#fname").value);
-  const aftername = capitalizeFirstLetter(document.querySelector("#lname").value);
-  const name = forename + " " + aftername;
-  const phone = removeSpace(document.querySelector("#tel").value);
-  const address = capitalizeFirstLetter(document.querySelector("#adress").value);
-  const pcode = formatZipcode(document.querySelector("#pcode").value);
-  const city = capitalizeFirstLetter(document.querySelector("#city").value);
-  const fullAddress = address + ", " + pcode + ", " + city;
-  redrawCustomerInfoTable();
+  let email = document.querySelector("#email").value
+  const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
+  const aftername = capitalizeFirstLetter(
+    document.querySelector("#lname").value
+  )
+  const name = forename + " " + aftername
+  const phone = removeSpace(document.querySelector("#tel").value)
+  const address = capitalizeFirstLetter(document.querySelector("#adress").value)
+  const pcode = formatZipcode(document.querySelector("#pcode").value)
+  const city = capitalizeFirstLetter(document.querySelector("#city").value)
+  const fullAddress = address + ", " + pcode + ", " + city
+  redrawCustomerInfoTable()
 
   const detail = {
     name: name,
     phone: phone,
     fullAddress: fullAddress,
-    totalPrice: realTotalPrice
-  };
+    totalPrice: realTotalPrice,
+  }
   /* customer number: Random or what..
     customer name: Forename + aftername
     phone number: phone
     address: Gatuadress + zipcode + Ort
     order number: Random
     date */
-  localStorage.setItem("customer", JSON.stringify(detail));
+  localStorage.setItem("customer", JSON.stringify(detail))
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   function removeSpace(string) {
-    return string.replace(/\s/g, "");
+    return string.replace(/\s/g, "")
   }
 
   function formatZipcode(string) {
@@ -395,28 +415,30 @@ confirmBtn.onclick = function(event) {
       .replace(/\s/g, "")
       .split(/(\d{3})/)
       .join(" ")
-      .trim();
+      .trim()
   }
 
   function redrawCustomerInfoTable() {
     // email = email;
-    document.querySelector("#fname").value = forename;
-    document.querySelector("#lname").value = aftername;
-    document.querySelector("#tel").value = phone;
-    document.querySelector("#adress").value = address;
-    document.querySelector("#pcode").value = pcode;
-    document.querySelector("#city").value = city;
+    document.querySelector("#fname").value = forename
+    document.querySelector("#lname").value = aftername
+    document.querySelector("#tel").value = phone
+    document.querySelector("#adress").value = address
+    document.querySelector("#pcode").value = pcode
+    document.querySelector("#city").value = city
   }
 
   //remove input border's color
   function turnWhite() {
-    const inputs = document.querySelectorAll(".checkout-form__delivery-section__input");
-    inputs.forEach(input => {
-      input.classList.add("toWhite");
-    });
+    const inputs = document.querySelectorAll(
+      ".checkout-form__delivery-section__input"
+    )
+    inputs.forEach((input) => {
+      input.classList.add("toWhite")
+    })
   }
-};
+}
 
 // add shopping cart data to form
-const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]');
-hiddenCartLabel.value = localStorage.getItem("products");
+const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]')
+hiddenCartLabel.value = localStorage.getItem("products")

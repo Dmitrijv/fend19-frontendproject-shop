@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="checkout-form__cart-section__sum-area">
-                    <p class="small-font-size"><strong>Fri frakt!</strong>&nbsp;&nbsp;När du handlar för över 500 kr eller bor du i Stockholm.</p>
+                    <p class="small-font-size"><strong>Fri frakt!</strong>&nbsp;&nbsp;När du handlar för över 500 kr, eller beställer till en adress i Stockholm.</p>
                     <p class="deliveryFeeRow">Frakt: <span class="deliveryFeeText hidden">50 kr</span></p>
                     <span class="pull-left products-amount"></span>
                     <span class="pull-right totalPrice"></span>
@@ -46,6 +46,7 @@
             </section>
 
             <!-- Left side, delivery section -->
+            <div class="checkout-form__container">
             <section class="checkout-form__delivery-section">
 
                 <div class="err-tips"></div>
@@ -79,9 +80,16 @@
                 <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
                 <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
-                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
+                
 
             </section>
+
+            <section class="checkout-form__btn-section">
+                <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
+                <button type="submit" class="checkout-form__btn-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
+                </section>
+</div>
+
         </form>
 
     </main>
