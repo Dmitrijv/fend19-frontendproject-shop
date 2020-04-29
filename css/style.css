@@ -1875,14 +1875,6 @@ div.product > div > button:nth-child(4) {
   position: relative;
 }
 
-.product::before {
-  content: url("../img/svg/cart.svg");
-  position: absolute;
-  width: 12%;
-  top: 88%;
-  left: 8%;
-}
-
 .product.oldProduct::before {
   position: absolute;
   width: 16%;
