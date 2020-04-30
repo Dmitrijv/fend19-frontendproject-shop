@@ -2804,7 +2804,7 @@ section.order-confirmation button[disabled] {
   color: white;
   border-radius: 2px;
   font-size: 22px;
-  z-index: 100;
+  z-index: 1;
   padding: 5px;
 }
 
@@ -2828,7 +2828,7 @@ section.order-confirmation button[disabled] {
   color: white;
   border-radius: 2px;
   font-size: 22px;
-  z-index: 100;
+  z-index: 1;
   padding: 5px;
 }
 
