@@ -2835,9 +2835,11 @@ section.order-confirmation button[disabled] {
 .p-grid-2.inCart::after {
   content: url("../img/svg/cart.svg");
   position: absolute;
-  top: 78%;
-  left: 87%;
+  bottom: 20px;
+  left: 85%;
   width: 8%;
+  min-width: 30px;
+  max-width: 55px;
   -webkit-animation: jello-vertical 1s both;
           animation: jello-vertical 1s both;
 }
