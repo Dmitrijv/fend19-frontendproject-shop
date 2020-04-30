@@ -297,18 +297,18 @@ function getCompletedOrders()
             completed_order_of_products.date_ordered_at as date_ordered_at,
             customer_data.county as county,
             completed_order_of_products.status as status_id,
-            SUM(ordered_product.price) as order_total,
-            COUNT(ordered_product.product_id) as item_count,
+            SUM(delivered_product.price) as order_total,
+            COUNT(delivered_product.product_id) as item_count,
             order_status.name as status_name,
             completed_order_of_products.free_shipping as shipping_fee
         FROM
             completed_order_of_products,
             order_status,
-            ordered_product,
+            delivered_product,
             customer_data
         WHERE
             completed_order_of_products.status = order_status.id
-            AND ordered_product.order_id = completed_order_of_products.id
+            AND delivered_product.order_id = completed_order_of_products.id
             AND completed_order_of_products.customer_data_id = customer_data.id
         GROUP BY
             completed_order_of_products.id
@@ -331,4 +331,56 @@ function getCompletedOrders()
     }
     return $response;
 
+}
+
+function setOrderInProgress($orderId)
+{
+    DB::run("UPDATE active_order_of_products SET status=2 WHERE id = ?", [$orderId]);
+}
+
+function setOrderCompleted($orderId)
+{
+
+    /* update order status to completed */
+    DB::run("
+        UPDATE active_order_of_products SET status=3 WHERE id = ?;
+    ", [$orderId]);
+
+    /* register this order in completed orders table */
+    DB::run("
+        INSERT INTO completed_order_of_products (id, date_ordered_at, status, customer_data_id, free_shipping)
+        SELECT *
+        FROM active_order_of_products
+        WHERE active_order_of_products.id = ?;
+    ", [$orderId]);
+
+    /* register products that were ordered as delivered */
+    DB::run("
+        INSERT INTO delivered_product (product_id, order_id, price, quantity, currency_id)
+        SELECT *
+        FROM ordered_product
+        WHERE ordered_product.order_id = ?;
+    ", [$orderId]);
+
+    /* delete the now completed order from active orders table */
+    DB::run("
+        DELETE FROM active_order_of_products
+        WHERE active_order_of_products.id = ?;
+    ", [$orderId]);
+
+}
+
+function doesActiveOrderExist($orderId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ?)", [$orderId])->fetchColumn();
+}
+
+function isOrderNew($orderId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ? AND status=1)", [$orderId])->fetchColumn();
+}
+
+function isOrderInProgress($orderId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ? AND status=2)", [$orderId])->fetchColumn();
 }

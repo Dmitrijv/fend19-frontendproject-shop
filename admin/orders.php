@@ -69,7 +69,7 @@
                     </div>
                 </form>
 
-                <div id='ordersAlert' class="alert fail hidden">
+                <div id='orderAlert' class="alert fail hidden">
                     <span class="msg"></span>
                     <form onsubmit='adminLib.hideParentElement(event);'>
                         <button class="close-btn" type="submit">Close</button>
@@ -85,10 +85,10 @@
                             <th>Items</th>
                             <th data-sortBy='order_total' class='sortable' onclick="adminLib.onOrderTheadClick(event)">Order Total</th>
                             <th data-sortBy='status' class='sortable' onclick="adminLib.onOrderTheadClick(event)">Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="orderAdminTableBody">
-
                     </tbody>
                 </table>
         </section>

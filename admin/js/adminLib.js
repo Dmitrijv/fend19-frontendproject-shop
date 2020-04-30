@@ -433,7 +433,6 @@ adminLib = (function() {
       lib.loadJsonByXhr(targetInternal, function(orderJson) {
         // sort by column
         if (sortFunction) orderJson = orderJson.sort(sortFunction);
-        console.log(orderJson);
         // filter by county string
         orderJson = orderJson.filter(order =>
           !countyFilter || countyFilter.length === 0
@@ -451,12 +450,31 @@ adminLib = (function() {
     },
 
     drawOrdersTable: function(orderJson) {
+      console.log(orderJson);
       const lib = this;
       const table = document.querySelector("table tbody#orderAdminTableBody");
-
       let tableContent = ``;
       orderJson.forEach(order => {
         const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
+
+        let buttonHtml;
+        switch (Number(order.status_id)) {
+          case 1:
+            buttonHtml = `
+                <form data-orderid="${order.id}" onsubmit='adminLib.setOrderInProgress(event);'>
+                    <input class="btn edit-btn" type="submit" name="edit" value="Behandla">
+                </form>`;
+            break;
+          case 2:
+            buttonHtml = `
+                <form data-orderid="${order.id}" onsubmit='adminLib.setOrderCompleted(event);'>
+                    <input class="btn create-btn" type="submit" name="edit" value="Slutför">
+                </form>`;
+            break;
+          default:
+            buttonHtml = "";
+        }
+
         tableContent += `
             <tr data-orderId='${order.id}'>
                 <td>${order.id}</td>
@@ -465,11 +483,70 @@ adminLib = (function() {
                 <td>${order.item_count}</td>
                 <td>${order_total} kr</td>
                 <td>${order.status_name}</td>
+                <td>${buttonHtml}</td>
             </tr>
         `;
       });
 
       table.innerHTML = tableContent;
+    },
+
+    setOrderInProgress(event) {
+      const lib = this;
+      const form = event.currentTarget;
+      const orderId = form.dataset.orderid || form.dataset.orderId;
+
+      const alertElement = document.querySelector("div#orderAlert");
+      const messageElement = document.querySelector("div#orderAlert span.msg");
+
+      if (confirm("Are you sure?")) {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            lib.setSuccessStyle(alertElement);
+            messageElement.textContent = "Order is now being processed.";
+            lib.drawFilteredOrdersTable();
+            event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 400) {
+            messageElement.textContent = "Could not process order.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+          }
+        };
+        xmlhttp.open("POST", `${CONTROLLER_PATH}/order/processOrderRequest.php`, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(`orderId=${orderId}`);
+        event.preventDefault();
+      }
+    },
+
+    setOrderCompleted(event) {
+      const lib = this;
+      const form = event.currentTarget;
+      const orderId = form.dataset.orderid || form.dataset.orderId;
+
+      const alertElement = document.querySelector("div#orderAlert");
+      const messageElement = document.querySelector("div#orderAlert span.msg");
+
+      if (confirm("Are you sure?")) {
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            lib.setSuccessStyle(alertElement);
+            messageElement.textContent = "Order delivery has been registered.";
+            lib.drawFilteredOrdersTable();
+            event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 400) {
+            messageElement.textContent = "Could not complete order.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
+          }
+        };
+        xmlhttp.open("POST", `${CONTROLLER_PATH}/order/completeOrderRequest.php`, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(`orderId=${orderId}`);
+        event.preventDefault();
+      }
     },
 
     getSortFunction: function(sortType, sortDirection) {
