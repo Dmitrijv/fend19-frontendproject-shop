@@ -1,19 +1,15 @@
 /* TODO */
-/* Name pattern:  Anna-Lena  |  Af Trolle */
 /* Tel: 08?? */
+/* Name pattern:  Anna-Lena  |  Af Trolle */
 /* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
 /* A-ZÅÖÄåöäéáó  a-zöäåéáó */
+
 /* Name: 2-20 éáó(no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
   Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
-  Ort: must be captalized */
-
-/* A typical address would look like this:
-  Sven Nilsson (First, and last name)
-  Roslagsgatan 10 (Street, and number)
-  113 51  STOCKHOLM (Postcode, and geographic location) */
+  Ort: uppercase/lowercase */
 
 /* Generate order list */
 const listArea = document.querySelector(
