@@ -18,13 +18,21 @@ if (!isset($product['title'])) {
 
 // build gallery html
 $gallery = $product['gallery'];
+// print_r($gallery);// if empty -> empty array
 $galleryHtml = '';
-foreach ($gallery as &$fileName) {
-    $galleryHtml = $galleryHtml . '
+if (!$gallery) {
+    $galleryHtml = '
+    <div class="banner" style="opacity: 1;">
+        <div class="banner-img" style="background-image: url(img/product/placeholder.png)"></div>
+    </div>';
+} else {
+    foreach ($gallery as &$fileName) {
+        $galleryHtml = $galleryHtml . '
         <div class="banner" style="opacity: 1;">
             <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
         </div>
     ';
+    }
 }
 
 $gallerySelectors = '<span class="on"></span>';
