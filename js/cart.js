@@ -210,7 +210,7 @@ function removeInCartStyle(productId) {
 }
 
 function removeAllInCartStyle() {
-  const productCards = document.querySelectorAll('.product');
+  const productCards = document.querySelectorAll('.product.inCart');
   for (card of productCards) {
     card.classList.remove('inCart');
   }
