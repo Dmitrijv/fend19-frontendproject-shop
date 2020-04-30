@@ -64,7 +64,8 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 
 // check if this order qualifies for free shipping
 $free_shipping = false;
-if ($orderTotalPrice >= 500 || strcasecmp($customerData['county'], "stockholm") == 0) {
+/* use zipcode to check now, or at least should qualify stockholm & zipcode at the same time */
+if ($orderTotalPrice >= 500 ||( strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']))) {
     $free_shipping = true;
 }
 
@@ -121,7 +122,7 @@ foreach ($shoppingCart as &$cartItem) {
 if ($free_shipping) {
     $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">'. $finalPriceAmount .'kr</td></tr></tbody>';
 } else{
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">'. intval($finalPriceAmount + 50) .'kr</td></tr></tbody>';
+    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">'. intval($finalPriceAmount + 50) .' kr</td></tr></tbody>';
 }
 
 ?>
