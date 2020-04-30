@@ -392,12 +392,47 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    drawFilteredOrdersTable: function(event) {
+    onOrderTheadClick: function(event) {
       const lib = this;
-      const internalUrl = `${INTERNAL_PATH}/orders.php`;
+      const clickedCell = event.currentTarget;
+
+      // we clicked on a cell that is not responsibe for current sort
+      if (!clickedCell.classList.contains("sorted")) {
+        // remove sort class from current sort column
+        const prevousSortCell = document.querySelector("th.sorted");
+        prevousSortCell.classList.remove("sorted", "sortAsc", "sortDesc");
+        // add sort classes to current form
+        clickedCell.classList.add("sorted", "sortDesc");
+      } else {
+        // flip descending to asc and vice versa
+        if (clickedCell.classList.contains("sortAsc")) {
+          clickedCell.classList.replace("sortAsc", "sortDesc");
+        } else {
+          clickedCell.classList.replace("sortDesc", "sortAsc");
+        }
+      }
+
+      lib.drawFilteredOrdersTable();
+    },
+
+    drawFilteredOrdersTable: function() {
+      const lib = this;
       const statusFilter = Number(document.querySelector('input[type="radio"]:checked').value);
       const countyFilter = document.querySelector('input[name="countyNameFilter"]').value;
-      lib.loadJsonByXhr(internalUrl, function(orderJson) {
+
+      const activeOrdersInternal = `${INTERNAL_PATH}/activeOrders.php`;
+      const completedOrdersInternal = `${INTERNAL_PATH}/completedOrders.php`;
+      const targetInternal = statusFilter == 3 ? completedOrdersInternal : activeOrdersInternal;
+
+      // determine which header is clicked right now and which way sorting should be performed
+      const activeHeader = document.querySelector("th.sorted");
+      const sortType = activeHeader.dataset.sortby;
+      const sortDirection = activeHeader.classList.contains("sortAsc") ? "asc" : "desc";
+      const sortFunction = lib.getSortFunction(sortType, sortDirection);
+
+      lib.loadJsonByXhr(targetInternal, function(orderJson) {
+        // sort by column
+        if (sortFunction) orderJson = orderJson.sort(sortFunction);
         // filter by county string
         orderJson = orderJson.filter(order =>
           !countyFilter || countyFilter.length === 0
@@ -416,17 +451,9 @@ adminLib = (function() {
 
     drawOrdersTable: function(orderJson) {
       const lib = this;
-      const table = document.querySelector("table#orderAdminTable");
-      let tableContent = `
-            <tr>
-                <th>ID</th>
-                <th class='sortable'>Date Ordered</th>
-                <th>County</th>
-                <th>Items</th>
-                <th class='sortable'>Order Total</th>
-                <th class='sortable'>Status</th>
-            </tr>
-        `;
+      const table = document.querySelector("table tbody#orderAdminTableBody");
+
+      let tableContent = ``;
       orderJson.forEach(order => {
         const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
         tableContent += `
@@ -440,7 +467,56 @@ adminLib = (function() {
             </tr>
         `;
       });
+
       table.innerHTML = tableContent;
+    },
+
+    getSortFunction: function(sortType, sortDirection) {
+      let sortFunction;
+
+      switch (sortType) {
+        case "date":
+          sortFunction = sortDirection == "desc" ? sortByDateDesc : sortByDateAsc;
+          break;
+        case "order_total":
+          sortFunction = sortDirection == "desc" ? sortByOrderTotalDesc : sortByOrderTotalAsc;
+          break;
+        case "status":
+          sortFunction = sortDirection == "desc" ? sortByStatusDesc : sortByStatusAsc;
+          break;
+        default:
+          sortFunction = sortByDateAsc;
+      }
+
+      return sortFunction;
+
+      function sortByOrderTotalAsc(a, b) {
+        const aTotal = a.free_shipping == 1 ? Number(a.order_total) : Number(a.order_total) + 50;
+        const bTotal = b.free_shipping == 1 ? Number(b.order_total) : Number(b.order_total) + 50;
+        return aTotal > bTotal;
+      }
+
+      function sortByOrderTotalDesc(a, b) {
+        const aTotal = a.free_shipping == 1 ? Number(a.order_total) : Number(a.order_total) + 50;
+        const bTotal = b.free_shipping == 1 ? Number(b.order_total) : Number(b.order_total) + 50;
+        return aTotal < bTotal;
+      }
+
+      function sortByStatusAsc(a, b) {
+        return a.status_id > b.status_id;
+      }
+
+      function sortByStatusDesc(a, b) {
+        return a.status_id < b.status_id;
+      }
+
+      function sortByDateAsc(a, b) {
+        return a.date_ordered_at > b.date_ordered_at;
+      }
+
+      function sortByDateDesc(a, b) {
+        return a.date_ordered_at < b.date_ordered_at;
+      }
     },
 
     hideParentElement: function(event) {

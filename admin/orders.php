@@ -38,32 +38,32 @@
             <div class="content-wrapper">
 
                 <form class="orderCategoryFilter" >
-                    <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable(event)">
+                    <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable()">
                 </form>
 
                 <label class="bold" >Filter by order status:</label>
                 <form class="orderCategoryFilter" onsubmit="adminLib.drawFilteredOrdersTable();">
                     <div class="form-group">
                         <label for="all">
-                            <input type="radio" id="all" name="order_category" value="0" onchange="adminLib.drawFilteredOrdersTable(event)" checked>
-                            Alla
+                            <input type="radio" id="all" name="order_category" value="0" onchange="adminLib.drawFilteredOrdersTable()" checked>
+                            Activ
                         </label>
                     </div>
                     <div class="form-group">
                         <label for="new">
-                            <input type="radio" id="new" name="order_category" value="1" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            <input type="radio" id="new" name="order_category" value="1" onchange="adminLib.drawFilteredOrdersTable()">
                             Ny
                         </label>
                     </div>
                     <div class="form-group">
                         <label for="in_progress">
-                            <input type="radio" id="in_progress" name="order_category" value="2" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            <input type="radio" id="in_progress" name="order_category" value="2" onchange="adminLib.drawFilteredOrdersTable()">
                             Behandlas
                         </label>
                     </div>
                     <div class="form-group">
                         <label for="completed">
-                            <input type="radio" id="completed" name="order_category" value="3" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            <input type="radio" id="completed" name="order_category" value="3" onchange="adminLib.drawFilteredOrdersTable()">
                             Slutförd
                         </label>
                     </div>
@@ -76,7 +76,21 @@
                     </form>
                 </div>
 
-                <table role="table" class="db-table" id="orderAdminTable"></table>
+                <table role="table" class="db-table" id="orderAdminTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th data-sortBy='date' class='sortable sorted sortDesc' onclick="adminLib.onOrderTheadClick(event)" >Date Ordered</th>
+                            <th>County</th>
+                            <th>Items</th>
+                            <th data-sortBy='order_total' class='sortable' onclick="adminLib.onOrderTheadClick(event)">Order Total</th>
+                            <th data-sortBy='status' class='sortable' onclick="adminLib.onOrderTheadClick(event)">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderAdminTableBody">
+
+                    </tbody>
+                </table>
         </section>
         <!-- CONTENT area ends -->
     </main>
