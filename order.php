@@ -64,7 +64,7 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 
 // check if this order qualifies for free shipping
 $free_shipping = false;
-if ($orderTotalPrice >= 500) {
+if ($orderTotalPrice >= 500 || strtolower($customerData['county']) == "stockholm") {
     $free_shipping = true;
 }
 
