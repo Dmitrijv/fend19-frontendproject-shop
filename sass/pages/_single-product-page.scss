@@ -157,10 +157,12 @@
           height: 70px;
           background: url(../img/svg/left-arrow.svg) center center no-repeat;
           cursor: pointer;
+          z-index: 1;
         }
 
         #wrap .prev:hover {
           background: url(../img/svg/left-arrow.svg) center center no-repeat;
+          z-index: 1;
         }
 
         #wrap .next {
@@ -172,10 +174,12 @@
           height: 70px;
           background: url(../img/svg/right-arrow.svg) center center no-repeat;
           cursor: pointer;
+          z-index: 1;
         }
 
         #wrap .next:hover {
           background: url(../img/svg/right-arrow.svg) center center no-repeat;
+          z-index: 1;
         }
       }
 

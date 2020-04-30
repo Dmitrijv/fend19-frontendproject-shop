@@ -28,7 +28,7 @@ if (!$gallery) {
 } else {
     foreach ($gallery as &$fileName) {
         $galleryHtml = $galleryHtml . '
-        <div class="banner" style="opacity: 1;">
+        <div class="banner" style="opacity: 0;">
             <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
         </div>
     ';
