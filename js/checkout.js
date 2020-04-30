@@ -198,7 +198,7 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^([A-ZÅÖÄåöäéáó])[a-zöäåéáó]+/.test(value)) {
+      if (!/^([A-Za-zÅÖÄåöäéáó])[a-zöäåéáó]+/.test(value)) {
         return errorMsg
       }
     },
