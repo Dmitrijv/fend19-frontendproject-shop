@@ -164,10 +164,10 @@ function updateSum(getLs) {
   let sum = 0;
   for (let i = 0; i < getLs.length; i++) {
     var str = getLs[i].price;
-    var res = str.replace(/\D/g, "");
+    var res = str.replace(/.kr/g, "");
     sum += +res * getLs[i].qty;
   }
-  totalSum.textContent = sum + " kr";
+  totalSum.textContent = sum.toFixed(2) + " kr";
 }
 
 function changeQty(getJSON) {
