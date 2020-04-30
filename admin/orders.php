@@ -80,7 +80,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th data-sortBy='date' class='sortable sorted sortDesc' onclick="adminLib.onOrderTheadClick(event)" >Date Ordered</th>
+                            <th data-sortby='date' class='sortable sorted sortDesc' onclick="adminLib.onOrderTheadClick(event)" >Date Ordered</th>
                             <th>County</th>
                             <th>Items</th>
                             <th data-sortBy='order_total' class='sortable' onclick="adminLib.onOrderTheadClick(event)">Order Total</th>

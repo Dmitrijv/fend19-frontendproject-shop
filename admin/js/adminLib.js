@@ -422,17 +422,18 @@ adminLib = (function() {
 
       const activeOrdersInternal = `${INTERNAL_PATH}/activeOrders.php`;
       const completedOrdersInternal = `${INTERNAL_PATH}/completedOrders.php`;
-      const targetInternal = statusFilter == 3 ? completedOrdersInternal : activeOrdersInternal;
+      const targetInternal = Number(statusFilter) == 3 ? completedOrdersInternal : activeOrdersInternal;
 
       // determine which header is clicked right now and which way sorting should be performed
       const activeHeader = document.querySelector("th.sorted");
-      const sortType = activeHeader.dataset.sortby;
+      const sortType = activeHeader.dataset.sortby || activeHeader.dataset.sortBy;
       const sortDirection = activeHeader.classList.contains("sortAsc") ? "asc" : "desc";
       const sortFunction = lib.getSortFunction(sortType, sortDirection);
 
       lib.loadJsonByXhr(targetInternal, function(orderJson) {
         // sort by column
         if (sortFunction) orderJson = orderJson.sort(sortFunction);
+        console.log(orderJson);
         // filter by county string
         orderJson = orderJson.filter(order =>
           !countyFilter || countyFilter.length === 0
@@ -493,29 +494,29 @@ adminLib = (function() {
       function sortByOrderTotalAsc(a, b) {
         const aTotal = a.free_shipping == 1 ? Number(a.order_total) : Number(a.order_total) + 50;
         const bTotal = b.free_shipping == 1 ? Number(b.order_total) : Number(b.order_total) + 50;
-        return aTotal > bTotal;
+        return aTotal > bTotal ? 1 : -1;
       }
 
       function sortByOrderTotalDesc(a, b) {
         const aTotal = a.free_shipping == 1 ? Number(a.order_total) : Number(a.order_total) + 50;
         const bTotal = b.free_shipping == 1 ? Number(b.order_total) : Number(b.order_total) + 50;
-        return aTotal < bTotal;
+        return aTotal > bTotal ? -1 : 1;
       }
 
       function sortByStatusAsc(a, b) {
-        return a.status_id > b.status_id;
+        return a.status_id > b.status_id ? 1 : -1;
       }
 
       function sortByStatusDesc(a, b) {
-        return a.status_id < b.status_id;
+        return a.status_id > b.status_id ? -1 : 1;
       }
 
       function sortByDateAsc(a, b) {
-        return a.date_ordered_at > b.date_ordered_at;
+        return a.date_ordered_at > b.date_ordered_at ? 1 : -1;
       }
 
       function sortByDateDesc(a, b) {
-        return a.date_ordered_at < b.date_ordered_at;
+        return a.date_ordered_at > b.date_ordered_at ? -1 : 1;
       }
     },
 
