@@ -1899,7 +1899,10 @@ div.product > div > button:nth-child(4) {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 84%;
+  left: 100%;
+  -webkit-transform: translateX(-97%);
+      -ms-transform: translateX(-97%);
+          transform: translateX(-97%);
   content: "-10%";
   border: 1px solid red;
   text-align: center;
@@ -1913,7 +1916,10 @@ div.product > div > button:nth-child(4) {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 84%;
+  left: 100%;
+  -webkit-transform: translateX(-97%);
+      -ms-transform: translateX(-97%);
+          transform: translateX(-97%);
   content: "NYTT";
   border: 1px solid #9fa255;
   text-align: center;
@@ -2775,6 +2781,55 @@ section.order-confirmation button[disabled] {
   .single-product-page__body .wrapper .single-product__storage-count .single-product__title {
     font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   }
+}
+
+/* new styling */
+.p-grid-1.newProduct {
+  overflow: hidden;
+  position: relative;
+}
+
+.p-grid-1.newProduct::before {
+  position: absolute;
+  width: 16%;
+  top: 15px;
+  left: 100%;
+  -webkit-transform: translateX(-99%);
+      -ms-transform: translateX(-99%);
+          transform: translateX(-99%);
+  content: "NYTT";
+  border: 1px solid #9fa255;
+  text-align: center;
+  background-color: #9fa255;
+  color: white;
+  border-radius: 2px;
+  font-size: 22px;
+  z-index: 100;
+  padding: 5px;
+}
+
+.p-grid-1.oldProduct {
+  overflow: hidden;
+  position: relative;
+}
+
+.p-grid-1.oldProduct::before {
+  position: absolute;
+  width: 16%;
+  top: 15px;
+  left: 100%;
+  -webkit-transform: translateX(-99%);
+      -ms-transform: translateX(-99%);
+          transform: translateX(-99%);
+  content: "-10%";
+  border: 1px solid red;
+  text-align: center;
+  background-color: #ff0000c4;
+  color: white;
+  border-radius: 2px;
+  font-size: 22px;
+  z-index: 100;
+  padding: 5px;
 }
 
 #latest-products-main .content .product-container {

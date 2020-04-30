@@ -9,6 +9,7 @@ require_once __DIR__ . "/php/controller/controller.php";
 
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
+$productStatusCheck = $_GET['group'];
 
 if (!isset($product['title'])) {
     header("Location: error.php");
@@ -62,7 +63,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <div class="wrapper">
 
             <div class="single-product">
-                <div class="p-grid-1">
+                <div class="p-grid-1 <?php echo $productStatusCheck ?>">
                     <!-- Here comes structure instruction -->
                     <!-- Images should be put inside .p-grid-1 -->
                     <!-- div.banner for all images, use background-image: url(...) -->
