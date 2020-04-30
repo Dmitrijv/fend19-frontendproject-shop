@@ -6,7 +6,7 @@ table#orderAdminTable th.sortable {
   }
 }
 
-input[name="newCategoryNameField"] {
+input[name="countyNameFilter"] {
   margin-bottom: 10px;
   max-width: 300px;
 }
@@ -14,10 +14,12 @@ input[name="newCategoryNameField"] {
 form.orderCategoryFilter {
   max-width: 300px;
   margin-top: 3px;
+  background-color: rgba(179, 223, 156, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   div.form-group {
     margin: 0 8px;
     input[type="radio"] {
-      // idk wtf to do here
+      vertical-align: baseline;
     }
     label {
       margin: 0;

@@ -392,13 +392,32 @@ adminLib = (function() {
       event.preventDefault();
     },
 
-    drawOrdersTable: function(event) {
+    drawFilteredOrdersTable: function(event) {
       const lib = this;
       const internalUrl = `${INTERNAL_PATH}/orders.php`;
-      const table = document.querySelector("table#orderAdminTable");
-      console.log("hello");
+      const statusFilter = Number(document.querySelector('input[type="radio"]:checked').value);
+      const countyFilter = document.querySelector('input[name="countyNameFilter"]').value;
       lib.loadJsonByXhr(internalUrl, function(orderJson) {
-        let tableContent = `
+        // filter by county string
+        orderJson = orderJson.filter(order =>
+          !countyFilter || countyFilter.length === 0
+            ? true
+            : order.county.toLowerCase().includes(countyFilter)
+            ? true
+            : false
+        );
+        // filter by selected category
+        orderJson = orderJson.filter(order =>
+          !statusFilter || statusFilter === 0 ? true : order.status_id === statusFilter ? true : false
+        );
+        lib.drawOrdersTable(orderJson);
+      });
+    },
+
+    drawOrdersTable: function(orderJson) {
+      const lib = this;
+      const table = document.querySelector("table#orderAdminTable");
+      let tableContent = `
             <tr>
                 <th>ID</th>
                 <th class='sortable'>Date Ordered</th>
@@ -408,9 +427,9 @@ adminLib = (function() {
                 <th class='sortable'>Status</th>
             </tr>
         `;
-        orderJson.forEach(order => {
-          const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
-          tableContent += `
+      orderJson.forEach(order => {
+        const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
+        tableContent += `
             <tr data-orderId='${order.id}'>
                 <td>${order.id}</td>
                 <td>${order.date_ordered_at}</td>
@@ -420,9 +439,8 @@ adminLib = (function() {
                 <td>${order.status_name}</td>
             </tr>
         `;
-        });
-        table.innerHTML = tableContent;
       });
+      table.innerHTML = tableContent;
     },
 
     hideParentElement: function(event) {

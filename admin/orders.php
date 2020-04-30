@@ -42,26 +42,35 @@
                         <button class="close-btn" type="submit">Close</button>
                     </form>
                 </div>
-                <input name="newCategoryNameField" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeydown="adminLib.drawOrdersTable(event)">
 
+                <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable(event)">
                 </br>
+
                 <label>Filter by order status:</label>
-                <form class="orderCategoryFilter" onsubmit="adminLib.drawOrdersTable();">
+                <form class="orderCategoryFilter" onsubmit="adminLib.drawFilteredOrdersTable();">
                     <div class="form-group">
-                        <input type="radio" id="all" name="order_category" value="0" onchange="adminLib.drawOrdersTable(event)" checked>
-                        <label for="all">Alla</label>
+                        <label for="all">
+                            <input type="radio" id="all" name="order_category" value="0" onchange="adminLib.drawFilteredOrdersTable(event)" checked>
+                            Alla
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="new" name="order_category" value="1" onchange="adminLib.drawOrdersTable(event)">
-                        <label for="new">Ny</label>
+                        <label for="new">
+                            <input type="radio" id="new" name="order_category" value="1" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            Ny
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="in_progress" name="order_category" value="2" onchange="adminLib.drawOrdersTable(event)">
-                        <label for="in_progress">Behandlas</label>
+                        <label for="in_progress">
+                            <input type="radio" id="in_progress" name="order_category" value="2" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            Behandlas
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="completed" name="order_category" value="3" onchange="adminLib.drawOrdersTable(event)">
-                        <label for="completed">Slutförd</label>
+                        <label for="completed">
+                            <input type="radio" id="completed" name="order_category" value="3" onchange="adminLib.drawFilteredOrdersTable(event)">
+                            Slutförd
+                        </label>
                     </div>
                 </form>
                 <table role="table" class="db-table" id="orderAdminTable"></table>
@@ -70,7 +79,7 @@
     </main>
 
     <?php require_once __DIR__ . '/php/view/adminjscore.php';?>
-    <script type="text/javascript">adminLib.drawOrdersTable();</script>
+    <script type="text/javascript">adminLib.drawFilteredOrdersTable();</script>
 
 </body>
 

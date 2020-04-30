@@ -916,7 +916,7 @@ table#orderAdminTable th.sortable:hover {
   background-color: #d3d3d3;
 }
 
-input[name="newCategoryNameField"] {
+input[name="countyNameFilter"] {
   margin-bottom: 10px;
   max-width: 300px;
 }
@@ -924,6 +924,8 @@ input[name="newCategoryNameField"] {
 form.orderCategoryFilter {
   max-width: 300px;
   margin-top: 3px;
+  background-color: rgba(179, 223, 156, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -937,6 +939,10 @@ form.orderCategoryFilter {
 
 form.orderCategoryFilter div.form-group {
   margin: 0 8px;
+}
+
+form.orderCategoryFilter div.form-group input[type="radio"] {
+  vertical-align: baseline;
 }
 
 form.orderCategoryFilter div.form-group label {
