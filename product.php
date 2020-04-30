@@ -54,9 +54,9 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main id="p-main">
 
@@ -98,26 +98,40 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                     </p>
                     <button class='product__add-btn'>Lägg i varukorgen</button>
                 </div>
-              <div style="display: none;" class='hiddenInputItems'>
-              <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
-              <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>">
-              <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
-              <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
-              <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
-              </div>
+                <div style="display: none;" class='hiddenInputItems'>
+                    <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>">
+                    <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
+                    <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
+                </div>
             </div>
         </div>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
     <!-- js scripts go here -->
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-    <?php require_once __DIR__ . '/php/view/jscore.php';?>
+    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
     <script>
         var productBtn = document.querySelectorAll(".product__add-btn");
         addProduct(productBtn);
-        </script>
+    </script>
+
+    <script>
+        let inCartItemIds = [];
+        const inCartItems = JSON.parse(localStorage.getItem('products'))
+        inCartItems.forEach(item => {
+            inCartItemIds.push(Number(item.id));
+        })
+        if (inCartItemIds.includes(<?php echo $productId ?>)) {
+            // console.log('you got me')
+            // document.querySelector('.p-grid-2').classList.add('jello-vertical')
+            document.querySelector('.p-grid-2').classList.add('inCart')
+
+        }
+    </script>
 </body>
 
 </html>
