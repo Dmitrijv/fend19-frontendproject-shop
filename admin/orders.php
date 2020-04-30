@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="all">
                             <input type="radio" id="all" name="order_category" value="0" onchange="adminLib.drawFilteredOrdersTable()" checked>
-                            Activ
+                            Aktiv
                         </label>
                     </div>
                     <div class="form-group">
