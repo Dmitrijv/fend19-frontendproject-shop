@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2020 at 01:18 PM
+-- Generation Time: Apr 30, 2020 at 10:33 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -47,12 +47,10 @@ INSERT INTO `active_order_of_products` (`id`, `date_ordered_at`, `status`, `cust
 (14, '2020-04-29 19:23:22', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
 (15, '2020-04-29 19:24:09', 2, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
 (16, '2020-04-29 19:50:59', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
-(17, '2020-04-29 19:51:50', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
 (18, '2020-04-29 19:59:52', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
 (19, '2020-04-29 20:00:10', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
-(20, '2020-04-29 21:35:55', 1, 'f80c2a7db8b9d8b577a30dcd82f79f5c', 1),
+(20, '2020-04-29 21:35:55', 2, 'f80c2a7db8b9d8b577a30dcd82f79f5c', 1),
 (21, '2020-04-29 21:45:54', 2, 'bebc504d09417ac4b773c5dd790020f8', 1),
-(22, '2020-04-30 11:37:36', 1, '4aa256929e8b5a020a811dc8466a9dec', 1),
 (23, '2020-04-30 11:38:28', 2, '4aa256929e8b5a020a811dc8466a9dec', 1);
 
 -- --------------------------------------------------------
@@ -68,6 +66,14 @@ CREATE TABLE `completed_order_of_products` (
   `customer_data_id` varchar(32) NOT NULL,
   `free_shipping` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `completed_order_of_products`
+--
+
+INSERT INTO `completed_order_of_products` (`id`, `date_ordered_at`, `status`, `customer_data_id`, `free_shipping`) VALUES
+(17, '2020-04-29 19:51:50', 3, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(22, '2020-04-30 11:37:36', 3, '4aa256929e8b5a020a811dc8466a9dec', 1);
 
 -- --------------------------------------------------------
 
@@ -113,6 +119,30 @@ INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, 
 ('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', '734434305', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Mora'),
 ('bebc504d09417ac4b773c5dd790020f8', 'hello@gmail.com', '07344343054', 'John', 'Doe', 'Dugatan 12', '332 12', 'Stockholm'),
 ('f80c2a7db8b9d8b577a30dcd82f79f5c', 'hello@gmail.com', '07344343054', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivered_product`
+--
+
+CREATE TABLE `delivered_product` (
+  `product_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `price` double NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `currency_id` char(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `delivered_product`
+--
+
+INSERT INTO `delivered_product` (`product_id`, `order_id`, `price`, `quantity`, `currency_id`) VALUES
+(33, 22, 360, 1, 'SEK'),
+(34, 22, 720, 1, 'SEK'),
+(54, 22, 333, 1, 'SEK'),
+(34, 17, 720, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -209,16 +239,12 @@ INSERT INTO `ordered_product` (`product_id`, `order_id`, `price`, `quantity`, `c
 (29, 15, 900, 1, 'SEK'),
 (34, 15, 800, 1, 'SEK'),
 (37, 16, 100, 1, 'SEK'),
-(34, 17, 720, 1, 'SEK'),
 (31, 18, 1350, 1, 'SEK'),
 (31, 19, 1350, 11, 'SEK'),
 (32, 20, 899.1, 1, 'SEK'),
 (29, 20, 900, 1, 'SEK'),
 (37, 20, 100, 1, 'SEK'),
 (29, 21, 900, 1, 'SEK'),
-(33, 22, 360, 1, 'SEK'),
-(34, 22, 720, 1, 'SEK'),
-(54, 22, 333, 1, 'SEK'),
 (51, 23, 333, 1, 'SEK');
 
 -- --------------------------------------------------------
@@ -361,6 +387,14 @@ ALTER TABLE `customer_data`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `delivered_product`
+--
+ALTER TABLE `delivered_product`
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `currency` (`currency_id`);
+
+--
 -- Indexes for table `image`
 --
 ALTER TABLE `image`
@@ -421,7 +455,7 @@ ALTER TABLE `active_order_of_products`
 -- AUTO_INCREMENT for table `completed_order_of_products`
 --
 ALTER TABLE `completed_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -460,6 +494,13 @@ ALTER TABLE `completed_order_of_products`
   ADD CONSTRAINT `completed_order_of_products_ibfk_2` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
+-- Constraints for table `delivered_product`
+--
+ALTER TABLE `delivered_product`
+  ADD CONSTRAINT `delivered_product_ibfk_1` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `delivered_product_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `completed_order_of_products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `image_of_product`
 --
 ALTER TABLE `image_of_product`
@@ -471,7 +512,7 @@ ALTER TABLE `image_of_product`
 --
 ALTER TABLE `ordered_product`
   ADD CONSTRAINT `currencykey` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `orderkey` FOREIGN KEY (`order_id`) REFERENCES `active_order_of_products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderkey` FOREIGN KEY (`order_id`) REFERENCES `active_order_of_products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `productkey` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
