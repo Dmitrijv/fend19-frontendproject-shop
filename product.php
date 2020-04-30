@@ -126,10 +126,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
             inCartItemIds.push(Number(item.id));
         })
         if (inCartItemIds.includes(<?php echo $productId ?>)) {
-            // console.log('you got me')
-            // document.querySelector('.p-grid-2').classList.add('jello-vertical')
             document.querySelector('.p-grid-2').classList.add('inCart')
-
         }
     </script>
 </body>
