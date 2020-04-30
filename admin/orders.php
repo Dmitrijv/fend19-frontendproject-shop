@@ -36,12 +36,6 @@
         <!-- CONTENT area begins -->
         <section class="admin-content">
             <div class="content-wrapper">
-                <div id='ordersAlert' class="alert fail hidden">
-                    <span class="msg"></span>
-                    <form onsubmit='adminLib.hideParentElement(event);'>
-                        <button class="close-btn" type="submit">Close</button>
-                    </form>
-                </div>
 
                 <form class="orderCategoryFilter" >
                     <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable(event)">
@@ -74,6 +68,14 @@
                         </label>
                     </div>
                 </form>
+
+                <div id='ordersAlert' class="alert fail hidden">
+                    <span class="msg"></span>
+                    <form onsubmit='adminLib.hideParentElement(event);'>
+                        <button class="close-btn" type="submit">Close</button>
+                    </form>
+                </div>
+
                 <table role="table" class="db-table" id="orderAdminTable"></table>
         </section>
         <!-- CONTENT area ends -->

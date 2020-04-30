@@ -270,7 +270,7 @@ function getOrders()
         GROUP BY
             active_order_of_products.id
         ORDER BY
-            date_ordered_at ASC
+            date_ordered_at DESC
     ");
     $response = [];
     while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
