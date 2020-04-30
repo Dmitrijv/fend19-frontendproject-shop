@@ -1,7 +1,12 @@
-/* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
+/* TODO */
+/* Name pattern:  Anna-Lena  |  Af Trolle */
+/* Tel: 08?? */
+/* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
+/* A-ZÅÖÄåöäéáó  a-zöäåéáó */
+/* Name: 2-20 éáó(no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
-  Address: Swedish address, ends with gatu/vägen... with 1~several number and/or several char
+  Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
   Ort: must be captalized */
 
@@ -48,7 +53,7 @@ if (localStorage.hasOwnProperty("products")) {
     var itemCount = item.qty * 1
     var itemPrice = item.price.slice(0, -3)
     var itemImage = item.img
-    var itemTotalPrice = Math.ceil(1 * itemCount * (1 * itemPrice))
+    var itemTotalPrice = Math.round(1 * itemCount * (1 * itemPrice))
     subTotal += itemTotalPrice
     itemsCountTotal += itemCount
 
@@ -90,7 +95,8 @@ const _validator = (function () {
       add: function (dom, rules) {
         let that = this
         for (let i = 0, len = rules.length; i < len; i++) {
-          ;(function (i) {
+          ;
+          (function (i) {
             that.strategyFn.push(function () {
               let info = []
               let method = rules[i].strategy.split(":"),
@@ -131,8 +137,8 @@ const _rules = (function () {
     },
 
     isName: function (value, errorMsg) {
-      // Don't care if capitalized
-      if (!/^([A-ZÅÖÄ]|[a-zåöä])*$/.test(value)) {
+      // uppercase/lowercase/multiple words
+      if (!/^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
         return errorMsg
       }
     },
@@ -180,8 +186,8 @@ const _rules = (function () {
     },
 
     isAdress: function (value, errorMsg) {
-      /* Pattern: now not require first letter be capitalized (just for test, meaningless): Öästervägen 10a | Öästervägen 10A | Öästergatan 10A */
-      const reg1 = /^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
+      /* Pattern: uppercase/lowercase/multiple words allowed*/
+      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?(\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$/
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -196,7 +202,7 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+/.test(value)) {
+      if (!/^([A-ZÅÖÄåöäéáó])[a-zöäåéáó]+/.test(value)) {
         return errorMsg
       }
     },
@@ -212,8 +218,7 @@ const validator = _validator(_rules.rulelist)
 const forms = document.querySelector(".checkout-form")
 
 /* Add method */
-validator.add(forms.email, [
-  {
+validator.add(forms.email, [{
     strategy: "isBlank",
     msg: "Var god ange en email-address",
   },
@@ -227,8 +232,7 @@ validator.add(forms.email, [
   },
 ])
 
-validator.add(forms.fname, [
-  {
+validator.add(forms.fname, [{
     strategy: "isBlank",
     msg: "Var god ange ett förnamn",
   },
@@ -250,8 +254,7 @@ validator.add(forms.fname, [
   },
 ])
 
-validator.add(forms.lname, [
-  {
+validator.add(forms.lname, [{
     strategy: "isBlank",
     msg: "Ange efternamn",
   },
@@ -273,8 +276,7 @@ validator.add(forms.lname, [
   },
 ])
 
-validator.add(forms.phone, [
-  {
+validator.add(forms.phone, [{
     strategy: "isBlank",
     msg: "Ange ett telefonnummer",
   },
@@ -288,8 +290,7 @@ validator.add(forms.phone, [
   },
 ])
 
-validator.add(forms.adress, [
-  {
+validator.add(forms.adress, [{
     strategy: "isBlank",
     msg: "Ange en adress",
   },
@@ -303,8 +304,7 @@ validator.add(forms.adress, [
   },
 ])
 
-validator.add(forms.pcode, [
-  {
+validator.add(forms.pcode, [{
     strategy: "isBlank",
     msg: "Ange ett postnummer",
   },
@@ -318,8 +318,7 @@ validator.add(forms.pcode, [
   },
 ])
 
-validator.add(forms.county, [
-  {
+validator.add(forms.county, [{
     strategy: "isBlank",
     msg: "Ange stad",
   },
@@ -335,6 +334,9 @@ validator.add(forms.county, [
 
 // Call validation
 // confirm pay btn should be disabled until finish validation and judge delivery fee.
+/* TODO:
+  Once clicked, lock input, prevent change content!
+*/
 confirmBtn.onclick = function (event) {
   // call errormsg
   const goToOrderBtn = document.querySelector(
@@ -363,8 +365,8 @@ confirmBtn.onclick = function (event) {
   let realTotalPriceArea = document.querySelector(".item-total")
   if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal > 500) {
     // free delivery
-    deliveryFeeTextArea.classList.remove("hidden")
     deliveryFeeTextArea.textContent = "0"
+    deliveryFeeTextArea.classList.remove("hidden")
     realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
     realTotalPrice = subTotal
   } else {
@@ -400,7 +402,7 @@ confirmBtn.onclick = function (event) {
     address: Gatuadress + zipcode + Ort
     order number: Random
     date */
-  localStorage.setItem("customer", JSON.stringify(detail))
+  // localStorage.setItem("customer", JSON.stringify(detail))
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -434,8 +436,10 @@ confirmBtn.onclick = function (event) {
       ".checkout-form__delivery-section__input"
     )
     inputs.forEach((input) => {
-      input.classList.add("toWhite")
+      input.classList.add("toWhite");
+      input.setAttribute("readonly", "readonly");//lock input area
     })
+    confirmBtn.disabled = true;
   }
 }
 
