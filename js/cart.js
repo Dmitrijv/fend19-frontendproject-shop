@@ -13,7 +13,9 @@ function toggleCart() {
 }
 
 function clearCart() {
-  localStorage.setItem("products", JSON.stringify({}));
+  // localStorage.setItem("products", JSON.stringify({}));
+  localStorage.removeItem("products");
+  removeAllInCartStyle();
   clearBtn.nextElementSibling.innerHTML = "";
   totalSum.textContent = "";
 }
@@ -205,4 +207,11 @@ function addInCartStyle(productId) {
 function removeInCartStyle(productId) {
   const card = document.querySelector("div.product[id='" + productId + "']");
   if (card) card.classList.remove("inCart");
+}
+
+function removeAllInCartStyle() {
+  const productCards = document.querySelectorAll('.product');
+  for (card of productCards) {
+    card.classList.remove('inCart');
+  }
 }
