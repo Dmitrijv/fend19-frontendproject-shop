@@ -399,23 +399,25 @@ adminLib = (function() {
       console.log("hello");
       lib.loadJsonByXhr(internalUrl, function(orderJson) {
         let tableContent = `
-        <tr>
-            <th>id</th>
-            <th>date_ordered_at</th>
-            <th>status</th>
-            <th>customer</th>
-            <th>free_shipping</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th class='sortable'>Date Ordered</th>
+                <th>County</th>
+                <th>Items</th>
+                <th class='sortable'>Order Total</th>
+                <th class='sortable'>Status</th>
+            </tr>
         `;
         orderJson.forEach(order => {
-          //   const categoryName = lib.escapeHtml(category.name);
+          const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
           tableContent += `
             <tr data-orderId='${order.id}'>
                 <td>${order.id}</td>
                 <td>${order.date_ordered_at}</td>
-                <td>${order.status}</td>
-                <td>${order.customer}</td>
-                <td>${order.free_shipping}</td>
+                <td>${lib.escapeHtml(order.county)}</td>
+                <td>${order.item_count}</td>
+                <td>${order_total} kr</td>
+                <td>${order.status_name}</td>
             </tr>
         `;
         });

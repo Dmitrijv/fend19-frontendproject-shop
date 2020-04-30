@@ -248,15 +248,41 @@ function deleteImageFromDb($fileName)
 
 function getOrders()
 {
-    $stmt = DB::run("SELECT * FROM active_order_of_products ORDER BY date_ordered_at ASC");
+    $stmt = DB::run("
+        SELECT
+            active_order_of_products.id as id,
+            active_order_of_products.date_ordered_at as date_ordered_at,
+            customer_data.county as county,
+            active_order_of_products.status as status_id,
+            SUM(ordered_product.price) as order_total,
+            COUNT(ordered_product.product_id) as item_count,
+            order_status.name as status_name,
+            active_order_of_products.free_shipping as shipping_fee
+        FROM
+            active_order_of_products,
+            order_status,
+            ordered_product,
+            customer_data
+        WHERE
+            active_order_of_products.status = order_status.id
+            AND ordered_product.order_id = active_order_of_products.id
+            AND active_order_of_products.customer_data_id = customer_data.id
+        GROUP BY
+            active_order_of_products.id
+        ORDER BY
+            date_ordered_at ASC
+    ");
     $response = [];
     while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
         $category = [
             "id" => $tableRow['id'],
             "date_ordered_at" => $tableRow['date_ordered_at'],
-            "status" => $tableRow['status'],
-            "customer" => $tableRow['customer_data_id'],
-            "free_shipping" => $tableRow['free_shipping'],
+            "county" => $tableRow['county'],
+            "status_id" => $tableRow['status_id'],
+            "status_name" => $tableRow['status_name'],
+            "order_total" => $tableRow['order_total'],
+            "shipping_fee" => $tableRow['shipping_fee'],
+            "item_count" => $tableRow['item_count'],
         ];
         array_push($response, $category);
     }

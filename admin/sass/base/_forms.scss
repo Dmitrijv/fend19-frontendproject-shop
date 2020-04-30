@@ -11,27 +11,3 @@ form {
     }
   }
 }
-
-input[name="newCategoryNameField"] {
-  margin-bottom: 10px;
-  max-width: 300px;
-}
-
-form.orderCategoryFilter {
-  max-width: 300px;
-  div.form-group {
-    margin: 0 8px;
-    input[type="radio"] {
-      // idk wtf to do here
-    }
-    label {
-      margin: 0;
-      font-weight: normal;
-    }
-  }
-  display: flex;
-  align-items: center;
-  padding: 6px 4px;
-  margin-bottom: 10px;
-  border: 1px solid lightgray;
-}
