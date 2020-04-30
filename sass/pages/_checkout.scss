@@ -249,6 +249,8 @@
 
 .toWhite {
   border: 1px solid white;
+  background-color: white !important;
+  color: $black !important;
 }
 
 .small-font-size {
