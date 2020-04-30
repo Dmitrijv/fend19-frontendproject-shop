@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2020 at 12:48 PM
+-- Generation Time: Apr 30, 2020 at 01:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -109,8 +109,8 @@ CREATE TABLE `customer_data` (
 --
 
 INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, `street`, `postal_number`, `county`) VALUES
-('4aa256929e8b5a020a811dc8466a9dec', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Stockholm'),
-('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', '734434305', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm'),
+('4aa256929e8b5a020a811dc8466a9dec', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Skåne'),
+('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', '734434305', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Mora'),
 ('bebc504d09417ac4b773c5dd790020f8', 'hello@gmail.com', '07344343054', 'John', 'Doe', 'Dugatan 12', '332 12', 'Stockholm'),
 ('f80c2a7db8b9d8b577a30dcd82f79f5c', 'hello@gmail.com', '07344343054', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
 
