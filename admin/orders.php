@@ -43,9 +43,8 @@
                     </form>
                 </div>
 
-                <label class="bold" >Filter by county name:</label>
                 <form class="orderCategoryFilter" >
-                    <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="County name" onkeyup="adminLib.drawFilteredOrdersTable(event)">
+                    <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable(event)">
                 </form>
 
                 <label class="bold" >Filter by order status:</label>
