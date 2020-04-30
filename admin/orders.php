@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Area | Products</title>
+    <title>Admin Area | Orders</title>
     <link rel="stylesheet" href="css/adminpanel.css">
     <!--[if gte IE 8]>
         <link rel="stylesheet" type="text/css" href="css/adminpanel-ie.css" />
@@ -28,7 +28,7 @@
                     <li><a href="../index.php">Store</a></li>
                     <li><a href="index.php">Categories</a></li>
                     <li><a href="products.php">Products</a></li>
-                    <li><a class="active" >Orders</a></li>
+                    <li><a class="active">Orders</a></li>
                 </ul>
             </nav>
         </section>
@@ -42,13 +42,31 @@
                         <button class="close-btn" type="submit">Close</button>
                     </form>
                 </div>
-                <table role="table" class="db-table product-table"></table>
+                <input name="newCategoryNameField" class="category-input input-mid float-left" type="text" placeholder="filter by county" onkeydown="adminLib.drawOrdersTable(event)">
+
+                </br>
+                <label>Filter by order status:</label>
+                <form class="orderCategoryFilter" onsubmit="adminLib.drawOrdersTable();">
+                    <div class="form-group">
+                        <input type="radio" id="new" name="order_category" value="new" onchange="adminLib.drawOrdersTable(event)">
+                        <label for="new">Ny</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="in_progress" name="order_category" value="in_progress" onchange="adminLib.drawOrdersTable(event)">
+                        <label for="in_progress">Behandlas</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="completed" name="order_category" value="completed" onchange="adminLib.drawOrdersTable(event)">
+                        <label for="completed">Slutförd</label>
+                    </div>
+                </form>
+                <table role="table" class="db-table" id="orderAdminTable"></table>
         </section>
         <!-- CONTENT area ends -->
     </main>
 
     <?php require_once __DIR__ . '/php/view/adminjscore.php';?>
-    <!-- <script type="text/javascript"> adminLib.drawOrdersTable(); </script> -->
+    <script type="text/javascript">adminLib.drawOrdersTable();</script>
 
 </body>
 

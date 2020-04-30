@@ -245,3 +245,20 @@ function deleteImageFromDb($fileName)
     DB::run("DELETE FROM `image` WHERE `file_name` = ?", [$fileName]);
     DB::run("DELETE FROM image_of_product WHERE `file_name` = ?", [$fileName]);
 }
+
+function getOrders()
+{
+    $stmt = DB::run("SELECT * FROM active_order_of_products ORDER BY date_ordered_at ASC");
+    $response = [];
+    while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
+        $category = [
+            "id" => $tableRow['id'],
+            "date_ordered_at" => $tableRow['date_ordered_at'],
+            "status" => $tableRow['status'],
+            "customer" => $tableRow['customer_data_id'],
+            "free_shipping" => $tableRow['free_shipping'],
+        ];
+        array_push($response, $category);
+    }
+    return $response;
+}

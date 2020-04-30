@@ -187,6 +187,33 @@ form img.small-img-on-edit:hover {
   cursor: pointer;
 }
 
+input[name="newCategoryNameField"] {
+  margin-bottom: 10px;
+  max-width: 300px;
+}
+
+form.orderCategoryFilter {
+  max-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 6px 4px;
+  margin-bottom: 10px;
+  border: 1px solid lightgray;
+}
+
+form.orderCategoryFilter div.form-group {
+  margin: 0 8px;
+}
+
+form.orderCategoryFilter div.form-group label {
+  margin: 0;
+  font-weight: normal;
+}
+
 #back-to-top-btn {
   display: none;
   position: fixed;

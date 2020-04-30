@@ -392,6 +392,37 @@ adminLib = (function() {
       event.preventDefault();
     },
 
+    drawOrdersTable: function(event) {
+      const lib = this;
+      const internalUrl = `${INTERNAL_PATH}/orders.php`;
+      const table = document.querySelector("table#orderAdminTable");
+      console.log("hello");
+      lib.loadJsonByXhr(internalUrl, function(orderJson) {
+        let tableContent = `
+        <tr>
+            <th>id</th>
+            <th>date_ordered_at</th>
+            <th>status</th>
+            <th>customer</th>
+            <th>free_shipping</th>
+        </tr>
+        `;
+        orderJson.forEach(order => {
+          //   const categoryName = lib.escapeHtml(category.name);
+          tableContent += `
+            <tr data-orderId='${order.id}'>
+                <td>${order.id}</td>
+                <td>${order.date_ordered_at}</td>
+                <td>${order.status}</td>
+                <td>${order.customer}</td>
+                <td>${order.free_shipping}</td>
+            </tr>
+        `;
+        });
+        table.innerHTML = tableContent;
+      });
+    },
+
     hideParentElement: function(event) {
       const elementToHide = event.currentTarget.parentElement;
       elementToHide.classList.add("hidden");
