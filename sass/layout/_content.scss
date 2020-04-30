@@ -435,7 +435,8 @@ div.product > div > button:nth-child(4) {
     position: absolute;
     width: 16%;
     top: 15px;
-    left: 84%;
+    left: 100%;
+    transform: translateX(-97%);
     content: "-10%";
     border: 1px solid red;
     text-align: center;
@@ -449,7 +450,8 @@ div.product > div > button:nth-child(4) {
     position: absolute;
     width: 16%;
     top: 15px;
-    left: 84%;
+    left: 100%;
+    transform: translateX(-97%);
     content: "NYTT";
     border: 1px solid $green;
     text-align: center;
