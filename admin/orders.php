@@ -43,10 +43,12 @@
                     </form>
                 </div>
 
-                <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="Filter by county" onkeyup="adminLib.drawFilteredOrdersTable(event)">
-                </br>
+                <label class="bold" >Filter by county name:</label>
+                <form class="orderCategoryFilter" >
+                    <input name="countyNameFilter" class="category-input input-mid float-left" type="text" placeholder="County name" onkeyup="adminLib.drawFilteredOrdersTable(event)">
+                </form>
 
-                <label>Filter by order status:</label>
+                <label class="bold" >Filter by order status:</label>
                 <form class="orderCategoryFilter" onsubmit="adminLib.drawFilteredOrdersTable();">
                     <div class="form-group">
                         <label for="all">
