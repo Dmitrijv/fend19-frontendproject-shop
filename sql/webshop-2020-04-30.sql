@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2020 at 07:28 PM
+-- Generation Time: Apr 30, 2020 at 12:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -41,11 +41,19 @@ CREATE TABLE `active_order_of_products` (
 --
 
 INSERT INTO `active_order_of_products` (`id`, `date_ordered_at`, `status`, `customer_data_id`, `free_shipping`) VALUES
-(11, '2020-04-29 19:18:10', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
-(12, '2020-04-29 19:19:53', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
-(13, '2020-04-29 19:21:06', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
-(14, '2020-04-29 19:23:22', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0),
-(15, '2020-04-29 19:24:09', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 0);
+(11, '2020-04-29 19:18:10', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(12, '2020-04-29 19:19:53', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(13, '2020-04-29 19:21:06', 2, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(14, '2020-04-29 19:23:22', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(15, '2020-04-29 19:24:09', 2, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(16, '2020-04-29 19:50:59', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(17, '2020-04-29 19:51:50', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(18, '2020-04-29 19:59:52', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(19, '2020-04-29 20:00:10', 1, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
+(20, '2020-04-29 21:35:55', 1, 'f80c2a7db8b9d8b577a30dcd82f79f5c', 1),
+(21, '2020-04-29 21:45:54', 2, 'bebc504d09417ac4b773c5dd790020f8', 1),
+(22, '2020-04-30 11:37:36', 1, '4aa256929e8b5a020a811dc8466a9dec', 1),
+(23, '2020-04-30 11:38:28', 2, '4aa256929e8b5a020a811dc8466a9dec', 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +96,7 @@ INSERT INTO `currency` (`id`, `shorthand`) VALUES
 CREATE TABLE `customer_data` (
   `id` varchar(32) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `phone` int(32) NOT NULL,
+  `phone` varchar(64) NOT NULL,
   `first_name` varchar(128) NOT NULL,
   `last_name` varchar(128) NOT NULL,
   `street` varchar(128) NOT NULL,
@@ -101,7 +109,10 @@ CREATE TABLE `customer_data` (
 --
 
 INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, `street`, `postal_number`, `county`) VALUES
-('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', 734434305, 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
+('4aa256929e8b5a020a811dc8466a9dec', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Stockholm'),
+('944cfba9624a1bc8ce6075f0e3eb153b', 'hello@gmail.com', '734434305', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm'),
+('bebc504d09417ac4b773c5dd790020f8', 'hello@gmail.com', '07344343054', 'John', 'Doe', 'Dugatan 12', '332 12', 'Stockholm'),
+('f80c2a7db8b9d8b577a30dcd82f79f5c', 'hello@gmail.com', '07344343054', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
 
 -- --------------------------------------------------------
 
@@ -123,7 +134,6 @@ INSERT INTO `image` (`file_name`) VALUES
 ('4-cover.jpg'),
 ('5-cover.jpg'),
 ('5B1vlLe.jpg'),
-('5cm_wallpaper_03.png'),
 ('7-cover.jpg'),
 ('8-cover.jpg'),
 ('NI5WG.jpg'),
@@ -159,7 +169,6 @@ INSERT INTO `image_of_product` (`product_id`, `file_name`) VALUES
 (32, '7-cover.jpg'),
 (33, '8-cover.jpg'),
 (34, '5B1vlLe.jpg'),
-(35, '5cm_wallpaper_03.png'),
 (37, '4-cover.jpg'),
 (49, 'NI5WG.jpg'),
 (50, 'ocean-at-dusk.jpg'),
@@ -198,7 +207,19 @@ INSERT INTO `ordered_product` (`product_id`, `order_id`, `price`, `quantity`, `c
 (31, 14, 1350, 1, 'SEK'),
 (32, 14, 999.99, 1, 'SEK'),
 (29, 15, 900, 1, 'SEK'),
-(34, 15, 800, 1, 'SEK');
+(34, 15, 800, 1, 'SEK'),
+(37, 16, 100, 1, 'SEK'),
+(34, 17, 720, 1, 'SEK'),
+(31, 18, 1350, 1, 'SEK'),
+(31, 19, 1350, 11, 'SEK'),
+(32, 20, 899.1, 1, 'SEK'),
+(29, 20, 900, 1, 'SEK'),
+(37, 20, 100, 1, 'SEK'),
+(29, 21, 900, 1, 'SEK'),
+(33, 22, 360, 1, 'SEK'),
+(34, 22, 720, 1, 'SEK'),
+(54, 22, 333, 1, 'SEK'),
+(51, 23, 333, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -271,20 +292,20 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(29, 'Spike', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!', 1, 5),
+(29, 'Spike', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Ex earum autem velit cumque quae est dolores distinctio soluta accusamus molestias repellat accusantium porro explicabo, esse mollitia assumenda ad odio minus molestiae ducimus cum neque? Assumenda maiores dolores eveniet culpa aspernatur porro, facere corporis optio excepturi quia rerum reiciendis nam, corrupti ea consequatur, dolorum sapiente in inventore hic placeat nesciunt? Sed perspiciatis reiciendis nemo commodi? Placeat sed blanditiis officia nulla alias beatae optio officiis, dolor pariatur eveniet, repellat fugiat maxime. Placeat nostrum veritatis cupiditate natus ullam commodi tempora magnam architecto ipsa neque fugit quam labore mollitia sint dignissimos doloribus, soluta quia!', 1, 3),
 (30, 'Pastell Förälskelse', 'elephants in love', 4, 0),
-(31, 'Dimensional Shift', 'it\'s a shift hue hue', 1, 12),
-(32, 'Tales of the Past', 'some tales of bullshit', 1, 3),
-(33, 'Horse', 'here comes horsy', 4, 0),
-(34, 'Horde Baloon', 'smh over here', 1, 2),
+(31, 'Dimensional Shift', 'it\'s a shift hue hue', 1, 0),
+(32, 'Tales of the Past', 'some tales of bullshit', 1, 2),
+(33, 'Horse', 'here comes horsy', 4, 11),
+(34, 'Horde Baloon', 'smh over here', 1, 1),
 (35, 'Clouds', 'lalala clouds yo', 4, 1),
-(37, 'Some Nonsense', 'it\'s a nonsense not gona lie', 1, 3),
+(37, 'Some Nonsense', 'it\'s a nonsense not gona lie', 1, 5),
 (49, 'Hello1', 'awdawdawaw', 1, 1),
 (50, 'hello2', 'dadwadaw', 1, 1),
-(51, 'hello3', 'dawdawdwad', 1, 1),
+(51, 'hello3', 'dawdawdwad', 1, 0),
 (52, 'hello4', 'dawdawdawd', 1, 1),
 (53, 'hello5', 'dawdawdawadw', 1, 1),
-(54, 'stuff', '112dawdawd', 1, 1);
+(54, 'stuff', '112dawdawd', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -394,7 +415,7 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `active_order_of_products`
 --
 ALTER TABLE `active_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `completed_order_of_products`
