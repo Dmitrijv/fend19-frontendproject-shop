@@ -48,13 +48,13 @@ $customerData = [
 
 $customerDataId = md5(
     $customerData['email'] .
-    $customerData['first_name'] .
-    $customerData['first_name'] .
-    $customerData['last_name'] .
-    $customerData['phone'] .
-    $customerData['street'] .
-    $customerData['postal_number'] .
-    $customerData['county']
+        $customerData['first_name'] .
+        $customerData['first_name'] .
+        $customerData['last_name'] .
+        $customerData['phone'] .
+        $customerData['street'] .
+        $customerData['postal_number'] .
+        $customerData['county']
 );
 
 // save customer data if it doesn't already exist in db
@@ -86,11 +86,14 @@ $orderId = getOrderIdByTimeAndUser($date_ordered_at, $customerDataId);
 // error_log(ob_get_clean());
 
 $productListHtml = '';
+$totalAmount = 0;
+$finalPriceAmount = 0;
 // register products as belonging to this order
 foreach ($shoppingCart as &$cartItem) {
 
     $productId = intval($cartItem['id']);
     $orderedQuantity = intval($cartItem['qty']);
+    $totalAmount += $orderedQuantity;
 
     $product = getProductById($productId);
     createOrderedProduct($orderId, $product, $orderedQuantity);
@@ -101,7 +104,7 @@ foreach ($shoppingCart as &$cartItem) {
     }
 
     $itemTotalPrice = intval($product['price'] * $orderedQuantity);
-
+    $finalPriceAmount += $itemTotalPrice;
     $productListHtml = $productListHtml . '
         <tr>
             <td class="item-image">
@@ -112,6 +115,13 @@ foreach ($shoppingCart as &$cartItem) {
             <td class="item-price">' . $product['price'] . '</td>
             <td class="item-total">' . $itemTotalPrice . ' kr</td>
         </tr>';
+}
+
+// $totalAmount = 0;
+if ($free_shipping) {
+    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">'. $finalPriceAmount .'kr</td></tr></tbody>';
+} else{
+    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">'. intval($finalPriceAmount + 50) .'kr</td></tr></tbody>';
 }
 
 ?>
@@ -136,9 +146,9 @@ foreach ($shoppingCart as &$cartItem) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main id="order-main">
 
@@ -186,9 +196,9 @@ foreach ($shoppingCart as &$cartItem) {
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
-    <?php require __DIR__ . '/php/view/jscore.php';?>
+    <?php require __DIR__ . '/php/view/jscore.php'; ?>
 
 </body>
 
