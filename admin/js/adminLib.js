@@ -450,7 +450,7 @@ adminLib = (function() {
     },
 
     drawOrdersTable: function(orderJson) {
-      console.log(orderJson);
+      //   console.log(orderJson);
       const lib = this;
       const table = document.querySelector("table tbody#orderAdminTableBody");
       let tableContent = ``;
