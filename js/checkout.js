@@ -41,15 +41,15 @@ keepShoppingBtn.addEventListener("click", function () {
 /* object structure: id | name | img | price | qty */
 /* Sorry about this part, so tired of correcting every ES5 pieces back to its old way. */
 if (localStorage.hasOwnProperty("products")) {
-  var length = shoppingCart.length
-  for (var a = 0; a < length; a++) {
-    var item = shoppingCart[a]
-    var itemName = item.name
-    var name = itemName.split("-").pop() //new
-    var itemCount = item.qty * 1
-    var itemPrice = item.price.slice(0, -3)
-    var itemImage = item.img
-    var itemTotalPrice = Math.round(1 * itemCount * (1 * itemPrice))
+  const length = shoppingCart.length
+  for (let a = 0; a < length; a++) {
+    const item = shoppingCart[a]
+    const itemName = item.name
+    const name = itemName.split("-").pop() //new
+    const itemCount = item.qty * 1
+    const itemPrice = item.price.slice(0, -3)
+    const itemImage = item.img
+    const itemTotalPrice = Math.round(1 * itemCount * (1 * itemPrice))
     subTotal += itemTotalPrice
     itemsCountTotal += itemCount
 
@@ -330,29 +330,39 @@ validator.add(forms.county, [{
 
 // Call validation
 // confirm pay btn should be disabled until finish validation and judge delivery fee.
-/* TODO:
-  Once clicked, lock input, prevent change content!
-*/
+const editInfoBtn = document.querySelector('.changeInput');
+let inputs = document.querySelectorAll(".checkout-form__delivery-section__input")
+const goToOrderBtn = document.querySelector(".checkout-form__btn-section__checkoutBtn--dim");
+
+
+editInfoBtn.addEventListener('click', editInputArea);
+
+function editInputArea() {
+  goToOrderBtn.disabled = 'disabled';
+  confirmBtn.disabled = '';
+  inputs.forEach(input => {
+    input.removeAttribute("readonly");
+    input.classList.toggle('toWhite');
+  })
+}
+
 confirmBtn.onclick = function (event) {
   // call errormsg
-  const goToOrderBtn = document.querySelector(
-    ".checkout-form__btn-section__checkoutBtn--dim"
-  )
   const errMsg = validator.start(),
     errTips = document.querySelector(".err-tips")
 
   if (errMsg) {
-    // console.log(errMsg);
-    errTips.innerHTML = errMsg
+    errTips.innerHTML = errMsg;
   } else {
-    errTips.innerHTML = ""
-    goToOrderBtn.disabled = ""
-    goToOrderBtn.style.backgroundcolor = "#218838"
-    keepShoppingBtn.disabled = true //disable buyMoreBtn
+    errTips.innerHTML = "";
+    goToOrderBtn.disabled = "";
+    goToOrderBtn.style.backgroundcolor = "#218838";
+    keepShoppingBtn.disabled = true; //disable buyMoreBtn
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
-    turnWhite() //remove input red border
+    turnWhite(); //remove input red border
+    editInfoBtn.disabled = '';
   }
 
   /* To check delivery fee */
@@ -383,22 +393,8 @@ confirmBtn.onclick = function (event) {
   const address = capitalizeFirstLetter(document.querySelector("#adress").value)
   const pcode = formatZipcode(document.querySelector("#pcode").value)
   const city = capitalizeFirstLetter(document.querySelector("#city").value)
-  const fullAddress = address + ", " + pcode + ", " + city
-  redrawCustomerInfoTable()
 
-  const detail = {
-    name: name,
-    phone: phone,
-    fullAddress: fullAddress,
-    totalPrice: realTotalPrice,
-  }
-  /* customer number: Random or what..
-    customer name: Forename + aftername
-    phone number: phone
-    address: Gatuadress + zipcode + Ort
-    order number: Random
-    date */
-  // localStorage.setItem("customer", JSON.stringify(detail))
+  redrawCustomerInfoTable()
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -428,12 +424,9 @@ confirmBtn.onclick = function (event) {
 
   //remove input border's color
   function turnWhite() {
-    const inputs = document.querySelectorAll(
-      ".checkout-form__delivery-section__input"
-    )
-    inputs.forEach((input) => {
+    inputs.forEach(input => {
       input.classList.add("toWhite");
-      input.setAttribute("readonly", "readonly");//lock input area
+      input.setAttribute("readonly", "readonly"); //lock input area
     })
     confirmBtn.disabled = true;
   }
