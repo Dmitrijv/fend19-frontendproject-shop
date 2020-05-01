@@ -164,6 +164,7 @@ shopLib = (function() {
         const errorMsg = document.querySelector(".emptyResultMessage");
         if (matchingProducts.length === 0) {
           errorMsg.classList.remove("hidden");
+          document.querySelector("#productPanel").innerHTML = "";
         } else {
           errorMsg.classList.add("hidden");
           lib.drawProductPanel(matchingProducts);
