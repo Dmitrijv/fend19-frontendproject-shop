@@ -158,7 +158,9 @@ shopLib = (function() {
       const lib = this;
       const productInternal = `${INTERNAL_PATH}/products.php`;
       lib.loadJsonByXhr(productInternal, function(productJson) {
-        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
+        const matchingProducts = productJson.filter(
+          product => product.title.toLowerCase().indexOf(keyword) !== -1 && Number(product.numberInStock) > 0
+        );
         // show error message if this search produced no results
         const errorMsg = document.querySelector(".emptyResultMessage");
         if (matchingProducts.length === 0) {
