@@ -82,7 +82,7 @@ if (localStorage.hasOwnProperty("products")) {
     '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
 }
 
-/* Validation related part, Strategy mode is implemented here. */
+/* Validation related part, Strategy pattern is implemented here. */
 const _validator = (function () {
   return function (ruleList) {
     return {
@@ -369,7 +369,7 @@ confirmBtn.onclick = function (event) {
   const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
   const zipcode = document.querySelector("#pcode")
   let realTotalPriceArea = document.querySelector(".item-total")
-  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal > 500) {
+  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal >= 500) {
     // free delivery
     deliveryFeeTextArea.textContent = "0"
     deliveryFeeTextArea.classList.remove("hidden")
@@ -400,9 +400,7 @@ confirmBtn.onclick = function (event) {
       .filter(name => {
         if (name != '') return name;
       })
-      .map(name => {
-        return capitalizeFirstLetter(name);
-      })
+      .map(name => capitalizeFirstLetter(name))
       .join(' ')
   }
 
