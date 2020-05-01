@@ -684,6 +684,7 @@ button {
   }
 }
 
+/* no longer used... */
 @media screen and (min-width: 800px) {
   button.open-overlay.inCartAnimation::after {
     content: url(../img/svg/draw.svg);
@@ -846,6 +847,7 @@ button {
   }
 }
 
+/* no longer used end... */
 .cart {
   padding: 0 1em 1em;
   -webkit-box-orient: vertical;

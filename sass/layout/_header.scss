@@ -421,6 +421,7 @@
   }
 }
 
+/* no longer used... */
 button.open-overlay.inCartAnimation::after {
   @media screen and (min-width: 800px) {
     content: url(../img/svg/draw.svg);
@@ -507,3 +508,4 @@ button.open-overlay.inCartAnimation::after {
     opacity: 0;
   }
 }
+/* no longer used end... */
