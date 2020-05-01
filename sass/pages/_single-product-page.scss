@@ -6,6 +6,7 @@
 }
 
 @media all and (-ms-high-contrast: none) {
+
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -25,6 +26,7 @@
 }
 
 @media all and (-ms-high-contrast: none) and (min-width: 800px) {
+
   /* IE11 */
   *::-ms-backdrop,
   #p-main {
@@ -155,10 +157,12 @@
           height: 70px;
           background: url(../img/svg/left-arrow.svg) center center no-repeat;
           cursor: pointer;
+          z-index: 1;
         }
 
         #wrap .prev:hover {
           background: url(../img/svg/left-arrow.svg) center center no-repeat;
+          z-index: 1;
         }
 
         #wrap .next {
@@ -170,16 +174,19 @@
           height: 70px;
           background: url(../img/svg/right-arrow.svg) center center no-repeat;
           cursor: pointer;
+          z-index: 1;
         }
 
         #wrap .next:hover {
           background: url(../img/svg/right-arrow.svg) center center no-repeat;
+          z-index: 1;
         }
       }
 
       .p-grid-2 {
         -ms-grid-row: 2;
-        & > *:not(:last-child) {
+
+        &>*:not(:last-child) {
           padding: 10px 0;
         }
       }
@@ -248,5 +255,93 @@
         }
       }
     }
+  }
+}
+
+/* new styling */
+.p-grid-1.newProduct {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 16%;
+    top: 15px;
+    left: 100%;
+    transform: translateX(-99%);
+    content: "NYTT";
+    border: 1px solid $green;
+    text-align: center;
+    background-color: $green;
+    color: white;
+    border-radius: 2px;
+    font-size: 22px;
+    z-index: 1;
+    padding: 5px;
+  }
+}
+
+.p-grid-1.oldProduct {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 16%;
+    top: 15px;
+    left: 100%;
+    transform: translateX(-99%);
+    content: "-10%";
+    border: 1px solid red;
+    text-align: center;
+    background-color: #ff0000c4;
+    color: white;
+    border-radius: 2px;
+    font-size: 22px;
+    z-index: 1;
+    padding: 5px;
+  }
+}
+
+.p-grid-2.inCart::after {
+  content: url('../img/svg/cart.svg');
+  position: absolute;
+  bottom: 20px;
+  left: 85%;
+  width: 8%;
+  min-width: 30px;
+  max-width: 55px;
+  animation: jello-vertical 1s both;
+}
+
+@keyframes jello-vertical {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
   }
 }

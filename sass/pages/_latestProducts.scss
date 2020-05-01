@@ -2,10 +2,6 @@
   .content {
     .product-container {
       margin-top: 0;
-
-      .product {
-        border: 1px solid $newItemBorder;
-      }
     }
   }
 
@@ -20,7 +16,6 @@
 }
 
 .product.newProduct {
-
   // border: 1px solid $newItemBorder !important;
   .product__title::before {
     color: green;

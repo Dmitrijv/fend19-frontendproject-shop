@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer__bottom__wrapper">
-        <div class="logo"><img src="img/svg/Logo_SVG.svg" alt="Logo Image"></div>
+        <div class="logo"><a href="#"><img src="img/svg/Logo_SVG.svg" alt="Logo Image"></a></div>
         <div class="footer__bottom__wrapper__info__wrapper flex-box">
             <h5 class="footer__info__heading">Kundtjänst</h5>
             <ul class="footer__list">

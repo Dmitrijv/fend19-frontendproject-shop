@@ -1,22 +1,27 @@
-/* Name: 2-20 (no longer require user's name must be capitalized, only no number; no space allowed for now)
+/* TODO */
+/* Tel: 08?? */
+/* Name pattern:  Anna-Lena  |  Af Trolle */
+/* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
+/* A-ZÅÖÄåöäéáó  a-zöäåéáó */
+
+/* Name: 2-20 éáó(no longer require user's name must be capitalized, only no number; no space allowed for now)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
-  Address: Swedish address, ends with gatu/vägen... with 1~several number and/or several char
+  Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
-  Ort: must be captalized */
-
-/* A typical address would look like this:
-  Sven Nilsson (First, and last name)
-  Roslagsgatan 10 (Street, and number)
-  113 51  STOCKHOLM (Postcode, and geographic location) */
+  Ort: uppercase/lowercase */
 
 /* Generate order list */
-const listArea = document.querySelector('.checkout-form__cart-section__product-list');
-const confirmBtn = document.querySelector('.checkout-form__delivery-section__deliveryBtn');
-const shoppingCart = JSON.parse(localStorage.getItem("products"));
-let realTotalPrice = 0;
-let subTotal = 0;
-let itemsCountTotal = 0;
+const listArea = document.querySelector(
+  ".checkout-form__cart-section__product-list"
+)
+const confirmBtn = document.querySelector(
+  ".checkout-form__delivery-section__deliveryBtn"
+)
+const shoppingCart = JSON.parse(localStorage.getItem("products"))
+let realTotalPrice = 0
+let subTotal = 0
+let itemsCountTotal = 0
 
 /* from Martin */
 let productList = document.querySelector(
@@ -26,7 +31,9 @@ let totalSumCart = document.querySelector(
   ".checkout-form__cart-section__totalsum"
 ) //delivery fee check is in the bottom
 let totalSumForm = document.querySelector(".checkout-form__price")
-const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn")
+const keepShoppingBtn = document.querySelector(
+  ".checkout-form__cart-section__keep-shopping-btn"
+)
 keepShoppingBtn.addEventListener("click", function () {
   location.href = "/fend19-frontendproject-shop/index.php"
 })
@@ -34,15 +41,15 @@ keepShoppingBtn.addEventListener("click", function () {
 /* object structure: id | name | img | price | qty */
 /* Sorry about this part, so tired of correcting every ES5 pieces back to its old way. */
 if (localStorage.hasOwnProperty("products")) {
-  var length = shoppingCart.length
-  for (var a = 0; a < length; a++) {
-    var item = shoppingCart[a]
-    var itemName = item.name
-    var name = itemName.split("-").pop() //new
-    var itemCount = item.qty * 1
-    var itemPrice = item.price.slice(0, -3)
-    var itemImage = item.img
-    var itemTotalPrice = Math.ceil(1 * itemCount * (1 * itemPrice))
+  const length = shoppingCart.length
+  for (let a = 0; a < length; a++) {
+    const item = shoppingCart[a]
+    const itemName = item.name
+    const name = itemName.split("-").pop() //new
+    const itemCount = item.qty * 1
+    const itemPrice = item.price.slice(0, -3)
+    const itemImage = item.img
+    const itemTotalPrice = Math.round(1 * itemCount * (1 * itemPrice))
     subTotal += itemTotalPrice
     itemsCountTotal += itemCount
 
@@ -126,8 +133,8 @@ const _rules = (function () {
     },
 
     isName: function (value, errorMsg) {
-      // Don't care if capitalized
-      if (!/^([A-ZÅÖÄ]|[a-zåöä])*$/.test(value)) {
+      // uppercase/lowercase/multiple words
+      if (!/^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
         return errorMsg
       }
     },
@@ -175,8 +182,8 @@ const _rules = (function () {
     },
 
     isAdress: function (value, errorMsg) {
-      /* Pattern: now not require first letter be capitalized (just for test, meaningless): Öästervägen 10a | Öästervägen 10A | Öästergatan 10A */
-      const reg1 = /^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+(gatan|vägen)\s\d+([A-Z]|[a-z])?$/
+      /* Pattern: uppercase/lowercase/multiple words allowed*/
+      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?(\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$/
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -191,7 +198,7 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^([A-ZÅÖÄ]|[a-zåöä])[a-zöäå]+/.test(value)) {
+      if (!/^([A-Za-zÅÖÄåöäéáó])[a-zöäåéáó]+/.test(value)) {
         return errorMsg
       }
     },
@@ -265,20 +272,6 @@ validator.add(forms.lname, [{
   },
 ])
 
-validator.add(forms.adress, [{
-    strategy: "isBlank",
-    msg: "Ange en adress",
-  },
-  {
-    strategy: "isAdress",
-    msg: "felaktig adress, ange en giltig adress",
-  },
-  {
-    strategy: "isSpace",
-    msg: "Please input valid text",
-  },
-])
-
 validator.add(forms.phone, [{
     strategy: "isBlank",
     msg: "Ange ett telefonnummer",
@@ -290,6 +283,20 @@ validator.add(forms.phone, [{
   {
     strategy: "isPhone",
     msg: "Ange ett giltigt telefonnummer",
+  },
+])
+
+validator.add(forms.adress, [{
+    strategy: "isBlank",
+    msg: "Ange en adress",
+  },
+  {
+    strategy: "isAdress",
+    msg: "felaktig adress, ange en giltig adress",
+  },
+  {
+    strategy: "isSpace",
+    msg: "Please input valid text",
   },
 ])
 
@@ -323,98 +330,108 @@ validator.add(forms.county, [{
 
 // Call validation
 // confirm pay btn should be disabled until finish validation and judge delivery fee.
+const editInfoBtn = document.querySelector('.changeInput');
+let inputs = document.querySelectorAll(".checkout-form__delivery-section__input")
+const goToOrderBtn = document.querySelector(".checkout-form__btn-section__checkoutBtn--dim");
+
+
+editInfoBtn.addEventListener('click', editInputArea);
+
+function editInputArea() {
+  goToOrderBtn.disabled = 'disabled';
+  confirmBtn.disabled = '';
+  inputs.forEach(input => {
+    input.removeAttribute("readonly");
+    input.classList.toggle('toWhite');
+  })
+}
+
 confirmBtn.onclick = function (event) {
   // call errormsg
-  const goToOrderBtn = document.querySelector(
-    ".checkout-form__delivery-section__checkoutBtn--dim"
-  )
   const errMsg = validator.start(),
     errTips = document.querySelector(".err-tips")
 
   if (errMsg) {
-    // console.log(errMsg);
-    errTips.innerHTML = errMsg
+    errTips.innerHTML = errMsg;
   } else {
-    errTips.innerHTML = ""
-    goToOrderBtn.disabled = ""
-    goToOrderBtn.style.backgroundcolor = "#218838"
-    keepShoppingBtn.disabled = true //disable buyMoreBtn
+    errTips.innerHTML = "";
+    goToOrderBtn.disabled = "";
+    goToOrderBtn.style.backgroundcolor = "#218838";
+    keepShoppingBtn.disabled = true; //disable buyMoreBtn
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
-    turnWhite();//remove input red border
+    turnWhite(); //remove input red border
+    editInfoBtn.disabled = '';
   }
 
   /* To check delivery fee */
-  const deliveryFeeTextArea = document.querySelector('.deliveryFeeText');
-  const zipcode = document.querySelector('#pcode');
-  let realTotalPriceArea = document.querySelector('.item-total');
-  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || (subTotal > 500)) {
-    // free delivery 
-    deliveryFeeTextArea.classList.remove('hidden');
-    deliveryFeeTextArea.textContent = '0';
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
-    realTotalPrice = subTotal;
+  const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
+  const zipcode = document.querySelector("#pcode")
+  let realTotalPriceArea = document.querySelector(".item-total")
+  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal > 500) {
+    // free delivery
+    deliveryFeeTextArea.textContent = "0"
+    deliveryFeeTextArea.classList.remove("hidden")
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
+    realTotalPrice = subTotal
   } else {
     // add 50 kr
-    deliveryFeeTextArea.classList.remove('hidden');
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
-    realTotalPrice = subTotal + 50;
+    deliveryFeeTextArea.classList.remove("hidden")
+    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
+    realTotalPrice = subTotal + 50
   }
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  let email = document.querySelector("#email").value;
-  const forename = capitalizeFirstLetter(document.querySelector('#fname').value);
-  const aftername = capitalizeFirstLetter(document.querySelector('#lname').value);
-  const name = forename + " " + aftername;
-  const phone = removeSpace(document.querySelector('#tel').value);
-  const address = capitalizeFirstLetter(document.querySelector('#adress').value);
-  const pcode = formatZipcode(document.querySelector('#pcode').value);
-  const city = capitalizeFirstLetter(document.querySelector('#city').value);
-  const fullAddress = address + ", " + pcode + ", " + city;
-  redrawCustomerInfoTable();
+  let email = document.querySelector("#email").value
+  const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
+  const aftername = capitalizeFirstLetter(
+    document.querySelector("#lname").value
+  )
+  const name = forename + " " + aftername
+  const phone = removeSpace(document.querySelector("#tel").value)
+  const address = capitalizeFirstLetter(document.querySelector("#adress").value)
+  const pcode = formatZipcode(document.querySelector("#pcode").value)
+  const city = capitalizeFirstLetter(document.querySelector("#city").value)
 
-  const detail = {
-    name: name,
-    phone: phone,
-    fullAddress: fullAddress,
-    totalPrice: realTotalPrice
-  };
-  /* customer number: Random or what..
-    customer name: Forename + aftername
-    phone number: phone
-    address: Gatuadress + zipcode + Ort
-    order number: Random
-    date */
-  localStorage.setItem("customer", JSON.stringify(detail))
+  redrawCustomerInfoTable()
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   function removeSpace(string) {
-    return string.replace(/\s/g, '');
+    return string.replace(/\s/g, "")
   }
 
   function formatZipcode(string) {
-    return string.replace(/\s/g, '').split(/(\d{3})/).join(' ').trim()
+    return string
+      .replace(/\s/g, "")
+      .split(/(\d{3})/)
+      .join(" ")
+      .trim()
   }
 
   function redrawCustomerInfoTable() {
     // email = email;
-    document.querySelector('#fname').value = forename;
-    document.querySelector('#lname').value = aftername;
-    document.querySelector('#tel').value = phone;
-    document.querySelector('#adress').value = address;
-    document.querySelector('#pcode').value = pcode;
-    document.querySelector('#city').value = city;
+    document.querySelector("#fname").value = forename
+    document.querySelector("#lname").value = aftername
+    document.querySelector("#tel").value = phone
+    document.querySelector("#adress").value = address
+    document.querySelector("#pcode").value = pcode
+    document.querySelector("#city").value = city
   }
 
   //remove input border's color
   function turnWhite() {
-    const inputs = document.querySelectorAll('input');
     inputs.forEach(input => {
-      input.classList.add('toWhite');
-    });
+      input.classList.add("toWhite");
+      input.setAttribute("readonly", "readonly"); //lock input area
+    })
+    confirmBtn.disabled = true;
   }
 }
+
+// add shopping cart data to form
+const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]')
+hiddenCartLabel.value = localStorage.getItem("products")

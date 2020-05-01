@@ -2,6 +2,11 @@
 
 require_once __DIR__ . "/../model/db.php";
 
+function doesProductIdExist($productId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM product WHERE id = ?)", [$productId])->fetchColumn();
+}
+
 function getProductById($productId)
 {
 
@@ -91,4 +96,60 @@ function getLastChanceProductIds()
         $oldIds[$tableRow['id']] = true;
     }
     return $oldIds;
+}
+
+function createNewOrder($order)
+{
+    $sql = "
+        INSERT INTO active_order_of_products (date_ordered_at, status, customer_data_id, free_shipping)
+        VALUES (?, 1, ?, ?)
+    ";
+    DB::run($sql, [$order['date_ordered_at'], $order['customer_data_id'], $order['free_shipping']]);
+}
+
+function getOrderIdByTimeAndUser($date_ordered_at, $customer_data_id)
+{
+    return DB::run("
+        SELECT id
+        FROM active_order_of_products
+        WHERE date_ordered_at = ?
+        AND customer_data_id = ?
+    ", [$date_ordered_at, $customer_data_id])->fetchColumn();
+}
+
+function saveCustomerDataToDb($id, $data)
+{
+    $sql = "
+        INSERT INTO customer_data (id, email, phone, first_name, last_name, street, postal_number, county)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ";
+    DB::run($sql, [$id, $data['email'], $data['phone'], $data['first_name'], $data['last_name'], $data['street'], $data['postal_number'], $data['county']]);
+}
+
+function doesCustomerDataIdExist($id)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM customer_data WHERE id = ?)", [$id])->fetchColumn();
+
+}
+
+function createOrderedProduct($orderId, $product, $quantity)
+{
+
+    $productId = intval($product['id']);
+
+    $sql = "
+        INSERT INTO ordered_product (product_id, order_id, price, quantity, currency_id)
+        VALUES (?, ?, ?, ?, ?)
+    ";
+    DB::run($sql, [$productId, $orderId, $product['price'], $quantity, "SEK"]);
+
+    $newNumberInStock = intval($product['number_in_stock']) - $quantity;
+    // this should never happen in theory because order process doesn't let you order more than there is in stock
+    if ($newNumberInStock < 0) {
+        $newNumberInStock = 0;
+    }
+
+    // remove ordered items from stoc
+    DB::run("UPDATE product SET number_in_stock = ? WHERE id = ?", [$newNumberInStock, $productId]);
+
 }

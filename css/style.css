@@ -1037,6 +1037,7 @@ main {
 
 .product-container .grid-box {
   margin-bottom: 20px;
+  overflow: hidden;
   /* In the beginning, the plan is to set these two grids template-rows as 3fr 2fr
     But something changes later, however these names kept, so please don't get too confused */
 }
@@ -1874,20 +1875,19 @@ div.product > div > button:nth-child(4) {
   position: relative;
 }
 
-.product::before {
-  content: url("../img/svg/cart.svg");
-  position: absolute;
-  width: 12%;
-  top: 88%;
-  left: 8%;
+.product.inCart {
+  border: 1px solid #7aaa39;
 }
 
 .product.oldProduct::before {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 12px;
-  content: "SALE";
+  left: 100%;
+  -webkit-transform: translateX(-97%);
+      -ms-transform: translateX(-97%);
+          transform: translateX(-97%);
+  content: "-10%";
   border: 1px solid red;
   text-align: center;
   background-color: #ff0000c4;
@@ -1900,7 +1900,10 @@ div.product > div > button:nth-child(4) {
   position: absolute;
   width: 16%;
   top: 15px;
-  left: 79%;
+  left: 100%;
+  -webkit-transform: translateX(-97%);
+      -ms-transform: translateX(-97%);
+          transform: translateX(-97%);
   content: "NYTT";
   border: 1px solid #9fa255;
   text-align: center;
@@ -2661,10 +2664,12 @@ section.order-confirmation button[disabled] {
   height: 70px;
   background: url(../img/svg/left-arrow.svg) center center no-repeat;
   cursor: pointer;
+  z-index: 1;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-1 #wrap .prev:hover {
   background: url(../img/svg/left-arrow.svg) center center no-repeat;
+  z-index: 1;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-1 #wrap .next {
@@ -2677,10 +2682,12 @@ section.order-confirmation button[disabled] {
   height: 70px;
   background: url(../img/svg/right-arrow.svg) center center no-repeat;
   cursor: pointer;
+  z-index: 1;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-1 #wrap .next:hover {
   background: url(../img/svg/right-arrow.svg) center center no-repeat;
+  z-index: 1;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-2 {
@@ -2755,12 +2762,131 @@ section.order-confirmation button[disabled] {
   }
 }
 
-#latest-products-main .content .product-container {
-  margin-top: 0;
+/* new styling */
+.p-grid-1.newProduct {
+  overflow: hidden;
+  position: relative;
 }
 
-#latest-products-main .content .product-container .product {
-  border: 1px solid #218838;
+.p-grid-1.newProduct::before {
+  position: absolute;
+  width: 16%;
+  top: 15px;
+  left: 100%;
+  -webkit-transform: translateX(-99%);
+      -ms-transform: translateX(-99%);
+          transform: translateX(-99%);
+  content: "NYTT";
+  border: 1px solid #9fa255;
+  text-align: center;
+  background-color: #9fa255;
+  color: white;
+  border-radius: 2px;
+  font-size: 22px;
+  z-index: 1;
+  padding: 5px;
+}
+
+.p-grid-1.oldProduct {
+  overflow: hidden;
+  position: relative;
+}
+
+.p-grid-1.oldProduct::before {
+  position: absolute;
+  width: 16%;
+  top: 15px;
+  left: 100%;
+  -webkit-transform: translateX(-99%);
+      -ms-transform: translateX(-99%);
+          transform: translateX(-99%);
+  content: "-10%";
+  border: 1px solid red;
+  text-align: center;
+  background-color: #ff0000c4;
+  color: white;
+  border-radius: 2px;
+  font-size: 22px;
+  z-index: 1;
+  padding: 5px;
+}
+
+.p-grid-2.inCart::after {
+  content: url("../img/svg/cart.svg");
+  position: absolute;
+  bottom: 20px;
+  left: 85%;
+  width: 8%;
+  min-width: 30px;
+  max-width: 55px;
+  -webkit-animation: jello-vertical 1s both;
+          animation: jello-vertical 1s both;
+}
+
+@-webkit-keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+            transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes jello-vertical {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(0.85, 1.15, 1);
+            transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+#latest-products-main .content .product-container {
+  margin-top: 0;
 }
 
 #latest-products-main .special-price {
@@ -2961,11 +3087,42 @@ section.order-confirmation button[disabled] {
   background: white;
   border: 0.9px solid #f60d4d;
   height: 30px;
-  min-width: 300px;
+  min-width: 280px;
   margin-bottom: 20px;
 }
 
-.checkout-form__delivery-section__checkoutBtn, .checkout-form__delivery-section__checkoutBtn--dim {
+.checkout-form__btn-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 320px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 8px 2px 8px 2px;
+  border-radius: 3px;
+  background: #e2e1dd;
+}
+
+@media (min-width: 800px) {
+  .checkout-form__btn-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.checkout-form__btn-section__checkoutBtn, .checkout-form__btn-section__checkoutBtn--dim {
   min-width: 280px;
   margin: 10px;
   padding: 10px;
@@ -3037,19 +3194,29 @@ section.order-confirmation button[disabled] {
 
 .toWhite {
   border: 1px solid white;
+  background-color: white !important;
+  color: #333 !important;
 }
 
 .small-font-size {
+  padding: 15px;
+  width: 250px;
   font-family: "Lato", sans-serif;
   font-size: 12px;
 }
 
-#last-chance-main .content .product-container {
-  margin-top: 0;
+.checkout-form__delivery-section button.changeInput {
+  background-color: #fa8231;
+  margin: 10px 0;
+  display: block;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  font-size: 15px;
 }
 
-#last-chance-main .content .product-container .product {
-  border: 1px solid #f60d4d;
+#last-chance-main .content .product-container {
+  margin-top: 0;
 }
 
 #last-chance-main .discount-price {

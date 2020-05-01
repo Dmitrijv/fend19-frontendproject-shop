@@ -20,14 +20,14 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
 
     <main id="checkout-main">
 
-        <form onsubmit="shopLib.submitNewOrderRequest(event)" method="POST" class="checkout-form">
+        <form action="order.php" onsubmit="clearCart()" method="POST" class="checkout-form">
             <!-- Right side: cart section -->
             <section class="checkout-form__cart-section">
                 <h2 class="checkout-form__cart-section__h2">Varukorg</h2>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="checkout-form__cart-section__sum-area">
-                    <p class="small-font-size"><strong>Fri frakt!</strong>&nbsp;&nbsp;När du handlar för över 500 kr eller bor du i Stockholm.</p>
+                    <p class="small-font-size"><strong>Fri frakt!</strong>&nbsp;&nbsp;När du handlar för över 500 kr, eller beställer till en adress i Stockholm.</p>
                     <p class="deliveryFeeRow">Frakt: <span class="deliveryFeeText hidden">50 kr</span></p>
                     <span class="pull-left products-amount"></span>
                     <span class="pull-right totalPrice"></span>
@@ -46,45 +46,56 @@
             </section>
 
             <!-- Left side, delivery section -->
-            <section class="checkout-form__delivery-section">
-                <div class="err-tips"></div>
-                <h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
-                <label class="checkout-form__delivery-section__label" for="">Email Adress</label>
-                <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com">
+            <div class="checkout-form__container">
+                <section class="checkout-form__delivery-section">
 
+                    <div class="err-tips"></div>
 
-                <label class="checkout-form__delivery-section__label" for="">Förnamn</label>
-                <input class="checkout-form__delivery-section__input" id="fname" type="text" name="fname">
+                    <h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
 
-                <label class="checkout-form__delivery-section__label" for="">Efternamn</label>
-                <input class="checkout-form__delivery-section__input" id="lname" type="text" name="lname">
+                    <label class="checkout-form__delivery-section__label" for="">Email Adress</label>
+                    <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com">
 
-                <label class="checkout-form__delivery-section__label" for="">Telefonnummer</label>
-                <input class="checkout-form__delivery-section__input" id="tel" type="text" name="phone" placeholder="+46 or 07 pattern">
+                    <label class="checkout-form__delivery-section__label" for="">Förnamn</label>
+                    <input class="checkout-form__delivery-section__input" id="fname" type="text" name="fname">
 
-                <label class="checkout-form__delivery-section__label" for="">Gatuadress</label>
-                <input class="checkout-form__delivery-section__input" id="adress" type="text" name="adress" placeholder="Gustafvägen 10D">
+                    <label class="checkout-form__delivery-section__label" for="">Efternamn</label>
+                    <input class="checkout-form__delivery-section__input" id="lname" type="text" name="lname">
 
-                <label class="checkout-form__delivery-section__label" for="">Postnummer</label>
-                <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 12">
+                    <label class="checkout-form__delivery-section__label" for="">Telefonnummer</label>
+                    <input class="checkout-form__delivery-section__input" id="tel" type="text" name="phone" placeholder="+46 or 07 pattern">
 
-                <label class="checkout-form__delivery-section__label" for="">Ort</label>
-                <input class="checkout-form__delivery-section__input" id="city" type="text" name="county">
+                    <label class="checkout-form__delivery-section__label" for="">Gatuadress</label>
+                    <input class="checkout-form__delivery-section__input" id="adress" type="text" name="adress" placeholder="Gustafvägen 10D">
 
-                <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
+                    <label class="checkout-form__delivery-section__label" for="">Postnummer</label>
+                    <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 45">
 
-                <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
-                <button type="submit" class="checkout-form__delivery-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
+                    <label class="checkout-form__delivery-section__label" for="">Ort</label>
+                    <input class="checkout-form__delivery-section__input" id="city" type="text" name="county">
 
-            </section>
+                    <!-- this is filled from local storage with js -->
+                    <input type="hidden" name="shoppingCart" value="">
+
+                    <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
+
+                    <button type="button" class="changeInput" disabled>Ändra uppgifter</button>
+
+                </section>
+
+                <section class="checkout-form__btn-section">
+                    <button type="submit" class="checkout-form__btn-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
+                </section>
+            </div>
+
         </form>
 
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
     <!-- js scripts go here -->
-    <?php require_once __DIR__ . '/php/view/jscore.php';?>
+    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
     <!-- <script type="text/javascript" src="./js/checkout-form.js"></script> -->
 
     <!-- Validation & draw cart-section for Checkout -->

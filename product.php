@@ -9,6 +9,7 @@ require_once __DIR__ . "/php/controller/controller.php";
 
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
+$productStatusCheck = $_GET['group'];
 
 if (!isset($product['title'])) {
     header("Location: error.php");
@@ -17,13 +18,28 @@ if (!isset($product['title'])) {
 
 // build gallery html
 $gallery = $product['gallery'];
+$imgForCart = (!$gallery)? 'placeholder.png': $gallery[0];
+// print_r($imgForCart);
 $galleryHtml = '';
-foreach ($gallery as &$fileName) {
-    $galleryHtml = $galleryHtml . '
-        <div class="banner" style="opacity: 1;">
+if (!$gallery) {
+    $galleryHtml = '
+    <div class="banner" style="opacity: 1;">
+        <div class="banner-img" style="background-image: url(img/product/placeholder.png)"></div>
+    </div>';
+}
+if (count($gallery) === 1) {
+    $galleryHtml = '
+    <div class="banner" style="opacity: 1;">
+        <div class="banner-img" style="background-image: url(img/product/' . $gallery[0] . ')"></div>
+    </div>';
+} else {
+    foreach ($gallery as &$fileName) {
+        $galleryHtml = $galleryHtml . '
+        <div class="banner" style="opacity: 0;">
             <div class="banner-img" style="background-image: url(img/product/' . $fileName . ')"></div>
         </div>
     ';
+    }
 }
 
 $gallerySelectors = '<span class="on"></span>';
@@ -53,16 +69,16 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main id="p-main">
 
         <div class="wrapper">
 
             <div class="single-product">
-                <div class="p-grid-1">
+                <div class="p-grid-1 <?php echo $productStatusCheck ?>">
                     <!-- Here comes structure instruction -->
                     <!-- Images should be put inside .p-grid-1 -->
                     <!-- div.banner for all images, use background-image: url(...) -->
@@ -97,26 +113,57 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                     </p>
                     <button class='product__add-btn'>Lägg i varukorgen</button>
                 </div>
-              <div style="display: none;" class='hiddenInputItems'>
-              <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
-              <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>">
-              <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
-              <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
-              <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
-              </div>
+                <div style="display: none;" class='hiddenInputItems'>
+                    <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <!-- <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>"> -->
+                    <input type="hidden" name="productImage" value="./img/product/<?php echo htmlspecialchars(($imgForCart)); ?>">
+                    <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
+                    <input type="hidden" name="productNumberInStock" value="<?php echo htmlspecialchars($product['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>">
+                </div>
             </div>
         </div>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
     <!-- js scripts go here -->
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-    <?php require_once __DIR__ . '/php/view/jscore.php';?>
+    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
     <script>
         var productBtn = document.querySelectorAll(".product__add-btn");
         addProduct(productBtn);
-        </script>
+    </script>
+
+    <script>
+        let inCartItemIds = [];
+        const inCartItems = JSON.parse(localStorage.getItem('products'));
+        const addBtn = document.querySelector('.product__add-btn');
+        const secondGridArea = document.querySelector('.p-grid-2');
+        const emptyBtn = document.querySelector('.cart__erase');
+        
+        inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
+        if (inCartItemIds.includes(<?php echo $productId ?>)) {
+            document.querySelector('.p-grid-2').classList.add('inCart')
+        }
+        
+        addBtn.addEventListener('click', addInCartAnimation);
+        emptyBtn.addEventListener('click', removeInCartStyle2);
+        
+        // TODO:
+        // const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
+        // for(delBtn of deleteItemBtns){
+        //     let 
+        // }
+
+        function addInCartAnimation() {
+            secondGridArea.classList.add('inCart');
+        }
+
+        function removeInCartStyle2() {
+            document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
+        }
+    </script>
 </body>
 
 </html>
