@@ -144,7 +144,6 @@ shopLib = (function() {
         event.preventDefault();
         return;
       }
-      // validate keyword length again
 
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
@@ -160,7 +159,7 @@ shopLib = (function() {
       const productInternal = `${INTERNAL_PATH}/products.php`;
       lib.loadJsonByXhr(productInternal, function(productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
-        // show error message if this category has no products
+        // show error message if this search produced no results
         const errorMsg = document.querySelector(".emptyResultMessage");
         if (matchingProducts.length === 0) {
           errorMsg.classList.remove("hidden");
