@@ -2471,10 +2471,10 @@ section.order-confirmation button[disabled] {
   display: -ms-grid;
   display: grid;
   top: 15px;
-  -ms-grid-rows: 50vh 275px;
+  -ms-grid-rows: 40vh 275px;
   -ms-grid-columns: 1fr;
-  -ms-grid-rows: 50vh 1fr;
-      grid-template-rows: 50vh 1fr;
+  -ms-grid-rows: 40vh 1fr;
+      grid-template-rows: 40vh 1fr;
   min-width: 80vw;
   max-width: 1000px;
   width: 80%;
@@ -2490,8 +2490,8 @@ section.order-confirmation button[disabled] {
   .single-product-page__body .wrapper .single-product {
     min-width: 70vw;
     max-width: 800px;
-    grid-template-rows: 435px -webkit-min-content;
-    grid-template-rows: 435px min-content;
+    grid-template-rows: 50vh -webkit-min-content;
+    grid-template-rows: 50vh min-content;
     -ms-grid-rows: 435px min-content;
     -ms-grid-columns: 1fr;
   }
@@ -2600,6 +2600,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product .p-grid-2 {
   -ms-grid-row: 2;
+  position: relative;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-2 > *:not(:last-child) {
@@ -2744,19 +2745,19 @@ section.order-confirmation button[disabled] {
   max-width: 55px;
   -webkit-animation: jello-vertical 1s both;
           animation: jello-vertical 1s both;
-  top: 41%;
-  left: 87%;
+  left: 85%;
+  top: -50px;
 }
 
-@media screen and (min-width: 477px) {
+@media screen and (min-width: 636px) {
   .p-grid-2.inCart::after {
-    top: 40%;
+    top: -60px;
   }
 }
 
-@media screen and (min-width: 563px) {
+@media screen and (min-width: 800px) {
   .p-grid-2.inCart::after {
-    top: 39%;
+    top: -70px;
   }
 }
 

@@ -72,9 +72,9 @@
       scrollbar-color: transparent transparent;
       display: grid;
       top: 15px;
-      -ms-grid-rows: 50vh 275px;
+      -ms-grid-rows: 40vh 275px;
       -ms-grid-columns: 1fr;
-      grid-template-rows: 50vh 1fr;
+      grid-template-rows: 40vh 1fr;
       min-width: 80vw;
       max-width: 1000px;
       width: 80%; //for IE
@@ -86,7 +86,7 @@
       @media screen and (min-width: 800px) {
         min-width: 70vw;
         max-width: 800px;
-        grid-template-rows: 435px min-content;
+        grid-template-rows: 50vh min-content;
         -ms-grid-rows: 435px min-content;
         -ms-grid-columns: 1fr;
       }
@@ -185,6 +185,7 @@
 
       .p-grid-2 {
         -ms-grid-row: 2;
+        position: relative;
 
         &>*:not(:last-child) {
           padding: 10px 0;
@@ -321,14 +322,23 @@
   min-width: 30px;
   max-width: 55px;
   animation: jello-vertical 1s both;
-  top: 41%;
-  left: 87%;
-  @media screen and (min-width: 477px) {
-    top: 40%;
+  left: 85%;
+  top: -50px;
+
+  @media screen and (min-width: 636px) {
+    top: -60px;
   }
-  @media screen and (min-width: 563px) {
-    top: 39%;
+
+  @media screen and (min-width: 800px) {
+    top: -70px;
   }
+
+  // @media screen and (min-width: 477px) {
+  //   top: 40%;
+  // }
+  // @media screen and (min-width: 563px) {
+  //   top: 39%;
+  // }
 }
 
 @keyframes jello-vertical {
