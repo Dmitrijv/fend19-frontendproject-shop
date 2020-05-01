@@ -275,9 +275,13 @@
     background-color: $green;
     color: white;
     border-radius: 2px;
-    font-size: 22px;
     z-index: 1;
     padding: 5px;
+    font-size: 15px;
+
+    @media screen and (min-width:800px) {
+      font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
   }
 }
 
@@ -297,9 +301,13 @@
     background-color: #ff0000c4;
     color: white;
     border-radius: 2px;
-    font-size: 22px;
     z-index: 1;
     padding: 5px;
+    font-size: 15px;
+
+    @media screen and (min-width:800px) {
+      font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
   }
 }
 

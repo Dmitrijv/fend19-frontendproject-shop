@@ -2694,9 +2694,15 @@ section.order-confirmation button[disabled] {
   background-color: #9fa255;
   color: white;
   border-radius: 2px;
-  font-size: 22px;
   z-index: 1;
   padding: 5px;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 800px) {
+  .p-grid-1.newProduct::before {
+    font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
 }
 
 .p-grid-1.oldProduct {
@@ -2718,9 +2724,15 @@ section.order-confirmation button[disabled] {
   background-color: #ff0000c4;
   color: white;
   border-radius: 2px;
-  font-size: 22px;
   z-index: 1;
   padding: 5px;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 800px) {
+  .p-grid-1.oldProduct::before {
+    font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
 }
 
 .p-grid-2.inCart::after {
