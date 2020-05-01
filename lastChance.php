@@ -25,7 +25,7 @@
     <main id="last-chance-main">
         <div class="content">
             <div class='emptyLastChanceMessage hidden'>Det finns inga sista chancen just nu!</div>
-            <div class="product-container" id="lastChancePanel"> </div>
+            <div class="product-container" id="productPanel"> </div>
         </div>
     </main>
 

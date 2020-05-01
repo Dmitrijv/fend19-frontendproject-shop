@@ -260,111 +260,21 @@ shopLib = (function() {
       return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
     },
 
-    // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------
     drawLastChancePanel: function() {
       const lib = this;
-      const lastChanceInternalUrl = `${INTERNAL_PATH}/lastchance.php`;
-      //cache selectors
-      const lastChancePanel = document.querySelector("#lastChancePanel");
-      let cardHtml = "";
-      lastChancePanel.innerHTML = "";
-      console.log("hi");
-
-      // get category json from Internal
-      lib.loadJsonByXhr(lastChanceInternalUrl, function(lastChanceJson) {
-        // only show products that are in stock
-        lastChanceJson = lastChanceJson.filter(product => Number(product.numberInStock) > 0);
-        // iterate over all categories
-        lastChanceJson.forEach(item => {
-          const coverImage =
-            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-          cardHtml += `
-            <div id='${item.id}' class='product grid-box'>
-              <a href='product.php?productId=${item.id}'>
-                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-              </a>
-              <div class='grid-2'>
-                <p class='product__title'>${item.title}</p>
-                <div class='product__price discount-price'>${item.price} ${item.currency}</div>
-                <div class='product__count-container'>
-                  <button class='hidden product__count-btn'>-</button>
-                  <p class='product__count'>${item.numberInStock}</p>
-                  <button class='hidden product__count-btn'>+</button>
-                </div>
-                <button class='product__add-btn'>Lägg i varukorgen</button>
-              </div>
-              <div style="display: none;" class='hiddenInputItems'>
-              <input type="hidden" name="productId" value="${item.id}">
-              <input type="hidden" name="productImage" value="${coverImage}">
-              <input type="hidden" name="productTitle" value="${item.title}">
-              <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-              <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-              </div>
-            </div>`;
-        });
-        lastChancePanel.innerHTML += cardHtml;
-        const errmsg = document.querySelector(".emptyLastChanceMessage");
-        if (cardHtml.length === 0) {
-          errmsg.classList.remove("hidden");
-        } else {
-          errmsg.classList.add("hidden");
-        }
-        var productBtn = document.querySelectorAll(".product__add-btn");
-        addProduct(productBtn);
+      const internal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(internal, function(productJson) {
+        productJson = productJson.filter(product => product.old && product.old == true);
+        lib.drawProductPanel(productJson);
       });
     },
 
-    // Draw Latest Products Panel -------------------------------------------------------------------------------------------------------------
     drawLatestProductsPanel: function() {
       const lib = this;
-      const latestProductsInternalUrl = `${INTERNAL_PATH}/latestproducts.php`;
-      //cache selectors
-      const latestProductsPanel = document.querySelector("#latestProductsPanel");
-      let cardHtml = "";
-      latestProductsPanel.innerHTML = "";
-
-      // get category json from Internal
-      lib.loadJsonByXhr(latestProductsInternalUrl, function(latestProductsJson) {
-        // only show products that are in stock
-        latestProductsJson = latestProductsJson.filter(product => Number(product.numberInStock) > 0);
-
-        // iterate over all categories
-        latestProductsJson.forEach(item => {
-          const coverImage =
-            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-          cardHtml += `
-              <div id='${item.id}' class='product grid-box'>
-                <a href='product.php?productId=${item.id}'>
-                  <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-                </a>
-                <div class='grid-2'>
-                  <p class='product__title'>${item.title}</p>
-                  <div class='product__price special-price'>${item.price} ${item.currency}</div>
-                  <div class='product__count-container'>
-                    <button class='hidden product__count-btn'>-</button>
-                    <p class='product__count'>${item.numberInStock}</p>
-                    <button class='hidden product__count-btn'>+</button>
-                  </div>
-                  <button class='product__add-btn'>Lägg i varukorgen</button>
-                </div>
-                <div style="display: none;" class='hiddenInputItems'>
-                <input type="hidden" name="productId" value="${item.id}">
-                <input type="hidden" name="productImage" value="${coverImage}">
-                <input type="hidden" name="productTitle" value="${item.title}">
-                <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-                <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-                </div>
-              </div>`;
-        });
-        latestProductsPanel.innerHTML += cardHtml;
-        const errmsg = document.querySelector(".emptyLatestProductsMessage");
-        if (cardHtml.length === 0) {
-          errmsg.classList.remove("hidden");
-        } else {
-          errmsg.classList.add("hidden");
-        }
-        var productBtn = document.querySelectorAll(".product__add-btn");
-        addProduct(productBtn);
+      const internal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(internal, function(productJson) {
+        productJson = productJson.filter(product => product.new && product.new == true);
+        lib.drawProductPanel(productJson);
       });
     },
 

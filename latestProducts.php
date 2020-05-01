@@ -25,7 +25,7 @@
     <main id="latest-products-main">
         <div class="content">
             <div class='emptyLatestProductsMessage hidden'>Det finns inga produkter just nu!</div>
-            <div class="product-container" id="latestProductsPanel"> </div>
+            <div class="product-container" id="productPanel"> </div>
         </div>
     </main>
 
