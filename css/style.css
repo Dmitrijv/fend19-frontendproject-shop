@@ -2471,10 +2471,10 @@ section.order-confirmation button[disabled] {
   display: -ms-grid;
   display: grid;
   top: 15px;
-  -ms-grid-rows: 40vh 275px;
+  -ms-grid-rows: 50vh 275px;
   -ms-grid-columns: 1fr;
-  -ms-grid-rows: 40vh 1fr;
-      grid-template-rows: 40vh 1fr;
+  -ms-grid-rows: 50vh 1fr;
+      grid-template-rows: 50vh 1fr;
   min-width: 80vw;
   max-width: 1000px;
   width: 80%;
@@ -2627,6 +2627,7 @@ section.order-confirmation button[disabled] {
   -o-transition: all 0.2s;
   transition: all 0.2s;
   text-align: center;
+  margin-top: 10px;
 }
 
 .single-product-page__body .wrapper .single-product__text {
@@ -2736,15 +2737,27 @@ section.order-confirmation button[disabled] {
 }
 
 .p-grid-2.inCart::after {
-  content: url("../img/svg/cart.svg");
+  content: url("../img/svg/cart-round.svg");
   position: absolute;
-  bottom: 20px;
-  left: 85%;
   width: 8%;
   min-width: 30px;
   max-width: 55px;
   -webkit-animation: jello-vertical 1s both;
           animation: jello-vertical 1s both;
+  top: 41%;
+  left: 87%;
+}
+
+@media screen and (min-width: 477px) {
+  .p-grid-2.inCart::after {
+    top: 40%;
+  }
+}
+
+@media screen and (min-width: 563px) {
+  .p-grid-2.inCart::after {
+    top: 39%;
+  }
 }
 
 @-webkit-keyframes jello-vertical {
