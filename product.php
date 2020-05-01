@@ -154,18 +154,11 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         addBtn.addEventListener('click', addInCartAnimation);
         emptyBtn.addEventListener('click', removeInCartStyle2);
 
-        // TODO: do delegation
-        // const cart = document.querySelector('.cart');
-        //when cart is not empty
-        // list->div id -> pull-right ->
-        // const cartList = cart.querySelector('.cart__product-list');
-
         const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
         if (deleteItemBtns.length === 1) {
             deleteItemBtns[0].addEventListener('click', (e) => {
                 const delId = e.currentTarget.dataset.productid;
                 if (delId == <?php echo $productId; ?>) {
-                    console.log('You are right')
                     removeInCartStyle2();
                 }
             })
@@ -174,7 +167,6 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                 delBtn.addEventListener('click', (e) => {
                     const delId = e.currentTarget.dataset.productid;
                     if (delId == <?php echo $productId; ?>) {
-                        console.log('You are right')
                         removeInCartStyle2();
                     }
                 })
