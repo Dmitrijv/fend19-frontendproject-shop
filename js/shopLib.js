@@ -95,7 +95,7 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
             <div id='${item.id}' class='product grid-box ${classString}'>
-                <a href='product.php?productId=${item.id}&group=${classString}'>
+                <a href='product.php?productId=${item.id}'>
                     <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
                 </a>
                 <div class='grid-2'>

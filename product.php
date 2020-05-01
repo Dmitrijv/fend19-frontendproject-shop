@@ -9,7 +9,10 @@ require_once __DIR__ . "/php/controller/controller.php";
 
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
-$productStatusCheck = $_GET['group'];
+
+if ($product['old'] == true) {
+    $classList = 'oldProduct';
+}
 
 if (!isset($product['title'])) {
     header("Location: error.php");
@@ -19,7 +22,6 @@ if (!isset($product['title'])) {
 // build gallery html
 $gallery = $product['gallery'];
 $imgForCart = (!$gallery) ? 'placeholder.png' : $gallery[0];
-// print_r($imgForCart);
 $galleryHtml = '';
 if (!$gallery) {
     $galleryHtml = '
@@ -69,16 +71,16 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="p-main">
 
         <div class="wrapper">
 
             <div class="single-product">
-                <div class="p-grid-1 <?php echo $productStatusCheck ?>">
+                <div class="p-grid-1 <?php echo $classList; ?>">
                     <!-- Here comes structure instruction -->
                     <!-- Images should be put inside .p-grid-1 -->
                     <!-- div.banner for all images, use background-image: url(...) -->
@@ -125,11 +127,11 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         </div>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- js scripts go here -->
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <script>
         var productBtn = document.querySelectorAll(".product__add-btn");
         addProduct(productBtn);
@@ -143,7 +145,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         const emptyBtn = document.querySelector('.cart__erase');
 
         inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
-        if (inCartItemIds.includes(<?php echo $productId ?>)) {
+        if (inCartItemIds.includes(<?php echo $productId; ?>)) {
             document.querySelector('.p-grid-2').classList.add('inCart')
         }
 
@@ -160,7 +162,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         if (deleteItemBtns.length === 1) {
             deleteItemBtns[0].addEventListener('click', (e) => {
                 const delId = e.currentTarget.dataset.productid;
-                if (delId == <?php echo $productId ?>) {
+                if (delId == <?php echo $productId; ?>) {
                     console.log('You are right')
                     removeInCartStyle2();
                 }
@@ -169,7 +171,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
             for (delBtn of deleteItemBtns) {
                 delBtn.addEventListener('click', (e) => {
                     const delId = e.currentTarget.dataset.productid;
-                    if (delId == <?php echo $productId ?>) {
+                    if (delId == <?php echo $productId; ?>) {
                         console.log('You are right')
                         removeInCartStyle2();
                     }
