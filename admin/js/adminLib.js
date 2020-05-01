@@ -418,7 +418,7 @@ adminLib = (function() {
     drawFilteredOrdersTable: function() {
       const lib = this;
       const statusFilter = Number(document.querySelector('input[type="radio"]:checked').value);
-      const countyFilter = document.querySelector('input[name="countyNameFilter"]').value;
+      const countyFilter = document.querySelector('input[name="countyNameFilter"]').value.toLowerCase();
 
       const activeOrdersInternal = `${INTERNAL_PATH}/activeOrders.php`;
       const completedOrdersInternal = `${INTERNAL_PATH}/completedOrders.php`;
