@@ -102,6 +102,7 @@ function setLocalStorage(obj, fromClick) {
 
     if (alreadyExists) {
       // alert("You already have this item in your cart.");
+      // inCartAnimation = null;
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
@@ -124,14 +125,11 @@ function addProduct(productBtn) {
   for (let i = 0; i < productBtn.length; ++i) {
     const addBtn = productBtn[i];
     addBtn.addEventListener("click", e => {
-      cartBtn.classList.add('inCartAnimation');
       let fromClick = true;
       setLocalStorage(addBtn, fromClick);
       const productId = e.currentTarget.dataset.productid;
       addInCartStyle(productId);
-      setTimeout(() => {
-        cartBtn.classList.remove('inCartAnimation');
-      }, 1000);
+      // inCartAnimation();
     });
   }
 }
@@ -219,3 +217,10 @@ function removeAllInCartStyle() {
     card.classList.remove('inCart');
   }
 }
+
+// function inCartAnimation() {
+//   cartBtn.classList.add('inCartAnimation');
+//   setTimeout(() => {
+//     cartBtn.classList.remove('inCartAnimation');
+//   }, 1000);
+// }
