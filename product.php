@@ -11,9 +11,9 @@ $productId = intval($_GET['productId']);
 $product = getProductById($productId);
 
 $classList;
-if ($product['old'] == true) {
+if (isset($product['old']) && $product['old'] == true) {
     $classList = 'oldProduct';
-} else if ($product['new'] == true) {
+} else if (isset($product['new']) && $product['new'] == true) {
     $classList = 'newProduct';
 }
 
@@ -120,7 +120,6 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                 </div>
                 <div style="display: none;" class='hiddenInputItems'>
                     <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <!-- <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>"> -->
                     <input type="hidden" name="productImage" value="./img/product/<?php echo htmlspecialchars(($imgForCart)); ?>">
                     <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
                     <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
