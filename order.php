@@ -48,13 +48,13 @@ $customerData = [
 
 $customerDataId = md5(
     $customerData['email'] .
-        $customerData['first_name'] .
-        $customerData['first_name'] .
-        $customerData['last_name'] .
-        $customerData['phone'] .
-        $customerData['street'] .
-        $customerData['postal_number'] .
-        $customerData['county']
+    $customerData['first_name'] .
+    $customerData['first_name'] .
+    $customerData['last_name'] .
+    $customerData['phone'] .
+    $customerData['street'] .
+    $customerData['postal_number'] .
+    $customerData['county']
 );
 
 // save customer data if it doesn't already exist in db
@@ -65,7 +65,9 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 // check if this order qualifies for free shipping
 $free_shipping = false;
 /* use zipcode to check now, or at least should qualify stockholm & zipcode at the same time */
-if ($orderTotalPrice >= 500 ||( strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']))) {
+if (
+    $orderTotalPrice >= 500
+    || (strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']) == true)) {
     $free_shipping = true;
 }
 
@@ -120,9 +122,9 @@ foreach ($shoppingCart as &$cartItem) {
 
 // $totalAmount = 0;
 if ($free_shipping) {
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">'. $finalPriceAmount .'kr</td></tr></tbody>';
-} else{
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">'. intval($finalPriceAmount + 50) .' kr</td></tr></tbody>';
+    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">' . $finalPriceAmount . 'kr</td></tr></tbody>';
+} else {
+    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">' . intval($finalPriceAmount + 50) . ' kr</td></tr></tbody>';
 }
 
 ?>
@@ -147,9 +149,9 @@ if ($free_shipping) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="order-main">
 
@@ -197,9 +199,9 @@ if ($free_shipping) {
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <?php require __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require __DIR__ . '/php/view/jscore.php';?>
 
 </body>
 
