@@ -18,7 +18,6 @@ if (!isset($product['title'])) {
 
 // build gallery html
 $gallery = $product['gallery'];
-// print_r($gallery[0]);// if empty -> empty array
 $galleryHtml = '';
 if (!$gallery) {
     $galleryHtml = '

@@ -80,12 +80,10 @@
                     <button type="button" class="checkout-form__delivery-section__deliveryBtn">Leverera till denna adress</button>
 
                     <button type="button" class="changeInput" disabled>Ändra uppgifter</button>
-                    <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
 
                 </section>
 
                 <section class="checkout-form__btn-section">
-                    <!-- <div class="checkout-form__price">Totalt att betala: <span class="real-amount"></span></div> -->
                     <button type="submit" class="checkout-form__btn-section__checkoutBtn--dim" disabled="disabled">Genomför köp</button>
                 </section>
             </div>
