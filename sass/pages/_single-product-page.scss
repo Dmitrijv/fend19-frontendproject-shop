@@ -322,23 +322,14 @@
   min-width: 30px;
   max-width: 55px;
   animation: jello-vertical 1s both;
+  // animation: tada 1.4s infinite;
   left: 85%;
-  top: -50px;
-
-  @media screen and (min-width: 636px) {
-    top: -60px;
-  }
+  top: -65px;
 
   @media screen and (min-width: 800px) {
     top: -70px;
   }
 
-  // @media screen and (min-width: 477px) {
-  //   top: 40%;
-  // }
-  // @media screen and (min-width: 563px) {
-  //   top: 39%;
-  // }
 }
 
 @keyframes jello-vertical {
@@ -369,6 +360,34 @@
   }
 
   100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
     transform: scale3d(1, 1, 1);
   }
 }
