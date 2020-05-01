@@ -134,7 +134,7 @@ const _rules = (function () {
 
     isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
+      if (!/^[a-zA-Z-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
         return errorMsg
       }
     },
@@ -384,17 +384,27 @@ confirmBtn.onclick = function (event) {
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value
-  const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
-  const aftername = capitalizeFirstLetter(
-    document.querySelector("#lname").value
-  )
+  // const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
+  const forename = formatName(document.querySelector("#fname").value)
+  const aftername = formatName(document.querySelector("#lname").value)
   const name = forename + " " + aftername
   const phone = removeSpace(document.querySelector("#tel").value)
-  const address = capitalizeFirstLetter(document.querySelector("#adress").value)
+  const address = formatName(document.querySelector("#adress").value)
   const pcode = formatZipcode(document.querySelector("#pcode").value)
   const city = capitalizeFirstLetter(document.querySelector("#city").value)
 
   redrawCustomerInfoTable()
+
+  function formatName(nameAreaValue) {
+    return nameAreaValue.split(' ')
+      .filter(name => {
+        if (name != '') return name;
+      })
+      .map(name => {
+        return capitalizeFirstLetter(name);
+      })
+      .join(' ')
+  }
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
