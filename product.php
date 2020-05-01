@@ -18,7 +18,7 @@ if (!isset($product['title'])) {
 
 // build gallery html
 $gallery = $product['gallery'];
-$imgForCart = (!$gallery)? 'placeholder.png': $gallery[0];
+$imgForCart = (!$gallery) ? 'placeholder.png' : $gallery[0];
 // print_r($imgForCart);
 $galleryHtml = '';
 if (!$gallery) {
@@ -141,20 +141,41 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         const addBtn = document.querySelector('.product__add-btn');
         const secondGridArea = document.querySelector('.p-grid-2');
         const emptyBtn = document.querySelector('.cart__erase');
-        
+
         inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
         if (inCartItemIds.includes(<?php echo $productId ?>)) {
             document.querySelector('.p-grid-2').classList.add('inCart')
         }
-        
+
         addBtn.addEventListener('click', addInCartAnimation);
         emptyBtn.addEventListener('click', removeInCartStyle2);
-        
-        // TODO:
-        // const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
-        // for(delBtn of deleteItemBtns){
-        //     let 
-        // }
+
+        // TODO: do delegation
+        // const cart = document.querySelector('.cart');
+        //when cart is not empty
+        // list->div id -> pull-right ->
+        // const cartList = cart.querySelector('.cart__product-list');
+
+        const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
+        if (deleteItemBtns.length === 1) {
+            deleteItemBtns[0].addEventListener('click', (e) => {
+                const delId = e.currentTarget.dataset.productid;
+                if (delId == <?php echo $productId ?>) {
+                    console.log('You are right')
+                    removeInCartStyle2();
+                }
+            })
+        } else {
+            for (delBtn of deleteItemBtns) {
+                delBtn.addEventListener('click', (e) => {
+                    const delId = e.currentTarget.dataset.productid;
+                    if (delId == <?php echo $productId ?>) {
+                        console.log('You are right')
+                        removeInCartStyle2();
+                    }
+                })
+            }
+        }
 
         function addInCartAnimation() {
             secondGridArea.classList.add('inCart');
