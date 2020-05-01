@@ -10,8 +10,11 @@ require_once __DIR__ . "/php/controller/controller.php";
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
 
+$classList;
 if ($product['old'] == true) {
     $classList = 'oldProduct';
+} else if ($product['new'] == true) {
+    $classList = 'newProduct';
 }
 
 if (!isset($product['title'])) {
