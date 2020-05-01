@@ -219,8 +219,3 @@ function removeAllInCartStyle() {
     card.classList.remove('inCart');
   }
 }
-
-function addInCartAnimation() {
-  cartBtn.querySelector('::after').classList.add('.inCartAnimation');
-  cartBtn.classList.remove('.inCartAnimation');
-}
