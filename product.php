@@ -134,12 +134,31 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
 
     <script>
         let inCartItemIds = [];
-        const inCartItems = JSON.parse(localStorage.getItem('products'))
-        inCartItems.forEach(item => {
-            inCartItemIds.push(Number(item.id));
-        })
+        const inCartItems = JSON.parse(localStorage.getItem('products'));
+        const addBtn = document.querySelector('.product__add-btn');
+        const secondGridArea = document.querySelector('.p-grid-2');
+        const emptyBtn = document.querySelector('.cart__erase');
+        
+        inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
         if (inCartItemIds.includes(<?php echo $productId ?>)) {
             document.querySelector('.p-grid-2').classList.add('inCart')
+        }
+        
+        addBtn.addEventListener('click', addInCartAnimation);
+        emptyBtn.addEventListener('click', removeInCartStyle2);
+        
+        // TODO:
+        // const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
+        // for(delBtn of deleteItemBtns){
+        //     let 
+        // }
+
+        function addInCartAnimation() {
+            secondGridArea.classList.add('inCart');
+        }
+
+        function removeInCartStyle2() {
+            document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
         }
     </script>
 </body>
