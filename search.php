@@ -27,7 +27,7 @@
             <h1>Sök resultat</h1>
             <h2 class="invalidKeywordMessage hidden">Sökordet måste vara minst två tecken lång.</h2>
             <h2 class="emptyResultMessage hidden">Inga produkter hittades.</h2>
-            <div class="product-container searchResults"></div>
+            <div class="product-container" id="productPanel"></div>
         </div>
     </main>
 
