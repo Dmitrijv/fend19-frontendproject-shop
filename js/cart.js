@@ -101,7 +101,7 @@ function setLocalStorage(obj, fromClick) {
     }
 
     if (alreadyExists) {
-      alert("You already have this item in your cart.");
+      // alert("You already have this item in your cart.");
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
@@ -138,7 +138,7 @@ function deleteProduct(getJSON) {
     const delBtn = deleteBtn[i];
     delBtn.addEventListener("click", e => {
       var findIndex = -1;
-      getJSON.some(function(prod, i) {
+      getJSON.some(function (prod, i) {
         if (prod.id == delBtn.parentElement.parentElement.id) {
           findIndex = i;
           return true;
@@ -175,7 +175,7 @@ function changeQty(getJSON) {
 
   for (let i = 0; i < qtyBtns.length; ++i) {
     const qtyBtn = qtyBtns[i];
-    qtyBtn.addEventListener("click", function() {
+    qtyBtn.addEventListener("click", function () {
       var findQtyIndex = -1;
       for (var i = 0; i < getJSON.length; ++i) {
         if (getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id) {
