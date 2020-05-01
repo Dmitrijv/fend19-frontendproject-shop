@@ -128,6 +128,7 @@
       order: 2;
 
       button.open-overlay {
+        position: relative;
 
         @media screen and (min-width: 800px) {
           background-color: #f60d4d;
@@ -417,5 +418,90 @@
 
   .dropdown:hover .dropbtn {
     background-color: #9fa255;
+  }
+}
+
+button.open-overlay.inCartAnimation::after {
+  // .inCartAnimation {
+  content: url(../img/svg/draw.svg);
+  position: absolute;
+  width: 30%;
+  top: 29%;
+  right: 3px;
+  animation: slideInDown 0.3s ease-in, fadeOutDown 0.6s ease 0.3s, disappear 0.2s infinite 0.9s;
+}
+
+@keyframes bounceInDown {
+
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
   }
 }

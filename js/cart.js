@@ -124,10 +124,14 @@ function addProduct(productBtn) {
   for (let i = 0; i < productBtn.length; ++i) {
     const addBtn = productBtn[i];
     addBtn.addEventListener("click", e => {
+      cartBtn.classList.add('inCartAnimation');
       let fromClick = true;
       setLocalStorage(addBtn, fromClick);
       const productId = e.currentTarget.dataset.productid;
       addInCartStyle(productId);
+      setTimeout(() => {
+        cartBtn.classList.remove('inCartAnimation');
+      }, 1000);
     });
   }
 }
@@ -214,4 +218,9 @@ function removeAllInCartStyle() {
   for (card of productCards) {
     card.classList.remove('inCart');
   }
+}
+
+function addInCartAnimation() {
+  cartBtn.querySelector('::after').classList.add('.inCartAnimation');
+  cartBtn.classList.remove('.inCartAnimation');
 }
