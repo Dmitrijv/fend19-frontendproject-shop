@@ -1771,121 +1771,6 @@ div.product > div > button:nth-child(4) {
   padding: 5px 15px;
 }
 
-/* Button animation code */
-.ctrl-standard.fx-bubbleUp {
-  color: #9fa255;
-  border-color: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp::after {
-  top: auto;
-  border-radius: 50% 50% 0 0/75% 75% 0 0;
-  background: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed::after {
-  height: 300%;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover {
-  color: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
-  height: 0;
-}
-
-.ctrl-standard.fx-sliderIn.is-reversed:hover::after {
-  width: 0;
-}
-
-[class*="ctrl-"] {
-  padding: 5ox 10px;
-  border-radius: 2px;
-  border: 1px solid #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"]:hover,
-[class*="ctrl-"][class*="fx-"].active {
-  color: #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"].is-reversed {
-  color: #231f20;
-}
-
-[class*="fx-"],
-[class*="fx-"]:hover {
-  -webkit-transition: color 0.5s ease-in-out;
-  -o-transition: color 0.5s ease-in-out;
-  transition: color 0.5s ease-in-out;
-}
-
-[class*="fx-"]:not(.fx-dyna) {
-  position: relative;
-  z-index: 1;
-  -webkit-transition-delay: 0.2s !important;
-       -o-transition-delay: 0.2s !important;
-          transition-delay: 0.2s !important;
-  overflow: hidden;
-}
-
-[class*="fx-"]:not(.fx-dyna)::after,
-[class*="fx-"]:not(.fx-dyna)::before {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-}
-
-[class*="fx-bubble"]::after {
-  -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
-  transition: height 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 0;
-  width: 100%;
-}
-
-[class*="fx-bubble"]:hover::after,
-[class*="fx-bubble"].active::after {
-  -webkit-transition: height 0.5s ease-in-out;
-  -o-transition: height 0.5s ease-in-out;
-  transition: height 0.5s ease-in-out;
-  height: 300%;
-}
-
-[class*="fx-bubble"]:disabled:hover::after {
-  height: 0;
-}
-
-.fx-sliderIn::after {
-  -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
-  transition: width 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 0;
-}
-
-.fx-sliderIn:hover::after,
-.fx-sliderIn.active::after {
-  -webkit-transition: width 0.5s ease-in-out;
-  -o-transition: width 0.5s ease-in-out;
-  transition: width 0.5s ease-in-out;
-  width: 100%;
-}
-
-:checked + .fx-sliderIn::after,
-.fx-sliderIn.active::after {
-  width: 300%;
-}
-
 /* Testing code, for adding status indicator */
 .product {
   position: relative;
@@ -1893,6 +1778,8 @@ div.product > div > button:nth-child(4) {
 
 .product.inCart {
   border: 1px solid #7aaa39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #7aaa3999;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #7aaa3999;
 }
 
 .product.oldProduct::before {
