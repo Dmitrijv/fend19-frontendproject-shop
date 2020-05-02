@@ -103,7 +103,7 @@ function setLocalStorage(obj, fromClick) {
     if (alreadyExists) {
       // alert("You already have this item in your cart.");
       // maybe create some pseudo element and settimeout
-      displayAlert()
+      displayAlert();
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
@@ -221,6 +221,13 @@ function removeAllInCartStyle() {
 
 function inCartAnimation() {
   cartBtn.classList.add('inCartAnimation');
+  let amount = 0;
+  const productsInCart = JSON.parse(localStorage.getItem("products"));
+  productsInCart.map(item => {
+    amount += item.qty;
+    return amount;
+  })
+  document.querySelector('button.open-overlay.inCartAnimation').setAttribute('data-before', amount)
   setTimeout(() => {
     cartBtn.classList.remove('inCartAnimation');
   }, 1000);
