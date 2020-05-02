@@ -368,7 +368,6 @@ button {
 
 @media screen and (min-width: 800px) and (min-width: 800px) {
   .nav__item:nth-of-type(1) button.open-overlay {
-    background-color: #f60d4d;
     border: none;
     border-radius: 3px;
     color: white;
@@ -685,17 +684,15 @@ button {
 }
 
 /* This is for adding new items into cart animation */
-@media screen and (min-width: 800px) {
-  button.open-overlay.inCartAnimation::after {
-    content: attr(data-before);
-    position: absolute;
-    width: 30%;
-    top: 29%;
-    right: 3px;
-    color: white;
-    -webkit-animation: slideInDown 0.7s ease-in, fadeOutDown 0.6s ease 0.7s, disappear 0.2s infinite 1.3s;
-            animation: slideInDown 0.7s ease-in, fadeOutDown 0.6s ease 0.7s, disappear 0.2s infinite 1.3s;
-  }
+button.open-overlay.inCartAnimation::after {
+  content: attr(data-before);
+  position: absolute;
+  width: 30%;
+  top: 29%;
+  right: 3px;
+  color: #fffee0;
+  -webkit-animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+          animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
 }
 
 @-webkit-keyframes bounceInDown {
@@ -913,7 +910,6 @@ button {
   position: absolute;
   top: 1vh;
   border-radius: 5px;
-  border: 1px solid #a89e9e;
   left: 100%;
   -webkit-transform: translateX(-130%);
       -ms-transform: translateX(-130%);
@@ -932,12 +928,6 @@ button {
   .cart .cart-close-btn {
     left: 100%;
   }
-}
-
-.cart .cart-close-btn:hover {
-  background-color: #ee6388;
-  border: 1px solid #f35680;
-  color: white;
 }
 
 .cart h2 {
@@ -1073,8 +1063,16 @@ button {
   }
 }
 
+.minusQty:hover {
+  background-color: #df5c4e;
+  border-color: #df5c4e;
+  color: #fff;
+}
+
 .plusQty:hover {
-  background-color: #e55039;
+  background-color: mediumseagreen;
+  border-color: mediumseagreen;
+  color: #fff;
 }
 
 /* some setting for IE 11, to keep each row's content vertically in the middle */
@@ -1166,6 +1164,31 @@ button {
   .open-overlay {
     position: relative;
   }
+}
+
+/* individuell delbtn hover color */
+.cart__product-delete > img:hover {
+  -webkit-filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+          filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  -webkit-transform: scale(1.5);
+      -ms-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+/* cart close-btn */
+.cart-close-btn.close-overlay {
+  background-color: transparent;
+  border: none;
+}
+
+.cart-close-btn.close-overlay img {
+  width: 35px;
+}
+
+.cart-close-btn.close-overlay img:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 /* bp: 650px / 975px / 1280px / max: don't care anymore  */
