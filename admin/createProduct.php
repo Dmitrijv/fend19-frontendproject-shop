@@ -49,10 +49,10 @@
                     </div>
 
                     <!-- <form action="php/controller/product/test.php" method="POST" enctype="multipart/form-data" > -->
-                    <form onsubmit="adminLib.createNewProduct(event);" enctype="multipart/form-data" >
+                    <form onsubmit="adminLib.createNewProduct(event);" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Cover image</label>
-                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif">
+                            <input type="file" name="product_attatched_image[]" id="product_attatched_image" accept=".jpg,.jpeg,.png,.gif" multiple>
                         </div>
                         <div class="form-group">
                             <label>Title</label>
