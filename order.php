@@ -57,7 +57,6 @@ if (
     !isValidFormInputString($customerData['county'])
 ) {
     header("Location: error.php?errorMessage=Ogiltigt input i formuläret.");
-
     die;
 }
 
