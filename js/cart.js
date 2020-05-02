@@ -238,5 +238,5 @@ function displayAlert() {
   mainHeaderArea.classList.add('alertInfo');
   setTimeout(() => {
     mainHeaderArea.classList.remove('alertInfo');
-  }, 400);
+  }, 1000);
 }

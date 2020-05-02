@@ -74,9 +74,9 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main id="p-main">
 
@@ -129,57 +129,64 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         </div>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
     <!-- js scripts go here -->
     <script type="text/javascript" src="./js/ie11/autoplay.js"></script>
-    <?php require_once __DIR__ . '/php/view/jscore.php';?>
+    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
     <script>
         var productBtn = document.querySelectorAll(".product__add-btn");
         addProduct(productBtn);
     </script>
 
     <script>
-        let inCartItemIds = [];
-        const inCartItems = JSON.parse(localStorage.getItem('products'));
-        const addBtn = document.querySelector('.product__add-btn');
-        const secondGridArea = document.querySelector('.p-grid-2');
-        const emptyBtn = document.querySelector('.cart__erase');
+        (function() {
+            let inCartItemIds = [];
+            const inCartItems = shopLib.getShoppingCart();
+            const addBtn = document.querySelector('.product__add-btn');
+            const secondGridArea = document.querySelector('.p-grid-2');
+            const emptyBtn = document.querySelector('.cart__erase');
 
-        inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
-        if (inCartItemIds.includes(<?php echo $productId; ?>)) {
-            document.querySelector('.p-grid-2').classList.add('inCart')
-        }
+            bindAddBtnWithAnimation();
+            emptyBtn.addEventListener('click', removeInCartStyle2);
 
-        addBtn.addEventListener('click', addInCartAnimation);
-        emptyBtn.addEventListener('click', removeInCartStyle2);
-
-        const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
-        if (deleteItemBtns.length === 1) {
-            deleteItemBtns[0].addEventListener('click', (e) => {
-                const delId = e.currentTarget.dataset.productid;
-                if (delId == <?php echo $productId; ?>) {
-                    removeInCartStyle2();
-                }
-            })
-        } else {
-            for (delBtn of deleteItemBtns) {
-                delBtn.addEventListener('click', (e) => {
-                    const delId = e.currentTarget.dataset.productid;
+            //delegation
+            const cartArea = document.querySelector('.cart');
+            cartArea.addEventListener('click', e => {
+                const delId = e.target.parentNode.dataset.productid;
+                if (e.target.matches('img')) {
                     if (delId == <?php echo $productId; ?>) {
                         removeInCartStyle2();
                     }
-                })
+                }
+            })
+
+            function addInCartAnimation() {
+                secondGridArea.classList.add('inCart');
             }
-        }
 
-        function addInCartAnimation() {
-            secondGridArea.classList.add('inCart');
-        }
+            function removeInCartStyle2() {
+                if (document.querySelector('.p-grid-2.inCart')) {
+                    document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
+                }
+            }
 
-        function removeInCartStyle2() {
-            document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
-        }
+            function bindAddBtnWithAnimation() {
+                if (!localStorage.hasOwnProperty('products')) {
+                    addBtn.addEventListener('click', addInCartAnimation);
+                    return;
+                }
+                if (localStorage.getItem('products') != '[]') {
+                    inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
+                    if (inCartItemIds.includes(<?php echo $productId; ?>)) {
+                        document.querySelector('.p-grid-2').classList.add('inCart')
+                    }
+                    addBtn.addEventListener('click', addInCartAnimation);
+                    return;
+                }
+                addBtn.addEventListener('click', addInCartAnimation);
+            }
+        })()
     </script>
 </body>
 
