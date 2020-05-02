@@ -847,7 +847,6 @@ button.open-overlay.inCartAnimation::after {
   background-color: white;
   border: 1px solid #f60d4d;
   padding: 7px;
-  top: 74px;
   left: 99%;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -859,6 +858,13 @@ button.open-overlay.inCartAnimation::after {
   color: #f60d4d;
   -webkit-animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
           animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
+  top: 90px;
+}
+
+@media screen and (min-width: 800px) {
+  .main__header.alertInfo::before {
+    top: 74px;
+  }
 }
 
 .cart {
