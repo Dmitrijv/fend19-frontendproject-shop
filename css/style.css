@@ -123,7 +123,6 @@ img {
 }
 
 .logo {
-  background: url("../../img/product/svg/Logo.svg") no-repeat center center;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
