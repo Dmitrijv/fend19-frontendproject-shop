@@ -969,6 +969,12 @@ button.open-overlay.inCartAnimation::after {
   margin: 6px 0;
 }
 
+.cart__erase:hover {
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 .cart__sum-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -998,6 +1004,10 @@ button.open-overlay.inCartAnimation::after {
   font-size: 18px;
   font-family: "Lato", serif;
   white-space: nowrap;
+}
+
+.cart__order button:hover {
+  background-color: #35b66fd4;
 }
 
 @media screen and (max-width: 596px) {

@@ -71,6 +71,10 @@
     height: 20px;
     cursor: pointer;
     margin: 6px 0;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   &__sum-area {
@@ -97,6 +101,10 @@
       font-size: 18px;
       font-family: "Lato", serif;
       white-space: nowrap;
+
+      &:hover {
+        background-color: #35b66fd4;
+      }
 
       @media screen and (max-width: 596px) {
         font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
