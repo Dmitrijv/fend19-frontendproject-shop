@@ -77,12 +77,12 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 }
 
 // check if this order qualifies for free shipping
-$free_shipping = false;
+$free_shipping = 0;
 /* use zipcode to check now, or at least should qualify stockholm & zipcode at the same time */
 if (
     $orderTotalPrice >= 500
     || (strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']) == true)) {
-    $free_shipping = true;
+    $free_shipping = 1;
 }
 
 // create a new db entry for this order
