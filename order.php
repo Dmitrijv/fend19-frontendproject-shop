@@ -56,7 +56,8 @@ if (
     !isValidFormInputString($customerData['postal_number']) ||
     !isValidFormInputString($customerData['county'])
 ) {
-    http_response_code(400);
+    header("Location: error.php?errorMessage=Ogiltigt input i formuläret.");
+
     die;
 }
 
