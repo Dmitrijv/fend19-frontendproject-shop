@@ -102,6 +102,8 @@ function setLocalStorage(obj, fromClick) {
 
     if (alreadyExists) {
       // alert("You already have this item in your cart.");
+      // maybe create some pseudo element and settimeout
+      displayAlert()
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
@@ -109,6 +111,7 @@ function setLocalStorage(obj, fromClick) {
   }
   if (alreadyExists === false) {
     fillCartList(fromClick);
+    inCartAnimation();
   }
 }
 
@@ -214,4 +217,19 @@ function removeAllInCartStyle() {
   for (card of productCards) {
     card.classList.remove('inCart');
   }
+}
+
+function inCartAnimation() {
+  cartBtn.classList.add('inCartAnimation');
+  setTimeout(() => {
+    cartBtn.classList.remove('inCartAnimation');
+  }, 1000);
+}
+
+function displayAlert() {
+  const mainHeaderArea = document.querySelector('.main__header');
+  mainHeaderArea.classList.add('alertInfo');
+  setTimeout(() => {
+    mainHeaderArea.classList.remove('alertInfo');
+  }, 1000);
 }

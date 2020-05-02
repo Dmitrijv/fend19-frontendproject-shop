@@ -421,7 +421,7 @@
   }
 }
 
-/* no longer used... */
+/* This is for adding new items into cart animation */
 button.open-overlay.inCartAnimation::after {
   @media screen and (min-width: 800px) {
     content: url(../img/svg/draw.svg);
@@ -508,4 +508,18 @@ button.open-overlay.inCartAnimation::after {
     opacity: 0;
   }
 }
-/* no longer used end... */
+
+/* This is for when choose one item already exists in cart */
+.main__header.alertInfo::before {
+  content: "Redan finns in varukorg!";
+  position: absolute;
+  background-color: $greenBtn;
+  padding: 7px;
+  top: 64px;
+  left: 100%;
+  width: max-content;
+  transform: translateX(-100%);
+  border-radius: 3px;
+  color: $red;
+  animation: fadeOutDown 1s ease 0.6s, disappear 0.4s infinite 1s;
+}
