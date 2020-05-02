@@ -46,6 +46,20 @@ $customerData = [
     "county" => trimSides($_POST['county']),
 ];
 
+// doublecheck form input validity
+if (
+    !isValidFormInputString($customerData['email']) ||
+    !isValidFormInputString($customerData['first_name']) ||
+    !isValidFormInputString($customerData['last_name']) ||
+    !isValidFormInputString($customerData['phone']) ||
+    !isValidFormInputString($customerData['street']) ||
+    !isValidFormInputString($customerData['postal_number']) ||
+    !isValidFormInputString($customerData['county'])
+) {
+    http_response_code(400);
+    die;
+}
+
 $customerDataId = md5(
     $customerData['email'] .
     $customerData['first_name'] .
