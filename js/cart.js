@@ -230,7 +230,7 @@ function inCartAnimation() {
   document.querySelector('button.open-overlay.inCartAnimation').setAttribute('data-before', amount)
   setTimeout(() => {
     cartBtn.classList.remove('inCartAnimation');
-  }, 1000);
+  }, 400);
 }
 
 function displayAlert() {
@@ -238,5 +238,5 @@ function displayAlert() {
   mainHeaderArea.classList.add('alertInfo');
   setTimeout(() => {
     mainHeaderArea.classList.remove('alertInfo');
-  }, 1000);
+  }, 400);
 }
