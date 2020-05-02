@@ -1,5 +1,4 @@
 @media all and (-ms-high-contrast: none) {
-
   /* IE11 */
   *::-ms-backdrop,
   .main__header {
@@ -30,7 +29,6 @@
     width: 100%;
 
     @media all and (-ms-high-contrast: none) {
-
       /* IE11 */
       *::-ms-backdrop,
       .logo {
@@ -88,8 +86,7 @@
     }
 
     input {
-
-      @media screen and (max-width:781px) and (min-width:800px) {
+      @media screen and (max-width: 781px) and (min-width: 800px) {
         min-width: 20vw;
       }
 
@@ -105,7 +102,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-width:935px) and (min-width:800px) {
+  @media screen and (max-width: 935px) and (min-width: 800px) {
     button {
       padding: 9px !important;
     }
@@ -284,7 +281,7 @@
   width: 12px;
   height: 12px;
 
-  @supports(display: grid) {
+  @supports (display: grid) {
     max-width: 20px;
     max-height: 20px;
   }
@@ -306,7 +303,7 @@
   right: 10vw;
   padding: 13px;
 
-  @supports(display: grid) {
+  @supports (display: grid) {
     max-width: 20px;
     max-height: 20px;
   }
@@ -435,7 +432,6 @@ button.open-overlay.inCartAnimation::after {
 }
 
 @keyframes bounceInDown {
-
   from,
   60%,
   75%,
@@ -496,7 +492,7 @@ button.open-overlay.inCartAnimation::after {
 
   to {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    // transform: translate3d(0, 100%, 0);
   }
 }
 
@@ -512,16 +508,16 @@ button.open-overlay.inCartAnimation::after {
 
 /* This is for when choose one item already exists in cart */
 .main__header.alertInfo::before {
-  content: "Redan finns in varukorg!";
+  content: "Varan finns i varukorgen!";
   position: absolute;
-  background-color: $greenBtn;
+  background-color: white;
+  border: 1px solid #f60d4d;
   padding: 7px;
-  top: 64px;
-  left: 100%;
+  top: 74px;
+  left: 99%;
   width: max-content;
   transform: translateX(-100%);
   border-radius: 3px;
   color: $red;
-  animation: fadeOutDown 1s ease 0.6s, disappear 0.4s infinite 1s;
+  animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
 }
-
