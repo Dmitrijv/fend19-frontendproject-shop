@@ -435,7 +435,7 @@ adminLib = (function() {
         if (sortFunction) orderJson = orderJson.sort(sortFunction);
         // filter by county string
         orderJson = orderJson.filter(order =>
-          !countyFilter || countyFilter.length === 0
+          !countyFilter || countyFilter.length == 0
             ? true
             : order.county.toLowerCase().includes(countyFilter)
             ? true
@@ -443,7 +443,7 @@ adminLib = (function() {
         );
         // filter by selected category
         orderJson = orderJson.filter(order =>
-          !statusFilter || statusFilter === 0 ? true : order.status_id === statusFilter ? true : false
+          !statusFilter || statusFilter == 0 ? true : order.status_id == statusFilter ? true : false
         );
         lib.drawOrdersTable(orderJson);
       });
