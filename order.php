@@ -186,7 +186,7 @@ if ($free_shipping) {
                     <dt>Phone</dt>
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Postal address</dt>
-                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Beställningsnummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
