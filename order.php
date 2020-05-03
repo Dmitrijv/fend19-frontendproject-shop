@@ -77,12 +77,12 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 }
 
 // check if this order qualifies for free shipping
-$free_shipping = false;
+$free_shipping = 0;
 /* use zipcode to check now, or at least should qualify stockholm & zipcode at the same time */
 if (
     $orderTotalPrice >= 500
     || (strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']) == true)) {
-    $free_shipping = true;
+    $free_shipping = 1;
 }
 
 // create a new db entry for this order
@@ -186,7 +186,7 @@ if ($free_shipping) {
                     <dt>Phone</dt>
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Postal address</dt>
-                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Beställningsnummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
