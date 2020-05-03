@@ -429,11 +429,9 @@ confirmBtn.onclick = function (event) {
     const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
     const zipcode = document.querySelector("#pcode")
     let realTotalPriceArea = document.querySelector(".item-total")
-    // console.log(typeof(Number(zipcode.value)))
-    
+
     if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
       // free delivery
-      console.log('free')
       deliveryFeeTextArea.textContent = "0"
       deliveryFeeTextArea.classList.remove("hidden")
       realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
@@ -444,13 +442,11 @@ confirmBtn.onclick = function (event) {
         deliveryFeeTextArea.classList.remove("hidden");
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
         realTotalPrice = subTotal + 50;
-        console.log('no free 1')
         return;
       } else {
         deliveryFeeTextArea.textContent = "50";
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
         realTotalPrice = subTotal + 50;
-        console.log('no free 2')
         return;
       }
     }
