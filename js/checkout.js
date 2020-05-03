@@ -1,4 +1,5 @@
 /* TODO */
+/* regex pattern should use /i to reduce  */
 /* Tel: 08?? */
 /* Name pattern:  Anna-Lena  |  Af Trolle */
 /* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
@@ -329,7 +330,7 @@ validator.add(forms.county, [{
 ])
 
 // Call validation
-// confirm pay btn should be disabled until finish validation and judge delivery fee.
+// confirm pay btn should be disabled until finish validation and check delivery fee.
 const editInfoBtn = document.querySelector('.changeInput');
 let inputs = document.querySelectorAll(".checkout-form__delivery-section__input")
 const goToOrderBtn = document.querySelector(".checkout-form__btn-section__checkoutBtn--dim");
@@ -369,7 +370,6 @@ confirmBtn.onclick = function (event) {
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value
-  // const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
   const forename = formatName(document.querySelector("#fname").value)
   const aftername = formatName(document.querySelector("#lname").value)
   const name = forename + " " + aftername
@@ -429,17 +429,14 @@ confirmBtn.onclick = function (event) {
     const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
     const zipcode = document.querySelector("#pcode")
     let realTotalPriceArea = document.querySelector(".item-total")
-    // console.log(zipcode.value)
-    if (/^1\d{2}\d{2}$/.test(zipcode.value) || subTotal >= 500) {
+    if (/^1\d{4}$/.test(zipcode.value) || subTotal >= 500) {
       // free delivery
-      // console.log("free")
       deliveryFeeTextArea.textContent = "0"
       deliveryFeeTextArea.classList.remove("hidden")
       realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
       realTotalPrice = subTotal
     } else {
       // add 50 kr
-      // console.log("no free")
       if (deliveryFeeTextArea.classList.contains('hidden')) {
         deliveryFeeTextArea.classList.remove("hidden");
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
@@ -454,8 +451,6 @@ confirmBtn.onclick = function (event) {
     }
   }
 }
-
-
 
 // add shopping cart data to form
 const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]')
