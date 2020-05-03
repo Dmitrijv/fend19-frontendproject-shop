@@ -361,26 +361,11 @@ confirmBtn.onclick = function (event) {
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
+    checkDeliveryFee();
     turnWhite(); //remove input red border
     editInfoBtn.disabled = '';
   }
-
-  /* To check delivery fee */
-  const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
-  const zipcode = document.querySelector("#pcode")
-  let realTotalPriceArea = document.querySelector(".item-total")
-  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal >= 500) {
-    // free delivery
-    deliveryFeeTextArea.textContent = "0"
-    deliveryFeeTextArea.classList.remove("hidden")
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
-    realTotalPrice = subTotal
-  } else {
-    // add 50 kr
-    deliveryFeeTextArea.classList.remove("hidden")
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
-    realTotalPrice = subTotal + 50
-  }
+  checkDeliveryFee();
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value
@@ -438,7 +423,39 @@ confirmBtn.onclick = function (event) {
     })
     confirmBtn.disabled = true;
   }
+
+  /* To check delivery fee */
+  function checkDeliveryFee() {
+    const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
+    const zipcode = document.querySelector("#pcode")
+    let realTotalPriceArea = document.querySelector(".item-total")
+    // console.log(zipcode.value)
+    if (/^1\d{2}\d{2}$/.test(zipcode.value) || subTotal >= 500) {
+      // free delivery
+      // console.log("free")
+      deliveryFeeTextArea.textContent = "0"
+      deliveryFeeTextArea.classList.remove("hidden")
+      realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
+      realTotalPrice = subTotal
+    } else {
+      // add 50 kr
+      // console.log("no free")
+      if (deliveryFeeTextArea.classList.contains('hidden')) {
+        deliveryFeeTextArea.classList.remove("hidden");
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
+        realTotalPrice = subTotal + 50;
+        return;
+      } else {
+        deliveryFeeTextArea.textContent = "50";
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
+        realTotalPrice = subTotal + 50;
+        return;
+      }
+    }
+  }
 }
+
+
 
 // add shopping cart data to form
 const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]')
