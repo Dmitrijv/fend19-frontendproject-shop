@@ -477,7 +477,9 @@ adminLib = (function() {
 
         tableContent += `
             <tr data-orderId='${order.id}'>
-                <td>${order.id}</td>
+                <td class="linkContainer" >
+                    <a href="order.php?orderId=${order.id}&orderStatus=${order.status_id}">${order.id}</a>
+                </td>
                 <td>${order.date_ordered_at}</td>
                 <td>${lib.escapeHtml(order.county)}</td>
                 <td>${order.item_count}</td>
@@ -615,6 +617,11 @@ adminLib = (function() {
           /<\/?[a-z][\s\S]*/i.test(categoryName) == false) ||
         false
       );
+    },
+
+    redirectToOrdersPage(event) {
+      window.location.href = `${location.protocol}//${location.host}/fend19-frontendproject-shop/admin/orders.php`;
+      event.preventDefault();
     },
 
     isFileNameValid: function(fileName) {

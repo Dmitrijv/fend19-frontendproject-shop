@@ -26,12 +26,12 @@ ul li {
   list-style: none;
 }
 
-a {
+a:not(.linkContainer > a) {
   color: unset;
   text-decoration: none;
 }
 
-a:hover {
+a:hover:not(.linkContainer > a) {
   color: unset;
   text-decoration: none;
   cursor: pointer;
@@ -944,7 +944,6 @@ table#orderAdminTable th.sortable.sorted.sortDesc::after {
 
 input[name="countyNameFilter"] {
   max-width: 300px;
-  border: 1px solid green;
 }
 
 label.bold {
@@ -959,8 +958,6 @@ form.orderCategoryFilter {
       -ms-flex-align: center;
           align-items: center;
   max-width: 310px;
-  background-color: whitesmoke;
-  border: 1px solid gray;
   padding: 6px 4px;
   margin-top: 3px;
   margin-bottom: 10px;
@@ -977,5 +974,206 @@ form.orderCategoryFilter div.form-group input[type="radio"] {
 form.orderCategoryFilter div.form-group label {
   margin: 0;
   font-weight: normal;
+}
+
+#order-body {
+  min-height: 100vh;
+}
+
+#order-body .footer {
+  margin-top: auto;
+}
+
+#order-main {
+  margin: 0 auto;
+}
+
+#order-main p,
+#order-main tr,
+#order-main td,
+#order-main th,
+#order-main dt,
+#order-main dd {
+  font-family: "Lato", sans-serif;
+}
+
+.content .emptyOrderMessage {
+  display: none;
+}
+
+.white-panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  display: block;
+}
+
+@media all and (-ms-high-contrast: none) {
+  /* IE11 */
+  *::-ms-backdrop,
+  #order-main {
+    margin: 60px auto 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+}
+
+section.order-confirmation {
+  overflow: hidden;
+  font-size: 16px;
+  margin: 5vh 40px;
+}
+
+section.order-confirmation .panel-heading {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  border-bottom-color: #dddddd;
+  padding: 10px 15px;
+  border-bottom: 1px solid lightgray;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+section.order-confirmation .order-description {
+  margin: 2rem 5vw;
+  line-height: 1.4rem;
+  font-family: "Lato", sans-serif;
+}
+
+section.order-confirmation .order-description p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+section.order-confirmation .order-description h2 {
+  font-size: 1.2rem;
+}
+
+section.order-confirmation .order-description dl {
+  max-width: 500px;
+}
+
+section.order-confirmation .order-description dl > * {
+  margin-left: 0;
+}
+
+section.order-confirmation .order-description dt {
+  font-weight: 600;
+}
+
+section.order-confirmation .order-description dd {
+  margin-bottom: 0.5rem;
+}
+
+section.order-confirmation .address p {
+  padding: 0;
+  margin: 0;
+}
+
+section.order-confirmation .btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+
+section.order-confirmation .goback-Btn {
+  margin-bottom: 10px;
+}
+
+section.order-confirmation .btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  margin-left: 5vw;
+}
+
+section.order-confirmation .btn-info:hover {
+  color: #fff;
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+section.order-confirmation button.confirm-order-button {
+  float: right;
+  margin: 0 5vw 2rem 5vw;
+}
+
+section.order-confirmation .btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+section.order-confirmation .btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+section.order-confirmation button[disabled] {
+  background-color: #6c757d;
+  border: 0;
+}
+
+.order-confirmation table {
+  margin: 2rem 5vw;
+  border-collapse: collapse;
+}
+
+.order-confirmation table th:first-child,
+.order-confirmation table td:first-child {
+  width: 10%;
+}
+
+.order-confirmation table th:nth-child(2),
+.order-confirmation table td:nth-child(2) {
+  width: 40%;
+}
+
+.order-confirmation table th:last-child,
+.order-confirmation table td:last-child {
+  width: 15%;
+}
+
+.order-confirmation table .item-total {
+  text-align: right;
+}
+
+.order-confirmation table tr,
+.order-confirmation table td,
+.order-confirmation table th {
+  width: 90vw;
+  text-align: left;
+}
+
+.order-confirmation table tr + tr {
+  border-top: 1px dashed grey;
+}
+
+.order-confirmation table td {
+  height: 45px;
+}
+
+.order-confirmation table td .product-cover-small {
+  width: 30px;
+  margin-right: 5px;
+  display: inline;
 }
 /*# sourceMappingURL=adminpanel.css.map */

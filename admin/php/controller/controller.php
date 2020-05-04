@@ -118,7 +118,6 @@ function getProductById($productId)
         AND product.id = price_of_product.product_id
         AND product.id = ?
     ", [$productId])->fetch(PDO::FETCH_LAZY);
-
 }
 
 function doesProductIdExist($productId)
@@ -375,6 +374,16 @@ function doesActiveOrderExist($orderId)
     return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ?)", [$orderId])->fetchColumn();
 }
 
+function doesCompletedOrderExist($orderId)
+{
+    return DB::run("SELECT EXISTS(SELECT * FROM `completed_order_of_products` WHERE `id` = ?)", [$orderId])->fetchColumn();
+}
+
+function doesOrderStatusExist($statusId)
+{
+
+}
+
 function isOrderNew($orderId)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ? AND status=1)", [$orderId])->fetchColumn();
@@ -383,4 +392,48 @@ function isOrderNew($orderId)
 function isOrderInProgress($orderId)
 {
     return DB::run("SELECT EXISTS(SELECT * FROM `active_order_of_products` WHERE `id` = ? AND status=2)", [$orderId])->fetchColumn();
+}
+
+function getOrderByIdAndStatus($orderId, $statusId)
+{
+    $targetTable = ($statusId == 3) ? "completed_order_of_products" : "active_order_of_products";
+    return DB::run("
+        SELECT " . $targetTable . ".*, order_status.name as status_name
+        FROM " . $targetTable . ",
+        order_status
+        WHERE " . $targetTable . ".id = ?
+        AND status = order_status.id
+    ", [$orderId])->fetch(PDO::FETCH_LAZY);
+}
+
+function getProductsByOrderIdAndStatus($orderId, $statusId)
+{
+    $targetTable = ($statusId == 3) ? "delivered_product" : "ordered_product";
+
+    $stmt = DB::run("
+        SELECT *
+        FROM " . $targetTable . "
+        WHERE " . $targetTable . ".order_id = ?
+    ", [$orderId]);
+
+    $response = [];
+    while ($tableRow = $stmt->fetch(PDO::FETCH_LAZY)) {
+        $product = [
+            "product_id" => $tableRow['product_id'],
+            "order_id" => $tableRow['order_id'],
+            "price" => $tableRow['price'],
+            "quantity" => $tableRow['quantity'],
+        ];
+        array_push($response, $product);
+    }
+    return $response;
+}
+
+function getCustomerDataById($customerId)
+{
+    return DB::run("
+        SELECT *
+        FROM customer_data
+        WHERE id = ?
+    ", [$customerId])->fetch(PDO::FETCH_LAZY);
 }
