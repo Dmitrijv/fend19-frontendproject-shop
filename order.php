@@ -130,7 +130,7 @@ foreach ($shoppingCart as &$cartItem) {
         </tr>';
 }
 
-$shipping_message = "";
+$shipping_message = "Frakt: 0 kr";
 if ($free_shipping == 0) {
     $finalPriceAmount = intval($finalPriceAmount) + 50;
     $shipping_message = "Frakt: 50 kr";
@@ -186,9 +186,9 @@ $productListHtml .= '
                 <dl>
                     <dt>Kundnamn</dt>
                     <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Phone</dt>
+                    <dt>Telefon</dt>
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Postal address</dt>
+                    <dt>Adress</dt>
                     <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Ordernummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
