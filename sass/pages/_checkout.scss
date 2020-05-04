@@ -1,0 +1,271 @@
+#checkout-main {
+  margin: 0 auto;
+  padding: 90px 0px;
+
+  @supports (display: grid) {
+    padding: 0;
+  }
+
+  font-family: "Lato",
+  sans-serif;
+
+  h1 {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .err-tips {
+    color: $red;
+  }
+
+  :disabled {
+    background: grey;
+  }
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 60px;
+
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__h1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__cart-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    // min-width: 300px;
+    max-width: 320px;
+    height: min-content;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgb(226, 225, 221);
+
+    @media (min-width: 800px) {
+      position: sticky;
+      order: 1;
+      right: -100px;
+      max-width: 580px;
+
+      //   min-height: 500px;
+    }
+
+    &__product-list {
+      @media (min-width: 800px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        // flex: 1 0 calc(25% - 10px);
+
+        padding: 20px;
+        justify-content: flex-start;
+      }
+    }
+
+    &__product-container {
+      text-align: center;
+
+      width: 170px;
+    }
+
+    &__img-container {
+      display: flex;
+      justify-content: center;
+
+      &--img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    &__h2 {
+      text-align: center;
+    }
+
+    &__item-qty {}
+
+    &__item-price {}
+
+    &__totalsum {
+      text-align: center;
+    }
+
+    &__keep-shopping-btn {
+      width: 200px;
+      margin: 10px;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      background-color: $red;
+      border: none;
+      border-radius: 3px;
+      color: white;
+    }
+  }
+
+  &__delivery-section {
+    max-width: 320px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgb(226, 225, 221);
+
+    @media (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__h2 {
+      text-align: center;
+    }
+
+    &__label {}
+
+    &__input {
+      padding-left: 10px;
+      background: rgb(255, 255, 255);
+      border: 0.9px solid $red;
+      height: 30px;
+      min-width: 280px;
+      margin-bottom: 20px;
+    }
+
+    &__price {}
+  }
+
+  &__btn-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    height: fit-content;
+    margin: 10px;
+    margin-top: 20px;
+    padding: 8px 2px 8px 2px;
+    border-radius: 3px;
+    background: rgb(226, 225, 221);
+
+    @media (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__checkoutBtn--dim {
+      @extend .checkout-form__btn-section__checkoutBtn;
+      //   opacity: 0.4;
+    }
+
+    &__checkoutBtn {
+      min-width: 280px;
+      margin: 10px;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 30px;
+      background-color: $darkgreen;
+      border: none;
+      border-radius: 3px;
+      color: white;
+    }
+  }
+}
+
+/* new added styling*/
+#checkout-table {
+  margin: 20px 5px;
+}
+
+.checkout-form {
+  // &__cart-section {
+  //   min-width: unset;
+
+  //   &__sum-area {
+  //     margin: 0 7px 0 auto;
+  //   }
+
+  //   @media screen and (min-width: 800px) {
+  //     width: 50%;
+  //   }
+  // }
+
+  &__delivery-section {
+    label {
+      display: block;
+    }
+
+    input {
+      margin: 10px auto;
+    }
+
+    &__deliveryBtn {
+      margin: 10px 0;
+      display: block;
+      background-color: $red;
+      border: none;
+      color: white;
+      border-radius: 3px;
+      font-size: 15px;
+
+      @media screen and (max-width: 800px) {
+        margin: 10px 0;
+      }
+    }
+
+    &__checkoutBtn--dim {
+      font-size: 20px;
+      margin: 10px 0 20px;
+    }
+
+    @media screen and (max-width: 800px) {
+      padding: 10px 2vw 0;
+      display: flex;
+      flex-direction: column;
+
+      label {
+        margin: unset;
+      }
+
+      input {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+.deliveryFeeRow {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.toWhite {
+  border: 1px solid white;
+  background-color: white !important;
+  color: $black !important;
+}
+
+.small-font-size {
+  padding: 15px;
+  width: 250px;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  // font-weight: bold;
+}
+
+.checkout-form__delivery-section button.changeInput {
+  background-color: $orange;
+  margin: 10px 0;
+  display: block;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  font-size: 15px;
+}

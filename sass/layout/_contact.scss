@@ -1,0 +1,60 @@
+.content_contact {
+  padding-top: 10em;
+}
+
+.contact__form {
+  width: 70%;
+  margin-left: 15%;
+
+  &__heading {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  &__name,
+  &__email,
+  &__phone {
+    width: 100%;
+    //   max-width: ;
+    margin: 10px 0 10px 0;
+    padding: 3%;
+    height: 3em;
+  }
+
+  &__msg {
+    width: 100%;
+    padding: 3%;
+    border-radius: 3px;
+    background-color: #f60d4d20;
+    border: none;
+  }
+
+  &__button {
+    //   width: 15%;
+    //   margin-left: 82%;
+    //   margin-right: 3%;
+    padding: 3%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+
+  @media all and (-ms-high-contrast: none) {
+
+    /* IE11 */
+    *::-ms-backdrop,
+    input,
+    textarea {
+      background-color: rgba(246, 14, 76, 0.16);
+    }
+    textarea {
+      -ms-overflow-style: none;
+    }
+    input{
+      border: none;
+    }
+  }
+}
+
+.error {
+  color: red;
+}

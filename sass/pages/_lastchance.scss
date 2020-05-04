@@ -1,0 +1,27 @@
+#last-chance-main {
+  .content {
+    .product-container {
+      margin-top: 0;
+    }
+  }
+
+  .discount-price {
+    color: $red;
+
+    &::before {
+      content: "REA";
+      margin-right: 10px;
+    }
+  }
+}
+
+.product.oldProduct {
+  // border: 1px solid $oldItemBorder !important;
+  .product__title::before {
+    content: "REA";
+    margin-right: 10px;
+    color: $oldItemBorder;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,393 @@
+#p-main {
+  overflow: visible;
+  /* mobile */
+  // margin-top: 110px;
+  margin-top: 2em;
+}
+
+@media all and (-ms-high-contrast: none) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  #p-main {
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+
+  .wrapper {
+    margin-bottom: 80px !important;
+  }
+
+  // Hide scroll bar on x-axis, just for IE
+  .single-product-page__body {
+    -ms-overflow-x: hidden;
+    // -ms-overflow-style: none;//TODO: Don't know how it will look like if tooo many items in cart.
+  }
+}
+
+@media all and (-ms-high-contrast: none) and (min-width: 800px) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  #p-main {
+    margin-top: 80px;
+  }
+}
+
+.single-product-page__body {
+  font-family: "Lato", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .main__header {
+    top: 0;
+    left: 0; //This is just for IE
+  }
+
+  .hamburger__bar-wrapper {
+    top: 0;
+    left: 0;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 88vw;
+
+    @supports (display: grid) {
+      max-width: 800px;
+    }
+
+    .single-product {
+      position: relative;
+      background-color: #fff;
+      padding: 0 0 20px 0;
+      box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.1);
+      scrollbar-color: transparent transparent;
+      display: grid;
+      top: 15px;
+      -ms-grid-rows: 40vh 275px;
+      -ms-grid-columns: 1fr;
+      grid-template-rows: 40vh 1fr;
+      min-width: 80vw;
+      max-width: 1000px;
+      width: 80%; //for IE
+
+      @supports (display: grid) {
+        width: 100%;
+      }
+
+      @media screen and (min-width: 800px) {
+        min-width: 70vw;
+        max-width: 800px;
+        grid-template-rows: 50vh min-content;
+        -ms-grid-rows: 435px min-content;
+        -ms-grid-columns: 1fr;
+      }
+
+      @media screen and (min-width: 1200px) {
+        -ms-grid-rows: 55vh min-content;
+        grid-template-rows: 55vh min-content;
+      }
+
+      .p-grid-1 {
+        display: block;
+        position: relative;
+        -ms-grid-row: 1;
+
+        #wrap {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .banner-img {
+          background-size: cover;
+          background-position: 20% 25%;
+          display: block;
+          height: 100%;
+        }
+
+        #wrap .banner {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: opacity 2s;
+        }
+
+        #wrap .tab {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+        }
+
+        #wrap .tab span {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          margin: 3px;
+          background: rgba(105, 105, 105, 0.5);
+          border-radius: 50%;
+          cursor: pointer;
+          border: 2px solid #887b6e;
+        }
+
+        #wrap .tab span.on {
+          background: #e2ceb7;
+        }
+
+        #wrap .tab span:hover {
+          background: #e2ceb7;
+        }
+
+        #wrap .prev {
+          position: absolute;
+          left: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 41px;
+          height: 70px;
+          background: url(../img/svg/left-arrow.svg) center center no-repeat;
+          cursor: pointer;
+          z-index: 1;
+        }
+
+        #wrap .prev:hover {
+          background: url(../img/svg/left-arrow.svg) center center no-repeat;
+          z-index: 1;
+        }
+
+        #wrap .next {
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 41px;
+          height: 70px;
+          background: url(../img/svg/right-arrow.svg) center center no-repeat;
+          cursor: pointer;
+          z-index: 1;
+        }
+
+        #wrap .next:hover {
+          background: url(../img/svg/right-arrow.svg) center center no-repeat;
+          z-index: 1;
+        }
+      }
+
+      .p-grid-2 {
+        -ms-grid-row: 2;
+        position: relative;
+
+        &>*:not(:last-child) {
+          padding: 10px 0;
+        }
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        width: 93%;
+        margin: 20px auto;
+        max-width: 800px;
+      }
+
+      &__title {
+        font-family: "Lato", sans-serif;
+        margin: 0 0 1rem 0;
+        font-size: calc(24px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+        color: inherit;
+        transition: all 0.2s;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      &__text {
+        font-family: "Lato", sans-serif;
+        margin: 0;
+        transition: all 0.2s;
+        font-size: 18px;
+        text-align: justify;
+        /* IE setting */
+        padding: 10px 30px;
+
+        /* Reset */
+        @supports (display: grid) {
+          // padding: 0;
+        }
+      }
+
+      &__price {
+        transition: all 0.2s;
+        margin: 0;
+        text-align: center;
+        color: black;
+        font-size: 22px;
+
+        @media screen and (min-width: 800px) {
+          margin-top: 2rem;
+        }
+      }
+
+      &__storage-count {
+        transition: all 0.2s;
+        margin: 0;
+        text-align: center;
+        color: $green;
+        font-size: 16px;
+
+        @supports (display: grid) {
+          // max-width: 1200px;
+          // margin: 44vh auto 0;
+        }
+
+        @media (min-width: 480px) {
+          .single-product__title {
+            // Fluid font-size added
+            font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+          }
+        }
+      }
+    }
+  }
+}
+
+/* new styling */
+.p-grid-1.newProduct {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 16%;
+    top: 15px;
+    left: 100%;
+    transform: translateX(-99%);
+    content: "NYTT";
+    border: 1px solid $green;
+    text-align: center;
+    background-color: $green;
+    color: white;
+    border-radius: 2px;
+    z-index: 1;
+    padding: 5px;
+    font-size: 15px;
+
+    @media screen and (min-width:800px) {
+      font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
+  }
+}
+
+.p-grid-1.oldProduct {
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    width: 16%;
+    top: 15px;
+    left: 100%;
+    transform: translateX(-99%);
+    content: "-10%";
+    border: 1px solid red;
+    text-align: center;
+    background-color: #ff0000c4;
+    color: white;
+    border-radius: 2px;
+    z-index: 1;
+    padding: 5px;
+    font-size: 15px;
+
+    @media screen and (min-width:800px) {
+      font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
+  }
+}
+
+.p-grid-2.inCart::after {
+  content: url('../img/svg/cart-round.svg');
+  position: absolute;
+  // bottom: 20px;
+  // left: 85%;
+  width: 8%;
+  min-width: 30px;
+  max-width: 55px;
+  animation: jello-vertical 1s both;
+  // animation: tada 1.4s infinite;
+  left: 85%;
+  top: -65px;
+
+  @media screen and (min-width: 800px) {
+    top: -70px;
+  }
+
+}
+
+@keyframes jello-vertical {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

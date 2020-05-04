@@ -1,0 +1,43 @@
+main {
+  margin-bottom: 2rem;
+}
+
+img {
+  // width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.logo {
+  // background: url("../../img/product/svg/Logo.svg") no-repeat center center;
+  align-self: center;
+  height: 47px;
+
+  @media (min-width: 800px) {
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input {
+  border-radius: 3px;
+  background-color: #f60d4d20;
+
+  @supports (display: grid) {
+    border: none;
+  }
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 30px 10px 30px;
+}
+
+.hidden {
+  display: none !important;
+}

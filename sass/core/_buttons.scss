@@ -1,0 +1,33 @@
+input.categoryFilterButton {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px 45px 8px 45px;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+button.product__add-btn {
+  background: #7aaa39;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+  letter-spacing: 0.5px;
+  border: 0px;
+
+  &:hover {
+    background: #71bb0b;
+  }
+}
+
+.lastchance-btn {
+  &>a {
+    z-index: 20;
+  }
+}
+.single-product {
+    .p-grid-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

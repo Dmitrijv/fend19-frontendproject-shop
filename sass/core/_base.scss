@@ -1,0 +1,32 @@
+* {
+  font-family: "Playfair Display", serif;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+$red: #f60d4d; // for red btn
+$green: #9fa255; // primary green
+$green-light: #d1d39a; // become lighter when hover
+$darkgreen: #218838;
+$lightgrey: #3c3c3c; //for dropdown menu item hover
+$black: #333;
+$orange: #fa8231;
+$greenBtn: #7aaa39;
+$redBtn: #df5c4e;
+
+$oldItemBorder: red;
+$newItemBorder: $darkgreen;

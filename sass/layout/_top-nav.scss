@@ -1,0 +1,19 @@
+.top-nav {
+  display: none;
+
+  @media (min-width: 800px) {
+    display: block;
+    align-self: center;
+
+    &__form {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 20px;
+
+      .sidebar__menu__list-item {
+        margin-left: 20px;
+        list-style: none;
+      }
+    }
+  }
+}

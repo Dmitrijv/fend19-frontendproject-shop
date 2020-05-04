@@ -1,0 +1,532 @@
+@media all and (-ms-high-contrast: none) {
+
+  /* IE11 */
+  *::-ms-backdrop,
+  .main__header {
+    position: fixed;
+  }
+
+  main {
+    margin-top: 100px; //mobile
+  }
+}
+
+.main__header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 31px 65px -16px rgba(0, 0, 0, 0.3);
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    @media all and (-ms-high-contrast: none) {
+
+      /* IE11 */
+      *::-ms-backdrop,
+      .logo {
+        padding-top: 10px;
+      }
+    }
+
+    .logo {
+      a {
+        display: block;
+        width: 100%;
+
+        @supports (display: grid) {
+          height: 100%;
+        }
+
+        img {
+          max-width: 140px;
+          object-fit: contain;
+        }
+      }
+    }
+
+    @media (min-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__btn {
+    // margin-left: 8px;
+    background-color: $red;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    margin-left: 8px;
+    padding: 12px;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
+
+    &--input {
+      width: 150px;
+      background-color: white;
+      border: 1px solid $red;
+      border-radius: 3px 0 0 3px;
+      padding-left: 8px;
+    }
+
+    input {
+      @media screen and (max-width: 781px) and (min-width: 800px) {
+        min-width: 20vw;
+      }
+
+      @media (min-width: 930px) {
+        min-width: 220px;
+      }
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (max-width: 935px) and (min-width: 800px) {
+    button {
+      padding: 9px !important;
+    }
+  }
+
+  .nav-item {
+    display: flex;
+  }
+
+  @media (min-width: 800px) {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__item:nth-of-type(1) {
+      order: 2;
+
+      button.open-overlay {
+        position: relative;
+
+        @media screen and (min-width: 800px) {
+          // background-color: #f60d4d;
+          border: none;
+          border-radius: 3px;
+          color: white;
+          margin-left: 8px;
+          padding: 12px;
+        }
+      }
+    }
+  }
+
+  &__item:nth-of-type(2) {
+    order: 1;
+    margin: auto;
+  }
+}
+
+.hamburger__bar-wrapper {
+  position: fixed;
+  margin: 1em;
+  display: flex;
+  height: 2em;
+  place-content: center space-between;
+  flex-direction: column;
+  width: 2em;
+  cursor: pointer;
+  z-index: 12;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
+
+  span {
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    height: 8px;
+    background: $red;
+    opacity: 1;
+    transition: transform 0.25s ease-in-out;
+  }
+}
+
+.hamburger__bar-wrapper.active {
+  display: flex;
+  place-content: center center;
+  z-index: 999999;
+  opacity: 0.9;
+  transition: 0.5s ease-in-out;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
+
+  span {
+    position: relative;
+    background: $red;
+  }
+
+  span:nth-child(1) {
+    top: 11px;
+    transform: rotate(-135deg);
+  }
+
+  span:nth-child(2) {
+    transform: rotate(135deg);
+    top: 1px;
+  }
+
+  span:nth-child(3) {
+    background: rgba($color: #000000, $alpha: 0);
+  }
+}
+
+.desktop-text {
+  margin: 0;
+  display: none;
+
+  @media (min-width: 800px) {
+    display: inherit;
+  }
+}
+
+.img-cart,
+.img-search,
+.img-login,
+.img-latestproducts,
+.img-lastchance {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.img-cart,
+.img-login,
+.img-latestproducts,
+.img-lastchance {
+  @media (min-width: 800px) {
+    display: none;
+  }
+}
+
+.img-lastchance,
+.img-latestproducts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-btn,
+.cart-btn {
+  padding: 4px;
+  margin-top: 1em;
+  margin-right: 1em;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @media (min-width: 800px) {
+    position: inherit;
+    margin-top: 0;
+    padding: 12px;
+  }
+}
+
+.login-btn {
+  right: 34px;
+}
+
+.search-btn {
+  position: inherit;
+  margin-top: 0;
+  padding: 4px;
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  @media (min-width: 800px) {
+    position: inherit;
+    margin-top: 0;
+    padding: 8px;
+  }
+}
+
+/* For lastest products svg */
+.latestproducts-btn {
+  position: absolute;
+  top: 2vh;
+  right: 18vw;
+  padding: 13px;
+  width: 12px;
+  height: 12px;
+
+  @supports (display: grid) {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  @media screen and (min-width: 800px) {
+    position: static;
+    padding: 12px;
+    max-width: unset;
+    max-height: unset;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* For sista minut (last minute) lightning svg */
+.lastchance-btn {
+  position: absolute;
+  top: 2vh;
+  right: 10vw;
+  padding: 13px;
+
+  @supports (display: grid) {
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  @media screen and (min-width: 800px) {
+    position: static;
+    padding: 12px;
+    max-width: unset;
+    max-height: unset;
+  }
+}
+
+/* This is for dropdown menu */
+/* It should be visible only for width > 800px */
+.dropbtn,
+.dropdown,
+.dropdown-content,
+.dropdown-content a {
+  display: none;
+}
+
+.sidebar__menu__list-item {
+  label:hover {
+    background-color: #ddd;
+    color: $lightgrey;
+  }
+}
+
+@media (min-width: 800px) {
+  .top-nav {
+    display: none;
+  }
+
+  .dropbtn,
+  .dropdown,
+  .dropdown-content,
+  .dropdown-content a {
+    display: block;
+  }
+
+  .dropbtn {
+    background-color: $red;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    margin-left: 8px;
+    padding: 12px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: auto;
+  }
+
+  /*@media all and (min-width:800px)*/
+  .top-nav__form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    -ms-flex-direction: column;
+    padding-right: 20px;
+    margin: 0;
+    padding-top: 20px;
+    z-index: 1000;
+
+    li {
+      min-width: 200px;
+
+      .categoryFilterButton {
+        width: 200px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #ddd;
+          color: $lightgrey;
+        }
+      }
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #9fa255;
+  }
+}
+
+/* This is for adding new items into cart animation */
+button.open-overlay.inCartAnimation::after {
+  // @media screen and (min-width: 800px) {
+  content: attr(data-before);
+  position: absolute;
+  width: 30%;
+  top: 29%;
+  right: 3px;
+  // color: rgb(255, 254, 224);
+  color: rgb(34, 33, 4);
+  font-size: 14px;
+  animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+  // }
+}
+
+@keyframes bounceInDown {
+
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    // transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* This is for when choose one item already exists in cart */
+.main__header.alertInfo::before {
+  content: "Varan finns i varukorgen!";
+  position: absolute;
+  background-color: white;
+  border: 1px solid #f60d4d;
+  padding: 7px;
+  left: 99%;
+  width: max-content;
+  transform: translateX(-100%);
+  border-radius: 3px;
+  color: $red;
+  animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
+  top: 90px;
+
+  @media screen and (min-width:800px) {
+    top: 74px;
+  }
+}
