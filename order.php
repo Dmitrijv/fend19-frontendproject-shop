@@ -96,11 +96,6 @@ $order = [
 createNewOrder($order);
 
 $orderId = getOrderIdByTimeAndUser($date_ordered_at, $customerDataId);
-// var_dump($orderId);
-
-// var_dump($productListHtml);
-
-// error_log(ob_get_clean());
 
 $productListHtml = '';
 $totalAmount = 0;
@@ -134,12 +129,19 @@ foreach ($shoppingCart as &$cartItem) {
         </tr>';
 }
 
-// $totalAmount = 0;
-if ($free_shipping) {
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">' . $finalPriceAmount . 'kr</td></tr></tbody>';
-} else {
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">' . intval($finalPriceAmount + 50) . ' kr</td></tr></tbody>';
+if ($free_shipping == 0) {
+    $finalPriceAmount = intval($finalPriceAmount + 50);
 }
+
+$productListHtml .= '
+    <tr class="font-bold">
+        <td>Totalt:</td>
+        <td></td>
+        <td class="products-amount">' . $totalAmount . '</td>
+        <td>Frakt: 50 kr</td>
+        <td class="item-total">' . $finalPriceAmount . ' kr</td>
+    </tr>
+    </tbody>';
 
 ?>
 
@@ -180,8 +182,6 @@ if ($free_shipping) {
             <div class="order-description">
                 <p>Tack för din beställning!</p>
                 <dl>
-                    <dt>Kund ID:</dt>
-                    <dd id="customerId"><?php echo htmlspecialchars($customerDataId, ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Kundnamn</dt>
                     <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Phone</dt>
