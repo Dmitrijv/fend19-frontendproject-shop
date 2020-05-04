@@ -450,13 +450,11 @@ adminLib = (function() {
     },
 
     drawOrdersTable: function(orderJson) {
-      //   console.log(orderJson);
       const lib = this;
       const table = document.querySelector("table tbody#orderAdminTableBody");
       let tableContent = ``;
       orderJson.forEach(order => {
         const order_total = order.free_shipping == 0 ? Number(order.order_total) + 50 : order.order_total;
-
         let buttonHtml;
         switch (Number(order.status_id)) {
           case 1:

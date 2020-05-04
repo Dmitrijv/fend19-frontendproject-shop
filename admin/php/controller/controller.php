@@ -256,7 +256,7 @@ function getActiveOrders()
             SUM(ordered_product.price) as order_total,
             COUNT(ordered_product.product_id) as item_count,
             order_status.name as status_name,
-            active_order_of_products.free_shipping as shipping_fee
+            active_order_of_products.free_shipping as free_shipping
         FROM
             active_order_of_products,
             order_status,
@@ -280,7 +280,7 @@ function getActiveOrders()
             "status_id" => $tableRow['status_id'],
             "status_name" => $tableRow['status_name'],
             "order_total" => $tableRow['order_total'],
-            "shipping_fee" => $tableRow['shipping_fee'],
+            "free_shipping" => $tableRow['free_shipping'],
             "item_count" => $tableRow['item_count'],
         ];
         array_push($response, $category);
@@ -299,7 +299,7 @@ function getCompletedOrders()
             SUM(delivered_product.price) as order_total,
             COUNT(delivered_product.product_id) as item_count,
             order_status.name as status_name,
-            completed_order_of_products.free_shipping as shipping_fee
+            completed_order_of_products.free_shipping as free_shipping
         FROM
             completed_order_of_products,
             order_status,
@@ -323,7 +323,7 @@ function getCompletedOrders()
             "status_id" => $tableRow['status_id'],
             "status_name" => $tableRow['status_name'],
             "order_total" => $tableRow['order_total'],
-            "shipping_fee" => $tableRow['shipping_fee'],
+            "free_shipping" => $tableRow['free_shipping'],
             "item_count" => $tableRow['item_count'],
         ];
         array_push($response, $category);
