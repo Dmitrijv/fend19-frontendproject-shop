@@ -188,7 +188,7 @@ $productListHtml .= '
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Postal address</dt>
                     <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Beställningsnummer:</dt>
+                    <dt>Ordernummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
                     <dd class="dateToday"><?php echo $date_ordered_at; ?></dd>
