@@ -1,0 +1,13 @@
+form {
+  img.small-img-on-edit {
+    width: 105px;
+    height: 65px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 9px;
+    &:hover {
+      border-bottom: 2px solid red;
+      cursor: pointer;
+    }
+  }
+}
