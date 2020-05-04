@@ -37,9 +37,9 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
 
 // no cover image was uploaded
 /*if (count($gallery) === 0) {
-    //$gallery = "placeholder.png";
-    http_response_code(400);
-    die;
+//$gallery = "placeholder.png";
+http_response_code(400);
+die;
 } */
 
 $productTitle = trimSides($_POST["product_title"]);
@@ -55,7 +55,10 @@ if (
     !isValidProductString($productDescription) ||
     doesProductCategoryIdExist($productCategoryId) == false ||
     !isValidNumber($productPrice) ||
-    !isValidNumber($productStock)
+    !isValidNumber($productStock) ||
+    strlen($productDescription) > 5000 ||
+    $productStock > 999999 ||
+    $productPrice > 9999999
 ) {
     http_response_code(400);
     die;
