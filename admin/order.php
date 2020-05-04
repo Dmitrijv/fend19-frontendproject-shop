@@ -49,7 +49,7 @@ foreach ($shoppingCart as &$cartItem) {
             </td>
             <td class="item-name">' . $product['title'] . '</td>
             <td class="item-qty">' . $orderedQuantity . '</td>
-            <td class="item-price">' . $product['price'] . '</td>
+            <td class="item-price">' . $cartItem['price'] . '</td>
             <td class="item-total">' . $itemTotalPrice . ' kr</td>
         </tr>';
 }
