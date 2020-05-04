@@ -25,12 +25,12 @@ ul {
   }
 }
 
-a:not(td.linkContainer > a) {
+a:not(.linkContainer > a) {
   color: unset;
   text-decoration: none;
 }
 
-a:hover:not(td.linkContainer > a) {
+a:hover:not(.linkContainer > a) {
   color: unset;
   text-decoration: none;
   cursor: pointer;
