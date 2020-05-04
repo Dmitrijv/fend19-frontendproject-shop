@@ -184,7 +184,7 @@ const _rules = (function () {
 
     isAdress: function (value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
-      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?(\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$/
+      const reg1 = /^^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.|\,)?(.*\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$$/
       if (!reg1.test(value)) {
         return errorMsg
       }
