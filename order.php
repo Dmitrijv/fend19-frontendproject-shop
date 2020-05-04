@@ -86,6 +86,7 @@ if (
 }
 
 // create a new db entry for this order
+date_default_timezone_set('Europe/Stockholm');
 $date_ordered_at = date('Y-m-d H:i:s', time());
 $order = [
     "date_ordered_at" => $date_ordered_at,
