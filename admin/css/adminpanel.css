@@ -944,7 +944,6 @@ table#orderAdminTable th.sortable.sorted.sortDesc::after {
 
 input[name="countyNameFilter"] {
   max-width: 300px;
-  border: 1px solid green;
 }
 
 label.bold {
@@ -959,8 +958,6 @@ form.orderCategoryFilter {
       -ms-flex-align: center;
           align-items: center;
   max-width: 310px;
-  background-color: whitesmoke;
-  border: 1px solid gray;
   padding: 6px 4px;
   margin-top: 3px;
   margin-bottom: 10px;
