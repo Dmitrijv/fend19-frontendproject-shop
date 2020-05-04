@@ -2,10 +2,85 @@
 
 require_once __DIR__ . "/php/controller/controller.php";
 
-// if (!is_numeric($_POST['productId'])) {die;}
-// $orderId = intval($_POST['productId']);
+// invalid GET request, user can fuck off
+if (
+    !isset($_GET['orderId'])
+    || !is_numeric($_GET['orderId'])
+    || !isset($_GET['orderStatus'])
+    || !is_numeric($_GET['orderStatus'])) {
+    die;
+}
 
-// $order = getProductById($productId);
+$orderId = intval($_GET['orderId']);
+$statusId = intval($_GET['orderStatus']);
+
+$order = getOrderByIdAndStatus($orderId, $statusId);
+
+// invalid order id, user can fuck off
+if (!isset($order['id'])) {die;}
+
+$customerId = $order['customer_data_id'];
+$customerData = getCustomerDataById($customerId);
+$shoppingCart = getProductsByOrderIdAndStatus($orderId, $statusId);
+
+$productListHtml = '';
+$totalAmount = 0;
+$finalPriceAmount = 0;
+foreach ($shoppingCart as &$cartItem) {
+
+    $productId = intval($cartItem['product_id']);
+    $orderedQuantity = intval($cartItem['quantity']);
+    $totalAmount += $orderedQuantity;
+    $itemTotalPrice = intval($cartItem['price']) * $orderedQuantity;
+
+    $product = getProductById($productId);
+
+    $gallery = getProductImages($productId);
+    $coverImage = "placeholder.png";
+    if (count($gallery) != 0) {
+        $coverImage = $gallery[0];
+    }
+
+    $finalPriceAmount += $itemTotalPrice;
+    $productListHtml = $productListHtml . '
+        <tr>
+            <td class="item-image">
+                <img class="product-cover-small" src="../img/product/' . $coverImage . '" alt="' . $product["title"] . '">
+            </td>
+            <td class="item-name">' . $product['title'] . '</td>
+            <td class="item-qty">' . $orderedQuantity . '</td>
+            <td class="item-price">' . $product['price'] . '</td>
+            <td class="item-total">' . $itemTotalPrice . ' kr</td>
+        </tr>';
+}
+
+$shipping_message = "Frakt: 0 kr";
+if ($order['free_shipping'] == 0) {
+    $finalPriceAmount = intval($finalPriceAmount) + 50;
+    $shipping_message = "Frakt: 50 kr";
+}
+
+$productListHtml .= '
+    <tr class="font-bold">
+        <td>Totalt:</td>
+        <td></td>
+        <td class="products-amount">' . $totalAmount . '</td>
+        <td>' . $shipping_message . '</td>
+        <td class="item-total">' . $finalPriceAmount . ' kr</td>
+    </tr>';
+
+$orderActionHtml = '';
+if ($statusId == 2) {
+    $orderActionHtml = '
+    <form data-orderid="' . $orderId . '" onsubmit="adminLib.setOrderCompleted(event);">
+        <input class="btn create-btn" type="submit" name="edit" value="Slutför">
+    </form>';
+} else if ($statusId == 1) {
+    $orderActionHtml = '
+    <form data-orderid="' . $orderId . '" onsubmit="adminLib.setOrderInProgress(event);">
+        <input class="btn edit-btn" type="submit" name="edit" value="Behandla">
+    </form>';
+}
 
 ?>
 
@@ -43,10 +118,58 @@ require_once __DIR__ . "/php/controller/controller.php";
             </section>
             <!-- SIDEBAR ends -->
             <!-- CONTENT area begins -->
-            <section class="admin-content">
+            <section class="admin-content order-confirmation">
                 <div class="content-wrapper">
 
+                <div id='orderAlert' class="alert fail hidden">
+                    <span class="msg"></span>
+                    <form onsubmit='adminLib.redirectToOrdersPage(event)'>
+                        <button class="close-btn" type="submit">To Orders</button>
+                    </form>
+                </div>
 
+                <div class="order-description">
+                    <dl>
+                        <dt>Ordernummer:</dt>
+                        <dd id="orderNumber"><?php echo $order["id"]; ?></dd>
+                        <dt>Order status:</dt>
+                        <dd id="orderNumber"><?php echo $order["status_name"]; ?></dd>
+
+                        <dt>Beställningsdatum:</dt>
+                        <dd class="dateToday"><?php echo $order['date_ordered_at']; ?></dd>
+                        </br>
+
+                        <dt>Kundnamn</dt>
+                        <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                        <dt>Telefon</dt>
+                        <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                        <dt>Adress</dt>
+                        <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                        </br>
+
+                    </dl>
+                </div>
+
+                <table>
+                    <thead class="font-bold">
+                        <tr>
+                            <th></th>
+                            <th>Produkt</th>
+                            <th>Antal</th>
+                            <th>Pris</th>
+                            <th class="item-total">Totalt</th>
+                        </tr>
+                    </thead>
+                    <tbody class="order-list">
+                        <?php echo $productListHtml; ?>
+                    </tbody>
+                </table>
+
+                <div class="order-description" >
+                    <?php echo $orderActionHtml; ?>
+                </div>
+
+                </div>
             </section>
             <!-- CONTENT area ends -->
 

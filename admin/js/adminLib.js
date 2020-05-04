@@ -619,6 +619,11 @@ adminLib = (function() {
       );
     },
 
+    redirectToOrdersPage(event) {
+      window.location.href = `${location.protocol}//${location.host}/fend19-frontendproject-shop/admin/orders.php`;
+      event.preventDefault();
+    },
+
     isFileNameValid: function(fileName) {
       return (
         fileName &&
