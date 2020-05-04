@@ -63,6 +63,7 @@ if (
     !isValidNumber($productStock) ||
     strlen($productDescription) > 5000 ||
     $productStock > 999999 ||
+    strlen($productTitle) > 100 ||
     $productPrice > 9999999
 ) {
     http_response_code(400);

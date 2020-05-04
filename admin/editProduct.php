@@ -83,7 +83,7 @@ foreach ($allCategories as &$category) {
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input name="product_title" type="text" class="form-control" value="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
+                            <input name="product_title" type="text" maxlength="100" class="form-control" value="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>

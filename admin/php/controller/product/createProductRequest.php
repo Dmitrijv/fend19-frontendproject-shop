@@ -57,6 +57,7 @@ if (
     !isValidNumber($productPrice) ||
     !isValidNumber($productStock) ||
     strlen($productDescription) > 5000 ||
+    strlen($productTitle) > 100 ||
     $productStock > 999999 ||
     $productPrice > 9999999
 ) {
