@@ -101,7 +101,7 @@ foreach ($allCategories as &$category) {
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product_stock" type="number" min=0 max=99999 step='1' class="form-control" value='<?php echo htmlspecialchars($p['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>' pattern="\d{1,100}" required>
+                            <input name="product_stock" type="number" min=0 max=999999 step='1' class="form-control" value='<?php echo htmlspecialchars($p['number_in_stock'], ENT_QUOTES, 'UTF-8'); ?>' pattern="\d{1,100}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>

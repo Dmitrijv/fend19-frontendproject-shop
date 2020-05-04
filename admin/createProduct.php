@@ -68,11 +68,11 @@
                         </div>
                         <div class="form-group">
                             <label>Price (SEK)</label>
-                            <input name="product_price" type="number" min=0 step='0.01' class="form-control" required>
+                            <input name="product_price" type="number" min=0 max=9999999 step='0.01' class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Stock</label>
-                            <input name="product_stock" type="number" min=0 max=99999 step='1' class="form-control"  pattern="\d{1,100}" required>
+                            <input name="product_stock" type="number" min=0 max=999999 step='1' class="form-control"  pattern="\d{1,100}" required>
                         </div>
                         <input type="submit" class="btn btn-round create-btn" value="Submit">
                     </form>
