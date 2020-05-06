@@ -12,16 +12,15 @@ if (isset($_POST['submit'])) {
         $nameError = "Namn är obligatoriskt";
     } else {
         $name = test_input($_POST["name"]); // check name only contains letters and whitespace
-        $nameLength = strlen($name);
-        echo $nameLength;
+
         if (strlen($name) < 2) {
             $nameError = "Namnet är för kort";
         }
-        if (strlen($name) > 20) {
+        if (strlen($name) > 30) {
             $nameError = "Namnet är för långt";
         }
 
-        if (!preg_match("/^[a-zA-Z-ÅÖÄåöäéáóí\s]*$/", $name)) {
+        if (!preg_match("/^[a-z-åöäéáóíøæèüêû\s]+(\.)?/i", $name)) {
             $nameError = "Bara bokstäver och mellanslag är tillåtna";
         }
 
