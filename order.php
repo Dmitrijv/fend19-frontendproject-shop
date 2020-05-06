@@ -81,7 +81,7 @@ $free_shipping = 0;
 if (
     $orderTotalPrice >= 500
     /* valid postal numbers for stockholm area follow 1xx xx format */
-    || (strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s?\d{2}$/', $customerData['postal_number']) == true)) {
+    || preg_match('/^1\d{2}\s?\d{2}$/', $customerData['postal_number']) == true) {
     $free_shipping = 1;
 }
 

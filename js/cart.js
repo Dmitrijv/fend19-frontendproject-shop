@@ -221,13 +221,9 @@ function removeAllInCartStyle() {
 
 function inCartAnimation() {
   cartBtn.classList.add('inCartAnimation');
-  let amount = 0;
-  const productsInCart = JSON.parse(localStorage.getItem("products"));
-  productsInCart.map(item => {
-    amount += item.qty;
-    return amount;
-  })
+  const amount = getCartAmount();
   document.querySelector('button.open-overlay.inCartAnimation').setAttribute('data-before', amount)
+  document.querySelector('.item-in-cart-amount').textContent = amount;
   setTimeout(() => {
     cartBtn.classList.remove('inCartAnimation');
   }, 400);
@@ -240,3 +236,26 @@ function displayAlert() {
     mainHeaderArea.classList.remove('alertInfo');
   }, 1000);
 }
+
+function getCartAmount() {
+  let amount = 0;
+  if (!localStorage.hasOwnProperty('products')) {
+    document.querySelector('.item-in-cart-amount').textContent = 0
+    return;
+  }
+  const productsInCart = JSON.parse(localStorage.getItem("products"));
+  productsInCart.map(item => {
+    amount += item.qty;
+  })
+  document.querySelector('.item-in-cart-amount').textContent = amount;
+  return amount;
+}
+
+//.cart > .cart__erase / button / img addEventlistener
+cart.addEventListener('click', (e) => {
+  if (e.target.matches('.cart__erase') || e.target.matches('button') || e.target.matches('img')) {
+    getCartAmount();
+  }
+})
+
+window.onload = getCartAmount;

@@ -1,13 +1,14 @@
-/* TODO */
-/* regex pattern should use /i to reduce  */
-/* Tel: 08?? */
+/* DONE */
+/* use modifier i to reduce regex pattern */
+/* Tel: 08?? not now*/
 /* Name pattern:  Anna-Lena  |  Af Trolle */
 /* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
-/* A-ZÅÖÄåöäéáó  a-zöäåéáó */
+/* a-z-åöäéáóíøæèüêû */
 
-/* Name: 2-20 éáó(no longer require user's name must be capitalized, only no number; no space allowed for now)
+/* Name: 2-20 (no longer require user's name must be capitalized, no number allowed)
   E-mail: name@gmail.com
   Telephone: Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 | +46789123456 | 0712345678 | 
+            "+46 7 +467 07 Followed by 0/2/3/6/9, (a possible space), 4 digits, (a possible space), 3 digits" some pattern for mobile number
   Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
   Ort: uppercase/lowercase */
@@ -135,7 +136,7 @@ const _rules = (function () {
 
     isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-zA-Z-ÅÖÄåöäéáóí\s]+(\.)?/i.test(value)) {
+      if (!/^[a-z-åöäéáóíøæèüêû\s]+(\.)?/i.test(value)) {
         return errorMsg
       }
     },
@@ -164,7 +165,7 @@ const _rules = (function () {
 
     isEmail: function (value, errorMsg) {
       if (
-        !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+        !/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)*$/i.test(
           value
         )
       ) {
@@ -184,7 +185,7 @@ const _rules = (function () {
 
     isAdress: function (value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
-      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáóí\s]+(\.|\,)?(.*\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáóí\s]{0,})$/i
+      const reg1 = /^[a-z0-9-åöäéáóíøæèüêû\s]+(\.|\,)?(.*\d{1,})(\.)?([a-z0-9-åöäéáóíøæèüêû\s]{0,})$/i
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -199,7 +200,7 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^([A-Za-zÅÖÄåöäéáó])[a-zöäåéáó]+/i.test(value)) {
+      if (!/^[a-zåöäéáóíøæèüêû]+/i.test(value)) {
         return errorMsg
       }
     },
@@ -430,9 +431,9 @@ confirmBtn.onclick = function (event) {
     const zipcode = document.querySelector("#pcode");
     const county = document.querySelector('#city').value.toLowerCase();
     let realTotalPriceArea = document.querySelector(".item-total");
-    
+
     /* Now double check if zipcode & county spelling belong to Stockholm region */
-    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) && /^stockholm/.test(county) || subTotal >= 500) {
+    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
       // free delivery
       // console.log('free delivery');
       deliveryFeeTextArea.textContent = "0";

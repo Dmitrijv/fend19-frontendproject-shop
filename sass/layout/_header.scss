@@ -530,3 +530,11 @@ button.open-overlay.inCartAnimation::after {
     top: 74px;
   }
 }
+
+.item-in-cart-amount {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  color: #333;
+}

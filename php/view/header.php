@@ -21,7 +21,7 @@
                     </button>
                 </a>
                 <button type="button" class="open-overlay"><img class="img-cart" src="./img/svg/cart-mob.svg" alt="Varukorg">
-                    <p class="desktop-text">Varukorg</p>
+                    <p class="desktop-text">Varukorg<span class="item-in-cart-amount">0</span></p>
                 </button>
             </div>
             <div class="nav__item main__header__search">
