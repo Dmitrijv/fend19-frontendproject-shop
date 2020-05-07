@@ -7,7 +7,8 @@ if (
     !isset($_GET['orderId'])
     || !is_numeric($_GET['orderId'])
     || !isset($_GET['orderStatus'])
-    || !is_numeric($_GET['orderStatus'])) {
+    || !is_numeric($_GET['orderStatus'])
+) {
     die;
 }
 
@@ -17,7 +18,9 @@ $statusId = intval($_GET['orderStatus']);
 $order = getOrderByIdAndStatus($orderId, $statusId);
 
 // invalid order id, user can fuck off
-if (!isset($order['id'])) {die;}
+if (!isset($order['id'])) {
+    die;
+}
 
 $customerId = $order['customer_data_id'];
 $customerData = getCustomerDataById($customerId);
@@ -88,38 +91,38 @@ if ($statusId == 2) {
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Area | Order Information</title>
-        <link rel="stylesheet" href="css/adminpanel.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Area | Order Information</title>
+    <link rel="stylesheet" href="css/adminpanel.css">
+</head>
 
-    <body>
+<body>
 
-        <header class="admin-header">
-            <div class="header-container">
-                <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
-                <h1>Admin panel - Order Information</h1>
-            </div>
-        </header>
+    <header class="admin-header">
+        <div class="header-container">
+            <img class="header-icon" src="img/svg/gear.svg" alt="Gear Icon">
+            <h1>Admin panel - Order Information</h1>
+        </div>
+    </header>
 
-        <main class="admin-main">
-            <!-- SIDEBAR begins -->
-            <section class="admin-sidebar">
-                <nav class="admin-nav">
-                    <ul>
-                        <li><a href="../index.php">Store</a></li>
-                        <li><a href="index.php">Categories</a></li>
-                        <li><a href="products.php">Products</a></li>
-                        <li><a href="orders.php" class="active">Orders</a></li>
-                    </ul>
-                </nav>
-            </section>
-            <!-- SIDEBAR ends -->
-            <!-- CONTENT area begins -->
-            <section class="admin-content order-confirmation">
-                <div class="content-wrapper">
+    <main class="admin-main">
+        <!-- SIDEBAR begins -->
+        <section class="admin-sidebar">
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="../index.php">Store</a></li>
+                    <li><a href="index.php">Categories</a></li>
+                    <li><a href="products.php">Products</a></li>
+                    <li><a href="orders.php" class="active">Orders</a></li>
+                </ul>
+            </nav>
+        </section>
+        <!-- SIDEBAR ends -->
+        <!-- CONTENT area begins -->
+        <section class="admin-content order-confirmation">
+            <div class="content-wrapper">
 
                 <div id='orderAlert' class="alert fail hidden">
                     <span class="msg"></span>
@@ -143,6 +146,8 @@ if ($statusId == 2) {
                         <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
                         <dt>Telefon</dt>
                         <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                        <dt>Email</dt>
+                        <dd id="email"> <?php echo htmlspecialchars($customerData['email'], ENT_QUOTES, 'UTF-8'); ?> </dd>
                         <dt>Adress</dt>
                         <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
                         </br>
@@ -165,19 +170,19 @@ if ($statusId == 2) {
                     </tbody>
                 </table>
 
-                <div class="order-description" >
+                <div class="order-description">
                     <?php echo $orderActionHtml; ?>
                 </div>
 
-                </div>
-            </section>
-            <!-- CONTENT area ends -->
+            </div>
+        </section>
+        <!-- CONTENT area ends -->
 
-        </main>
+    </main>
 
-        <?php require_once __DIR__ . '/php/view/adminjscore.php';?>
+    <?php require_once __DIR__ . '/php/view/adminjscore.php'; ?>
 
-    </body>
+</body>
 
 
 </html>
