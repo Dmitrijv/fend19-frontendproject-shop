@@ -46,9 +46,7 @@ if (checkoutCart.length === 0) {
 subTotal = subTotal.toFixed(2)
 
 totalSumForm.innerHTML += `
- 
       <p class="item-total" >Totalt att betala: ${subTotal} SEK</p>
-   
     `
 
 const keepShoppingBtn = document.querySelector(

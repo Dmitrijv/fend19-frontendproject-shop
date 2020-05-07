@@ -12,77 +12,10 @@
   Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
   Ort: uppercase/lowercase */
-
-/* Generate order list */
-const listArea = document.querySelector(
-  ".checkout-form__cart-section__product-list"
-)
 const confirmBtn = document.querySelector(
   ".checkout-form__delivery-section__deliveryBtn"
 )
-const shoppingCart = JSON.parse(localStorage.getItem("products"))
-let realTotalPrice = 0
-let subTotal = 0
-let itemsCountTotal = 0
-
-/* from Martin */
-let productList = document.querySelector(
-  ".checkout-form__cart-section__product-list"
-)
-let totalSumCart = document.querySelector(
-  ".checkout-form__cart-section__totalsum"
-) //delivery fee check is in the bottom
-let totalSumForm = document.querySelector(".checkout-form__price")
-const keepShoppingBtn = document.querySelector(
-  ".checkout-form__cart-section__keep-shopping-btn"
-)
-keepShoppingBtn.addEventListener("click", function () {
-  location.href = "/fend19-frontendproject-shop/index.php"
-})
-
-/* object structure: id | name | img | price | qty */
-/* Sorry about this part, so tired of correcting every ES5 pieces back to its old way. */
-if (localStorage.hasOwnProperty("products")) {
-  const length = shoppingCart.length
-  for (let a = 0; a < length; a++) {
-    const item = shoppingCart[a]
-    const itemName = item.name
-    const name = itemName.split("-").pop() //new
-    const itemCount = item.qty * 1
-    const itemPrice = item.price.slice(0, -3)
-    const itemImage = item.img
-    const itemTotalPrice = Math.round(1 * itemCount * (1 * itemPrice))
-    subTotal += itemTotalPrice
-    itemsCountTotal += itemCount
-
-    productList.innerHTML += `
-    <div class="checkout-form__cart-section__product-container">
-      <div class="checkout-form__cart-section__img-container">
-        <img class="checkout-form__cart-section__img-container--img" src="${itemImage}" alt="${itemName}">
-      </div>
-      <p class="item-name">"${name}"</p>
-      <p class="checkout-form__cart-section__item-qty"></p>
-      <p class="checkout-form__cart-section__item-price">${itemCount} st, ${itemPrice} kr</p>
-    </div>`
-  }
-
-  if (itemsCountTotal === 1) {
-    totalSumCart.innerHTML += "<p>"
-      .concat(itemsCountTotal, ' st Artikel</p><p class="item-total" >Totalt: ')
-      .concat(subTotal, " kr</p>")
-  } else {
-    totalSumCart.innerHTML += "<p>"
-      .concat(
-        itemsCountTotal,
-        ' st Artiklar</p><p class="item-total" >Totalt: '
-      )
-      .concat(subTotal, " kr</p>")
-  }
-} else {
-  confirmBtn.disabled = true
-  productList.innerHTML +=
-    '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
-}
+shopLib.drawOrderList();
 
 /* Validation related part, Strategy pattern is implemented here. */
 const _validator = (function () {

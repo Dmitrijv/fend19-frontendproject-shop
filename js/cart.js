@@ -4,6 +4,8 @@ const cartCloseBtn = document.querySelector(".cart-close-btn");
 const clearBtn = document.querySelector(".cart__erase");
 const totalSum = document.querySelector(".total-sum");
 const overlayClick = document.querySelector(".overlay");
+const orderListArea = document.querySelector('.checkout-form__cart-section');
+
 clearBtn.addEventListener("click", clearCart);
 cartBtn.addEventListener("click", toggleCart);
 cartCloseBtn.addEventListener("click", toggleCart);
@@ -255,6 +257,7 @@ function getCartAmount() {
 cart.addEventListener('click', (e) => {
   if (e.target.matches('.cart__erase') || e.target.matches('button') || e.target.matches('img')) {
     getCartAmount();
+    shopLib.drawOrderList();
   }
 })
 
