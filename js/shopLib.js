@@ -306,6 +306,7 @@ shopLib = (function () {
           '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
           totalSumCart.innerHTML = '';
       }
+      return subTotal;
     },
 
 

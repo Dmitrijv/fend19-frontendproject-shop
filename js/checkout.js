@@ -1,4 +1,5 @@
-/* DONE */
+/* TODO */
+/* Email length restrain?? 64 + 255 (https://blog.moonmail.io/what-is-the-maximum-length-of-a-valid-email-address-f712c6c4bc93) */
 /* use modifier i to reduce regex pattern */
 /* Tel: 08?? not now*/
 /* Name pattern:  Anna-Lena  |  Af Trolle */
@@ -14,7 +15,7 @@
   Ort: uppercase/lowercase */
 const confirmBtn = document.querySelector(".checkout-form__delivery-section__deliveryBtn");
 const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn");
-let subTotal = 0;
+// let subTotal = 0;
 
 shopLib.drawOrderList();
 
@@ -88,7 +89,7 @@ const _rules = (function () {
     },
 
     isPhone: function (value, errorMsg) {
-      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}/
+      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}$/
       /* Matches 0798789678 */
       const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/
       /* Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 */
@@ -98,11 +99,8 @@ const _rules = (function () {
     },
 
     isEmail: function (value, errorMsg) {
-      if (
-        !/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)*$/i.test(
-          value
-        )
-      ) {
+      const regNew = /^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*\@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)?(\.[A-Za-z]{2,})$/;
+      if (!regNew.test(value)) {
         return errorMsg
       }
     },
@@ -134,7 +132,8 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^[a-zåöäéáóíøæèüêû]+/i.test(value)) {
+      // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad 
+      if (!/^[a-zåöäéáóíøæèüêû\s]+/i.test(value)) {
         return errorMsg
       }
     },
@@ -161,6 +160,10 @@ validator.add(forms.email, [{
   {
     strategy: "isEmail",
     msg: "Ange en giltig email-address",
+  },
+  {
+    strategy: "maxLength:254",
+    msg: "Email length får ej vara längre än 254 tecken",
   },
 ])
 
@@ -220,6 +223,10 @@ validator.add(forms.phone, [{
     strategy: "isPhone",
     msg: "Ange ett giltigt telefonnummer",
   },
+  {
+    strategy: "maxLength:12",
+    msg: "Nummeret format ej korrekt",
+  },
 ])
 
 validator.add(forms.adress, [{
@@ -233,6 +240,10 @@ validator.add(forms.adress, [{
   {
     strategy: "isSpace",
     msg: "Please input valid text",
+  },
+  {
+    strategy: "maxLength:50",
+    msg: "StadNamnet får ej vara längre än 50 tecken",
   },
 ])
 
@@ -260,7 +271,7 @@ validator.add(forms.county, [{
   },
   {
     strategy: "minLength:2",
-    msg: "StadNamnet får ej vara längre än 20 tecken",
+    msg: "StadNamnet minst 2 tecken",
   },
   {
     strategy: "maxLength:20",
@@ -319,7 +330,7 @@ confirmBtn.onclick = function (event) {
   const phone = removeSpace(document.querySelector("#tel").value);
   const address = formatName(document.querySelector("#adress").value);
   const pcode = formatZipcode(document.querySelector("#pcode").value);
-  const city = capitalizeFirstLetter(document.querySelector("#city").value);
+  const city = formatName(document.querySelector("#city").value);
 
   redrawCustomerInfoTable()
 
@@ -373,7 +384,7 @@ confirmBtn.onclick = function (event) {
     const zipcode = document.querySelector("#pcode");
     const county = document.querySelector('#city').value.toLowerCase();
     let realTotalPriceArea = document.querySelector(".item-total");
-
+    let subTotal = shopLib.drawOrderList();
     /* Now double check if zipcode & county spelling belong to Stockholm region */
     if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
       // free delivery
