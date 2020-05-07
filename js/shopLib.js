@@ -149,6 +149,7 @@ shopLib = (function () {
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
       if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
+        document.querySelector(".emptyResultMessage").classList.add('hidden');
         event.preventDefault();
         return;
       } else {
@@ -182,6 +183,7 @@ shopLib = (function () {
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
       if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
+        document.querySelector(".emptyResultMessage").classList.add('hidden');
         event.preventDefault();
         return;
       } else {
