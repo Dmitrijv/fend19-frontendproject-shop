@@ -12,9 +12,10 @@
   Address: no longer require ends with gatu/vägen... with 1~several number and/or several char, allows multiple words
   Postnumber: 123 45 | 12345 (both way works)
   Ort: uppercase/lowercase */
-const confirmBtn = document.querySelector(
-  ".checkout-form__delivery-section__deliveryBtn"
-)
+const confirmBtn = document.querySelector(".checkout-form__delivery-section__deliveryBtn");
+const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn");
+let subTotal = 0;
+
 shopLib.drawOrderList();
 
 /* Validation related part, Strategy pattern is implemented here. */
@@ -69,7 +70,7 @@ const _rules = (function () {
 
     isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-z-åöäéáóíøæèüêû\s]+(\.)?/i.test(value)) {
+      if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(value)) {
         return errorMsg
       }
     },
@@ -173,7 +174,7 @@ validator.add(forms.fname, [{
   },
   {
     strategy: "isName",
-    msg: "Ange namn med stor bokstav, använd endast bokstäver",
+    msg: "Ange namn med bokstav, använd endast bokstäver",
   },
   {
     strategy: "minLength:2",
@@ -195,7 +196,7 @@ validator.add(forms.lname, [{
   },
   {
     strategy: "isName",
-    msg: "Ange namn med stor bokstav, använd endast bokstäver",
+    msg: "Ange namn med bokstav, använd endast bokstäver",
   },
   {
     strategy: "minLength:2",
@@ -256,6 +257,14 @@ validator.add(forms.county, [{
   {
     strategy: "isSpace",
     msg: "Var god fyll i uppgiftsfälten",
+  },
+  {
+    strategy: "minLength:2",
+    msg: "StadNamnet får ej vara längre än 20 tecken",
+  },
+  {
+    strategy: "maxLength:20",
+    msg: "StadNamnet får ej vara längre än 20 tecken",
   },
   {
     strategy: "isCounty",
