@@ -149,6 +149,7 @@ shopLib = (function () {
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
       if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
+        document.querySelector(".emptyResultMessage").classList.add('hidden');
         event.preventDefault();
         return;
       } else {
@@ -182,6 +183,7 @@ shopLib = (function () {
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
       if (!keyword || keyword.length < 2) {
         keywordErrMsg.classList.remove("hidden");
+        document.querySelector(".emptyResultMessage").classList.add('hidden');
         event.preventDefault();
         return;
       } else {
@@ -306,6 +308,7 @@ shopLib = (function () {
           '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
           totalSumCart.innerHTML = '';
       }
+      return subTotal;
     },
 
 
