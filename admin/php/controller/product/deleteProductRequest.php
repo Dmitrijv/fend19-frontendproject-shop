@@ -22,5 +22,5 @@ if (hasProductBeenOrdered($productId) == true) {
     die;
 }
 
-deleteProduct();
+deleteProduct($productId);
 die;

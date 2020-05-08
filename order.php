@@ -8,26 +8,22 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['shoppingCart'])) {
 require_once __DIR__ . "/php/controller/controller.php";
 require_once __DIR__ . "/php/model/utils.php";
 
-// ob_start();
-
 $shoppingCart = json_decode($_POST['shoppingCart'], true);
+$shoppingCart = array_filter($shoppingCart, function ($item) {
+    return doesProductIdExist($item['id']);
+});
+
 // trying to order an empty cart
-if (count($shoppingCart) === 0) {
-    header("Location: index.php");
+if (count($shoppingCart) == 0) {
+    header("Location: error.php?errorMessage=Går ej att beställa en tom varukorg.");
     die;
 }
 
 $orderTotalPrice = 0;
 // check if ordered products exist and are in stock
 foreach ($shoppingCart as &$cartItem) {
-    // var_dump($cartItem);
     $productId = intval($cartItem['id']);
-    if (doesProductIdExist($productId) === false) {
-        header("Location: error.php?errorMessage=Den beställda produkten existerar inte.");
-        die;
-    }
     $product = getProductById($productId);
-    // var_dump($product);
     $orderedQuantity = intval($cartItem['qty']);
     if ($product['number_in_stock'] < $orderedQuantity) {
         header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.");
