@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
             $nameError = "Namnet är för långt";
         }
 
-        if (!preg_match("/^[a-z-åöäéáóíøæèüêû\s]+(\.)?/i", $name)) {
+        if (!preg_match("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/", $name)) {
             $nameError = "Bara bokstäver och mellanslag är tillåtna";
         }
 
