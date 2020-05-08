@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KFBHvHY/frameme-logo.png" title="favicon">
     <title>Admin Area | Products</title>
     <link rel="stylesheet" href="css/adminpanel.css">
     <!--[if gte IE 8]>
