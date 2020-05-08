@@ -9,6 +9,13 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
     die;
 }
 
+if (!isset($_POST['product_id'])) {
+    http_response_code(400);
+    die;
+}
+
+$productId = intval($_POST["product_id"]);
+
 function isAttatchedImageValid($target_file, $i)
 {
     $allowedExtentions = ["gif", "jpeg", "jpg", "png"];
@@ -22,9 +29,17 @@ function isAttatchedImageValid($target_file, $i)
     return true;
 }
 
-// loop over uploaded files
 $numberOfFiles = sizeof($_FILES['product_attatched_image']["name"]);
+$imagesToDelete = json_decode($_POST['images_to_delete']);
+$oldGallery = getProductImages($productId);
+
+if ($numberOfFiles + (count($oldGallery) - count($imagesToDelete)) > 5) {
+    http_response_code(400);
+    die;
+}
+
 $gallery = [];
+// validate uploaded images
 for ($i = 0; $i < $numberOfFiles; $i++) {
     $fileName = $_FILES["product_attatched_image"]["name"][$i];
     $img_target_dir = __DIR__ . "../../../../../img/product/";
@@ -40,18 +55,11 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
     }
 }
 
-if (!isset($_POST['product_id'])) {
-    http_response_code(400);
-    die;
-}
-
-$productId = intval($_POST["product_id"]);
 $productTitle = trimSides($_POST["product_title"]);
 $productDescription = trimSides($_POST["product_description"]);
 $productCategoryId = intval($_POST["product_category"]);
 $productPrice = floatval($_POST["product_price"]);
 $productStock = intval($_POST["product_stock"]);
-$imagesToDelete = json_decode($_POST['images_to_delete']);
 
 // validate form data
 if (

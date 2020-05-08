@@ -22,9 +22,15 @@ function isAttatchedImageValid($target_file, $i)
     return true;
 }
 
-// loop over uploaded files and save pictures to disc
 $numberOfFiles = sizeof($_FILES['product_attatched_image']["name"]);
+// too many images were uploaded
+if ($numberOfFiles > 5) {
+    http_response_code(400);
+    die;
+}
+
 $gallery = [];
+// validate uploaded files
 for ($i = 0; $i < $numberOfFiles; $i++) {
     $img_target_dir = __DIR__ . "../../../../../img/product/";
     $target_file = $img_target_dir . basename($_FILES["product_attatched_image"]["name"][$i]);
@@ -34,13 +40,6 @@ for ($i = 0; $i < $numberOfFiles; $i++) {
         move_uploaded_file($_FILES["product_attatched_image"]["tmp_name"][$i], $target_file);
     }
 }
-
-// no cover image was uploaded
-/*if (count($gallery) === 0) {
-//$gallery = "placeholder.png";
-http_response_code(400);
-die;
-} */
 
 $productTitle = trimSides($_POST["product_title"]);
 $productDescription = trimSides($_POST["product_description"]);
