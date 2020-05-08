@@ -1,8 +1,8 @@
 const shoppingCart = shopLib.getShoppingCart();
-const customerInfo = JSON.parse(localStorage.getItem('customer'));
-document.querySelector('#fullname').textContent = customerInfo.name;
-document.querySelector('#phone').textContent = customerInfo.phone;
-document.querySelector('#address').textContent = customerInfo.fullAddress;
+const customerInfo = JSON.parse(localStorage.getItem("customer"));
+document.querySelector("#fullname").textContent = customerInfo.name;
+document.querySelector("#phone").textContent = customerInfo.phone;
+document.querySelector("#address").textContent = customerInfo.fullAddress;
 
 let subTotal = 0;
 let itemsCountTotal = 0;
@@ -48,10 +48,7 @@ document.querySelector(".products-amount").innerHTML = itemsCountTotal;
 document.querySelector(".dateToday").textContent = new Date().toLocaleString();
 
 const myBtn2 = document.querySelector(".goback-Btn");
-myBtn2.addEventListener("click", function () {
-  // shopLib.clearShoppingCart();
-  // localStorage.clear();
+myBtn2.addEventListener("click", function() {
   localStorage.removeItem("products");
-  // localStorage.removeItem("customer");
   location.href = "/fend19-frontendproject-shop/index.php";
 });
