@@ -381,6 +381,10 @@ adminLib = (function() {
             messageElement.textContent = "Failed to delete product.";
             lib.setFailStyle(alertElement);
             event.preventDefault();
+          } else if (this.readyState == 4 && this.status == 500) {
+            messageElement.textContent = "Deleting a product that has been ordered is not allowed.";
+            lib.setFailStyle(alertElement);
+            event.preventDefault();
           }
         };
 

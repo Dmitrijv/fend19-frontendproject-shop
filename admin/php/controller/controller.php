@@ -440,5 +440,5 @@ function getCustomerDataById($customerId)
 
 function hasProductBeenOrdered($productId)
 {
-    return DB::run("SELECT EXISTS(SELECT * FROM ordered_product, delivered_product WHERE delivered_product.product_id=? OR ordered_product.product_id=?)", [$orderId, $orderId])->fetchColumn();
+    return DB::run("SELECT EXISTS(SELECT * FROM ordered_product, delivered_product WHERE delivered_product.product_id=? OR ordered_product.product_id=?)", [$productId, $productId])->fetchColumn();
 }

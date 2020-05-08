@@ -14,5 +14,13 @@ if (!isset($_POST["productId"])) {
     die;
 }
 
-deleteProduct($_POST["productId"]);
+$productId = intval($_POST["productId"]);
+
+// deleting products that have been ordered is not allowed (lolwhat)
+if (hasProductBeenOrdered($productId) == true) {
+    http_response_code(500);
+    die;
+}
+
+deleteProduct();
 die;
