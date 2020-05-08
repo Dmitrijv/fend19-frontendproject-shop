@@ -21,9 +21,9 @@
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
 
     <main id="checkout-main">
@@ -73,7 +73,7 @@
                     <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 45">
 
                     <label class="checkout-form__delivery-section__label" for="">Ort</label>
-                    <input class="checkout-form__delivery-section__input" id="city" type="text" name="county">
+                    <input class="checkout-form__delivery-section__input" id="city" type="text" name="county" maxlength=100>
 
                     <!-- this is filled from local storage with js -->
                     <input type="hidden" name="shoppingCart" value="">
@@ -93,10 +93,10 @@
 
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
     <!-- js scripts go here -->
-    <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require_once __DIR__ . '/php/view/jscore.php';?>
     <!-- <script type="text/javascript" src="./js/checkout-form.js"></script> -->
 
     <!-- Validation & draw cart-section for Checkout -->

@@ -20,291 +20,300 @@ const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__ke
 shopLib.drawOrderList();
 
 /* Validation related part, Strategy pattern is implemented here. */
-const _validator = (function () {
-  return function (ruleList) {
+const _validator = (function() {
+  return function(ruleList) {
     return {
       strategyFn: [],
       ruleList: ruleList,
-      add: function (dom, rules) {
-        let that = this
+      add: function(dom, rules) {
+        let that = this;
         for (let i = 0, len = rules.length; i < len; i++) {
-          ;
-          (function (i) {
-            that.strategyFn.push(function () {
-              let info = []
+          (function(i) {
+            that.strategyFn.push(function() {
+              let info = [];
               let method = rules[i].strategy.split(":"),
                 methodName = method[0],
                 errMsg = rules[i].msg,
-                val = dom.value
-              info.push(val)
+                val = dom.value;
+              info.push(val);
               if (method[1]) {
-                info.push(method[1])
+                info.push(method[1]);
               }
-              info.push(errMsg)
-              return that.ruleList[methodName].apply(dom, info)
-            })
-          })(i)
+              info.push(errMsg);
+              return that.ruleList[methodName].apply(dom, info);
+            });
+          })(i);
         }
       },
-      start: function () {
+      start: function() {
         for (i in this.strategyFn) {
           if (this.strategyFn.hasOwnProperty(i)) {
-            let msg = this.strategyFn[i]()
+            let msg = this.strategyFn[i]();
             if (msg) {
-              return msg
+              return msg;
             }
           }
         }
-      },
-    }
-  }
-})()
+      }
+    };
+  };
+})();
 
 /* rule-list */
-const _rules = (function () {
+const _rules = (function() {
   const rulelist = {
-    isBlank: function (value, errorMsg) {
+    isBlank: function(value, errorMsg) {
       if (value === "") {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isName: function (value, errorMsg) {
+    isName: function(value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(value)) {
-        return errorMsg
+      if (
+        !/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(
+          value
+        )
+      ) {
+        return errorMsg;
       }
     },
 
-    minLength: function (value, length, errorMsg) {
+    minLength: function(value, length, errorMsg) {
       if (value.length < length) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    maxLength: function (value, length, errorMsg) {
+    maxLength: function(value, length, errorMsg) {
       if (value.length > length) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isPhone: function (value, errorMsg) {
-      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}$/
+    isPhone: function(value, errorMsg) {
+      const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}$/;
       /* Matches 0798789678 */
-      const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/
+      const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/;
       /* Matches 	+46 8 123 456 78 | 08-123 456 78 | 0123-456 78 */
       if (!reg1.test(value) && !reg2.test(value)) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isEmail: function (value, errorMsg) {
+    isEmail: function(value, errorMsg) {
       const regNew = /^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*\@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)?(\.[A-Za-z]{2,})$/;
       if (!regNew.test(value)) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isSpace: function (value, errorMsg) {
+    isSpace: function(value, errorMsg) {
       if (
-        [...value].every((item) => {
-          return item === " "
+        [...value].every(item => {
+          return item === " ";
         })
       ) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isAdress: function (value, errorMsg) {
+    isAdress: function(value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
-      const reg1 = /^[a-z0-9-åöäéáóíøæèüêû\s]+(\.|\,)?(.*\d{1,})(\.)?([a-z0-9-åöäéáóíøæèüêû\s]{0,})$/i
+      const reg1 = /^[a-z0-9-åöäéáóíøæèüêû\s]+(\.|\,)?(.*\d{1,})(\.)?([a-z0-9-åöäéáóíøæèüêû\s]{0,})$/i;
       if (!reg1.test(value)) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isPcode: function (value, errorMsg) {
+    isPcode: function(value, errorMsg) {
       /* very rough way, not accurate enough */
       if (!/^\d{3}\s*\d{2}$/.test(value)) {
-        return errorMsg
+        return errorMsg;
       }
     },
 
-    isCounty: function (value, errorMsg) {
+    isCounty: function(value, errorMsg) {
       // first letter no longer required to be capitalized
-      // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad 
+      // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad
       if (!/^[a-zåöäéáóíøæèüêû\s]+/i.test(value)) {
-        return errorMsg
+        return errorMsg;
       }
-    },
-  }
+    }
+  };
   return {
-    rulelist: rulelist,
-  }
-})()
+    rulelist: rulelist
+  };
+})();
 
 /* Do validation */
-const validator = _validator(_rules.rulelist)
+const validator = _validator(_rules.rulelist);
 
-const forms = document.querySelector(".checkout-form")
+const forms = document.querySelector(".checkout-form");
 
 /* Add method */
-validator.add(forms.email, [{
+validator.add(forms.email, [
+  {
     strategy: "isBlank",
-    msg: "Var god ange en email-address",
+    msg: "Var god ange en email-address"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "isEmail",
-    msg: "Ange en giltig email-address",
+    msg: "Ange en giltig email-address"
   },
   {
     strategy: "maxLength:254",
-    msg: "Email length får ej vara längre än 254 tecken",
-  },
-])
+    msg: "Email length får ej vara längre än 254 tecken"
+  }
+]);
 
-validator.add(forms.fname, [{
+validator.add(forms.fname, [
+  {
     strategy: "isBlank",
-    msg: "Var god ange ett förnamn",
+    msg: "Var god ange ett förnamn"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "isName",
-    msg: "Ange namn med bokstav, använd endast bokstäver",
+    msg: "Ange namn med bokstav, använd endast bokstäver"
   },
   {
     strategy: "minLength:2",
-    msg: "Ange minst 2 bokstäver",
+    msg: "Ange minst 2 bokstäver"
   },
   {
     strategy: "maxLength:20",
-    msg: "Förnamn får ej vara längre än 20 tecken",
-  },
-])
+    msg: "Förnamn får ej vara längre än 20 tecken"
+  }
+]);
 
-validator.add(forms.lname, [{
+validator.add(forms.lname, [
+  {
     strategy: "isBlank",
-    msg: "Ange efternamn",
+    msg: "Ange efternamn"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "isName",
-    msg: "Ange namn med bokstav, använd endast bokstäver",
+    msg: "Ange namn med bokstav, använd endast bokstäver"
   },
   {
     strategy: "minLength:2",
-    msg: "Ange minst 2 bokstäver",
+    msg: "Ange minst 2 bokstäver"
   },
   {
     strategy: "maxLength:20",
-    msg: "Förnamn får ej vara längre än 20 tecken",
-  },
-])
+    msg: "Förnamn får ej vara längre än 20 tecken"
+  }
+]);
 
-validator.add(forms.phone, [{
+validator.add(forms.phone, [
+  {
     strategy: "isBlank",
-    msg: "Ange ett telefonnummer",
+    msg: "Ange ett telefonnummer"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "isPhone",
-    msg: "Ange ett giltigt telefonnummer",
+    msg: "Ange ett giltigt telefonnummer"
   },
   {
     strategy: "maxLength:12",
-    msg: "Nummeret format ej korrekt",
-  },
-])
+    msg: "Nummeret format ej korrekt"
+  }
+]);
 
-validator.add(forms.adress, [{
+validator.add(forms.adress, [
+  {
     strategy: "isBlank",
-    msg: "Ange en adress",
+    msg: "Ange en adress"
   },
   {
     strategy: "isAdress",
-    msg: "felaktig adress, ange en giltig adress",
+    msg: "felaktig adress, ange en giltig adress"
   },
   {
     strategy: "isSpace",
-    msg: "Please input valid text",
+    msg: "Please input valid text"
   },
   {
     strategy: "maxLength:50",
-    msg: "StadNamnet får ej vara längre än 50 tecken",
-  },
-])
+    msg: "Ort namnet får ej vara längre än 50 tecken"
+  }
+]);
 
-validator.add(forms.pcode, [{
+validator.add(forms.pcode, [
+  {
     strategy: "isBlank",
-    msg: "Ange ett postnummer",
+    msg: "Ange ett postnummer"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "isPcode",
-    msg: "Ange ett giltigt postnummer",
-  },
-])
+    msg: "Ange ett giltigt postnummer"
+  }
+]);
 
-validator.add(forms.county, [{
+validator.add(forms.county, [
+  {
     strategy: "isBlank",
-    msg: "Ange stad",
+    msg: "Ange stad"
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten",
+    msg: "Var god fyll i uppgiftsfälten"
   },
   {
     strategy: "minLength:2",
-    msg: "StadNamnet minst 2 tecken",
+    msg: "StadNamnet minst 2 tecken"
   },
   {
     strategy: "maxLength:20",
-    msg: "StadNamnet får ej vara längre än 20 tecken",
+    msg: "StadNamnet får ej vara längre än 20 tecken"
   },
   {
     strategy: "isCounty",
-    msg: "Ange en giltig stad",
-  },
-])
+    msg: "Ange en giltig stad"
+  }
+]);
 
 // Call validation
 // confirm pay btn should be disabled until finish validation and check delivery fee.
-const editInfoBtn = document.querySelector('.changeInput');
-let inputs = document.querySelectorAll(".checkout-form__delivery-section__input")
+const editInfoBtn = document.querySelector(".changeInput");
+let inputs = document.querySelectorAll(".checkout-form__delivery-section__input");
 const goToOrderBtn = document.querySelector(".checkout-form__btn-section__checkoutBtn--dim");
 
-
-editInfoBtn.addEventListener('click', editInputArea);
+editInfoBtn.addEventListener("click", editInputArea);
 
 function editInputArea() {
-  goToOrderBtn.disabled = 'disabled';
-  confirmBtn.disabled = '';
+  goToOrderBtn.disabled = "disabled";
+  confirmBtn.disabled = "";
   inputs.forEach(input => {
     input.removeAttribute("readonly");
-    input.classList.toggle('toWhite');
-  })
+    input.classList.toggle("toWhite");
+  });
 }
 
-confirmBtn.onclick = function (event) {
+confirmBtn.onclick = function(event) {
   // call errormsg
   const errMsg = validator.start(),
-    errTips = document.querySelector(".err-tips")
+    errTips = document.querySelector(".err-tips");
 
   if (errMsg) {
     errTips.innerHTML = errMsg;
@@ -313,12 +322,10 @@ confirmBtn.onclick = function (event) {
     goToOrderBtn.disabled = "";
     goToOrderBtn.style.backgroundcolor = "#218838";
     keepShoppingBtn.disabled = true; //disable buyMoreBtn
-    document
-      .querySelector(".open-overlay")
-      .removeEventListener("click", openCart) //disable cartBtn
+    document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
     checkDeliveryFee();
     turnWhite(); //remove input red border
-    editInfoBtn.disabled = '';
+    editInfoBtn.disabled = "";
   }
   // checkDeliveryFee();
 
@@ -332,23 +339,24 @@ confirmBtn.onclick = function (event) {
   const pcode = formatZipcode(document.querySelector("#pcode").value);
   const city = formatName(document.querySelector("#city").value);
 
-  redrawCustomerInfoTable()
+  redrawCustomerInfoTable();
 
   function formatName(nameAreaValue) {
-    return nameAreaValue.split(' ')
+    return nameAreaValue
+      .split(" ")
       .filter(name => {
-        if (name != '') return name;
+        if (name != "") return name;
       })
       .map(name => capitalizeFirstLetter(name))
-      .join(' ')
+      .join(" ");
   }
 
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   function removeSpace(string) {
-    return string.replace(/\s/g, "")
+    return string.replace(/\s/g, "");
   }
 
   function formatZipcode(string) {
@@ -356,7 +364,7 @@ confirmBtn.onclick = function (event) {
       .replace(/\s/g, "")
       .split(/(\d{3})/)
       .join(" ")
-      .trim()
+      .trim();
   }
 
   function redrawCustomerInfoTable() {
@@ -374,7 +382,7 @@ confirmBtn.onclick = function (event) {
     inputs.forEach(input => {
       input.classList.add("toWhite");
       input.setAttribute("readonly", "readonly"); //lock input area
-    })
+    });
     confirmBtn.disabled = true;
   }
 
@@ -382,7 +390,7 @@ confirmBtn.onclick = function (event) {
   function checkDeliveryFee() {
     const deliveryFeeTextArea = document.querySelector(".deliveryFeeText");
     const zipcode = document.querySelector("#pcode");
-    const county = document.querySelector('#city').value.toLowerCase();
+    const county = document.querySelector("#city").value.toLowerCase();
     let realTotalPriceArea = document.querySelector(".item-total");
     let subTotal = shopLib.drawOrderList();
     /* Now double check if zipcode & county spelling belong to Stockholm region */
@@ -395,7 +403,7 @@ confirmBtn.onclick = function (event) {
       realTotalPrice = subTotal;
     } else {
       // add 50 kr
-      if (deliveryFeeTextArea.classList.contains('hidden')) {
+      if (deliveryFeeTextArea.classList.contains("hidden")) {
         // console.log('pay 50 condition 1');
         deliveryFeeTextArea.classList.remove("hidden");
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
@@ -410,8 +418,8 @@ confirmBtn.onclick = function (event) {
       }
     }
   }
-}
+};
 
 // add shopping cart data to form
-const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]')
-hiddenCartLabel.value = localStorage.getItem("products")
+const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]');
+hiddenCartLabel.value = localStorage.getItem("products");
