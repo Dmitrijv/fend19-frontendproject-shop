@@ -302,16 +302,16 @@ shopLib = (function () {
             )
             .concat(subTotal, " kr</p>")
         }
-      } else {
+      }
+
+      if (localStorage.getItem('products') === '[]' || !localStorage.hasOwnProperty('products')) {
         confirmBtn.disabled = true
         productList.innerHTML +=
           '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
-          totalSumCart.innerHTML = '';
+        totalSumCart.innerHTML = '';
       }
       return subTotal;
     },
-
-
 
   };
 
