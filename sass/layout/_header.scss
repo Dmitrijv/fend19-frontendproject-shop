@@ -40,6 +40,10 @@
       a {
         display: block;
         width: 100%;
+        padding-right: 42px;
+        @media (min-width: 500px) {
+          padding-right: unset;
+        }
 
         @supports (display: grid) {
           height: 100%;
@@ -78,6 +82,7 @@
     justify-content: center;
 
     &--input {
+      height: 27px;
       width: 150px;
       background-color: white;
       border: 1px solid $red;
@@ -89,7 +94,9 @@
       @media screen and (max-width: 781px) and (min-width: 800px) {
         min-width: 20vw;
       }
-
+      @media (min-width: 800px) {
+        height: auto;
+      }
       @media (min-width: 930px) {
         min-width: 220px;
       }
@@ -114,7 +121,7 @@
 
   button.open-overlay {
     position: absolute;
-    top: 2vh;
+    top: 2.5vh;
 
     padding: 13px;
     width: 12px;
@@ -283,19 +290,21 @@
   margin-left: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  height: 27px;
 
   @media (min-width: 800px) {
     position: inherit;
     margin-top: 0;
     padding: 8px;
+    height: auto;
   }
 }
 
 /* For lastest products svg */
 .latestproducts-btn {
   position: absolute;
-  top: 2vh;
-  right: 18vw;
+  top: 2.5vh;
+  right: 20vw;
   padding: 13px;
   width: 12px;
   height: 12px;
@@ -318,8 +327,8 @@
 /* For sista minut (last minute) lightning svg */
 .lastchance-btn {
   position: absolute;
-  top: 2vh;
-  right: 10vw;
+  top: 2.5vh;
+  right: 11vw;
   padding: 13px;
   width: 12px;
   height: 12px;

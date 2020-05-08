@@ -245,6 +245,13 @@ button {
 .main__header__top .logo a {
   display: block;
   width: 100%;
+  padding-right: 42px;
+}
+
+@media (min-width: 500px) {
+  .main__header__top .logo a {
+    padding-right: unset;
+  }
 }
 
 @supports (display: grid) {
@@ -295,6 +302,7 @@ button {
 }
 
 .main__header__search--input {
+  height: 27px;
   width: 150px;
   background-color: white;
   border: 1px solid #f60d4d;
@@ -305,6 +313,12 @@ button {
 @media screen and (max-width: 781px) and (min-width: 800px) {
   .main__header__search input {
     min-width: 20vw;
+  }
+}
+
+@media (min-width: 800px) {
+  .main__header__search input {
+    height: auto;
   }
 }
 
@@ -341,7 +355,7 @@ button {
 
 .nav button.open-overlay {
   position: absolute;
-  top: 2vh;
+  top: 2.5vh;
   padding: 13px;
   width: 12px;
   height: 12px;
@@ -545,6 +559,7 @@ button {
   margin-left: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  height: 27px;
 }
 
 @media (min-width: 800px) {
@@ -552,14 +567,15 @@ button {
     position: inherit;
     margin-top: 0;
     padding: 8px;
+    height: auto;
   }
 }
 
 /* For lastest products svg */
 .latestproducts-btn {
   position: absolute;
-  top: 2vh;
-  right: 18vw;
+  top: 2.5vh;
+  right: 20vw;
   padding: 13px;
   width: 12px;
   height: 12px;
@@ -586,8 +602,8 @@ button {
 /* For sista minut (last minute) lightning svg */
 .lastchance-btn {
   position: absolute;
-  top: 2vh;
-  right: 10vw;
+  top: 2.5vh;
+  right: 11vw;
   padding: 13px;
   width: 12px;
   height: 12px;
