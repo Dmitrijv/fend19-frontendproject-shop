@@ -1,5 +1,4 @@
 @media all and (-ms-high-contrast: none) {
-
   /* IE11 */
   *::-ms-backdrop,
   .main__header {
@@ -30,7 +29,6 @@
     width: 100%;
 
     @media all and (-ms-high-contrast: none) {
-
       /* IE11 */
       *::-ms-backdrop,
       .logo {
@@ -114,6 +112,19 @@
     display: flex;
   }
 
+  button.open-overlay {
+    position: absolute;
+    top: 2vh;
+
+    padding: 13px;
+    width: 12px;
+    height: 12px;
+  }
+  .img-cart {
+    height: 20px;
+    width: 20px;
+  }
+
   @media (min-width: 800px) {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
@@ -136,6 +147,13 @@
           color: white;
           margin-left: 8px;
           padding: 12px;
+
+          right: auto;
+          top: auto;
+          max-width: unset;
+          max-height: unset;
+          width: auto;
+          height: auto;
         }
       }
     }
@@ -230,7 +248,7 @@
     display: none;
   }
 }
-
+.img-cart,
 .img-lastchance,
 .img-latestproducts {
   position: absolute;
@@ -241,7 +259,7 @@
 
 .login-btn,
 .cart-btn {
-  padding: 4px;
+  padding: 12px;
   margin-top: 1em;
   margin-right: 1em;
   position: absolute;
@@ -304,6 +322,8 @@
   top: 2vh;
   right: 10vw;
   padding: 13px;
+  width: 12px;
+  height: 12px;
 
   @supports (display: grid) {
     max-width: 20px;
@@ -315,6 +335,8 @@
     padding: 12px;
     max-width: unset;
     max-height: unset;
+    width: auto;
+    height: auto;
   }
 }
 
@@ -431,12 +453,12 @@ button.open-overlay.inCartAnimation::after {
   // color: rgb(255, 254, 224);
   color: rgb(34, 33, 4);
   font-size: 14px;
-  animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+  animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s,
+    disappear 0.2s infinite 1.6s;
   // }
 }
 
 @keyframes bounceInDown {
-
   from,
   60%,
   75%,
@@ -526,7 +548,7 @@ button.open-overlay.inCartAnimation::after {
   animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
   top: 90px;
 
-  @media screen and (min-width:800px) {
+  @media screen and (min-width: 800px) {
     top: 74px;
   }
 }
