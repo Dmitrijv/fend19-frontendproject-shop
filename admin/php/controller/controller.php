@@ -253,8 +253,8 @@ function getActiveOrders()
             active_order_of_products.date_ordered_at as date_ordered_at,
             customer_data.county as county,
             active_order_of_products.status as status_id,
-            SUM(ordered_product.price) as order_total,
-            COUNT(ordered_product.product_id) as item_count,
+            SUM(ordered_product.price * ordered_product.quantity) as order_total,
+            SUM(ordered_product.quantity) as item_count,
             order_status.name as status_name,
             active_order_of_products.free_shipping as free_shipping
         FROM
