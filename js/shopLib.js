@@ -279,7 +279,7 @@ shopLib = (function() {
 
             // if product id is not in the product list we got from db don't count this product
             if (!productJson.some(e => e.id == item.id)) {
-              name = "Deleted product.";
+              name = "Borttagen produkt.";
               itemImage = "./img/product/placeholder.png";
               itemPrice = 0;
               itemCount = 0;
