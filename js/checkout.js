@@ -136,7 +136,7 @@ const _rules = (function() {
     isCounty: function(value, errorMsg) {
       // first letter no longer required to be capitalized
       // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad
-      if (!/^[a-zåöäéáóíøæèüêû\s]+/i.test(value)) {
+      if (!/^[a-zåöäéáóíøæèüêû\s]+$/i.test(value)) {
         return errorMsg;
       }
     }
