@@ -76,13 +76,9 @@ main {
         width: 155px;
         justify-content: space-around;
         align-items: center;
-        // display: flex;
-        // justify-content: center;
       }
 
-      .product__price {
-        // text-align: center;
-      }
+      .product__price {}
     }
   }
 }
@@ -90,7 +86,7 @@ main {
 $elements: 12;
 
 @for $i from 1 to $elements {
-  .product-container > :nth-child(#{$i }) {
+  .product-container> :nth-child(#{$i }) {
     -ms-grid-row: $i + $i -1 !important;
   }
 }
@@ -105,12 +101,12 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 1 to $elements {
-    .product-container > :nth-child(#{$i*2 - 1}) {
+    .product-container> :nth-child(#{$i*2 - 1}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*2}) {
+    .product-container> :nth-child(#{$i*2}) {
       -ms-grid-row: $i !important;
       -ms-grid-column: 3 !important;
     }
@@ -127,20 +123,21 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
+
     /* 1/4/7/10/.. */
-    .product-container > :nth-child(#{$i*3 + 1}) {
+    .product-container> :nth-child(#{$i*3 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
     /* 2/5/8/11/... */
-    .product-container > :nth-child(#{$i*3 + 2}) {
+    .product-container> :nth-child(#{$i*3 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
     /* 3/6/9/12/... */
-    .product-container > :nth-child(#{$i*3 + 3}) {
+    .product-container> :nth-child(#{$i*3 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
@@ -157,22 +154,22 @@ $elements: 12;
   $elements: 12;
 
   @for $i from 0 to $elements {
-    .product-container > :nth-child(#{$i*4 + 1}) {
+    .product-container> :nth-child(#{$i*4 + 1}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 1 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 2}) {
+    .product-container> :nth-child(#{$i*4 + 2}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 3 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 3}) {
+    .product-container> :nth-child(#{$i*4 + 3}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 5 !important;
     }
 
-    .product-container > :nth-child(#{$i*4 + 4}) {
+    .product-container> :nth-child(#{$i*4 + 4}) {
       -ms-grid-row: $i + 1 !important;
       -ms-grid-column: 7 !important;
     }
@@ -206,7 +203,7 @@ $elements: 12;
   }
 }
 
-div.product > div:nth-child(2) > button:nth-child(4) {
+div.product>div:nth-child(2)>button:nth-child(4) {
   z-index: 0 !important;
 }
 
@@ -281,7 +278,6 @@ div.product > div:nth-child(2) > button:nth-child(4) {
     @supports (display: grid) {
       display: grid;
       justify-items: center;
-      // align-self: flex-end;
       grid-template-rows: 0.8fr min-content 0.5fr 1fr;
 
       .product__count-container {
@@ -304,134 +300,19 @@ div.product > div:nth-child(2) > button:nth-child(4) {
   }
 }
 
-div.product > div > button:nth-child(4) {
+div.product>div>button:nth-child(4) {
   padding: 5px 15px;
-}
-
-/* Button animation code */
-.ctrl-standard.fx-bubbleUp {
-  color: $green;
-  border-color: $green;
-}
-
-.ctrl-standard.fx-bubbleUp::after {
-  top: auto;
-  border-radius: 50% 50% 0 0/75% 75% 0 0;
-  background: $green;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed::after {
-  height: 300%;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover {
-  color: $green;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
-  height: 0;
-}
-
-.ctrl-standard.fx-sliderIn.is-reversed:hover::after {
-  width: 0;
-}
-
-[class*="ctrl-"] {
-  padding: 5ox 10px;
-  border-radius: 2px;
-  border: 1px solid #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"]:hover,
-[class*="ctrl-"][class*="fx-"].active {
-  color: #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"].is-reversed {
-  color: #231f20;
-}
-
-[class*="fx-"],
-[class*="fx-"]:hover {
-  transition: color 0.5s ease-in-out;
-}
-
-[class*="fx-"]:not(.fx-dyna) {
-  position: relative;
-  z-index: 1;
-  transition-delay: 0.2s !important;
-  overflow: hidden;
-}
-
-[class*="fx-"]:not(.fx-dyna)::after,
-[class*="fx-"]:not(.fx-dyna)::before {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-}
-
-[class*="fx-bubble"]::after {
-  transition: height 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 0;
-  width: 100%;
-}
-
-[class*="fx-bubble"]:hover::after,
-[class*="fx-bubble"].active::after {
-  transition: height 0.5s ease-in-out;
-  height: 300%;
-}
-
-[class*="fx-bubble"]:disabled:hover::after {
-  height: 0;
-}
-
-.fx-sliderIn::after {
-  transition: width 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 0;
-}
-
-.fx-sliderIn:hover::after,
-.fx-sliderIn.active::after {
-  transition: width 0.5s ease-in-out;
-  width: 100%;
-}
-
-:checked + .fx-sliderIn::after,
-.fx-sliderIn.active::after {
-  width: 300%;
 }
 
 /* Testing code, for adding status indicator */
 .product {
   position: relative;
 
-  //   &::before {
-  //     content: url('../img/svg/cart.svg');
-  //     position: absolute;
-  //     width: 12%;
-  //     top: 88%;
-  //     left: 8%;
-  //   }
-
   &.inCart {
     border: 1px solid #7aaa39;
   }
 
   &.oldProduct::before {
-    // content: url('../img/svg/price-tag.svg');
-    // top: 0;
-    // left: 0;
-    // rotate: -85deg;
     position: absolute;
     width: 16%;
     top: 15px;

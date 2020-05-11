@@ -88,8 +88,7 @@
     }
 
     input {
-
-      @media screen and (max-width:781px) and (min-width:800px) {
+      @media screen and (max-width: 781px) and (min-width: 800px) {
         min-width: 20vw;
       }
 
@@ -105,7 +104,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media screen and (max-width:935px) and (min-width:800px) {
+  @media screen and (max-width: 935px) and (min-width: 800px) {
     button {
       padding: 9px !important;
     }
@@ -128,9 +127,10 @@
       order: 2;
 
       button.open-overlay {
+        position: relative;
 
         @media screen and (min-width: 800px) {
-          background-color: #f60d4d;
+          // background-color: #f60d4d;
           border: none;
           border-radius: 3px;
           color: white;
@@ -283,7 +283,7 @@
   width: 12px;
   height: 12px;
 
-  @supports(display: grid) {
+  @supports (display: grid) {
     max-width: 20px;
     max-height: 20px;
   }
@@ -305,7 +305,7 @@
   right: 10vw;
   padding: 13px;
 
-  @supports(display: grid) {
+  @supports (display: grid) {
     max-width: 20px;
     max-height: 20px;
   }
@@ -417,5 +417,116 @@
 
   .dropdown:hover .dropbtn {
     background-color: #9fa255;
+  }
+}
+
+/* This is for adding new items into cart animation */
+button.open-overlay.inCartAnimation::after {
+  // @media screen and (min-width: 800px) {
+  content: attr(data-before);
+  position: absolute;
+  width: 30%;
+  top: 29%;
+  right: 3px;
+  // color: rgb(255, 254, 224);
+  color: rgb(34, 33, 4);
+  font-size: 14px;
+  animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+  // }
+}
+
+@keyframes bounceInDown {
+
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    // transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* This is for when choose one item already exists in cart */
+.main__header.alertInfo::before {
+  content: "Varan finns i varukorgen!";
+  position: absolute;
+  background-color: white;
+  border: 1px solid #f60d4d;
+  padding: 7px;
+  left: 99%;
+  width: max-content;
+  transform: translateX(-100%);
+  border-radius: 3px;
+  color: $red;
+  animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
+  top: 90px;
+
+  @media screen and (min-width:800px) {
+    top: 74px;
   }
 }

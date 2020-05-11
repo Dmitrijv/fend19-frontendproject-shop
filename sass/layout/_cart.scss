@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  z-index: 1000;
+  z-index: 1000;//what if set it as 1??
   background-color: #e6dfdf;
   min-width: 300px;
   min-height: 300px;
@@ -27,7 +27,7 @@
     position: absolute;
     top: 1vh;
     border-radius: 5px;
-    border: 1px solid #a89e9e;
+    // border: 1px solid #a89e9e;
     left: 100%;
     transform: translateX(-130%);
     padding: 5px 10px;
@@ -39,12 +39,6 @@
 
     @media screen and (min-width: 800px) {
       left: 100%;
-    }
-
-    &:hover {
-      background-color: #ee6388;
-      border: 1px solid #f35680;
-      color: white;
     }
   }
 
@@ -77,6 +71,10 @@
     height: 20px;
     cursor: pointer;
     margin: 6px 0;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   &__sum-area {
@@ -103,6 +101,10 @@
       font-size: 18px;
       font-family: "Lato", serif;
       white-space: nowrap;
+
+      &:hover {
+        background-color: #35b66fd4;
+      }
 
       @media screen and (max-width: 596px) {
         font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
@@ -165,12 +167,21 @@
   }
 }
 
+.minusQty:hover {
+  background-color: $redBtn;
+  border-color: $redBtn;
+  color: #fff;
+}
+
 .plusQty:hover {
-  background-color: #e55039;
+  background-color: mediumseagreen;
+  border-color: mediumseagreen;
+  color: #fff;
 }
 
 /* some setting for IE 11, to keep each row's content vertically in the middle */
 @media all and (-ms-high-contrast: none) {
+
   /* IE11 */
   *::-ms-backdrop,
   .cart__product-text,
@@ -179,7 +190,7 @@
     -ms-grid-row-align: center;
   }
 
-  .cart__product-pull-right > *:not(:last-child) {
+  .cart__product-pull-right>*:not(:last-child) {
     margin-right: 5px;
   }
 }
@@ -209,7 +220,7 @@
 
 /* this code is not strictly necessary: just to make this demo a bit pleasant */
 
-.overlay > div {
+.overlay>div {
   width: 80%;
   max-width: 650px;
   padding-top: 25px;
@@ -244,12 +255,6 @@
   color: white;
   padding: 3.5px 3px;
 
-  // margin-left: 8px;
-  // margin-top: 1em;
-  // margin-right: 1em;
-  // position: absolute;
-  // top: 0;
-  // right: 0;
   @media screen and (max-width: 799px) {
     position: absolute;
     right: 2vw;
@@ -258,5 +263,25 @@
 
   @media screen and (min-width: 800px) {
     position: relative;
+  }
+}
+
+/* individuell delbtn hover color */
+.cart__product-delete>img:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  transform: scale(1.5);
+}
+
+/* cart close-btn */
+.cart-close-btn.close-overlay {
+  background-color: transparent;
+  border: none;
+
+  img {
+    width: 35px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }

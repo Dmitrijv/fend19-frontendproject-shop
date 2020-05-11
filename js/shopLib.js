@@ -95,7 +95,7 @@ shopLib = (function() {
           item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
         cardHtml += `
             <div id='${item.id}' class='product grid-box ${classString}'>
-                <a href='product.php?productId=${item.id}&group=${classString}'>
+                <a href='product.php?productId=${item.id}'>
                     <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
                 </a>
                 <div class='grid-2'>
@@ -122,10 +122,12 @@ shopLib = (function() {
 
       // show error message if this category has no products
       const errorMsg = document.querySelector(".emptyCategoryMessage");
-      if (cardHtml.length === 0) {
-        errorMsg.classList.remove("hidden");
-      } else {
-        errorMsg.classList.add("hidden");
+      if (errorMsg) {
+        if (cardHtml.length === 0) {
+          errorMsg.classList.remove("hidden");
+        } else {
+          errorMsg.classList.add("hidden");
+        }
       }
 
       // add event listeners to "add to cart" buttons
@@ -134,9 +136,7 @@ shopLib = (function() {
     },
 
     searchProducts: function(event) {
-      //console.log("searchProducts");
       const keyword = document.forms["searchform"]["searchinput"].value.toLocaleLowerCase();
-      //console.log(keyword);
       // if we are not on search.php page remember this keyword in session storage and go to search.php
       if (location.pathname !== "/fend19-frontendproject-shop/search.php") {
         sessionStorage.setItem("searchKeyword", keyword);
@@ -144,7 +144,6 @@ shopLib = (function() {
         event.preventDefault();
         return;
       }
-      // validate keyword length again
 
       // show error message if this keyword is invalid
       const keywordErrMsg = document.querySelector(".invalidKeywordMessage");
@@ -159,8 +158,18 @@ shopLib = (function() {
       const lib = this;
       const productInternal = `${INTERNAL_PATH}/products.php`;
       lib.loadJsonByXhr(productInternal, function(productJson) {
-        const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
-        lib.drawSearchResultList(matchingProducts);
+        const matchingProducts = productJson.filter(
+          product => product.title.toLowerCase().indexOf(keyword) !== -1 && Number(product.numberInStock) > 0
+        );
+        // show error message if this search produced no results
+        const errorMsg = document.querySelector(".emptyResultMessage");
+        if (matchingProducts.length === 0) {
+          errorMsg.classList.remove("hidden");
+          document.querySelector("#productPanel").innerHTML = "";
+        } else {
+          errorMsg.classList.add("hidden");
+          lib.drawProductPanel(matchingProducts);
+        }
       });
       sessionStorage.removeItem("searchKeyword");
       event.preventDefault();
@@ -182,56 +191,9 @@ shopLib = (function() {
       const productInternal = `${INTERNAL_PATH}/products.php`;
       lib.loadJsonByXhr(productInternal, function(productJson) {
         const matchingProducts = productJson.filter(product => product.title.toLowerCase().indexOf(keyword) !== -1);
-        // console.log(matchingProducts);
-        lib.drawSearchResultList(matchingProducts);
+        lib.drawProductPanel(matchingProducts);
       });
       sessionStorage.removeItem("searchKeyword");
-    },
-
-    drawSearchResultList(productJson) {
-      const productPanel = document.querySelector("div.searchResults");
-      let cardHtml = "";
-      // only show products that are in stock
-      productJson = productJson.filter(product => Number(product.numberInStock) > 0);
-      productJson.forEach(item => {
-        const coverImage =
-          item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-        cardHtml += `
-        <div id='${item.id}' class='product grid-box'>
-            <a href='product.php?productId=${item.id}'>
-                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-            </a>
-            <div class='grid-2'>
-                <p class='product__title'>${item.title}</p>
-                <div class='product__price special-price'>${item.price} ${item.currency}</div>
-                <div class='product__count-container'>
-                    <button class='hidden product__count-btn'>-</button>
-                    <p class='product__count'>${item.numberInStock}</p>
-                    <button class='hidden product__count-btn'>+</button>
-                </div>
-                <button class='product__add-btn' data-productId='${item.id}'>Lägg i varukorgen</button>
-            </div>
-            <div style="display: none;" class='hiddenInputItems'>
-                <input type="hidden" name="productId" value="${item.id}">
-                <input type="hidden" name="productImage" value="${coverImage}">
-                <input type="hidden" name="productTitle" value="${item.title}">
-                <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-                <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-            </div>
-        </div>`;
-      });
-      productPanel.innerHTML = "";
-      productPanel.innerHTML += cardHtml;
-
-      // show error message if this category has no products
-      const errorMsg = document.querySelector(".emptyResultMessage");
-      if (cardHtml.length === 0) {
-        errorMsg.classList.remove("hidden");
-      } else {
-        errorMsg.classList.add("hidden");
-      }
-      var productBtn = document.querySelectorAll(".product__add-btn");
-      addProduct(productBtn);
     },
 
     loadJsonByXhr: function(url, callback) {
@@ -260,111 +222,21 @@ shopLib = (function() {
       return !shoppingCart || Object.keys(shoppingCart).length === 0 ? {} : shoppingCart;
     },
 
-    // Draw Last Chance Panel -----------------------------------------------------------------------------------------------------------------
     drawLastChancePanel: function() {
       const lib = this;
-      const lastChanceInternalUrl = `${INTERNAL_PATH}/lastchance.php`;
-      //cache selectors
-      const lastChancePanel = document.querySelector("#lastChancePanel");
-      let cardHtml = "";
-      lastChancePanel.innerHTML = "";
-      console.log("hi");
-
-      // get category json from Internal
-      lib.loadJsonByXhr(lastChanceInternalUrl, function(lastChanceJson) {
-        // only show products that are in stock
-        lastChanceJson = lastChanceJson.filter(product => Number(product.numberInStock) > 0);
-        // iterate over all categories
-        lastChanceJson.forEach(item => {
-          const coverImage =
-            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-          cardHtml += `
-            <div id='${item.id}' class='product grid-box'>
-              <a href='product.php?productId=${item.id}'>
-                <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-              </a>
-              <div class='grid-2'>
-                <p class='product__title'>${item.title}</p>
-                <div class='product__price discount-price'>${item.price} ${item.currency}</div>
-                <div class='product__count-container'>
-                  <button class='hidden product__count-btn'>-</button>
-                  <p class='product__count'>${item.numberInStock}</p>
-                  <button class='hidden product__count-btn'>+</button>
-                </div>
-                <button class='product__add-btn'>Lägg i varukorgen</button>
-              </div>
-              <div style="display: none;" class='hiddenInputItems'>
-              <input type="hidden" name="productId" value="${item.id}">
-              <input type="hidden" name="productImage" value="${coverImage}">
-              <input type="hidden" name="productTitle" value="${item.title}">
-              <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-              <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-              </div>
-            </div>`;
-        });
-        lastChancePanel.innerHTML += cardHtml;
-        const errmsg = document.querySelector(".emptyLastChanceMessage");
-        if (cardHtml.length === 0) {
-          errmsg.classList.remove("hidden");
-        } else {
-          errmsg.classList.add("hidden");
-        }
-        var productBtn = document.querySelectorAll(".product__add-btn");
-        addProduct(productBtn);
+      const internal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(internal, function(productJson) {
+        productJson = productJson.filter(product => product.old && product.old == true);
+        lib.drawProductPanel(productJson);
       });
     },
 
-    // Draw Latest Products Panel -------------------------------------------------------------------------------------------------------------
     drawLatestProductsPanel: function() {
       const lib = this;
-      const latestProductsInternalUrl = `${INTERNAL_PATH}/latestproducts.php`;
-      //cache selectors
-      const latestProductsPanel = document.querySelector("#latestProductsPanel");
-      let cardHtml = "";
-      latestProductsPanel.innerHTML = "";
-
-      // get category json from Internal
-      lib.loadJsonByXhr(latestProductsInternalUrl, function(latestProductsJson) {
-        // only show products that are in stock
-        latestProductsJson = latestProductsJson.filter(product => Number(product.numberInStock) > 0);
-
-        // iterate over all categories
-        latestProductsJson.forEach(item => {
-          const coverImage =
-            item.imageGallery.length > 0 ? "./img/product/" + item.imageGallery[0] : "./img/product/placeholder.png";
-          cardHtml += `
-              <div id='${item.id}' class='product grid-box'>
-                <a href='product.php?productId=${item.id}'>
-                  <div class='product__img-wrapper grid-3' style="background-image: url(${coverImage})"></div>
-                </a>
-                <div class='grid-2'>
-                  <p class='product__title'>${item.title}</p>
-                  <div class='product__price special-price'>${item.price} ${item.currency}</div>
-                  <div class='product__count-container'>
-                    <button class='hidden product__count-btn'>-</button>
-                    <p class='product__count'>${item.numberInStock}</p>
-                    <button class='hidden product__count-btn'>+</button>
-                  </div>
-                  <button class='product__add-btn'>Lägg i varukorgen</button>
-                </div>
-                <div style="display: none;" class='hiddenInputItems'>
-                <input type="hidden" name="productId" value="${item.id}">
-                <input type="hidden" name="productImage" value="${coverImage}">
-                <input type="hidden" name="productTitle" value="${item.title}">
-                <input type="hidden" name="productPrice" value="${item.price} ${item.currency}">
-                <input type="hidden" name="productNumberInStock" value="${item.numberInStock}">
-                </div>
-              </div>`;
-        });
-        latestProductsPanel.innerHTML += cardHtml;
-        const errmsg = document.querySelector(".emptyLatestProductsMessage");
-        if (cardHtml.length === 0) {
-          errmsg.classList.remove("hidden");
-        } else {
-          errmsg.classList.add("hidden");
-        }
-        var productBtn = document.querySelectorAll(".product__add-btn");
-        addProduct(productBtn);
+      const internal = `${INTERNAL_PATH}/products.php`;
+      lib.loadJsonByXhr(internal, function(productJson) {
+        productJson = productJson.filter(product => product.new && product.new == true);
+        lib.drawProductPanel(productJson);
       });
     },
 

@@ -122,7 +122,6 @@ img {
 }
 
 .logo {
-  background: url("../../img/product/svg/Logo.svg") no-repeat center center;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -360,11 +359,13 @@ button {
         -ms-flex-order: 2;
             order: 2;
   }
+  .nav__item:nth-of-type(1) button.open-overlay {
+    position: relative;
+  }
 }
 
 @media screen and (min-width: 800px) and (min-width: 800px) {
   .nav__item:nth-of-type(1) button.open-overlay {
-    background-color: #f60d4d;
     border: none;
     border-radius: 3px;
     color: white;
@@ -675,6 +676,191 @@ button {
   }
 }
 
+/* This is for adding new items into cart animation */
+button.open-overlay.inCartAnimation::after {
+  content: attr(data-before);
+  position: absolute;
+  width: 30%;
+  top: 29%;
+  right: 3px;
+  color: #222104;
+  font-size: 14px;
+  -webkit-animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+          animation: slideInDown 1s ease-in-out, fadeOutDown 0.6s ease 1s, disappear 0.2s infinite 1.6s;
+}
+
+@-webkit-keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+            transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+            transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+            transform: translate3d(0, 5px, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+            transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+            transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+            transform: translate3d(0, 5px, 0);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    visibility: hidden;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes disappear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* This is for when choose one item already exists in cart */
+.main__header.alertInfo::before {
+  content: "Varan finns i varukorgen!";
+  position: absolute;
+  background-color: white;
+  border: 1px solid #f60d4d;
+  padding: 7px;
+  left: 99%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  border-radius: 3px;
+  color: #f60d4d;
+  -webkit-animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
+          animation: fadeOutDown 2s ease 1.6s, disappear 1.4s infinite 2s;
+  top: 90px;
+}
+
+@media screen and (min-width: 800px) {
+  .main__header.alertInfo::before {
+    top: 74px;
+  }
+}
+
 .cart {
   padding: 0 1em 1em;
   -webkit-box-orient: vertical;
@@ -718,7 +904,6 @@ button {
   position: absolute;
   top: 1vh;
   border-radius: 5px;
-  border: 1px solid #a89e9e;
   left: 100%;
   -webkit-transform: translateX(-130%);
           transform: translateX(-130%);
@@ -736,12 +921,6 @@ button {
   .cart .cart-close-btn {
     left: 100%;
   }
-}
-
-.cart .cart-close-btn:hover {
-  background-color: #ee6388;
-  border: 1px solid #f35680;
-  color: white;
 }
 
 .cart h2 {
@@ -783,6 +962,11 @@ button {
   margin: 6px 0;
 }
 
+.cart__erase:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 .cart__sum-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -812,6 +996,10 @@ button {
   font-size: 18px;
   font-family: "Lato", serif;
   white-space: nowrap;
+}
+
+.cart__order button:hover {
+  background-color: #35b66fd4;
 }
 
 @media screen and (max-width: 596px) {
@@ -877,8 +1065,16 @@ button {
   }
 }
 
+.minusQty:hover {
+  background-color: #df5c4e;
+  border-color: #df5c4e;
+  color: #fff;
+}
+
 .plusQty:hover {
-  background-color: #e55039;
+  background-color: mediumseagreen;
+  border-color: mediumseagreen;
+  color: #fff;
 }
 
 /* some setting for IE 11, to keep each row's content vertically in the middle */
@@ -969,6 +1165,29 @@ button {
   .open-overlay {
     position: relative;
   }
+}
+
+/* individuell delbtn hover color */
+.cart__product-delete > img:hover {
+  -webkit-filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+          filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+/* cart close-btn */
+.cart-close-btn.close-overlay {
+  background-color: transparent;
+  border: none;
+}
+
+.cart-close-btn.close-overlay img {
+  width: 35px;
+}
+
+.cart-close-btn.close-overlay img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 /* bp: 650px / 975px / 1280px / max: don't care anymore  */
@@ -1761,115 +1980,6 @@ div.product > div > button:nth-child(4) {
   padding: 5px 15px;
 }
 
-/* Button animation code */
-.ctrl-standard.fx-bubbleUp {
-  color: #9fa255;
-  border-color: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp::after {
-  top: auto;
-  border-radius: 50% 50% 0 0/75% 75% 0 0;
-  background: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed::after {
-  height: 300%;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover {
-  color: #9fa255;
-}
-
-.ctrl-standard.fx-bubbleUp.is-reversed:hover::after {
-  height: 0;
-}
-
-.ctrl-standard.fx-sliderIn.is-reversed:hover::after {
-  width: 0;
-}
-
-[class*="ctrl-"] {
-  padding: 5ox 10px;
-  border-radius: 2px;
-  border: 1px solid #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"]:hover,
-[class*="ctrl-"][class*="fx-"].active {
-  color: #231f20;
-}
-
-[class*="ctrl-"][class*="fx-"].is-reversed {
-  color: #231f20;
-}
-
-[class*="fx-"],
-[class*="fx-"]:hover {
-  -webkit-transition: color 0.5s ease-in-out;
-  transition: color 0.5s ease-in-out;
-}
-
-[class*="fx-"]:not(.fx-dyna) {
-  position: relative;
-  z-index: 1;
-  -webkit-transition-delay: 0.2s !important;
-          transition-delay: 0.2s !important;
-  overflow: hidden;
-}
-
-[class*="fx-"]:not(.fx-dyna)::after,
-[class*="fx-"]:not(.fx-dyna)::before {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-}
-
-[class*="fx-bubble"]::after {
-  -webkit-transition: height 0.5s ease-in-out;
-  transition: height 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 0;
-  width: 100%;
-}
-
-[class*="fx-bubble"]:hover::after,
-[class*="fx-bubble"].active::after {
-  -webkit-transition: height 0.5s ease-in-out;
-  transition: height 0.5s ease-in-out;
-  height: 300%;
-}
-
-[class*="fx-bubble"]:disabled:hover::after {
-  height: 0;
-}
-
-.fx-sliderIn::after {
-  -webkit-transition: width 0.5s ease-in-out;
-  transition: width 0.5s ease-in-out;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 0;
-}
-
-.fx-sliderIn:hover::after,
-.fx-sliderIn.active::after {
-  -webkit-transition: width 0.5s ease-in-out;
-  transition: width 0.5s ease-in-out;
-  width: 100%;
-}
-
-:checked + .fx-sliderIn::after,
-.fx-sliderIn.active::after {
-  width: 300%;
-}
-
 /* Testing code, for adding status indicator */
 .product {
   position: relative;
@@ -1885,7 +1995,6 @@ div.product > div > button:nth-child(4) {
   top: 15px;
   left: 100%;
   -webkit-transform: translateX(-97%);
-      -ms-transform: translateX(-97%);
           transform: translateX(-97%);
   content: "-10%";
   border: 1px solid red;
@@ -1902,7 +2011,6 @@ div.product > div > button:nth-child(4) {
   top: 15px;
   left: 100%;
   -webkit-transform: translateX(-97%);
-      -ms-transform: translateX(-97%);
           transform: translateX(-97%);
   content: "NYTT";
   border: 1px solid #9fa255;
@@ -2585,8 +2693,8 @@ section.order-confirmation button[disabled] {
   .single-product-page__body .wrapper .single-product {
     min-width: 70vw;
     max-width: 800px;
-    grid-template-rows: 435px -webkit-min-content;
-    grid-template-rows: 435px min-content;
+    grid-template-rows: 50vh -webkit-min-content;
+    grid-template-rows: 50vh min-content;
     -ms-grid-rows: 435px min-content;
     -ms-grid-columns: 1fr;
   }
@@ -2692,6 +2800,7 @@ section.order-confirmation button[disabled] {
 
 .single-product-page__body .wrapper .single-product .p-grid-2 {
   -ms-grid-row: 2;
+  position: relative;
 }
 
 .single-product-page__body .wrapper .single-product .p-grid-2 > *:not(:last-child) {
@@ -2718,6 +2827,7 @@ section.order-confirmation button[disabled] {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   text-align: center;
+  margin-top: 10px;
 }
 
 .single-product-page__body .wrapper .single-product__text {
@@ -2774,7 +2884,6 @@ section.order-confirmation button[disabled] {
   top: 15px;
   left: 100%;
   -webkit-transform: translateX(-99%);
-      -ms-transform: translateX(-99%);
           transform: translateX(-99%);
   content: "NYTT";
   border: 1px solid #9fa255;
@@ -2782,9 +2891,15 @@ section.order-confirmation button[disabled] {
   background-color: #9fa255;
   color: white;
   border-radius: 2px;
-  font-size: 22px;
   z-index: 1;
   padding: 5px;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 800px) {
+  .p-grid-1.newProduct::before {
+    font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
 }
 
 .p-grid-1.oldProduct {
@@ -2798,7 +2913,6 @@ section.order-confirmation button[disabled] {
   top: 15px;
   left: 100%;
   -webkit-transform: translateX(-99%);
-      -ms-transform: translateX(-99%);
           transform: translateX(-99%);
   content: "-10%";
   border: 1px solid red;
@@ -2806,21 +2920,33 @@ section.order-confirmation button[disabled] {
   background-color: #ff0000c4;
   color: white;
   border-radius: 2px;
-  font-size: 22px;
   z-index: 1;
   padding: 5px;
+  font-size: 15px;
+}
+
+@media screen and (min-width: 800px) {
+  .p-grid-1.oldProduct::before {
+    font-size: calc(15px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
 }
 
 .p-grid-2.inCart::after {
-  content: url("../img/svg/cart.svg");
+  content: url("../img/svg/cart-round.svg");
   position: absolute;
-  bottom: 20px;
-  left: 85%;
   width: 8%;
   min-width: 30px;
   max-width: 55px;
   -webkit-animation: jello-vertical 1s both;
           animation: jello-vertical 1s both;
+  left: 85%;
+  top: -65px;
+}
+
+@media screen and (min-width: 800px) {
+  .p-grid-2.inCart::after {
+    top: -70px;
+  }
 }
 
 @-webkit-keyframes jello-vertical {
@@ -2880,6 +3006,64 @@ section.order-confirmation button[disabled] {
             transform: scale3d(0.95, 1.05, 1);
   }
   100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1);
   }

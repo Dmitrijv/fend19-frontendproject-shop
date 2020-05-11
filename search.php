@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KFBHvHY/frameme-logo.png" title="favicon">
+    <title>Frame Me | Search</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -27,7 +28,7 @@
             <h1>Sök resultat</h1>
             <h2 class="invalidKeywordMessage hidden">Sökordet måste vara minst två tecken lång.</h2>
             <h2 class="emptyResultMessage hidden">Inga produkter hittades.</h2>
-            <div class="product-container searchResults"></div>
+            <div class="product-container" id="productPanel"></div>
         </div>
     </main>
 

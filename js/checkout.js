@@ -1,4 +1,5 @@
 /* TODO */
+/* regex pattern should use /i to reduce  */
 /* Tel: 08?? */
 /* Name pattern:  Anna-Lena  |  Af Trolle */
 /* Address: Orvar odds väg 2 / Robert almströmsgatan 1 */
@@ -82,7 +83,7 @@ if (localStorage.hasOwnProperty("products")) {
     '<h2 class="checkout-form__cart-section__product-container">Varukorgen \xE4r tom</h2>'
 }
 
-/* Validation related part, Strategy mode is implemented here. */
+/* Validation related part, Strategy pattern is implemented here. */
 const _validator = (function () {
   return function (ruleList) {
     return {
@@ -134,7 +135,7 @@ const _rules = (function () {
 
     isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
+      if (!/^[a-zA-Z-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
         return errorMsg
       }
     },
@@ -183,7 +184,7 @@ const _rules = (function () {
 
     isAdress: function (value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
-      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.)?(\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$/
+      const reg1 = /^^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.|\,)?(.*\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$$/
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -329,7 +330,7 @@ validator.add(forms.county, [{
 ])
 
 // Call validation
-// confirm pay btn should be disabled until finish validation and judge delivery fee.
+// confirm pay btn should be disabled until finish validation and check delivery fee.
 const editInfoBtn = document.querySelector('.changeInput');
 let inputs = document.querySelectorAll(".checkout-form__delivery-section__input")
 const goToOrderBtn = document.querySelector(".checkout-form__btn-section__checkoutBtn--dim");
@@ -361,40 +362,32 @@ confirmBtn.onclick = function (event) {
     document
       .querySelector(".open-overlay")
       .removeEventListener("click", openCart) //disable cartBtn
+    checkDeliveryFee();
     turnWhite(); //remove input red border
     editInfoBtn.disabled = '';
   }
-
-  /* To check delivery fee */
-  const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
-  const zipcode = document.querySelector("#pcode")
-  let realTotalPriceArea = document.querySelector(".item-total")
-  if (/^1\d{2}\s\d{2}$/.test(zipcode.value) || subTotal > 500) {
-    // free delivery
-    deliveryFeeTextArea.textContent = "0"
-    deliveryFeeTextArea.classList.remove("hidden")
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
-    realTotalPrice = subTotal
-  } else {
-    // add 50 kr
-    deliveryFeeTextArea.classList.remove("hidden")
-    realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
-    realTotalPrice = subTotal + 50
-  }
+  checkDeliveryFee();
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value
-  const forename = capitalizeFirstLetter(document.querySelector("#fname").value)
-  const aftername = capitalizeFirstLetter(
-    document.querySelector("#lname").value
-  )
+  const forename = formatName(document.querySelector("#fname").value)
+  const aftername = formatName(document.querySelector("#lname").value)
   const name = forename + " " + aftername
   const phone = removeSpace(document.querySelector("#tel").value)
-  const address = capitalizeFirstLetter(document.querySelector("#adress").value)
+  const address = formatName(document.querySelector("#adress").value)
   const pcode = formatZipcode(document.querySelector("#pcode").value)
   const city = capitalizeFirstLetter(document.querySelector("#city").value)
 
   redrawCustomerInfoTable()
+
+  function formatName(nameAreaValue) {
+    return nameAreaValue.split(' ')
+      .filter(name => {
+        if (name != '') return name;
+      })
+      .map(name => capitalizeFirstLetter(name))
+      .join(' ')
+  }
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -429,6 +422,34 @@ confirmBtn.onclick = function (event) {
       input.setAttribute("readonly", "readonly"); //lock input area
     })
     confirmBtn.disabled = true;
+  }
+
+  /* To check delivery fee */
+  function checkDeliveryFee() {
+    const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
+    const zipcode = document.querySelector("#pcode")
+    let realTotalPriceArea = document.querySelector(".item-total")
+
+    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
+      // free delivery
+      deliveryFeeTextArea.textContent = "0"
+      deliveryFeeTextArea.classList.remove("hidden")
+      realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
+      realTotalPrice = subTotal
+    } else {
+      // add 50 kr
+      if (deliveryFeeTextArea.classList.contains('hidden')) {
+        deliveryFeeTextArea.classList.remove("hidden");
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
+        realTotalPrice = subTotal + 50;
+        return;
+      } else {
+        deliveryFeeTextArea.textContent = "50";
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
+        realTotalPrice = subTotal + 50;
+        return;
+      }
+    }
   }
 }
 

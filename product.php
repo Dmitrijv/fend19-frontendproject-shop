@@ -9,7 +9,13 @@ require_once __DIR__ . "/php/controller/controller.php";
 
 $productId = intval($_GET['productId']);
 $product = getProductById($productId);
-$productStatusCheck = $_GET['group'];
+
+$classList;
+if (isset($product['old']) && $product['old'] == true) {
+    $classList = 'oldProduct';
+} else if (isset($product['new']) && $product['new'] == true) {
+    $classList = 'newProduct';
+}
 
 if (!isset($product['title'])) {
     header("Location: error.php");
@@ -18,8 +24,7 @@ if (!isset($product['title'])) {
 
 // build gallery html
 $gallery = $product['gallery'];
-$imgForCart = (!$gallery)? 'placeholder.png': $gallery[0];
-// print_r($imgForCart);
+$imgForCart = (!$gallery) ? 'placeholder.png' : $gallery[0];
 $galleryHtml = '';
 if (!$gallery) {
     $galleryHtml = '
@@ -56,7 +61,8 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Frame Me - Produkt</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KFBHvHY/frameme-logo.png" title="favicon">
+    <title>Frame Me | Produkt</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -78,7 +84,7 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
         <div class="wrapper">
 
             <div class="single-product">
-                <div class="p-grid-1 <?php echo $productStatusCheck ?>">
+                <div class="p-grid-1 <?php echo $classList; ?>">
                     <!-- Here comes structure instruction -->
                     <!-- Images should be put inside .p-grid-1 -->
                     <!-- div.banner for all images, use background-image: url(...) -->
@@ -115,7 +121,6 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
                 </div>
                 <div style="display: none;" class='hiddenInputItems'>
                     <input type="hidden" name="productId" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <!-- <input type="hidden" name="productImage" value="./img/product/<?php echo $fileName; ?>"> -->
                     <input type="hidden" name="productImage" value="./img/product/<?php echo htmlspecialchars(($imgForCart)); ?>">
                     <input type="hidden" name="productTitle" value="<?php echo htmlspecialchars($product['title'], ENT_QUOTES, 'UTF-8'); ?>">
                     <input type="hidden" name="productPrice" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?> kr">
@@ -136,33 +141,53 @@ for ($i = 0; $i < count($gallery) - 1; $i++) {
     </script>
 
     <script>
-        let inCartItemIds = [];
-        const inCartItems = JSON.parse(localStorage.getItem('products'));
-        const addBtn = document.querySelector('.product__add-btn');
-        const secondGridArea = document.querySelector('.p-grid-2');
-        const emptyBtn = document.querySelector('.cart__erase');
-        
-        inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
-        if (inCartItemIds.includes(<?php echo $productId ?>)) {
-            document.querySelector('.p-grid-2').classList.add('inCart')
-        }
-        
-        addBtn.addEventListener('click', addInCartAnimation);
-        emptyBtn.addEventListener('click', removeInCartStyle2);
-        
-        // TODO:
-        // const deleteItemBtns = document.querySelectorAll('.cart__product-delete');
-        // for(delBtn of deleteItemBtns){
-        //     let 
-        // }
+        (function() {
+            let inCartItemIds = [];
+            const inCartItems = shopLib.getShoppingCart();
+            const addBtn = document.querySelector('.product__add-btn');
+            const secondGridArea = document.querySelector('.p-grid-2');
+            const emptyBtn = document.querySelector('.cart__erase');
 
-        function addInCartAnimation() {
-            secondGridArea.classList.add('inCart');
-        }
+            bindAddBtnWithAnimation();
+            emptyBtn.addEventListener('click', removeInCartStyle2);
 
-        function removeInCartStyle2() {
-            document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
-        }
+            //delegation
+            const cartArea = document.querySelector('.cart');
+            cartArea.addEventListener('click', e => {
+                const delId = e.target.parentNode.dataset.productid;
+                if (e.target.matches('img')) {
+                    if (delId == <?php echo $productId; ?>) {
+                        removeInCartStyle2();
+                    }
+                }
+            })
+
+            function addInCartAnimation() {
+                secondGridArea.classList.add('inCart');
+            }
+
+            function removeInCartStyle2() {
+                if (document.querySelector('.p-grid-2.inCart')) {
+                    document.querySelector('.p-grid-2.inCart').classList.remove('inCart');
+                }
+            }
+
+            function bindAddBtnWithAnimation() {
+                if (!localStorage.hasOwnProperty('products')) {
+                    addBtn.addEventListener('click', addInCartAnimation);
+                    return;
+                }
+                if (localStorage.getItem('products') != '[]') {
+                    inCartItems.forEach(item => inCartItemIds.push(Number(item.id)));
+                    if (inCartItemIds.includes(<?php echo $productId; ?>)) {
+                        document.querySelector('.p-grid-2').classList.add('inCart')
+                    }
+                    addBtn.addEventListener('click', addInCartAnimation);
+                    return;
+                }
+                addBtn.addEventListener('click', addInCartAnimation);
+            }
+        })()
     </script>
 </body>
 

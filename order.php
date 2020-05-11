@@ -46,15 +46,29 @@ $customerData = [
     "county" => trimSides($_POST['county']),
 ];
 
+// doublecheck form input validity
+if (
+    !isValidFormInputString($customerData['email']) ||
+    !isValidFormInputString($customerData['first_name']) ||
+    !isValidFormInputString($customerData['last_name']) ||
+    !isValidFormInputString($customerData['phone']) ||
+    !isValidFormInputString($customerData['street']) ||
+    !isValidFormInputString($customerData['postal_number']) ||
+    !isValidFormInputString($customerData['county'])
+) {
+    header("Location: error.php?errorMessage=Ogiltigt input i formuläret.");
+    die;
+}
+
 $customerDataId = md5(
     $customerData['email'] .
-        $customerData['first_name'] .
-        $customerData['first_name'] .
-        $customerData['last_name'] .
-        $customerData['phone'] .
-        $customerData['street'] .
-        $customerData['postal_number'] .
-        $customerData['county']
+    $customerData['first_name'] .
+    $customerData['first_name'] .
+    $customerData['last_name'] .
+    $customerData['phone'] .
+    $customerData['street'] .
+    $customerData['postal_number'] .
+    $customerData['county']
 );
 
 // save customer data if it doesn't already exist in db
@@ -63,13 +77,16 @@ if (doesCustomerDataIdExist($customerDataId) == false) {
 }
 
 // check if this order qualifies for free shipping
-$free_shipping = false;
-/* use zipcode to check now, or at least should qualify stockholm & zipcode at the same time */
-if ($orderTotalPrice >= 500 ||( strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s\d{2}$/', $customerData['postal_number']))) {
-    $free_shipping = true;
+$free_shipping = 0;
+if (
+    $orderTotalPrice >= 500
+    /* valid postal numbers for stockholm area follow 1xx xx format */
+    || (strcasecmp($customerData['county'], "stockholm") == 0 && preg_match('/^1\d{2}\s?\d{2}$/', $customerData['postal_number']) == true)) {
+    $free_shipping = 1;
 }
 
 // create a new db entry for this order
+date_default_timezone_set('Europe/Stockholm');
 $date_ordered_at = date('Y-m-d H:i:s', time());
 $order = [
     "date_ordered_at" => $date_ordered_at,
@@ -80,11 +97,6 @@ $order = [
 createNewOrder($order);
 
 $orderId = getOrderIdByTimeAndUser($date_ordered_at, $customerDataId);
-// var_dump($orderId);
-
-// var_dump($productListHtml);
-
-// error_log(ob_get_clean());
 
 $productListHtml = '';
 $totalAmount = 0;
@@ -118,12 +130,19 @@ foreach ($shoppingCart as &$cartItem) {
         </tr>';
 }
 
-// $totalAmount = 0;
-if ($free_shipping) {
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td></td><td class="item-total">'. $finalPriceAmount .'kr</td></tr></tbody>';
-} else{
-    $productListHtml .= '<tr class="font-bold"><td>Totalt:</td><td></td><td class="products-amount">' . $totalAmount . '</td><td>Frakt: 50 kr</td><td class="item-total">'. intval($finalPriceAmount + 50) .' kr</td></tr></tbody>';
+if ($free_shipping == 0) {
+    $finalPriceAmount = intval($finalPriceAmount + 50);
 }
+
+$productListHtml .= '
+    <tr class="font-bold">
+        <td>Totalt:</td>
+        <td></td>
+        <td class="products-amount">' . $totalAmount . '</td>
+        <td>Frakt: 50 kr</td>
+        <td class="item-total">' . $finalPriceAmount . ' kr</td>
+    </tr>
+    </tbody>';
 
 ?>
 
@@ -134,7 +153,8 @@ if ($free_shipping) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Order</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.ibb.co/KFBHvHY/frameme-logo.png" title="favicon">
+    <title>Frame Me | Order</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -147,9 +167,9 @@ if ($free_shipping) {
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
-    <?php require_once __DIR__ . '/php/view/header.php'; ?>
-    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
+    <?php require_once __DIR__ . '/php/view/header.php';?>
+    <?php require_once __DIR__ . '/php/view/cart.php';?>
 
     <main id="order-main">
 
@@ -163,15 +183,13 @@ if ($free_shipping) {
             <div class="order-description">
                 <p>Tack för din beställning!</p>
                 <dl>
-                    <dt>Kund ID:</dt>
-                    <dd id="customerId"><?php echo htmlspecialchars($customerDataId, ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Kundnamn</dt>
                     <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Phone</dt>
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Postal address</dt>
-                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['county'] . ", " . $customerData['postal_number'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Beställningsnummer:</dt>
+                    <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
+                    <dt>Ordernummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
                     <dt>Beställningsdatum:</dt>
                     <dd class="dateToday"><?php echo $date_ordered_at; ?></dd>
@@ -197,9 +215,9 @@ if ($free_shipping) {
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
+    <?php require_once __DIR__ . '/php/view/footer.php';?>
 
-    <?php require __DIR__ . '/php/view/jscore.php'; ?>
+    <?php require __DIR__ . '/php/view/jscore.php';?>
 
 </body>
 

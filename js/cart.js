@@ -101,7 +101,9 @@ function setLocalStorage(obj, fromClick) {
     }
 
     if (alreadyExists) {
-      alert("You already have this item in your cart.");
+      // alert("You already have this item in your cart.");
+      // maybe create some pseudo element and settimeout
+      displayAlert();
     } else {
       getArray.push(productInfo(obj));
       localStorage.setItem("products", JSON.stringify(getArray));
@@ -109,6 +111,7 @@ function setLocalStorage(obj, fromClick) {
   }
   if (alreadyExists === false) {
     fillCartList(fromClick);
+    inCartAnimation();
   }
 }
 
@@ -138,7 +141,7 @@ function deleteProduct(getJSON) {
     const delBtn = deleteBtn[i];
     delBtn.addEventListener("click", e => {
       var findIndex = -1;
-      getJSON.some(function(prod, i) {
+      getJSON.some(function (prod, i) {
         if (prod.id == delBtn.parentElement.parentElement.id) {
           findIndex = i;
           return true;
@@ -175,7 +178,7 @@ function changeQty(getJSON) {
 
   for (let i = 0; i < qtyBtns.length; ++i) {
     const qtyBtn = qtyBtns[i];
-    qtyBtn.addEventListener("click", function() {
+    qtyBtn.addEventListener("click", function () {
       var findQtyIndex = -1;
       for (var i = 0; i < getJSON.length; ++i) {
         if (getJSON[i].id == qtyBtn.parentElement.parentElement.parentElement.id) {
@@ -214,4 +217,26 @@ function removeAllInCartStyle() {
   for (card of productCards) {
     card.classList.remove('inCart');
   }
+}
+
+function inCartAnimation() {
+  cartBtn.classList.add('inCartAnimation');
+  let amount = 0;
+  const productsInCart = JSON.parse(localStorage.getItem("products"));
+  productsInCart.map(item => {
+    amount += item.qty;
+    return amount;
+  })
+  document.querySelector('button.open-overlay.inCartAnimation').setAttribute('data-before', amount)
+  setTimeout(() => {
+    cartBtn.classList.remove('inCartAnimation');
+  }, 400);
+}
+
+function displayAlert() {
+  const mainHeaderArea = document.querySelector('.main__header');
+  mainHeaderArea.classList.add('alertInfo');
+  setTimeout(() => {
+    mainHeaderArea.classList.remove('alertInfo');
+  }, 1000);
 }
