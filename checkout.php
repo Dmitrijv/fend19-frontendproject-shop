@@ -55,25 +55,25 @@
                     <h2 class="checkout-form__delivery-section__h2">Fyll i kunduppgifter</h2>
 
                     <label class="checkout-form__delivery-section__label" for="">Email Adress</label>
-                    <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com">
+                    <input class="checkout-form__delivery-section__input" id="email" type="text" name="email" placeholder="name@mail.com" maxlength=254>
 
                     <label class="checkout-form__delivery-section__label" for="">Förnamn</label>
-                    <input class="checkout-form__delivery-section__input" id="fname" type="text" name="fname">
+                    <input class="checkout-form__delivery-section__input" id="fname" type="text" name="fname" maxlength=20>
 
                     <label class="checkout-form__delivery-section__label" for="">Efternamn</label>
-                    <input class="checkout-form__delivery-section__input" id="lname" type="text" name="lname">
+                    <input class="checkout-form__delivery-section__input" id="lname" type="text" name="lname" maxlength=20>
 
                     <label class="checkout-form__delivery-section__label" for="">Telefonnummer</label>
-                    <input class="checkout-form__delivery-section__input" id="tel" type="text" name="phone" placeholder="+46 or 07 pattern">
+                    <input class="checkout-form__delivery-section__input" id="tel" type="text" name="phone" placeholder="+46 or 07 pattern" maxlength=12>
 
                     <label class="checkout-form__delivery-section__label" for="">Gatuadress</label>
-                    <input class="checkout-form__delivery-section__input" id="adress" type="text" name="adress" placeholder="Gustafvägen 10D">
+                    <input class="checkout-form__delivery-section__input" id="adress" type="text" name="adress" placeholder="Gustafvägen 10D" maxlength=50>
 
                     <label class="checkout-form__delivery-section__label" for="">Postnummer</label>
-                    <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 45">
+                    <input class="checkout-form__delivery-section__input" id="pcode" type="text" name="pcode" placeholder="123 45" maxlength=7>
 
                     <label class="checkout-form__delivery-section__label" for="">Ort</label>
-                    <input class="checkout-form__delivery-section__input" id="city" type="text" name="county" maxlength=100>
+                    <input class="checkout-form__delivery-section__input" id="city" type="text" name="county" maxlength=50>
 
                     <!-- this is filled from local storage with js -->
                     <input type="hidden" name="shoppingCart" value="">
