@@ -166,8 +166,8 @@ validator.add(forms.email, [
     msg: "Ange en giltig email-address"
   },
   {
-    strategy: "maxLength:254",
-    msg: "Email length får ej vara längre än 254 tecken"
+    strategy: "maxLength:255",
+    msg: "Email length får ej vara längre än 255 tecken"
   }
 ]);
 
@@ -232,7 +232,7 @@ validator.add(forms.phone, [
   },
   {
     strategy: "maxLength:12",
-    msg: "Nummeret format ej korrekt"
+    msg: "Ange ett giltigt telefonnummer"
   }
 ]);
 
@@ -250,8 +250,8 @@ validator.add(forms.adress, [
     msg: "Please input valid text"
   },
   {
-    strategy: "maxLength:50",
-    msg: "Ort namnet får ej vara längre än 50 tecken"
+    strategy: "maxLength:128",
+    msg: "Ort namnet får ej vara längre än 128 tecken"
   }
 ]);
 
@@ -284,8 +284,8 @@ validator.add(forms.county, [
     msg: "StadNamnet minst 2 tecken"
   },
   {
-    strategy: "maxLength:20",
-    msg: "StadNamnet får ej vara längre än 20 tecken"
+    strategy: "maxLength:128",
+    msg: "StadNamnet får ej vara längre än 128 tecken"
   },
   {
     strategy: "isCounty",

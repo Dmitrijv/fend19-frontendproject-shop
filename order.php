@@ -51,7 +51,13 @@ if (
     !isValidFormInputString($customerData['street']) ||
     !isValidFormInputString($customerData['postal_number']) ||
     !isValidFormInputString($customerData['county']) ||
-    strlen($customerData['county']) > 100
+    strlen($customerData['email']) > 255 ||
+    strlen($customerData['first_name']) > 20 ||
+    strlen($customerData['last_name']) > 20 ||
+    strlen($customerData['phone']) > 12 ||
+    strlen($customerData['street']) > 128 ||
+    strlen($customerData['postal_number']) > 64 ||
+    strlen($customerData['county']) > 7
 ) {
     header("Location: error.php?errorMessage=Ogiltigt input i formuläret.");
     die;
