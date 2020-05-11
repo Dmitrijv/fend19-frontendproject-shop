@@ -20,16 +20,16 @@ const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__ke
 shopLib.drawOrderList();
 
 /* Validation related part, Strategy pattern is implemented here. */
-const _validator = (function() {
-  return function(ruleList) {
+const _validator = (function () {
+  return function (ruleList) {
     return {
       strategyFn: [],
       ruleList: ruleList,
-      add: function(dom, rules) {
+      add: function (dom, rules) {
         let that = this;
         for (let i = 0, len = rules.length; i < len; i++) {
-          (function(i) {
-            that.strategyFn.push(function() {
+          (function (i) {
+            that.strategyFn.push(function () {
               let info = [];
               let method = rules[i].strategy.split(":"),
                 methodName = method[0],
@@ -45,7 +45,7 @@ const _validator = (function() {
           })(i);
         }
       },
-      start: function() {
+      start: function () {
         for (i in this.strategyFn) {
           if (this.strategyFn.hasOwnProperty(i)) {
             let msg = this.strategyFn[i]();
@@ -60,15 +60,15 @@ const _validator = (function() {
 })();
 
 /* rule-list */
-const _rules = (function() {
+const _rules = (function () {
   const rulelist = {
-    isBlank: function(value, errorMsg) {
+    isBlank: function (value, errorMsg) {
       if (value === "") {
         return errorMsg;
       }
     },
 
-    isName: function(value, errorMsg) {
+    isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
       if (
         !/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(
@@ -79,19 +79,19 @@ const _rules = (function() {
       }
     },
 
-    minLength: function(value, length, errorMsg) {
+    minLength: function (value, length, errorMsg) {
       if (value.length < length) {
         return errorMsg;
       }
     },
 
-    maxLength: function(value, length, errorMsg) {
+    maxLength: function (value, length, errorMsg) {
       if (value.length > length) {
         return errorMsg;
       }
     },
 
-    isPhone: function(value, errorMsg) {
+    isPhone: function (value, errorMsg) {
       const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}$/;
       /* Matches 0798789678 */
       const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/;
@@ -101,14 +101,14 @@ const _rules = (function() {
       }
     },
 
-    isEmail: function(value, errorMsg) {
+    isEmail: function (value, errorMsg) {
       const regNew = /^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*\@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)?(\.[A-Za-z]{2,})$/;
       if (!regNew.test(value)) {
         return errorMsg;
       }
     },
 
-    isSpace: function(value, errorMsg) {
+    isSpace: function (value, errorMsg) {
       if (
         [...value].every(item => {
           return item === " ";
@@ -118,7 +118,7 @@ const _rules = (function() {
       }
     },
 
-    isAdress: function(value, errorMsg) {
+    isAdress: function (value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
       const reg1 = /^[a-z0-9-åöäéáóíøæèüêû\s]+(\.|\,)?(.*\d{1,})(\.)?([a-z0-9-åöäéáóíøæèüêû\s]{0,})$/i;
       if (!reg1.test(value)) {
@@ -126,14 +126,14 @@ const _rules = (function() {
       }
     },
 
-    isPcode: function(value, errorMsg) {
+    isPcode: function (value, errorMsg) {
       /* very rough way, not accurate enough */
       if (!/^\d{3}\s*\d{2}$/.test(value)) {
         return errorMsg;
       }
     },
 
-    isCounty: function(value, errorMsg) {
+    isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
       // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad
       if (!/^[a-zåöäéáóíøæèüêû\s]+$/i.test(value)) {
@@ -152,8 +152,7 @@ const validator = _validator(_rules.rulelist);
 const forms = document.querySelector(".checkout-form");
 
 /* Add method */
-validator.add(forms.email, [
-  {
+validator.add(forms.email, [{
     strategy: "isBlank",
     msg: "Var god ange en email-address"
   },
@@ -171,8 +170,7 @@ validator.add(forms.email, [
   }
 ]);
 
-validator.add(forms.fname, [
-  {
+validator.add(forms.fname, [{
     strategy: "isBlank",
     msg: "Var god ange ett förnamn"
   },
@@ -194,8 +192,7 @@ validator.add(forms.fname, [
   }
 ]);
 
-validator.add(forms.lname, [
-  {
+validator.add(forms.lname, [{
     strategy: "isBlank",
     msg: "Ange efternamn"
   },
@@ -217,8 +214,7 @@ validator.add(forms.lname, [
   }
 ]);
 
-validator.add(forms.phone, [
-  {
+validator.add(forms.phone, [{
     strategy: "isBlank",
     msg: "Ange ett telefonnummer"
   },
@@ -236,8 +232,7 @@ validator.add(forms.phone, [
   }
 ]);
 
-validator.add(forms.adress, [
-  {
+validator.add(forms.adress, [{
     strategy: "isBlank",
     msg: "Ange en adress"
   },
@@ -255,8 +250,7 @@ validator.add(forms.adress, [
   }
 ]);
 
-validator.add(forms.pcode, [
-  {
+validator.add(forms.pcode, [{
     strategy: "isBlank",
     msg: "Ange ett postnummer"
   },
@@ -270,8 +264,7 @@ validator.add(forms.pcode, [
   }
 ]);
 
-validator.add(forms.county, [
-  {
+validator.add(forms.county, [{
     strategy: "isBlank",
     msg: "Ange stad"
   },
@@ -310,14 +303,14 @@ function editInputArea() {
   });
 }
 
-confirmBtn.onclick = function(event) {
+confirmBtn.onclick = function (event) {
   // call errormsg
   const errMsg = validator.start(),
     errTips = document.querySelector(".err-tips");
 
   if (errMsg) {
     errTips.innerHTML = errMsg;
-  } else {
+  } else if (!isThereDeletedProduct) {
     errTips.innerHTML = "";
     goToOrderBtn.disabled = "";
     goToOrderBtn.style.backgroundcolor = "#218838";
@@ -326,8 +319,11 @@ confirmBtn.onclick = function(event) {
     checkDeliveryFee();
     turnWhite(); //remove input red border
     editInfoBtn.disabled = "";
+  } else {
+    goToOrderBtn.disabled = true;
+    confirmBtn.disabled = true;
+    turnWhite();
   }
-  // checkDeliveryFee();
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value;
@@ -418,6 +414,12 @@ confirmBtn.onclick = function(event) {
       }
     }
   }
+
+  function isThereDeletedProduct() {
+    const productListArea = document.querySelector('.checkout-form__cart-section__product-list');
+    return (/"Borttagen produkt."/.test(productListArea.innerHTML))
+  }
+
 };
 
 // add shopping cart data to form
