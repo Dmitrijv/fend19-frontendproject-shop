@@ -289,8 +289,8 @@ shopLib = (function() {
               itemsCountTotal += itemCount;
             }
 
-            // console.log(subTotal);
-            // console.log(itemsCountTotal);
+            console.log(subTotal);
+            console.log(itemsCountTotal);
 
             productList.innerHTML += `
             <div class="checkout-form__cart-section__product-container">
