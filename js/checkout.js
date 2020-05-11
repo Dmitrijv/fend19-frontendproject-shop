@@ -303,26 +303,71 @@ function editInputArea() {
   });
 }
 
-confirmBtn.onclick = function (event) {
-  // call errormsg
-  const errMsg = validator.start(),
-    errTips = document.querySelector(".err-tips");
+let panelAmount =
 
-  if (errMsg) {
-    errTips.innerHTML = errMsg;
-    return;
-  } 
-  
-  if(isThereDeletedProduct() && JSON.parse(localStorage.getItem('products')).length === 1){
-    goToOrderBtn.disabled = true;
-    turnWhite();
-    localStorage.removeItem("products");
-    window.onload();
-    shopLib.drawOrderList();
-    return;
-  }
-  
-  // else {
+
+  confirmBtn.onclick = function (event) {
+    // call errormsg
+    const errMsg = validator.start(),
+      errTips = document.querySelector(".err-tips");
+
+    if (errMsg) {
+      errTips.innerHTML = errMsg;
+      return;
+    }
+
+    if (isThereDeletedProduct() && shopLib.getShoppingCart().length === 1) {
+      goToOrderBtn.disabled = true;
+      turnWhite();
+      alert('Produkten är inte tillgängligt för tillfället.')
+      localStorage.removeItem("products");
+      shopLib.drawOrderList();
+      shopLib.getCartAmount();
+      return;
+    }
+
+    // This is just a trick, hide the unavailable product and prevent customer from making any changes
+    // changed for..of to get index i, intended to delete relevant element from localStorage
+    // cannot get splice work here, so used this trick instead.
+    if (isThereDeletedProduct() && shopLib.getShoppingCart().length > 1) {
+      const list = document.querySelector('.checkout-form__cart-section__product-list');
+      const allProducts = list.childNodes;
+      for (let i = 0; i < allProducts.length; i++) {
+        // console.log(allProducts[i])//whitespaces exist
+        console.log(/"Borttagen produkt."/.test(allProducts[i].innerHTML))
+        if (/"Borttagen produkt."/.test(allProducts[i].innerHTML)) {
+          alert('Produkt som inte är längre tillgängliga ska tas bort');
+          turnWhite();
+          allProducts[i].classList.add('highlight')
+          allProducts[i].addEventListener('click', () => {
+            allProducts[i].remove();
+            let delIndex = (i - 1) / 2;
+            console.log(delIndex);
+            updateLocalStorage(delIndex);
+            // location.reload();
+            hideImageAndReduceAmount();
+            // turnWhite();
+            // keepShoppingBtn.disabled = true; //disable buyMoreBtn
+            // document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
+            goToOrderBtn.disabled = '';
+          })
+        }
+      }
+
+      function updateLocalStorage(position) {
+        let originLocalStorageValue = shopLib.getShoppingCart();
+        originLocalStorageValue.splice(position, 1);
+        localStorage.setItem('products', JSON.stringify(originLocalStorageValue));
+      }
+
+      function hideImageAndReduceAmount() {
+        let productAmountInCart = document.querySelector('.item-in-cart-amount')
+        let beginNumber = productAmountInCart.textContent
+        productAmountInCart.textContent = beginNumber - 1
+      }
+      return;
+    }
+    // else {
     errTips.innerHTML = "";
     goToOrderBtn.disabled = "";
     goToOrderBtn.style.backgroundcolor = "#218838";
@@ -331,106 +376,104 @@ confirmBtn.onclick = function (event) {
     checkDeliveryFee();
     turnWhite(); //remove input red border
     editInfoBtn.disabled = "";
-  // }
-  // checkDeliveryFee();
+    // }
 
-  /* setItem in localStorage about customer info + delivery fee (if any) */
-  let email = document.querySelector("#email").value;
-  const forename = formatName(document.querySelector("#fname").value);
-  const aftername = formatName(document.querySelector("#lname").value);
-  const name = forename + " " + aftername;
-  const phone = removeSpace(document.querySelector("#tel").value);
-  const address = formatName(document.querySelector("#adress").value);
-  const pcode = formatZipcode(document.querySelector("#pcode").value);
-  const city = formatName(document.querySelector("#city").value);
+    let email = document.querySelector("#email").value;
+    const forename = formatName(document.querySelector("#fname").value);
+    const aftername = formatName(document.querySelector("#lname").value);
+    const name = forename + " " + aftername;
+    const phone = removeSpace(document.querySelector("#tel").value);
+    const address = formatName(document.querySelector("#adress").value);
+    const pcode = formatZipcode(document.querySelector("#pcode").value);
+    const city = formatName(document.querySelector("#city").value);
 
-  redrawCustomerInfoTable();
+    redrawCustomerInfoTable();
 
-  function formatName(nameAreaValue) {
-    return nameAreaValue
-      .split(" ")
-      .filter(name => {
-        if (name != "") return name;
-      })
-      .map(name => capitalizeFirstLetter(name))
-      .join(" ");
-  }
+    function formatName(nameAreaValue) {
+      return nameAreaValue
+        .split(" ")
+        .filter(name => {
+          if (name != "") return name;
+        })
+        .map(name => capitalizeFirstLetter(name))
+        .join(" ");
+    }
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
-  function removeSpace(string) {
-    return string.replace(/\s/g, "");
-  }
+    function removeSpace(string) {
+      return string.replace(/\s/g, "");
+    }
 
-  function formatZipcode(string) {
-    return string
-      .replace(/\s/g, "")
-      .split(/(\d{3})/)
-      .join(" ")
-      .trim();
-  }
+    function formatZipcode(string) {
+      return string
+        .replace(/\s/g, "")
+        .split(/(\d{3})/)
+        .join(" ")
+        .trim();
+    }
 
-  function redrawCustomerInfoTable() {
-    // email = email;
-    document.querySelector("#fname").value = forename;
-    document.querySelector("#lname").value = aftername;
-    document.querySelector("#tel").value = phone;
-    document.querySelector("#adress").value = address;
-    document.querySelector("#pcode").value = pcode;
-    document.querySelector("#city").value = city;
-  }
+    function redrawCustomerInfoTable() {
+      // email = email;
+      document.querySelector("#fname").value = forename;
+      document.querySelector("#lname").value = aftername;
+      document.querySelector("#tel").value = phone;
+      document.querySelector("#adress").value = address;
+      document.querySelector("#pcode").value = pcode;
+      document.querySelector("#city").value = city;
+    }
 
-  //remove input border's color
-  function turnWhite() {
-    inputs.forEach(input => {
-      input.classList.add("toWhite");
-      input.setAttribute("readonly", "readonly"); //lock input area
-    });
-    confirmBtn.disabled = true;
-  }
+    //remove input border's color
+    function turnWhite() {
+      inputs.forEach(input => {
+        input.classList.add("toWhite");
+        input.setAttribute("readonly", "readonly"); //lock input area
+      });
+      confirmBtn.disabled = true;
+    }
 
-  /* To check delivery fee */
-  function checkDeliveryFee() {
-    const deliveryFeeTextArea = document.querySelector(".deliveryFeeText");
-    const zipcode = document.querySelector("#pcode");
-    const county = document.querySelector("#city").value.toLowerCase();
-    let realTotalPriceArea = document.querySelector(".item-total");
-    let subTotal = shopLib.drawOrderList();
-    /* Now double check if zipcode & county spelling belong to Stockholm region */
-    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
-      // free delivery
-      // console.log('free delivery');
-      deliveryFeeTextArea.textContent = "0";
-      deliveryFeeTextArea.classList.remove("hidden");
-      realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
-      realTotalPrice = subTotal;
-    } else {
-      // add 50 kr
-      if (deliveryFeeTextArea.classList.contains("hidden")) {
-        // console.log('pay 50 condition 1');
+    /* To check delivery fee */
+    function checkDeliveryFee() {
+      const deliveryFeeTextArea = document.querySelector(".deliveryFeeText");
+      const zipcode = document.querySelector("#pcode");
+      const county = document.querySelector("#city").value.toLowerCase();
+      let realTotalPriceArea = document.querySelector(".item-total");
+      let subTotal = shopLib.drawOrderList();
+      /* Now double check if zipcode & county spelling belong to Stockholm region */
+      if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
+        // free delivery
+        // console.log('free delivery');
+        deliveryFeeTextArea.textContent = "0";
         deliveryFeeTextArea.classList.remove("hidden");
-        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
-        realTotalPrice = subTotal + 50;
-        return;
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
+        realTotalPrice = subTotal;
       } else {
-        // console.log('pay 50 condition 2');
-        deliveryFeeTextArea.textContent = "50";
-        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
-        realTotalPrice = subTotal + 50;
-        return;
+        // add 50 kr
+        if (deliveryFeeTextArea.classList.contains("hidden")) {
+          // console.log('pay 50 condition 1');
+          deliveryFeeTextArea.classList.remove("hidden");
+          realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
+          realTotalPrice = subTotal + 50;
+          return;
+        } else {
+          // console.log('pay 50 condition 2');
+          deliveryFeeTextArea.textContent = "50";
+          realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
+          realTotalPrice = subTotal + 50;
+          return;
+        }
       }
     }
-  }
 
-  function isThereDeletedProduct() {
-    const productListArea = document.querySelector('.checkout-form__cart-section__product-list');
-    return (/"Borttagen produkt."/.test(productListArea.innerHTML))
-  }
+    function isThereDeletedProduct() {
+      const productListArea = document.querySelector('.checkout-form__cart-section__product-list');
+      return (/"Borttagen produkt."/.test(productListArea.innerHTML))
+    }
 
 
-};
+  };
 
 // add shopping cart data to form
 const hiddenCartLabel = document.querySelector('input[name="shoppingCart"]');
