@@ -232,7 +232,7 @@ validator.add(forms.phone, [
   },
   {
     strategy: "maxLength:12",
-    msg: "Ange ett giltigt telefonnummer"
+    msg: "Telefonnummret får inte innehålla mer än 12 tecken"
   }
 ]);
 
@@ -243,15 +243,15 @@ validator.add(forms.adress, [
   },
   {
     strategy: "isAdress",
-    msg: "felaktig adress, ange en giltig adress"
+    msg: "Ange en giltig adress"
   },
   {
     strategy: "isSpace",
-    msg: "Please input valid text"
+    msg: "Ange en giltig adress"
   },
   {
-    strategy: "maxLength:128",
-    msg: "Ort namnet får ej vara längre än 128 tecken"
+    strategy: "maxLength:50",
+    msg: "Adressen får inte innehålla mer än 50 tecken"
   }
 ]);
 
@@ -277,19 +277,19 @@ validator.add(forms.county, [
   },
   {
     strategy: "isSpace",
-    msg: "Var god fyll i uppgiftsfälten"
+    msg: "Ortfältet är tom"
   },
   {
     strategy: "minLength:2",
-    msg: "StadNamnet minst 2 tecken"
+    msg: "Ort namnet måste innehålla minst 2 tecken"
   },
   {
-    strategy: "maxLength:128",
-    msg: "StadNamnet får ej vara längre än 128 tecken"
+    strategy: "maxLength:50",
+    msg: "Ort namnet får ej vara längre än 50 tecken"
   },
   {
     strategy: "isCounty",
-    msg: "Ange en giltig stad"
+    msg: "Ange en giltig ort"
   }
 ]);
 

@@ -55,9 +55,9 @@ if (
     strlen($customerData['first_name']) > 20 ||
     strlen($customerData['last_name']) > 20 ||
     strlen($customerData['phone']) > 12 ||
-    strlen($customerData['street']) > 128 ||
-    strlen($customerData['postal_number']) > 64 ||
-    strlen($customerData['county']) > 7
+    strlen($customerData['street']) > 50 ||
+    strlen($customerData['postal_number']) > 7 ||
+    strlen($customerData['county']) > 50
 ) {
     header("Location: error.php?errorMessage=Ogiltigt input i formuläret.");
     die;
