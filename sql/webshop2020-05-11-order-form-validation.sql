@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2020 at 02:13 PM
+-- Generation Time: May 11, 2020 at 02:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -69,7 +69,12 @@ INSERT INTO `active_order_of_products` (`id`, `date_ordered_at`, `status`, `cust
 (40, '2020-05-04 11:39:48', 1, '3ad5e1abfc0071a262ccdf4d1194550d', 1),
 (41, '2020-05-04 11:41:50', 2, '4aa256929e8b5a020a811dc8466a9dec', 1),
 (42, '2020-05-04 11:42:26', 1, '365ee95800b5884229c5c930d194d2cd', 0),
-(47, '2020-05-04 14:11:57', 1, '3ad5e1abfc0071a262ccdf4d1194550d', 1);
+(47, '2020-05-04 14:11:57', 1, '3ad5e1abfc0071a262ccdf4d1194550d', 1),
+(48, '2020-05-08 10:34:45', 1, 'f7711dd6f98dc16205a89813b6ac37fd', 0),
+(49, '2020-05-08 10:40:50', 1, 'f7711dd6f98dc16205a89813b6ac37fd', 0),
+(50, '2020-05-08 10:41:49', 1, '228c403b2aeba85d0c242d669beee48d', 1),
+(52, '2020-05-08 14:51:00', 1, 'f013129a2d14ab0eedbfe8b35f5bb436', 1),
+(53, '2020-05-08 22:01:28', 1, 'f7711dd6f98dc16205a89813b6ac37fd', 1);
 
 -- --------------------------------------------------------
 
@@ -94,7 +99,8 @@ INSERT INTO `completed_order_of_products` (`id`, `date_ordered_at`, `status`, `c
 (43, '2020-05-04 11:44:55', 3, 'de7005d0b36832d1071d3972366fe1c3', 1),
 (44, '2020-05-04 12:14:07', 3, '4aa256929e8b5a020a811dc8466a9dec', 1),
 (45, '2020-05-04 12:15:29', 3, 'de7005d0b36832d1071d3972366fe1c3', 1),
-(46, '2020-05-04 12:21:08', 3, 'e93c98d10a3307f13b2121a8be7637e3', 1);
+(46, '2020-05-04 12:21:08', 3, 'e93c98d10a3307f13b2121a8be7637e3', 1),
+(51, '2020-05-08 10:45:07', 3, 'f7711dd6f98dc16205a89813b6ac37fd', 1);
 
 -- --------------------------------------------------------
 
@@ -122,13 +128,13 @@ INSERT INTO `currency` (`id`, `shorthand`) VALUES
 
 CREATE TABLE `customer_data` (
   `id` varchar(32) NOT NULL,
-  `email` varchar(64) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `phone` varchar(64) NOT NULL,
   `first_name` varchar(128) NOT NULL,
   `last_name` varchar(128) NOT NULL,
   `street` varchar(128) NOT NULL,
   `postal_number` varchar(64) NOT NULL,
-  `county` varchar(64) NOT NULL
+  `county` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -137,6 +143,7 @@ CREATE TABLE `customer_data` (
 
 INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, `street`, `postal_number`, `county`) VALUES
 ('1e75e5a214e6c8516242c43cd0ffdf27', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Mora'),
+('228c403b2aeba85d0c242d669beee48d', 'hello2@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Svea Vägen 16', '332 12', 'Stockholm'),
 ('3454b5836f09f76da144e5c72100d0cc', 'hello@gmail.com', '0734434305', 'Dzmitry', 'Velström', 'Svea Vägen 16', '332 12', 'Stockholm'),
 ('365ee95800b5884229c5c930d194d2cd', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '254 44', 'Stockholm'),
 ('3ad5e1abfc0071a262ccdf4d1194550d', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '168 43', 'Stockholm'),
@@ -153,6 +160,7 @@ INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, 
 ('e5c61cfa480ca6ce8e99048c5df746d5', 'hello2@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'SveaVägen 16', '332 12', 'Stockholm'),
 ('e875d112d9ac8071139bf1aee148e108', 'timber@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Stockholm'),
 ('e93c98d10a3307f13b2121a8be7637e3', '234324@wadawd.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Bogte'),
+('f013129a2d14ab0eedbfe8b35f5bb436', 'hello@gmail.com', '0734434305', 'John', 'Doe', 'Storgatan 1', '332 12', 'Stockholm'),
 ('f7711dd6f98dc16205a89813b6ac37fd', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Stockholm'),
 ('f80c2a7db8b9d8b577a30dcd82f79f5c', 'hello@gmail.com', '07344343054', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
 
@@ -186,7 +194,9 @@ INSERT INTO `delivered_product` (`product_id`, `order_id`, `price`, `quantity`, 
 (56, 44, 450, 1, 'SEK'),
 (58, 44, 360, 3, 'SEK'),
 (56, 43, 450, 1, 'SEK'),
-(59, 43, 5400, 1, 'SEK');
+(59, 43, 5400, 1, 'SEK'),
+(64, 51, 500, 2, 'SEK'),
+(61, 51, 700, 2, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -295,7 +305,14 @@ INSERT INTO `ordered_product` (`product_id`, `order_id`, `price`, `quantity`, `c
 (57, 47, 90, 1, 'SEK'),
 (58, 47, 360, 1, 'SEK'),
 (59, 47, 5400, 1, 'SEK'),
-(61, 47, 700, 1, 'SEK');
+(61, 47, 700, 1, 'SEK'),
+(56, 48, 450, 3, 'SEK'),
+(60, 49, 400, 1, 'SEK'),
+(57, 49, 90, 1, 'SEK'),
+(57, 50, 90, 1, 'SEK'),
+(56, 50, 450, 1, 'SEK'),
+(61, 52, 700, 1, 'SEK'),
+(68, 53, 500, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -368,19 +385,19 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(56, 'Spike', 'In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 7),
-(57, 'Palm', 'Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 5),
+(56, 'Spike', 'In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 3),
+(57, 'Palm', 'Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 3),
 (58, 'Nature', 'Quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 1, 3),
 (59, 'Battle', 'Volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 4),
-(60, 'Tiger', 'Feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 4),
-(61, 'Oblivion', 'Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare. In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 1, 12),
+(60, 'Tiger', 'Feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 3),
+(61, 'Oblivion', 'Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare. In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 1, 9),
 (62, 'Hera', 'Ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 36, 3),
 (63, 'Horse', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 37),
-(64, 'Elephant Love', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 10),
+(64, 'Elephant Love', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 8),
 (65, 'Statement', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 34, 2),
 (66, 'Sky', 'Sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 34, 3),
 (67, 'Waves', 'Consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 7),
-(68, 'Dance', 'Sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 3),
+(68, 'Dance', 'Sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 2),
 (69, 'Stairs', 'Tudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 25);
 
 -- --------------------------------------------------------
@@ -501,13 +518,13 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `active_order_of_products`
 --
 ALTER TABLE `active_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `completed_order_of_products`
 --
 ALTER TABLE `completed_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `order_status`
@@ -519,7 +536,7 @@ ALTER TABLE `order_status`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `product_category`
