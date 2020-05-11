@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/php/controller/controller.php";
 
-if (!is_numeric($_POST['productId'])) {die;}
+if (!isset($_POST['productId']) || !is_numeric($_POST['productId'])) {die;}
 $productId = intval($_POST['productId']);
 
 $p = getProductById($productId);
