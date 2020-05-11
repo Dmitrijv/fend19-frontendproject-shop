@@ -167,7 +167,7 @@ validator.add(forms.email, [
   },
   {
     strategy: "maxLength:254",
-    msg: "E-post får ej var alängre än 255 tecken"
+    msg: "E-post får ej var alängre än 254 tecken"
   }
 ]);
 
