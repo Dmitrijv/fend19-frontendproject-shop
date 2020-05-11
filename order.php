@@ -51,7 +51,7 @@ if (
     !isValidFormInputString($customerData['street']) ||
     !isValidFormInputString($customerData['postal_number']) ||
     !isValidFormInputString($customerData['county']) ||
-    strlen($customerData['email']) > 255 ||
+    strlen($customerData['email']) > 254 ||
     strlen($customerData['first_name']) > 20 ||
     strlen($customerData['last_name']) > 20 ||
     strlen($customerData['phone']) > 12 ||

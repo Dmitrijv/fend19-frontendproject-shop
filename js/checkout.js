@@ -166,8 +166,8 @@ validator.add(forms.email, [
     msg: "Ange en giltig email-address"
   },
   {
-    strategy: "maxLength:255",
-    msg: "Email length får ej vara längre än 255 tecken"
+    strategy: "maxLength:254",
+    msg: "Email length får ej vara längre än 254 tecken"
   }
 ]);
 
