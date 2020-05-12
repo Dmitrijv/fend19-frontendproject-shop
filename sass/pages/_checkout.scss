@@ -270,7 +270,39 @@
   font-size: 15px;
 }
 
-.highlight{
-  outline: 1px solid green;
-  outline-offset: 3px;
+.checkout-form__cart-section__product-container {
+  position: relative;
+}
+
+.highlight {
+
+  // outline: 1px solid green;
+  // outline-offset: 3px;
+  &::before {
+    content: 'Produkten är inte tillgängligt för tillfället.';
+    position: absolute;
+    top: 60px;
+    left: 0;
+    font-size: 12px;
+    color: red;
+  }
+
+  &::after {
+    content: 'Klick att ta bort den';
+    position: absolute;
+    top: 120px;
+    left: 100%;
+    color: red;
+    font-size: 10px;
+    transform: translateX(-100%);
+    width: 100%;
+  }
+}
+
+.delInfo::before {
+  content: 'Otillgänglig produkten har tagit bort';
+  position: absolute;
+  top: 100%;
+  color: red;
+  font-size: 16px;
 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap");
 input.categoryFilterButton {
@@ -3474,9 +3475,38 @@ section.order-confirmation button[disabled] {
   font-size: 15px;
 }
 
-.highlight {
-  outline: 1px solid green;
-  outline-offset: 3px;
+.checkout-form__cart-section__product-container {
+  position: relative;
+}
+
+.highlight::before {
+  content: 'Produkten är inte tillgängligt för tillfället.';
+  position: absolute;
+  top: 60px;
+  left: 0;
+  font-size: 12px;
+  color: red;
+}
+
+.highlight::after {
+  content: 'Klick att ta bort den';
+  position: absolute;
+  top: 120px;
+  left: 100%;
+  color: red;
+  font-size: 10px;
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+  width: 100%;
+}
+
+.delInfo::before {
+  content: 'Otillgänglig produkten har tagit bort';
+  position: absolute;
+  top: 100%;
+  color: red;
+  font-size: 16px;
 }
 
 #last-chance-main .content .product-container {
