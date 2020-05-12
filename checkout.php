@@ -28,7 +28,8 @@
 
     <main id="checkout-main">
 
-        <form action="order.php" onsubmit="clearCart()" method="POST" class="checkout-form">
+        <!-- <form action="order.php" onsubmit="clearCart()" method="POST" class="checkout-form"> -->
+        <form action="order.php"  method="POST" class="checkout-form">
             <!-- Right side: cart section -->
             <section class="checkout-form__cart-section">
                 <h2 class="checkout-form__cart-section__h2">Varukorg</h2>

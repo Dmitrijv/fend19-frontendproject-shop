@@ -19,6 +19,7 @@ if (count($shoppingCart) == 0) {
     die;
 }
 
+$outOfStockProductName = '';
 $orderTotalPrice = 0;
 // check if ordered products exist and are in stock
 foreach ($shoppingCart as &$cartItem) {
@@ -26,8 +27,10 @@ foreach ($shoppingCart as &$cartItem) {
     $product = getProductById($productId);
     $orderedQuantity = intval($cartItem['qty']);
     if ($product['number_in_stock'] < $orderedQuantity) {
-        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.");
-        die;
+        $product['title'] .= " ";
+        $outOfStockProductName .= $product['title'];
+        // preg_replace('/ AND $/', '', $outOfStockProductName);//have no idea why it won't work
+        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet. Remove ▶ $outOfStockProductName ◀ (●'◡'●)");
     }
     $orderTotalPrice = $orderTotalPrice + intval($product['price']);
 }
@@ -65,13 +68,13 @@ if (
 
 $customerDataId = md5(
     $customerData['email'] .
-    $customerData['first_name'] .
-    $customerData['first_name'] .
-    $customerData['last_name'] .
-    $customerData['phone'] .
-    $customerData['street'] .
-    $customerData['postal_number'] .
-    $customerData['county']
+        $customerData['first_name'] .
+        $customerData['first_name'] .
+        $customerData['last_name'] .
+        $customerData['phone'] .
+        $customerData['street'] .
+        $customerData['postal_number'] .
+        $customerData['county']
 );
 
 // save customer data if it doesn't already exist in db
@@ -84,7 +87,8 @@ $free_shipping = 0;
 if (
     $orderTotalPrice >= 500
     /* valid postal numbers for stockholm area follow 1xx xx format */
-    || preg_match('/^1\d{2}\s?\d{2}$/', $customerData['postal_number']) == true) {
+    || preg_match('/^1\d{2}\s?\d{2}$/', $customerData['postal_number']) == true
+) {
     $free_shipping = 1;
 }
 
@@ -171,9 +175,9 @@ $productListHtml .= '
         <span class="hamburger__bar"></span>
     </span>
 
-    <?php require_once __DIR__ . '/php/view/sidebar.php';?>
-    <?php require_once __DIR__ . '/php/view/header.php';?>
-    <?php require_once __DIR__ . '/php/view/cart.php';?>
+    <?php require_once __DIR__ . '/php/view/sidebar.php'; ?>
+    <?php require_once __DIR__ . '/php/view/header.php'; ?>
+    <?php require_once __DIR__ . '/php/view/cart.php'; ?>
 
     <main id="order-main">
 
@@ -221,10 +225,16 @@ $productListHtml .= '
         </section>
     </main>
 
-    <?php require_once __DIR__ . '/php/view/footer.php';?>
+    <?php require_once __DIR__ . '/php/view/footer.php'; ?>
 
-    <?php require __DIR__ . '/php/view/jscore.php';?>
+    <?php require __DIR__ . '/php/view/jscore.php'; ?>
 
+    <script>
+        localStorage.removeItem("products");
+        document.querySelector(".cart__erase").nextElementSibling.innerHTML = "";
+        document.querySelector(".total-sum").textContent = "";
+        shopLib.getCartAmount();
+    </script>
 </body>
 
 </html>

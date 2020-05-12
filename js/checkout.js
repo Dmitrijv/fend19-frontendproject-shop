@@ -315,9 +315,11 @@ confirmBtn.onclick = function (event) {
 
   if (isThereDeletedProduct() && shopLib.getShoppingCart().length === 1) {
     const listContainer = document.querySelector('.checkout-form__cart-section__product-container');
+    console.log(listContainer);
+    listContainer.classList.add('delInfo');
     goToOrderBtn.disabled = true;
     turnWhite();
-    alert('Otillgänglig produkten ska tas bort');
+    // alert('Otillgänglig produkten ska tas bort');
     localStorage.removeItem("products");
     shopLib.drawOrderList();
     shopLib.getCartAmount();
