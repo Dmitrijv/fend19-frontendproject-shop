@@ -20,16 +20,16 @@ const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__ke
 shopLib.drawOrderList();
 
 /* Validation related part, Strategy pattern is implemented here. */
-const _validator = (function () {
-  return function (ruleList) {
+const _validator = (function() {
+  return function(ruleList) {
     return {
       strategyFn: [],
       ruleList: ruleList,
-      add: function (dom, rules) {
+      add: function(dom, rules) {
         let that = this;
         for (let i = 0, len = rules.length; i < len; i++) {
-          (function (i) {
-            that.strategyFn.push(function () {
+          (function(i) {
+            that.strategyFn.push(function() {
               let info = [];
               let method = rules[i].strategy.split(":"),
                 methodName = method[0],
@@ -45,7 +45,7 @@ const _validator = (function () {
           })(i);
         }
       },
-      start: function () {
+      start: function() {
         for (i in this.strategyFn) {
           if (this.strategyFn.hasOwnProperty(i)) {
             let msg = this.strategyFn[i]();
@@ -60,15 +60,15 @@ const _validator = (function () {
 })();
 
 /* rule-list */
-const _rules = (function () {
+const _rules = (function() {
   const rulelist = {
-    isBlank: function (value, errorMsg) {
+    isBlank: function(value, errorMsg) {
       if (value === "") {
         return errorMsg;
       }
     },
 
-    isName: function (value, errorMsg) {
+    isName: function(value, errorMsg) {
       // uppercase/lowercase/multiple words
       if (
         !/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/.test(
@@ -79,19 +79,19 @@ const _rules = (function () {
       }
     },
 
-    minLength: function (value, length, errorMsg) {
+    minLength: function(value, length, errorMsg) {
       if (value.length < length) {
         return errorMsg;
       }
     },
 
-    maxLength: function (value, length, errorMsg) {
+    maxLength: function(value, length, errorMsg) {
       if (value.length > length) {
         return errorMsg;
       }
     },
 
-    isPhone: function (value, errorMsg) {
+    isPhone: function(value, errorMsg) {
       const reg1 = /\+?(?:0{0,2}[46]*){1}7{1}[0-9]{8}$/;
       /* Matches 0798789678 */
       const reg2 = /^(([+]\d{2}[ ][1-9]\d{0,2}[ ])|([0]\d{1,3}[-]))((\d{2}([ ]\d{2}){2})|(\d{3}([ ]\d{3})*([ ]\d{2})+))$/;
@@ -101,14 +101,14 @@ const _rules = (function () {
       }
     },
 
-    isEmail: function (value, errorMsg) {
+    isEmail: function(value, errorMsg) {
       const regNew = /^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*\@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)?(\.[A-Za-z]{2,})$/;
       if (!regNew.test(value)) {
         return errorMsg;
       }
     },
 
-    isSpace: function (value, errorMsg) {
+    isSpace: function(value, errorMsg) {
       if (
         [...value].every(item => {
           return item === " ";
@@ -118,7 +118,7 @@ const _rules = (function () {
       }
     },
 
-    isAdress: function (value, errorMsg) {
+    isAdress: function(value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
       const reg1 = /^[a-z0-9-åöäéáóíøæèüêû\s]+(\.|\,)?(.*\d{1,})(\.)?([a-z0-9-åöäéáóíøæèüêû\s]{0,})$/i;
       if (!reg1.test(value)) {
@@ -126,14 +126,14 @@ const _rules = (function () {
       }
     },
 
-    isPcode: function (value, errorMsg) {
+    isPcode: function(value, errorMsg) {
       /* very rough way, not accurate enough */
       if (!/^\d{3}\s*\d{2}$/.test(value)) {
         return errorMsg;
       }
     },
 
-    isCounty: function (value, errorMsg) {
+    isCounty: function(value, errorMsg) {
       // first letter no longer required to be capitalized
       // allow space between words (https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_st%C3%A4der_i_Sverige) Gamla Lödöse | Karl Johans stad
       if (!/^[a-zåöäéáóíøæèüêû\s]+$/i.test(value)) {
@@ -152,7 +152,8 @@ const validator = _validator(_rules.rulelist);
 const forms = document.querySelector(".checkout-form");
 
 /* Add method */
-validator.add(forms.email, [{
+validator.add(forms.email, [
+  {
     strategy: "isBlank",
     msg: "Var god ange en email-address"
   },
@@ -170,7 +171,8 @@ validator.add(forms.email, [{
   }
 ]);
 
-validator.add(forms.fname, [{
+validator.add(forms.fname, [
+  {
     strategy: "isBlank",
     msg: "Var god ange ett förnamn"
   },
@@ -192,7 +194,8 @@ validator.add(forms.fname, [{
   }
 ]);
 
-validator.add(forms.lname, [{
+validator.add(forms.lname, [
+  {
     strategy: "isBlank",
     msg: "Ange efternamn"
   },
@@ -214,7 +217,8 @@ validator.add(forms.lname, [{
   }
 ]);
 
-validator.add(forms.phone, [{
+validator.add(forms.phone, [
+  {
     strategy: "isBlank",
     msg: "Ange ett telefonnummer"
   },
@@ -232,7 +236,8 @@ validator.add(forms.phone, [{
   }
 ]);
 
-validator.add(forms.adress, [{
+validator.add(forms.adress, [
+  {
     strategy: "isBlank",
     msg: "Ange en adress"
   },
@@ -250,7 +255,8 @@ validator.add(forms.adress, [{
   }
 ]);
 
-validator.add(forms.pcode, [{
+validator.add(forms.pcode, [
+  {
     strategy: "isBlank",
     msg: "Ange ett postnummer"
   },
@@ -264,7 +270,8 @@ validator.add(forms.pcode, [{
   }
 ]);
 
-validator.add(forms.county, [{
+validator.add(forms.county, [
+  {
     strategy: "isBlank",
     msg: "Ange stad"
   },
@@ -303,7 +310,7 @@ function editInputArea() {
   });
 }
 
-confirmBtn.onclick = function (event) {
+confirmBtn.onclick = function(event) {
   // call errormsg
   const errMsg = validator.start(),
     errTips = document.querySelector(".err-tips");
@@ -313,54 +320,58 @@ confirmBtn.onclick = function (event) {
     return;
   }
 
-  if (isThereDeletedProduct() && JSON.parse(localStorage.getItem('products')).length === 1) {
+  if (isThereDeletedProduct() && JSON.parse(localStorage.getItem("products")).length === 1) {
     goToOrderBtn.disabled = true;
     turnWhite();
     localStorage.removeItem("products");
     shopLib.drawOrderList();
     getCartAmount();
+
+    clearCart();
+    refreshCartList();
+
     return;
   }
 
   function getCartAmount() {
     let amount = 0;
-    if (!localStorage.hasOwnProperty('products')) {
-      document.querySelector('.item-in-cart-amount').textContent = 0
+    if (!localStorage.hasOwnProperty("products")) {
+      document.querySelector(".item-in-cart-amount").textContent = 0;
       return;
     }
     const productsInCart = JSON.parse(localStorage.getItem("products"));
     productsInCart.map(item => {
       amount += item.qty;
-    })
-    document.querySelector('.item-in-cart-amount').textContent = amount;
+    });
+    document.querySelector(".item-in-cart-amount").textContent = amount;
     return amount;
   }
 
   if (isThereDeletedProduct() && shopLib.getShoppingCart().length > 1) {
-    const list = document.querySelector('.checkout-form__cart-section__product-list');
+    const list = document.querySelector(".checkout-form__cart-section__product-list");
     const allProducts = list.childNodes;
     for (let i = 0; i < allProducts.length; i++) {
       if (/"Borttagen produkt."/.test(allProducts[i].innerHTML)) {
         // alert('Produkt som inte är längre tillgängliga ska tas bort');
         turnWhite();
-        allProducts[i].classList.add('highlight')
-        allProducts[i].addEventListener('click', (e) => {
-          console.log(e.currentTarget)
+        allProducts[i].classList.add("highlight");
+        allProducts[i].addEventListener("click", e => {
+          console.log(e.currentTarget);
           let localStorageIds = shopLib.getShoppingCart().map(item => item.id);
           let deleteIndex = localStorageIds.indexOf(e.currentTarget.dataset.id);
           e.currentTarget.remove();
           updateLocalStorage(deleteIndex);
           hideImageAndReduceAmount();
           document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
-          goToOrderBtn.disabled = '';
-        })
+          goToOrderBtn.disabled = "";
+        });
       }
     }
 
     function hideImageAndReduceAmount() {
-      let productAmountInCart = document.querySelector('.item-in-cart-amount')
-      let beginNumber = productAmountInCart.textContent
-      productAmountInCart.textContent = beginNumber - 1
+      let productAmountInCart = document.querySelector(".item-in-cart-amount");
+      let beginNumber = productAmountInCart.textContent;
+      productAmountInCart.textContent = beginNumber - 1;
     }
     return;
   }
@@ -465,16 +476,15 @@ confirmBtn.onclick = function (event) {
   }
 
   function isThereDeletedProduct() {
-    const productListArea = document.querySelector('.checkout-form__cart-section__product-list');
-    return (/"Borttagen produkt."/.test(productListArea.innerHTML))
+    const productListArea = document.querySelector(".checkout-form__cart-section__product-list");
+    return /"Borttagen produkt."/.test(productListArea.innerHTML);
   }
 
   function updateLocalStorage(position) {
     let originLocalStorageValue = shopLib.getShoppingCart();
     originLocalStorageValue.splice(position, 1);
-    localStorage.setItem('products', JSON.stringify(originLocalStorageValue));
+    localStorage.setItem("products", JSON.stringify(originLocalStorageValue));
   }
-
 };
 
 // add shopping cart data to form
