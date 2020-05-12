@@ -4,10 +4,10 @@ $errorMessage = "Sidan existerar inte.";
 if (isset($_GET['errorMessage'])) {
     $errorMessage = $_GET['errorMessage'];
 }
-if (isset($_GET['info'])) {
-    $info = $_GET['info'];
-    $info = preg_replace('/ AND$/', '', $info);
-}
+// if (isset($_GET['info'])) {
+//     $info = $_GET['info'];
+//     $info = preg_replace('/ AND$/', '', $info);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ if (isset($_GET['info'])) {
         <div class="content">
             <div class='emptyCategoryMessage'> <?php echo $errorMessage; ?> </div>
             <!-- <div class="product-container" id="productPanel"></div> -->
-            <div class="product-container infoOnErrorPage" id="productPanel"> Remove ▶<span><?php echo $info ?></span> ◀ ಠ_ಠ</div>
+            <div class="product-container infoOnErrorPage" id="productPanel"></div>
             <button class="btn third" onclick="window.history.back()">Go back</button>
         </div>
     </main>

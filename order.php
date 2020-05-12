@@ -27,9 +27,9 @@ foreach ($shoppingCart as &$cartItem) {
     $product = getProductById($productId);
     $orderedQuantity = intval($cartItem['qty']);
     if ($product['number_in_stock'] < $orderedQuantity) {
-        $product['title'] .= " AND ";
+        // $product['title'] .= " AND ";
         $outOfStockProductName .= $product['title'];
-        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.&info= $outOfStockProductName");
+        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet. Ta bort produkt: $outOfStockProductName");
     }
     $orderTotalPrice = $orderTotalPrice + intval($product['price']);
 }

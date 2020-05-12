@@ -318,6 +318,7 @@ confirmBtn.onclick = function (event) {
     turnWhite();
     localStorage.removeItem("products");
     window.onload();
+    goToOrderBtn.disabled = true;
     shopLib.drawOrderList();
     return;
   }
