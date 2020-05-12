@@ -289,9 +289,6 @@ shopLib = (function() {
               itemsCountTotal += itemCount;
             }
 
-            // console.log(subTotal);
-            // console.log(itemsCountTotal);
-
             productList.innerHTML += `
             <div class="checkout-form__cart-section__product-container" data-id="${item.id}">
               <div class="checkout-form__cart-section__img-container">

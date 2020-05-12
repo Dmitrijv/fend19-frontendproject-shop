@@ -1,4 +1,4 @@
-/* TODO */
+/* What have been done */
 /* Email length restrain?? 64 + 255 (https://blog.moonmail.io/what-is-the-maximum-length-of-a-valid-email-address-f712c6c4bc93) */
 /* use modifier i to reduce regex pattern */
 /* Tel: 08?? not now*/
@@ -346,11 +346,8 @@ confirmBtn.onclick = function (event) {
         allProducts[i].classList.add('highlight')
         allProducts[i].addEventListener('click', (e) => {
           console.log(e.currentTarget)
-          // console.log(e.currentTarget.dataset.id);
           let localStorageIds = shopLib.getShoppingCart().map(item => item.id);
-          // console.log(localStorageIds);
           let deleteIndex = localStorageIds.indexOf(e.currentTarget.dataset.id);
-          // console.log(deleteIndex);
           e.currentTarget.remove();
           updateLocalStorage(deleteIndex);
           hideImageAndReduceAmount();

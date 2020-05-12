@@ -104,7 +104,6 @@ function setLocalStorage(obj, fromClick) {
 
     if (alreadyExists) {
       // alert("You already have this item in your cart.");
-      // maybe create some pseudo element and settimeout
       displayAlert();
     } else {
       getArray.push(productInfo(obj));
