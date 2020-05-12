@@ -3539,4 +3539,55 @@ section.order-confirmation button[disabled] {
 .product-container.infoOnErrorPage span {
   color: red;
 }
+
+.btn {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #f60d4d;
+  border-radius: 0.6em;
+  color: #f60d4d;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.btn:hover, .btn:focus {
+  outline: 0;
+  color: palevioletred;
+}
+
+.third {
+  position: absolute;
+  top: 55%;
+  margin: auto;
+  border-color: #3498db;
+  color: #fff;
+  -webkit-box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+          box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  -o-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.third:hover {
+  -webkit-box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+          box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+}
 /*# sourceMappingURL=style.css.map */

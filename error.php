@@ -40,6 +40,7 @@ if (isset($_GET['info'])) {
             <div class='emptyCategoryMessage'> <?php echo $errorMessage; ?> </div>
             <!-- <div class="product-container" id="productPanel"></div> -->
             <div class="product-container infoOnErrorPage" id="productPanel"> Remove ▶<span><?php echo $info ?></span> ◀ ಠ_ಠ</div>
+            <button class="btn third" onclick="goBack()">Go back</button>
         </div>
     </main>
 
@@ -48,6 +49,11 @@ if (isset($_GET['info'])) {
     <!-- js scripts go here -->
     <?php require_once __DIR__ . '/php/view/jscore.php'; ?>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>
