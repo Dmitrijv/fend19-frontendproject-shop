@@ -317,14 +317,26 @@ confirmBtn.onclick = function (event) {
     goToOrderBtn.disabled = true;
     turnWhite();
     localStorage.removeItem("products");
-    window.onload();
-    goToOrderBtn.disabled = true;
     shopLib.drawOrderList();
+    getCartAmount();
     return;
   }
 
+  function getCartAmount() {
+    let amount = 0;
+    if (!localStorage.hasOwnProperty('products')) {
+      document.querySelector('.item-in-cart-amount').textContent = 0
+      return;
+    }
+    const productsInCart = JSON.parse(localStorage.getItem("products"));
+    productsInCart.map(item => {
+      amount += item.qty;
+    })
+    document.querySelector('.item-in-cart-amount').textContent = amount;
+    return amount;
+  }
+
   if (isThereDeletedProduct() && shopLib.getShoppingCart().length > 1) {
-    Location.reload();
     const list = document.querySelector('.checkout-form__cart-section__product-list');
     const allProducts = list.childNodes;
     for (let i = 0; i < allProducts.length; i++) {
@@ -332,14 +344,16 @@ confirmBtn.onclick = function (event) {
         // alert('Produkt som inte är längre tillgängliga ska tas bort');
         turnWhite();
         allProducts[i].classList.add('highlight')
-        allProducts[i].addEventListener('click', () => {
-          allProducts[i].remove();
-          let delIndex = (i - 1) / 2;
-          // console.log(delIndex);
-          updateLocalStorage(delIndex);
+        allProducts[i].addEventListener('click', (e) => {
+          console.log(e.currentTarget)
+          // console.log(e.currentTarget.dataset.id);
+          let localStorageIds = shopLib.getShoppingCart().map(item => item.id);
+          // console.log(localStorageIds);
+          let deleteIndex = localStorageIds.indexOf(e.currentTarget.dataset.id);
+          // console.log(deleteIndex);
+          e.currentTarget.remove();
+          updateLocalStorage(deleteIndex);
           hideImageAndReduceAmount();
-          // turnWhite();
-          // keepShoppingBtn.disabled = true; //disable buyMoreBtn
           document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
           goToOrderBtn.disabled = '';
         })
@@ -354,7 +368,6 @@ confirmBtn.onclick = function (event) {
     return;
   }
 
-  // else {
   errTips.innerHTML = "";
   goToOrderBtn.disabled = "";
   goToOrderBtn.style.backgroundcolor = "#218838";
@@ -363,8 +376,6 @@ confirmBtn.onclick = function (event) {
   checkDeliveryFee();
   turnWhite(); //remove input red border
   editInfoBtn.disabled = "";
-  // }
-  // checkDeliveryFee();
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
   let email = document.querySelector("#email").value;
