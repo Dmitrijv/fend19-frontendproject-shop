@@ -223,7 +223,7 @@ function removeAllInCartStyle() {
 
 function inCartAnimation() {
   cartBtn.classList.add('inCartAnimation');
-  const amount = shopLib.getCartAmount();
+  const amount = getCartAmount();
   document.querySelector('button.open-overlay.inCartAnimation').setAttribute('data-before', amount)
   document.querySelector('.item-in-cart-amount').textContent = amount;
   setTimeout(() => {
@@ -239,14 +239,26 @@ function displayAlert() {
   }, 1000);
 }
 
+function getCartAmount() {
+  let amount = 0;
+  if (!localStorage.hasOwnProperty('products')) {
+    document.querySelector('.item-in-cart-amount').textContent = 0
+    return;
+  }
+  const productsInCart = JSON.parse(localStorage.getItem("products"));
+  productsInCart.map(item => {
+    amount += item.qty;
+  })
+  document.querySelector('.item-in-cart-amount').textContent = amount;
+  return amount;
+}
+
 //.cart > .cart__erase / button / img addEventlistener
 cart.addEventListener('click', (e) => {
   if (e.target.matches('.cart__erase') || e.target.matches('button') || e.target.matches('img')) {
-    shopLib.getCartAmount();
-    while (/checkout/.test(location.href)) {
-      shopLib.drawOrderList();
-    }
+    getCartAmount();
+    shopLib.drawOrderList();
   }
 })
 
-window.onload = shopLib.getCartAmount();
+window.onload = getCartAmount;
