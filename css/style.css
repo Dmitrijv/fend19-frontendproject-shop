@@ -3529,4 +3529,14 @@ section.order-confirmation button[disabled] {
   font-weight: bold;
   margin-right: 10px;
 }
+
+.product-container.infoOnErrorPage {
+  display: block !important;
+  position: absolute;
+  top: 50%;
+}
+
+.product-container.infoOnErrorPage span {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

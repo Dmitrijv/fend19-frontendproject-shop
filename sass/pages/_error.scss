@@ -1,0 +1,9 @@
+.product-container.infoOnErrorPage {
+  display: block !important;
+  position: absolute;
+  top: 50%;
+
+  span {
+    color: red;
+  }
+}

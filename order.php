@@ -27,10 +27,12 @@ foreach ($shoppingCart as &$cartItem) {
     $product = getProductById($productId);
     $orderedQuantity = intval($cartItem['qty']);
     if ($product['number_in_stock'] < $orderedQuantity) {
-        $product['title'] .= " ";
+        $product['title'] .= " AND ";
         $outOfStockProductName .= $product['title'];
-        // preg_replace('/ AND $/', '', $outOfStockProductName);//have no idea why it won't work
-        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet. Remove ▶ $outOfStockProductName ◀ (●'◡'●)");
+        // echo $outOfStockProductName;
+        // preg_replace('/ AND$/', '', $outOfStockProductName);//have no idea why it won't work
+        header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet.&info= $outOfStockProductName");
+/*         header("Location: error.php?errorMessage=Lagerstatus är för låg för att genomföra köpet. Remove ▶ $outOfStockProductName ◀ (●'◡'●)"); */
     }
     $orderTotalPrice = $orderTotalPrice + intval($product['price']);
 }
