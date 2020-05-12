@@ -311,9 +311,9 @@ confirmBtn.onclick = function (event) {
   if (errMsg) {
     errTips.innerHTML = errMsg;
     return;
-  } 
-  
-  if(isThereDeletedProduct() && JSON.parse(localStorage.getItem('products')).length === 1){
+  }
+
+  if (isThereDeletedProduct() && JSON.parse(localStorage.getItem('products')).length === 1) {
     goToOrderBtn.disabled = true;
     turnWhite();
     localStorage.removeItem("products");
@@ -321,16 +321,46 @@ confirmBtn.onclick = function (event) {
     shopLib.drawOrderList();
     return;
   }
-  
+
+  if (isThereDeletedProduct() && shopLib.getShoppingCart().length > 1) {
+    const list = document.querySelector('.checkout-form__cart-section__product-list');
+    const allProducts = list.childNodes;
+    for (let i = 0; i < allProducts.length; i++) {
+      if (/"Borttagen produkt."/.test(allProducts[i].innerHTML)) {
+        // alert('Produkt som inte är längre tillgängliga ska tas bort');
+        turnWhite();
+        allProducts[i].classList.add('highlight')
+        allProducts[i].addEventListener('click', () => {
+          allProducts[i].remove();
+          let delIndex = (i - 1) / 2;
+          // console.log(delIndex);
+          updateLocalStorage(delIndex);
+          hideImageAndReduceAmount();
+          // turnWhite();
+          // keepShoppingBtn.disabled = true; //disable buyMoreBtn
+          document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
+          goToOrderBtn.disabled = '';
+        })
+      }
+    }
+
+    function hideImageAndReduceAmount() {
+      let productAmountInCart = document.querySelector('.item-in-cart-amount')
+      let beginNumber = productAmountInCart.textContent
+      productAmountInCart.textContent = beginNumber - 1
+    }
+    return;
+  }
+
   // else {
-    errTips.innerHTML = "";
-    goToOrderBtn.disabled = "";
-    goToOrderBtn.style.backgroundcolor = "#218838";
-    keepShoppingBtn.disabled = true; //disable buyMoreBtn
-    document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
-    checkDeliveryFee();
-    turnWhite(); //remove input red border
-    editInfoBtn.disabled = "";
+  errTips.innerHTML = "";
+  goToOrderBtn.disabled = "";
+  goToOrderBtn.style.backgroundcolor = "#218838";
+  keepShoppingBtn.disabled = true; //disable buyMoreBtn
+  document.querySelector(".open-overlay").removeEventListener("click", openCart); //disable cartBtn
+  checkDeliveryFee();
+  turnWhite(); //remove input red border
+  editInfoBtn.disabled = "";
   // }
   // checkDeliveryFee();
 
@@ -429,6 +459,11 @@ confirmBtn.onclick = function (event) {
     return (/"Borttagen produkt."/.test(productListArea.innerHTML))
   }
 
+  function updateLocalStorage(position) {
+    let originLocalStorageValue = shopLib.getShoppingCart();
+    originLocalStorageValue.splice(position, 1);
+    localStorage.setItem('products', JSON.stringify(originLocalStorageValue));
+  }
 
 };
 

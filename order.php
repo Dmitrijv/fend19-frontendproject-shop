@@ -232,7 +232,20 @@ $productListHtml .= '
         localStorage.removeItem("products");
         document.querySelector(".cart__erase").nextElementSibling.innerHTML = "";
         document.querySelector(".total-sum").textContent = "";
-        shopLib.getCartAmount();
+        // shopLib.getCartAmount();
+        (function getCartAmount() {
+            let amount = 0;
+            if (!localStorage.hasOwnProperty('products')) {
+                document.querySelector('.item-in-cart-amount').textContent = 0
+                return;
+            }
+            const productsInCart = JSON.parse(localStorage.getItem("products"));
+            productsInCart.map(item => {
+                amount += item.qty;
+            })
+            document.querySelector('.item-in-cart-amount').textContent = amount;
+            return amount;
+        })()
     </script>
 </body>
 
