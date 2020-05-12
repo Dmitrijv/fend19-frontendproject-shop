@@ -1,4 +1,4 @@
-/* TODO */
+/* What have done: */
 /* Email length restrain?? 64 + 255 (https://blog.moonmail.io/what-is-the-maximum-length-of-a-valid-email-address-f712c6c4bc93) */
 /* use modifier i to reduce regex pattern */
 /* Tel: 08?? not now*/
@@ -15,7 +15,6 @@
   Ort: uppercase/lowercase */
 const confirmBtn = document.querySelector(".checkout-form__delivery-section__deliveryBtn");
 const keepShoppingBtn = document.querySelector(".checkout-form__cart-section__keep-shopping-btn");
-// let subTotal = 0;
 
 shopLib.drawOrderList();
 
@@ -330,8 +329,6 @@ confirmBtn.onclick = function (event) {
     const list = document.querySelector('.checkout-form__cart-section__product-list');
     const allProducts = list.childNodes;
     for (let i = 0; i < allProducts.length; i++) {
-      // console.log(allProducts[i])//whitespaces exist
-      console.log(/"Borttagen produkt."/.test(allProducts[i].innerHTML))
       if (/"Borttagen produkt."/.test(allProducts[i].innerHTML)) {
         // alert('Produkt som inte är längre tillgängliga ska tas bort');
         turnWhite();
@@ -350,12 +347,6 @@ confirmBtn.onclick = function (event) {
       }
     }
 
-    function updateLocalStorage(position) {
-      let originLocalStorageValue = shopLib.getShoppingCart();
-      originLocalStorageValue.splice(position, 1);
-      localStorage.setItem('products', JSON.stringify(originLocalStorageValue));
-    }
-
     function hideImageAndReduceAmount() {
       let productAmountInCart = document.querySelector('.item-in-cart-amount')
       let beginNumber = productAmountInCart.textContent
@@ -363,7 +354,7 @@ confirmBtn.onclick = function (event) {
     }
     return;
   }
-  // else {
+
   errTips.innerHTML = "";
   goToOrderBtn.disabled = "";
   goToOrderBtn.style.backgroundcolor = "#218838";
@@ -372,7 +363,6 @@ confirmBtn.onclick = function (event) {
   checkDeliveryFee();
   turnWhite(); //remove input red border
   editInfoBtn.disabled = "";
-  // }
 
   let email = document.querySelector("#email").value;
   const forename = formatName(document.querySelector("#fname").value);
@@ -440,7 +430,6 @@ confirmBtn.onclick = function (event) {
     /* Now double check if zipcode & county spelling belong to Stockholm region */
     if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
       // free delivery
-      // console.log('free delivery');
       deliveryFeeTextArea.textContent = "0";
       deliveryFeeTextArea.classList.remove("hidden");
       realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
@@ -448,13 +437,11 @@ confirmBtn.onclick = function (event) {
     } else {
       // add 50 kr
       if (deliveryFeeTextArea.classList.contains("hidden")) {
-        // console.log('pay 50 condition 1');
         deliveryFeeTextArea.classList.remove("hidden");
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
         realTotalPrice = subTotal + 50;
         return;
       } else {
-        // console.log('pay 50 condition 2');
         deliveryFeeTextArea.textContent = "50";
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
         realTotalPrice = subTotal + 50;
@@ -467,6 +454,13 @@ confirmBtn.onclick = function (event) {
     const productListArea = document.querySelector('.checkout-form__cart-section__product-list');
     return (/"Borttagen produkt."/.test(productListArea.innerHTML))
   }
+
+  function updateLocalStorage(position) {
+    let originLocalStorageValue = shopLib.getShoppingCart();
+    originLocalStorageValue.splice(position, 1);
+    localStorage.setItem('products', JSON.stringify(originLocalStorageValue));
+  }
+
 
 
 };
