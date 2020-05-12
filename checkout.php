@@ -1,5 +1,3 @@
-<!-- TODO -->
-<!-- Separate the function for drawing order table -->
 <!DOCTYPE html>
 <html lang="en">
 
