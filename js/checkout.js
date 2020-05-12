@@ -324,6 +324,7 @@ confirmBtn.onclick = function (event) {
   }
 
   if (isThereDeletedProduct() && shopLib.getShoppingCart().length > 1) {
+    Location.reload();
     const list = document.querySelector('.checkout-form__cart-section__product-list');
     const allProducts = list.childNodes;
     for (let i = 0; i < allProducts.length; i++) {

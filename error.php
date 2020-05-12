@@ -40,7 +40,7 @@ if (isset($_GET['errorMessage'])) {
             <div class='emptyCategoryMessage'> <?php echo $errorMessage; ?> </div>
             <!-- <div class="product-container" id="productPanel"></div> -->
             <div class="product-container infoOnErrorPage" id="productPanel"></div>
-            <button class="btn third" onclick="window.history.back()">Go back</button>
+            <!-- <button class="btn third" onclick="window.history.back()">Go back</button> -->
         </div>
     </main>
 
