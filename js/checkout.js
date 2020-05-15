@@ -304,11 +304,9 @@ function editInputArea() {
 }
 
 // console.log(getTotalAmount());
-if (getTotalAmount() >= 500) {
-  document.querySelector('.deliveryFeeRow').innerHTML = `Frakt: 0 kr <span class="deliveryFeeText hidden">50 kr</span> `
-} else{
-
-}
+// if (getTotalAmount() >= 500) {
+//   document.querySelector('.deliveryFeeRow').innerHTML = `Frakt: 0 kr <span class="deliveryFeeText hidden">50 kr</span> `
+// } 
 
 confirmBtn.onclick = function (event) {
   // call errormsg
@@ -453,8 +451,8 @@ confirmBtn.onclick = function (event) {
     if (subTotal >= 500 || /^1\d{2}.?\d{2}$/.test(zipcode.value)) {
       // free delivery
       console.log('free delivery');
-      // deliveryFeeTextArea.textContent = "0";
-      // deliveryFeeTextArea.classList.remove("hidden");
+      deliveryFeeTextArea.textContent = "0";
+      deliveryFeeTextArea.classList.remove("hidden");
       realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
       realTotalPrice = subTotal;
     } else {
