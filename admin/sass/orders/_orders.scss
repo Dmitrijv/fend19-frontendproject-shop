@@ -1,0 +1,58 @@
+table#orderAdminTable th {
+  user-select: none;
+}
+
+table#orderAdminTable th.sortable {
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    background-color: #dcdcdc;
+  }
+
+  &.sorted {
+    background-color: #dcdcdc;
+  }
+
+  &.sorted.sortAsc::after {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    content: "\02C4";
+  }
+
+  &.sorted.sortDesc::after {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    content: "\02C5";
+  }
+}
+
+input[name="countyNameFilter"] {
+  max-width: 300px;
+}
+
+label.bold {
+  font-weight: bold;
+}
+
+form.orderCategoryFilter {
+  display: flex;
+  align-items: center;
+
+  max-width: 310px;
+  padding: 6px 4px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+
+  div.form-group {
+    margin: 0 8px;
+    input[type="radio"] {
+      vertical-align: baseline;
+    }
+    label {
+      margin: 0;
+      font-weight: normal;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Source Sans Pro, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+body {
+  background-color: rgb(239, 239, 239);
+  overflow-y: scroll;
+}
+
+ul {
+  list-style-type: none;
+
+  li {
+    list-style: none;
+  }
+}
+
+a:not(.linkContainer > a) {
+  color: unset;
+  text-decoration: none;
+}
+
+a:hover:not(.linkContainer > a) {
+  color: unset;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+svg:hover,
+.edit-btn:hover,
+.del-btn:hover {
+  cursor: pointer;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.absolute-center-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

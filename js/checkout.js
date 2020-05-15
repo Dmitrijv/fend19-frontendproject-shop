@@ -135,7 +135,7 @@ const _rules = (function () {
 
     isName: function (value, errorMsg) {
       // uppercase/lowercase/multiple words
-      if (!/^[a-zA-Z-ÅÖÄåöäéáó\s]+(\.)?/.test(value)) {
+      if (!/^[a-zA-Z-ÅÖÄåöäéáóí\s]+(\.)?/i.test(value)) {
         return errorMsg
       }
     },
@@ -184,7 +184,7 @@ const _rules = (function () {
 
     isAdress: function (value, errorMsg) {
       /* Pattern: uppercase/lowercase/multiple words allowed*/
-      const reg1 = /^^[a-zA-Z0-9-ÅÖÄåöäéáó\s]+(\.|\,)?(.*\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáó\s]{0,})$$/
+      const reg1 = /^[a-zA-Z0-9-ÅÖÄåöäéáóí\s]+(\.|\,)?(.*\d{1,})(\.)?([a-zA-Z0-9-ÅÖÄåöäéáóí\s]{0,})$/i
       if (!reg1.test(value)) {
         return errorMsg
       }
@@ -199,7 +199,7 @@ const _rules = (function () {
 
     isCounty: function (value, errorMsg) {
       // first letter no longer required to be capitalized
-      if (!/^([A-Za-zÅÖÄåöäéáó])[a-zöäåéáó]+/.test(value)) {
+      if (!/^([A-Za-zÅÖÄåöäéáó])[a-zöäåéáó]+/i.test(value)) {
         return errorMsg
       }
     },
@@ -366,17 +366,17 @@ confirmBtn.onclick = function (event) {
     turnWhite(); //remove input red border
     editInfoBtn.disabled = '';
   }
-  checkDeliveryFee();
+  // checkDeliveryFee();
 
   /* setItem in localStorage about customer info + delivery fee (if any) */
-  let email = document.querySelector("#email").value
-  const forename = formatName(document.querySelector("#fname").value)
-  const aftername = formatName(document.querySelector("#lname").value)
-  const name = forename + " " + aftername
-  const phone = removeSpace(document.querySelector("#tel").value)
-  const address = formatName(document.querySelector("#adress").value)
-  const pcode = formatZipcode(document.querySelector("#pcode").value)
-  const city = capitalizeFirstLetter(document.querySelector("#city").value)
+  let email = document.querySelector("#email").value;
+  const forename = formatName(document.querySelector("#fname").value);
+  const aftername = formatName(document.querySelector("#lname").value);
+  const name = forename + " " + aftername;
+  const phone = removeSpace(document.querySelector("#tel").value);
+  const address = formatName(document.querySelector("#adress").value);
+  const pcode = formatZipcode(document.querySelector("#pcode").value);
+  const city = capitalizeFirstLetter(document.querySelector("#city").value);
 
   redrawCustomerInfoTable()
 
@@ -407,12 +407,12 @@ confirmBtn.onclick = function (event) {
 
   function redrawCustomerInfoTable() {
     // email = email;
-    document.querySelector("#fname").value = forename
-    document.querySelector("#lname").value = aftername
-    document.querySelector("#tel").value = phone
-    document.querySelector("#adress").value = address
-    document.querySelector("#pcode").value = pcode
-    document.querySelector("#city").value = city
+    document.querySelector("#fname").value = forename;
+    document.querySelector("#lname").value = aftername;
+    document.querySelector("#tel").value = phone;
+    document.querySelector("#adress").value = address;
+    document.querySelector("#pcode").value = pcode;
+    document.querySelector("#city").value = city;
   }
 
   //remove input border's color
@@ -426,24 +426,29 @@ confirmBtn.onclick = function (event) {
 
   /* To check delivery fee */
   function checkDeliveryFee() {
-    const deliveryFeeTextArea = document.querySelector(".deliveryFeeText")
-    const zipcode = document.querySelector("#pcode")
-    let realTotalPriceArea = document.querySelector(".item-total")
-
-    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) || subTotal >= 500) {
+    const deliveryFeeTextArea = document.querySelector(".deliveryFeeText");
+    const zipcode = document.querySelector("#pcode");
+    const county = document.querySelector('#city').value.toLowerCase();
+    let realTotalPriceArea = document.querySelector(".item-total");
+    
+    /* Now double check if zipcode & county spelling belong to Stockholm region */
+    if (/^1\d{2}.?\d{2}$/.test(zipcode.value) && /^stockholm/.test(county) || subTotal >= 500) {
       // free delivery
-      deliveryFeeTextArea.textContent = "0"
-      deliveryFeeTextArea.classList.remove("hidden")
-      realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`
-      realTotalPrice = subTotal
+      // console.log('free delivery');
+      deliveryFeeTextArea.textContent = "0";
+      deliveryFeeTextArea.classList.remove("hidden");
+      realTotalPriceArea.innerHTML = `Totalt: ${subTotal} kr`;
+      realTotalPrice = subTotal;
     } else {
       // add 50 kr
       if (deliveryFeeTextArea.classList.contains('hidden')) {
+        // console.log('pay 50 condition 1');
         deliveryFeeTextArea.classList.remove("hidden");
-        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`
+        realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
         realTotalPrice = subTotal + 50;
         return;
       } else {
+        // console.log('pay 50 condition 2');
         deliveryFeeTextArea.textContent = "50";
         realTotalPriceArea.innerHTML = `Totalt: ${subTotal + 50} kr`;
         realTotalPrice = subTotal + 50;

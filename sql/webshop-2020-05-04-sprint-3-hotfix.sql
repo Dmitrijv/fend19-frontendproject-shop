@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2020 at 03:25 PM
+-- Generation Time: May 04, 2020 at 02:13 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `jbiizejj_webshop`
+-- Database: `webshop`
 --
 
 -- --------------------------------------------------------
@@ -62,8 +62,14 @@ INSERT INTO `active_order_of_products` (`id`, `date_ordered_at`, `status`, `cust
 (32, '2020-05-02 15:17:26', 2, 'f7711dd6f98dc16205a89813b6ac37fd', 1),
 (33, '2020-05-02 15:17:53', 1, '1e75e5a214e6c8516242c43cd0ffdf27', 1),
 (34, '2020-05-02 15:18:35', 1, '9fa5f2daf1c3ecfc5e8cac1640ea994c', 1),
-(35, '2020-05-02 15:19:51', 2, '5094749814d5f4b8311de4de7f4062d0', 1),
-(36, '2020-05-02 15:20:10', 1, '5094749814d5f4b8311de4de7f4062d0', 1);
+(36, '2020-05-02 15:20:10', 1, '5094749814d5f4b8311de4de7f4062d0', 1),
+(37, '2020-05-03 17:59:58', 2, '3ad5e1abfc0071a262ccdf4d1194550d', 1),
+(38, '2020-05-04 11:16:05', 1, 'f7711dd6f98dc16205a89813b6ac37fd', 0),
+(39, '2020-05-04 11:36:38', 1, 'e875d112d9ac8071139bf1aee148e108', 1),
+(40, '2020-05-04 11:39:48', 1, '3ad5e1abfc0071a262ccdf4d1194550d', 1),
+(41, '2020-05-04 11:41:50', 2, '4aa256929e8b5a020a811dc8466a9dec', 1),
+(42, '2020-05-04 11:42:26', 1, '365ee95800b5884229c5c930d194d2cd', 0),
+(47, '2020-05-04 14:11:57', 1, '3ad5e1abfc0071a262ccdf4d1194550d', 1);
 
 -- --------------------------------------------------------
 
@@ -84,9 +90,11 @@ CREATE TABLE `completed_order_of_products` (
 --
 
 INSERT INTO `completed_order_of_products` (`id`, `date_ordered_at`, `status`, `customer_data_id`, `free_shipping`) VALUES
-(17, '2020-04-29 19:51:50', 3, '944cfba9624a1bc8ce6075f0e3eb153b', 1),
-(22, '2020-04-30 11:37:36', 3, '4aa256929e8b5a020a811dc8466a9dec', 1),
-(29, '2020-05-02 14:52:40', 3, '3454b5836f09f76da144e5c72100d0cc', 0);
+(35, '2020-05-02 15:19:51', 3, '5094749814d5f4b8311de4de7f4062d0', 1),
+(43, '2020-05-04 11:44:55', 3, 'de7005d0b36832d1071d3972366fe1c3', 1),
+(44, '2020-05-04 12:14:07', 3, '4aa256929e8b5a020a811dc8466a9dec', 1),
+(45, '2020-05-04 12:15:29', 3, 'de7005d0b36832d1071d3972366fe1c3', 1),
+(46, '2020-05-04 12:21:08', 3, 'e93c98d10a3307f13b2121a8be7637e3', 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +138,8 @@ CREATE TABLE `customer_data` (
 INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, `street`, `postal_number`, `county`) VALUES
 ('1e75e5a214e6c8516242c43cd0ffdf27', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Mora'),
 ('3454b5836f09f76da144e5c72100d0cc', 'hello@gmail.com', '0734434305', 'Dzmitry', 'Velström', 'Svea Vägen 16', '332 12', 'Stockholm'),
+('365ee95800b5884229c5c930d194d2cd', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '254 44', 'Stockholm'),
+('3ad5e1abfc0071a262ccdf4d1194550d', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '168 43', 'Stockholm'),
 ('4a995b336c8ac19b6049972fd4d8d2be', 'hello2@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Stockholm'),
 ('4aa256929e8b5a020a811dc8466a9dec', 'lala@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Skåne'),
 ('4ed26ab9cf6dffce6e6019a39b61889f', 'hello@gmail.com', '0734434305', 'Mahmud', 'Al Hakim', 'Svea Vägen 16', '332 12', 'Stockholm'),
@@ -141,6 +151,8 @@ INSERT INTO `customer_data` (`id`, `email`, `phone`, `first_name`, `last_name`, 
 ('cbbc8fd5c48b0ab9532e8b775175f745', 'hello2@gmail.com', '0734434305', 'John', 'Doe', 'Svea Vägen 16', '332 12', 'Stockholm'),
 ('de7005d0b36832d1071d3972366fe1c3', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Svea Vägen 16', '332 12', 'Stockholm'),
 ('e5c61cfa480ca6ce8e99048c5df746d5', 'hello2@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'SveaVägen 16', '332 12', 'Stockholm'),
+('e875d112d9ac8071139bf1aee148e108', 'timber@gmail.com', '0742234534', 'Kider', 'Homster', 'Hellogatan 12', '154 44', 'Stockholm'),
+('e93c98d10a3307f13b2121a8be7637e3', '234324@wadawd.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Bogte'),
 ('f7711dd6f98dc16205a89813b6ac37fd', 'hello@gmail.com', '0734434305', 'Anna Maria', 'Ramirez', 'Storgatan 1', '332 12', 'Stockholm'),
 ('f80c2a7db8b9d8b577a30dcd82f79f5c', 'hello@gmail.com', '07344343054', 'Dzmitry', 'Velström', 'Storgatan 1', '332 12', 'Stockholm');
 
@@ -163,11 +175,18 @@ CREATE TABLE `delivered_product` (
 --
 
 INSERT INTO `delivered_product` (`product_id`, `order_id`, `price`, `quantity`, `currency_id`) VALUES
-(33, 22, 360, 1, 'SEK'),
-(34, 22, 720, 1, 'SEK'),
-(54, 22, 333, 1, 'SEK'),
-(34, 17, 720, 1, 'SEK'),
-(55, 29, 111, 1, 'SEK');
+(67, 35, 7000, 1, 'SEK'),
+(65, 35, 400, 1, 'SEK'),
+(59, 45, 5400, 1, 'SEK'),
+(63, 45, 1000, 1, 'SEK'),
+(67, 45, 7000, 1, 'SEK'),
+(56, 46, 450, 1, 'SEK'),
+(58, 46, 360, 1, 'SEK'),
+(60, 44, 400, 1, 'SEK'),
+(56, 44, 450, 1, 'SEK'),
+(58, 44, 360, 3, 'SEK'),
+(56, 43, 450, 1, 'SEK'),
+(59, 43, 5400, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -265,10 +284,18 @@ INSERT INTO `ordered_product` (`product_id`, `order_id`, `price`, `quantity`, `c
 (63, 33, 1000, 1, 'SEK'),
 (64, 33, 500, 1, 'SEK'),
 (64, 34, 500, 1, 'SEK'),
-(67, 35, 7000, 1, 'SEK'),
-(65, 35, 400, 1, 'SEK'),
 (58, 36, 360, 1, 'SEK'),
-(64, 36, 500, 1, 'SEK');
+(64, 36, 500, 1, 'SEK'),
+(58, 37, 360, 1, 'SEK'),
+(58, 38, 360, 1, 'SEK'),
+(58, 39, 360, 1, 'SEK'),
+(59, 40, 5400, 1, 'SEK'),
+(62, 41, 300, 1, 'SEK'),
+(57, 42, 90, 1, 'SEK'),
+(57, 47, 90, 1, 'SEK'),
+(58, 47, 360, 1, 'SEK'),
+(59, 47, 5400, 1, 'SEK'),
+(61, 47, 700, 1, 'SEK');
 
 -- --------------------------------------------------------
 
@@ -341,18 +368,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `title`, `description`, `category_id`, `number_in_stock`) VALUES
-(56, 'Spike', 'In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 10),
-(57, 'Palm', 'Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 2),
-(58, 'Nature', 'Quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 1, 11),
+(56, 'Spike', 'In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 7),
+(57, 'Palm', 'Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 4, 5),
+(58, 'Nature', 'Quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 1, 3),
 (59, 'Battle', 'Volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 4),
-(60, 'Tiger', 'Feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 5),
-(61, 'Oblivion', 'Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare. In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 1, 3),
-(62, 'Hera', 'Ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 36, 4),
-(63, 'Horse', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 38),
+(60, 'Tiger', 'Feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare.', 32, 4),
+(61, 'Oblivion', 'Quisque dolor lorem, tempor sit amet fermentum vel, vestibulum sed ligula. Suspendisse laoreet faucibus sem, fringilla rhoncus odio fermentum at. Aenean imperdiet egestas risus nec posuere. Vivamus fermentum dictum urna a ornare. In vitae ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 1, 12),
+(62, 'Hera', 'Ultricies turpis. Aliquam volutpat diam sapien, in sagittis risus porttitor quis. Aliquam eu risus vel nunc tristique euismod sit amet sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 36, 3),
+(63, 'Horse', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 37),
 (64, 'Elephant Love', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 32, 10),
 (65, 'Statement', 'Sed lectus. Aenean sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum.', 34, 2),
 (66, 'Sky', 'Sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 34, 3),
-(67, 'Waves', 'Consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 2),
+(67, 'Waves', 'Consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 7),
 (68, 'Dance', 'Sollicitudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 3),
 (69, 'Stairs', 'Tudin consequat leo in pretium. Donec interdum quis lacus non auctor. Phasellus non commodo nulla, quis feugiat ligula. Vivamus facilisis consequat lacus, ut elementum nisi malesuada ac. Etiam congue elit a venenatis bibendum. Phasellus interdum quis lacus non auctor. Phasellus non commodo nullac.', 1, 25);
 
@@ -474,13 +501,13 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `active_order_of_products`
 --
 ALTER TABLE `active_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `completed_order_of_products`
 --
 ALTER TABLE `completed_order_of_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `order_status`

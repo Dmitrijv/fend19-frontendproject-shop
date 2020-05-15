@@ -1,0 +1,81 @@
+table.product-table {
+  div.productCoverDemo {
+    display: flex;
+    justify-content: center;
+  }
+
+  span.gallerySize {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    padding: 0 3px;
+    border-left: 2px solid white;
+  }
+
+  img.cover-demo {
+    object-fit: cover;
+    object-position: center;
+    width: 60px;
+    height: 50px;
+    border: 1px solid lightgray;
+  }
+}
+
+/* Display only .ie-box for IE 11 */
+.ie-box {
+  display: none !important;
+
+  @media screen and (min-width: 801px) {
+    display: table-cell !important;
+  }
+}
+
+.ellipsis {
+  display: block;
+
+  @media screen and (min-width: 801px) {
+    display: none;
+  }
+}
+
+/* Display ellipsis if it is a modern browser*/
+@supports (display: grid) {
+
+  /* Hide partial description when it comes to a smaller device */
+  .ie-box {
+    display: none !important;
+  }
+
+  /* Use ellipsis to display all description info when it comes to a tablet / mobile device*/
+  // This class avoids creating multiple lines
+  .ellipsis {
+    display: block;
+    position: relative;
+    width: 23%;
+  }
+
+  .ellipsis .description-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+  }
+
+  /* When it goes to big screen, display partial description, use .ie-box */
+  @media screen and (min-width: 802px) {
+    .ie-box {
+      display: table-cell !important;
+    }
+
+    .ellipsis {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,267 @@
+/* This CSS works only for IE 8 */
+body {
+  overflow: hidden;
+}
+
+.header-container {
+  display: block;
+  margin: 0 0 10px 0 !important;
+}
+
+.header-container .header-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-container h1 {
+  line-height: 45px;
+  display: inline-block;
+}
+
+.admin-main {
+  position: relative;
+  display: inline-block;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.admin-main .admin-nav li {
+  width: 25%;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main .admin-nav li {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main {
+    max-width: 1004px;
+  }
+}
+
+.admin-main section.admin-sidebar {
+  position: relative;
+  display: inline-block;
+  min-width: 400px;
+  width: 92vw;
+  margin: 0 20px;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main section.admin-sidebar {
+    position: fixed;
+    display: inline-block;
+    min-width: 150px;
+    width: 77vw;
+    margin: 0 20px;
+    width: 150px;
+  }
+  .admin-main section.admin-sidebar .admin-nav > ul li {
+    float: none;
+  }
+}
+
+.admin-main section.admin-content {
+  display: inline-block;
+  min-width: 400px;
+  width: 92vw;
+  margin-left: 20px;
+}
+
+@media screen and (min-width: 980px) {
+  .admin-main section.admin-content {
+    min-width: 700px;
+    width: 77vw;
+    margin-left: 180px;
+  }
+}
+
+.admin-main form.clearfix {
+  height: 46px;
+  margin: 0;
+}
+
+.admin-main form.clearfix .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.admin-main form.clearfix .float-left {
+  float: left;
+  min-width: 200px !important;
+  width: 79% !important;
+}
+
+.admin-main form.clearfix .float-right {
+  float: right;
+  height: 39px !important;
+}
+
+/* Products page for IE 9 */
+.product-table tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(3) {
+  min-width: 100px;
+}
+
+.product-table tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(4) {
+  min-width: 68px;
+}
+
+.product-table .productCoverDemo {
+  position: relative;
+  margin-right: 14px;
+}
+
+.product-table .productCoverDemo .cover-demo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.product-table .productCoverDemo span.gallerySize {
+  padding: 17px 3px !important;
+  position: relative !important;
+  right: -37px;
+}
+
+.product-table .ellipsis {
+  padding-top: 58px;
+}
+
+@media only screen and (max-width: 860px) {
+  .product-table {
+    /* To maintain table border's thickness */
+  }
+  .product-table span.gallerySize {
+    padding: 17px 3px !important;
+    position: relative !important;
+    right: -37px !important;
+  }
+  .product-table .ellipsis {
+    width: unset;
+    padding-top: 58px !important;
+  }
+  .product-table .ellipsis .show-all-description .description-text {
+    position: unset;
+    white-space: unset;
+    padding: 0 15px;
+  }
+  .product-table tr > td:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+  .product-table tr > th,
+  .product-table tr > td {
+    padding: 8px 0 !important;
+    font-size: 14px !important;
+  }
+  .product-table tr > td:first-child {
+    background-color: inherit !important;
+  }
+  .product-table tr > td:first-child {
+    display: none;
+  }
+  .product-table tr > td::before {
+    content: "" !important;
+  }
+  .product-table tr:nth-child(odd) {
+    background: #ccc;
+  }
+  .product-table tbody > tr > td:nth-child(5) {
+    min-width: 40px !important;
+  }
+  .product-table .product-table tbody > tr > td:nth-child(3) {
+    min-width: 65px !important;
+    position: relative;
+  }
+  .product-table .product-table tbody > tr > td:nth-child(3) .productCoverDemo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .product-table .product-table tbody > tr > td:nth-child(3) .productCoverDemo span.gallerySize {
+    padding: 17px 3px !important;
+    position: relative !important;
+    right: -22px !important;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .product-table tbody > tr > td:nth-child(3) {
+    min-width: 65px !important;
+  }
+  .product-table tbody > tr > td:nth-child(3) .productCoverDemo {
+    position: relative;
+    margin-right: 0;
+  }
+  .product-table tbody > tr > td:nth-child(3) .productCoverDemo .cover-demo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .product-table tbody > tr > td:nth-child(3) .productCoverDemo span.gallerySize {
+    padding: 17px 3px !important;
+    position: relative !important;
+    right: -22px !important;
+  }
+  .product-table tbody > tr > td:nth-child(4) {
+    min-width: 50px !important;
+  }
+  .product-table tbody > tr > td:nth-child(5) {
+    min-width: 40px !important;
+  }
+  .ellipsis {
+    min-width: 50px !important;
+  }
+  .ie-ellipsis {
+    position: relative;
+    min-width: 50px;
+  }
+  .ie-ellipsis .ie-ellipsis-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 50px 6px 0;
+  }
+  .product-table td:nth-child(8).actionCell {
+    min-width: 100px !important;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .admin-main section.admin-sidebar {
+    margin: 0;
+  }
+  .admin-main section.admin-content {
+    margin: 0;
+  }
+  .product-table td:nth-child(8).actionCell {
+    min-width: 60px !important;
+  }
+  .actionCell .edit-btn {
+    padding: 0 13px;
+    margin-bottom: 3px;
+  }
+  .actionCell .del-btn {
+    width: 50px;
+    padding: 0;
+  }
+}
+
+.ie-box {
+  display: none !important;
+}
+/*# sourceMappingURL=adminpanel-ie.css.map */

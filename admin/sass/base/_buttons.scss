@@ -1,0 +1,113 @@
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  min-width: 40px;
+  &.btn-left {
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  &.btn-right {
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  &.btn-mid {
+    border-radius: 0;
+  }
+
+  &.btn-round {
+    border-radius: 0.5rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.edit-btn {
+  border: 1px solid black;
+  background-color: white;
+  border-color: #adadad;
+
+  &:hover {
+    color: #333;
+    background-color: whitesmoke;
+    border-color: gray;
+  }
+}
+
+.create-btn {
+  background-color: #28a745;
+  background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+  background-repeat: repeat-x;
+  background-position: -1px -1px;
+  background-size: 110% 110%;
+  color: #fff;
+  border: 1px solid rgba(27, 31, 35, 0.2);
+  width: 82px;
+
+  @supports (display: grid) {
+    width: unset;
+  }
+
+  &:hover {
+    background-color: #269f42;
+    background-image: linear-gradient(-180deg, #2fcb53, #269f42 90%);
+    background-position: -0.5em;
+    border-color: rgba(27, 31, 35, 0.5);
+  }
+
+  &:active {
+    background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+    background-repeat: repeat-x;
+    background-position: -1px -1px;
+    background-size: 110% 110%;
+  }
+}
+
+.del-btn {
+  border: 1px solid #d43f3a;
+  color: #fff;
+  background-color: #d9534f;
+  width: 60px;
+
+  &:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+  }
+}
+
+.alert.fail {
+  .close-btn {
+    border: 1px solid #d43f3a;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 1px 2px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #c9302c;
+      border-color: #ac2925;
+    }
+  }
+}
+
+.alert.success {
+  .close-btn {
+    border: 1px solid #6e9b47;
+    color: #fff;
+    background-color: #71a047;
+    padding: 1px 2px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #567a37;
+      border-color: #5e863a;
+    }
+  }
+}

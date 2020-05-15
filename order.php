@@ -116,7 +116,7 @@ foreach ($shoppingCart as &$cartItem) {
         $coverImage = $product['gallery'][0];
     }
 
-    $itemTotalPrice = intval($product['price'] * $orderedQuantity);
+    $itemTotalPrice = intval($product['price']) * $orderedQuantity;
     $finalPriceAmount += $itemTotalPrice;
     $productListHtml = $productListHtml . '
         <tr>
@@ -130,8 +130,10 @@ foreach ($shoppingCart as &$cartItem) {
         </tr>';
 }
 
+$shipping_message = "Frakt: 0 kr";
 if ($free_shipping == 0) {
-    $finalPriceAmount = intval($finalPriceAmount + 50);
+    $finalPriceAmount = intval($finalPriceAmount) + 50;
+    $shipping_message = "Frakt: 50 kr";
 }
 
 $productListHtml .= '
@@ -139,10 +141,9 @@ $productListHtml .= '
         <td>Totalt:</td>
         <td></td>
         <td class="products-amount">' . $totalAmount . '</td>
-        <td>Frakt: 50 kr</td>
+        <td>' . $shipping_message . '</td>
         <td class="item-total">' . $finalPriceAmount . ' kr</td>
-    </tr>
-    </tbody>';
+    </tr>';
 
 ?>
 
@@ -185,9 +186,9 @@ $productListHtml .= '
                 <dl>
                     <dt>Kundnamn</dt>
                     <dd id="fullname"><?php echo htmlspecialchars($customerData['first_name'] . " " . $customerData['last_name'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Phone</dt>
+                    <dt>Telefon</dt>
                     <dd id="phone"><?php echo htmlspecialchars($customerData['phone'], ENT_QUOTES, 'UTF-8'); ?></dd>
-                    <dt>Postal address</dt>
+                    <dt>Adress</dt>
                     <dd id="address"><?php echo htmlspecialchars($customerData['street'] . ", " . $customerData['postal_number'] . ", " . $customerData['county'], ENT_QUOTES, 'UTF-8'); ?></dd>
                     <dt>Ordernummer:</dt>
                     <dd id="orderNumber"><?php echo $orderId; ?></dd>
