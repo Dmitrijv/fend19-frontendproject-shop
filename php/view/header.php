@@ -41,4 +41,13 @@
 
         </nav>
     </div>
+
+    <div class="loginArea">
+        <a href="login.php">
+            <button class="main__header__btn">
+                <p class="desktop-text">logga in</p>
+            </button>
+        </a>
+    </div>
+
 </header>
